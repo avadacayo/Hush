@@ -8,6 +8,9 @@ namespace Hush.Display.Interfaces
     class Demo : Interface
     {
 
+        // controls are named <Name><Type>
+        // for example <Login><Button>
+
         private Panel BorderPanel;
         private Panel ControlPanel;
         private Button LoginButton;
@@ -17,70 +20,16 @@ namespace Hush.Display.Interfaces
         private Label PasswordLabel;
         private TextBox PasswordTextBox;
 
-        /*
+        // event methods are named <Control><Action>
+        // for example <LoginButton><Click>
 
-        private void DoLogin(Object Sender, EventArgs Args)
+        private void LoginButtonClick(Object Sender, EventArgs Args)
         {
-            InterfaceManager.MainForm.ShowInterface(InterfaceManager.MainInterface);
         }
-
-        private void OpenRegisterWindow(Object Sender, EventArgs Args)
-        {
-            InterfaceManager.MainForm.ShowInterface(InterfaceManager.RegisterInterface);
-        }
-
-        private void PasswordTextBoxKeyDown(Object Sender, KeyEventArgs Args)
-        {
-
-            if (Args.KeyCode == Keys.Return)
-            {
-                DoLogin(Sender, Args);
-            }
-
-        }
-
-        private void PasswordTextBoxKeyPress(Object Sender, KeyPressEventArgs Args)
-        {
-
-            if (!Char.IsControl(Args.KeyChar))
-            {
-                if (!Config.ValidPasswordCharacter(Args.KeyChar))
-                {
-                    System.Media.SystemSounds.Beep.Play();
-                    Args.Handled = true;
-                }
-            }
-
-        }
-
-        private void UsernameTextBoxKeyDown(Object Sender, KeyEventArgs Args)
-        {
-
-            if (Args.KeyCode == Keys.Return)
-            {
-                PasswordTextBox.Focus();
-                Args.Handled = true;
-            }
-
-        }
-
-        private void UsernameTextBoxKeyPress(Object Sender, KeyPressEventArgs Args)
-        {
-
-            if (!Char.IsControl(Args.KeyChar))
-            {
-                if (!Config.ValidUsernameCharacter(Args.KeyChar))
-                {
-                    System.Media.SystemSounds.Beep.Play();
-                    Args.Handled = true;
-                }
-            }
-
-        }
-
-        */
 
         #region Overrides
+
+        // overridden methods go here
 
         #endregion
 
@@ -168,8 +117,8 @@ namespace Hush.Display.Interfaces
             Controls.Add(ControlPanel);
             ControlPanel.ResumeLayout(false);
 
-            Width = 285;
-            Height = 100;
+            Width = 500;
+            Height = 500;
 
             ResumeLayout(false);
             PerformLayout();

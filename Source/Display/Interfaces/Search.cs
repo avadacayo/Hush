@@ -1,7 +1,10 @@
-namespace WindowsFormsApplication1
+namespace Hush.Display.Interfaces
 {
-    partial class Search
+
+    class Search : Interface
     {
+    }
+        /*
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -227,6 +230,6 @@ namespace WindowsFormsApplication1
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblSearchTerm;
-    }
+    }*/
 }
 

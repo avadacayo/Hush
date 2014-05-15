@@ -44,15 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Empty.cs" />
-    <Compile Include="Display\Interfaces\Interface.cs">
+    <Compile Include="Source\Common\Empty.cs" />
+    <Compile Include="Source\Display\Interfaces\Interface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Display\Interfaces\Demo.cs">
+    <Compile Include="Source\Display\Interfaces\Demo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Model\Empty2.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Source\Model\Empty2.cs" />
+    <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,7 +77,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Display\Controls\" />
+    <Folder Include="Source\Display\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

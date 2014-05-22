@@ -21,8 +21,8 @@ namespace Hush.Display.Interfaces
         {
 
             this.Name = Name;
-            Width = 600;
-            Height = 600;
+            this.Width = 616; // inner width = 600
+            this.Height = 638; // inner height = 600
 
         }
 

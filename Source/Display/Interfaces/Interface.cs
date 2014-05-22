@@ -5,24 +5,33 @@ using System.Windows.Forms;
 namespace Hush.Display.Interfaces
 {
 
-    class Interface : Form
+    class Interface : Panel
     {
 
         protected Font GlobalFont = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
 
         public Interface()
         {
-            Initialize(String.Empty, String.Empty);
+            Initialize(String.Empty);
+        }
+
+        public Interface(String Title)
+        {
+            Initialize(Title);
         }
 
         #region Designer
 
-        protected virtual void Initialize(String Name, String Text)
+        protected virtual void Initialize(String Title)
         {
 
-            this.Name = Name;
-            this.Width = 616; // inner width = 600
-            this.Height = 638; // inner height = 600
+            if (String.Empty == Title)
+                Title = "Hush";
+
+            Height = 600;
+            Location = new Point(0, 0);
+            Text = Title;
+            Width = 600;
 
         }
 

@@ -55,10 +55,10 @@
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\Display\Interfaces\Interface.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\Demo.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\Search.cs">
       <SubType>Form</SubType>
@@ -66,6 +66,12 @@
     <Compile Include="Source\Client\Model\Category.cs" />
     <Compile Include="Source\Client\Model\Record.cs" />
     <Compile Include="Source\Display\Interfaces\Settings.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\TestScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Display\ParentWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Source\Program.cs" />

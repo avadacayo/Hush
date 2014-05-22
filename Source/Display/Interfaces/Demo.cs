@@ -36,10 +36,10 @@ namespace Hush.Display.Interfaces
 
         #region Designer
 
-        protected override void Initialize(String Name, String Text)
+        protected override void Initialize(String Title)
         {
 
-            base.Initialize(Name, Text);
+            base.Initialize(Title);
 
             PasswordTextBox = new TextBox();
             PasswordLabel = new Label();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
+using Hush.Display;
 using Hush.Display.Interfaces;
 
 namespace Hush
@@ -9,13 +10,17 @@ namespace Hush
     static class Program
     {
 
+        public static ParentWindow Window;
+
         [STAThread]
         static void Main()
         {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Settings());
+
+            Window = new ParentWindow();
+            Application.Run(Window);
 
         }
 

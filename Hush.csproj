@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Client\DataManager.cs" />
+    <Compile Include="Source\Display\Controls\BorderPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Controls\HushDataView.cs">
       <SubType>Component</SubType>
     </Compile>

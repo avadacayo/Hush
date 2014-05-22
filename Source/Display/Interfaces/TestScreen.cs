@@ -19,10 +19,12 @@ namespace Hush.Display.Interfaces
 
         #region Designer
 
-        protected override void Initialize(String Text)
+        protected override void Initialize(String Title)
         {
 
-            base.Initialize(Text);
+            Title = "Test";
+
+            base.Initialize(Title);
 
             SettingsButton = new Button();
             SuspendLayout();

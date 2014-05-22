@@ -15,7 +15,13 @@ namespace Hush.Display
 
         public ParentWindow()
         {
+
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen; 
+
             ShowInterface(new TestScreen());
+
         }
 
         public void ShowInterface(Interface ToShow)

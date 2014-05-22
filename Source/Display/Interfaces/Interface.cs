@@ -27,6 +27,8 @@ namespace Hush.Display.Interfaces
 
             if (String.Empty == Title)
                 Title = "Hush";
+            else
+                Title = "Hush > " + Title;
 
             Height = 600;
             Location = new Point(0, 0);

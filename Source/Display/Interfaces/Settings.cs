@@ -18,6 +18,8 @@ namespace Hush.Display.Interfaces
         protected override void Initialize(String Title)
         {
 
+            Title = "Settings";
+
             base.Initialize(Title);
 
             ContentPanel = new Panel();

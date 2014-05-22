@@ -10,8 +10,10 @@ namespace Hush.Display.Interfaces
     {
 
         private Panel ContentPanel;
+        private Button GeneralButton;
         private Panel MenuPanel;
         private Label TitleLabel;
+        private Button ThemeButton;
 
         #region Designer
 
@@ -23,15 +25,22 @@ namespace Hush.Display.Interfaces
             base.Initialize(Title);
 
             ContentPanel = new Panel();
+            GeneralButton = new Button();
             MenuPanel = new Panel();
             TitleLabel = new Label();
+            ThemeButton = new Button();
 
             MenuPanel.SuspendLayout();
             SuspendLayout();
 
-            ContentPanel.BackColor = Color.FromArgb(200, 200, 200);
+            ContentPanel.BackColor = Color.FromArgb(230, 230, 230);
             ContentPanel.Location = new Point(180, 40);
             ContentPanel.Size = new Size(410, 550);
+
+            GeneralButton.UseVisualStyleBackColor = true;
+            GeneralButton.Location = new Point(1, 1);
+            GeneralButton.Size = new Size(168, 30);
+            GeneralButton.Text = "General Settings";
 
             MenuPanel.BackColor = Color.FromArgb(150, 150, 150);
             MenuPanel.Location = new Point(10, 40);
@@ -46,6 +55,14 @@ namespace Hush.Display.Interfaces
             TitleLabel.Size = new Size(580, 30);
             TitleLabel.Text = "Settings";
             TitleLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+            ThemeButton.UseVisualStyleBackColor = true;
+            ThemeButton.Location = new Point(1, 30);
+            ThemeButton.Size = new Size(168, 30);
+            ThemeButton.Text = "Change Theme";
+
+            MenuPanel.Controls.Add(GeneralButton);
+            MenuPanel.Controls.Add(ThemeButton);
 
             Controls.Add(ContentPanel);
             Controls.Add(MenuPanel);

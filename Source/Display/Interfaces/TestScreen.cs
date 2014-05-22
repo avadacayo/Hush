@@ -33,6 +33,7 @@ namespace Hush.Display.Interfaces
             SettingsButton.Location = new Point(10, 10);
             SettingsButton.Text = "Settings Screen";
             SettingsButton.Size = new Size(150, 25);
+            SettingsButton.UseVisualStyleBackColor = true;
 
             Controls.Add(SettingsButton);
 

@@ -16,6 +16,7 @@ namespace Hush.Display
         public ParentWindow()
         {
 
+            BackColor = Color.FromArgb(255, 255, 255);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; 

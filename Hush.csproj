@@ -57,6 +57,12 @@
     <Compile Include="Source\Display\Interfaces\Add.Designer.cs">
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\RegisterAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\SignIn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\Interface.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,7 +70,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\Search.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Client\Model\Category.cs" />
     <Compile Include="Source\Client\Model\Record.cs" />

@@ -11,10 +11,16 @@ namespace Hush.Display.Interfaces
     {
 
         private Button SettingsButton;
+        private Button SignInButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
             Program.Window.ShowInterface(new Settings());
+        }
+
+        private void SignInButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new SignIn());
         }
 
         #region Designer
@@ -27,6 +33,7 @@ namespace Hush.Display.Interfaces
             base.Initialize(Title);
 
             SettingsButton = new Button();
+            SignInButton = new Button();
             SuspendLayout();
 
             SettingsButton.Click += SettingsButtonClick;
@@ -35,7 +42,14 @@ namespace Hush.Display.Interfaces
             SettingsButton.Size = new Size(150, 25);
             SettingsButton.UseVisualStyleBackColor = true;
 
+            SignInButton.Click += SignInButtonClick;
+            SignInButton.Location = new Point(10, 50);
+            SignInButton.Text = "Sign In Screen";
+            SignInButton.Size = new Size(150, 25);
+            SignInButton.UseVisualStyleBackColor = true;
+
             Controls.Add(SettingsButton);
+            Controls.Add(SignInButton);
 
             ResumeLayout(false);
             PerformLayout();

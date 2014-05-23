@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-using Hush;
 
 namespace Hush.Display.Interfaces
 {
@@ -31,10 +31,10 @@ namespace Hush.Display.Interfaces
 
         #region Designer
 
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
-            
-            Title = "Test";
+
+            Title.Add("Test");
 
             base.Initialize(Title);
 

@@ -26,10 +26,12 @@ namespace Hush.Display.Interfaces
         private Button RegisterButton;
         private Button CancelButton;
 
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
+
+            Title.Add("Register");
+
             Int32 Xoffset = -20;
-            Title = "Register";
             base.Initialize(Title);
 
             RegisterLabel = new Label();

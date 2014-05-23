@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel.Design.Serialization;
+using System.Collections.Generic;
 
 namespace Hush.Display.Interfaces
 {
@@ -17,10 +18,10 @@ namespace Hush.Display.Interfaces
 
         #region Designer
 
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
 
-            Title = "Settings";
+            Title.Add("Settings");
 
             base.Initialize(Title);
 

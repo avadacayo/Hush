@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Hush;
+using System.Collections.Generic;
 
 namespace Hush.Display.Interfaces
 {
@@ -19,10 +20,12 @@ namespace Hush.Display.Interfaces
         private LinkLabel ForgotPasswordLinkLable;
 
         #region Designer
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
+
+            Title.Add("Sign In");
+
             Int32 Yoffset = 40;
-            Title = "Sign In";
             base.Initialize(Title);
 
             LoginLabel = new Label();

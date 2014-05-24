@@ -22,14 +22,9 @@ namespace Hush.Display.Interfaces
         #region Designer
         protected override void Initialize(List<String> Title)
         {
-<<<<<<< HEAD
-            Title = "Sign In";
-=======
 
             Title.Add("Sign In");
 
-            Int32 Yoffset = 40;
->>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
             base.Initialize(Title);
 
             LoginLabel = new Label();

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Hush;
+using System.Collections.Generic;
 
 namespace Hush.Display.Interfaces
 {
@@ -15,12 +16,10 @@ namespace Hush.Display.Interfaces
     
 
         #region Designer
-        //protected override void Initialize(List<String> Title)
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
-            //Title.Add ("Forgot Password");
-            Title = "Forgot Password";
-                
+           Title.Add ("Forgot Password");
+           
             base.Initialize(Title);
 
             ForgotPasswordLabel = new Label();

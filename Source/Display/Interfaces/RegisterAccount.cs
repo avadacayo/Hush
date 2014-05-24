@@ -28,15 +28,9 @@ namespace Hush.Display.Interfaces
 
         protected override void Initialize(List<String> Title)
         {
-<<<<<<< HEAD
-            Title = "Register";
-=======
-
             Title.Add("Register");
 
-            Int32 Xoffset = -20;
->>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
-            base.Initialize(Title);
+             base.Initialize(Title);
 
             RegisterLabel = new Label();
             UsernameLabel = new Label();

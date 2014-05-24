@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -12,28 +13,37 @@ namespace Hush.Display.Interfaces
 
         public Interface()
         {
-            Initialize(String.Empty);
+            Initialize(new List<String>());
         }
 
         public Interface(String Title)
         {
-            Initialize(Title);
+            Initialize(new List<String>(new string[] {Title}));
         }
 
         #region Designer
 
-        protected virtual void Initialize(String Title)
+        protected virtual void Initialize(List<String> Title)
         {
 
-            if (String.Empty == Title)
-                Title = "Hush";
-            else
-                Title = "Hush > " + Title;
+            String TitleString = String.Empty;
 
-            Height = 600;
+            Title.Add("Hush");
+            Title.Reverse();
+
+            foreach (String Item in Title)
+            {
+
+                if (String.Empty != TitleString)
+                    TitleString += " > ";
+                TitleString += Item;
+
+            }
+
+            Height = 700;
             Location = new Point(0, 0);
-            Text = Title;
-            Width = 600;
+            Text = TitleString;
+            Width = 900;
 
         }
 

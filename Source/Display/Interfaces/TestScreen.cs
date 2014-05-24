@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-using Hush;
 
 namespace Hush.Display.Interfaces
 {
@@ -13,7 +13,11 @@ namespace Hush.Display.Interfaces
         private Button SettingsButton;
         private Button SignInButton;
         private Button RegisterAccountButton;
+<<<<<<< HEAD
         private Button ForgotPasswordButton;
+=======
+        private Button AddButton;
+>>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
@@ -30,24 +34,34 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new RegisterAccount());
         }
 
+<<<<<<< HEAD
         private void ForgotPasswordButtonClick(Object Sender, EventArgs Args)
         {
             Program.Window.ShowInterface(new ForgotPassword());
+=======
+        private void AddButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new Add());
+>>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
         }
 
         #region Designer
 
-        protected override void Initialize(String Title)
+        protected override void Initialize(List<String> Title)
         {
-            
-            Title = "Test";
+
+            Title.Add("Test");
 
             base.Initialize(Title);
 
             SettingsButton = new Button();
             SignInButton = new Button();
             RegisterAccountButton = new Button();
+<<<<<<< HEAD
             ForgotPasswordButton = new Button();
+=======
+            AddButton = new Button();
+>>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
             SuspendLayout();
 
             SettingsButton.Click += SettingsButtonClick;
@@ -68,16 +82,28 @@ namespace Hush.Display.Interfaces
             RegisterAccountButton.Size = new Size(150, 25);
             RegisterAccountButton.UseVisualStyleBackColor = true;
 
+<<<<<<< HEAD
             ForgotPasswordButton.Click += ForgotPasswordButtonClick;
             ForgotPasswordButton.Location = new Point(10, 130);
             ForgotPasswordButton.Text = "Forgot Password Screen";
             ForgotPasswordButton.Size = new Size(150, 25);
             ForgotPasswordButton.UseVisualStyleBackColor = true;
+=======
+            AddButton.Click += AddButtonClick;
+            AddButton.Location = new Point(10, 130);
+            AddButton.Text = "Add Screen";
+            AddButton.Size = new Size(150, 25);
+            AddButton.UseVisualStyleBackColor = true;
+>>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
 
             Controls.Add(SettingsButton);
             Controls.Add(SignInButton);
             Controls.Add(RegisterAccountButton);
+<<<<<<< HEAD
             Controls.Add(ForgotPasswordButton);
+=======
+            Controls.Add(AddButton);
+>>>>>>> 10b793549ae8231aadebcf4b7164165c865c4a62
 
             ResumeLayout(false);
             PerformLayout();

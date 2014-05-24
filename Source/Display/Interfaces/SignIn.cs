@@ -21,7 +21,6 @@ namespace Hush.Display.Interfaces
         #region Designer
         protected override void Initialize(String Title)
         {
-            Int32 Yoffset = 40;
             Title = "Sign In";
             base.Initialize(Title);
 
@@ -34,51 +33,53 @@ namespace Hush.Display.Interfaces
             RegisterPageButton = new Button();
             ForgotPasswordLinkLable = new LinkLabel();
 
-            LoginLabel.Location = new Point(145, 70 + Yoffset);
+            LoginLabel.Location = new Point(145, 110);
             LoginLabel.Name = "UsernameTextBox";
             LoginLabel.Size = new Size(300, 40);
             LoginLabel.Font = new Font("Arial", 27);
             LoginLabel.Text = "Log in";
 
-            UsernameLabel.Location = new Point(150, 130 + Yoffset);
+            UsernameLabel.Font = GlobalFont;
+            UsernameLabel.Location = new Point(150, 170);
             UsernameLabel.Name = "UsernameLabel";
             UsernameLabel.Size = new Size(300, 15);
-            UsernameLabel.TabIndex = 0;
             UsernameLabel.Text = "Username";
 
-            UsernameTextBox.Location = new Point(150, 150 + Yoffset);
+            UsernameTextBox.Font = GlobalFont;
+            UsernameTextBox.Location = new Point(150, 190);
             UsernameTextBox.Name = "UsernameTextBox";
             UsernameTextBox.Size = new Size(300, 50);
             UsernameTextBox.TabIndex = 1;
 
-            PasswordLabel.Location = new Point(150, 180 + Yoffset);
+            PasswordLabel.Font = GlobalFont;
+            PasswordLabel.Location = new Point(150, 220);
             PasswordLabel.Name = "PasswordLabel";
             PasswordLabel.Size = new Size(300, 15);
-            PasswordLabel.TabIndex = 0;
             PasswordLabel.Text = "Password";
 
-            PasswordTextBox.Location = new Point(150, 200 + Yoffset);
+            PasswordTextBox.Font = GlobalFont;
+            PasswordTextBox.Location = new Point(150, 240);
             PasswordTextBox.Name = "PasswordTextBox";
             PasswordTextBox.PasswordChar = '*';
             PasswordTextBox.Size = new Size(300, 50);
-            PasswordTextBox.TabIndex = 2;
 
-            LoginButton.Location = new Point(150, 230 + Yoffset);
+            PasswordTextBox.Font = GlobalFont;
+            LoginButton.Location = new Point(150, 270);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(300, 30);
-            //LoginButton.TabIndex = 3;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = true;
 
-            ForgotPasswordLinkLable.Location = new Point(150, 260 + Yoffset);
+            ForgotPasswordLinkLable.Font = GlobalFont;
+            ForgotPasswordLinkLable.Location = new Point(150, 300);
             ForgotPasswordLinkLable.Name = "ForgotPasswordLinkLable";
             ForgotPasswordLinkLable.Size = new Size(86, 13);
             ForgotPasswordLinkLable.Text = "Forgot Password";
 
-            RegisterPageButton.Location = new Point(150, 290 + Yoffset);
+            RegisterPageButton.Font = GlobalFont;
+            RegisterPageButton.Location = new Point(150, 330);
             RegisterPageButton.Name = "RegisterPageButton";
             RegisterPageButton.Size = new Size(300, 30);
-            RegisterPageButton.TabIndex = 4;
             RegisterPageButton.Text = "Create an Account";
             RegisterPageButton.UseVisualStyleBackColor = true;
 

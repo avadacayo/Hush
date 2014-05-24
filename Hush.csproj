@@ -57,6 +57,9 @@
     <Compile Include="Source\Display\Interfaces\Add.Designer.cs">
       <DependentUpon>Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\ForgotPassword.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\RegisterAccount.cs">
       <SubType>Component</SubType>
     </Compile>

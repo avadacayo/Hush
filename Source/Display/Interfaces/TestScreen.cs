@@ -13,6 +13,7 @@ namespace Hush.Display.Interfaces
         private Button SettingsButton;
         private Button SignInButton;
         private Button RegisterAccountButton;
+        private Button ForgotPasswordButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
@@ -29,6 +30,11 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new RegisterAccount());
         }
 
+        private void ForgotPasswordButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new ForgotPassword());
+        }
+
         #region Designer
 
         protected override void Initialize(String Title)
@@ -41,6 +47,7 @@ namespace Hush.Display.Interfaces
             SettingsButton = new Button();
             SignInButton = new Button();
             RegisterAccountButton = new Button();
+            ForgotPasswordButton = new Button();
             SuspendLayout();
 
             SettingsButton.Click += SettingsButtonClick;
@@ -61,9 +68,16 @@ namespace Hush.Display.Interfaces
             RegisterAccountButton.Size = new Size(150, 25);
             RegisterAccountButton.UseVisualStyleBackColor = true;
 
+            ForgotPasswordButton.Click += ForgotPasswordButtonClick;
+            ForgotPasswordButton.Location = new Point(10, 130);
+            ForgotPasswordButton.Text = "Forgot Password Screen";
+            ForgotPasswordButton.Size = new Size(150, 25);
+            ForgotPasswordButton.UseVisualStyleBackColor = true;
+
             Controls.Add(SettingsButton);
             Controls.Add(SignInButton);
             Controls.Add(RegisterAccountButton);
+            Controls.Add(ForgotPasswordButton);
 
             ResumeLayout(false);
             PerformLayout();

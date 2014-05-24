@@ -14,6 +14,7 @@ namespace Hush.Display.Interfaces
         private Panel MenuPanel;
         private Label TitleLabel;
         private Button ThemeButton;
+        private Button SaveSettingsButton;
 
         #region Designer
 
@@ -29,6 +30,7 @@ namespace Hush.Display.Interfaces
             MenuPanel = new Panel();
             TitleLabel = new Label();
             ThemeButton = new Button();
+            SaveSettingsButton = new Button();
 
             MenuPanel.SuspendLayout();
             SuspendLayout();
@@ -61,8 +63,14 @@ namespace Hush.Display.Interfaces
             ThemeButton.Size = new Size(168, 30);
             ThemeButton.Text = "Change Theme";
 
+            SaveSettingsButton.UseVisualStyleBackColor = true;
+            SaveSettingsButton.Location = new Point(1, 59);
+            SaveSettingsButton.Size = new Size(168, 30);
+            SaveSettingsButton.Text = "Save Settings";
+
             MenuPanel.Controls.Add(GeneralButton);
             MenuPanel.Controls.Add(ThemeButton);
+            MenuPanel.Controls.Add(SaveSettingsButton);
 
             Controls.Add(ContentPanel);
             Controls.Add(MenuPanel);

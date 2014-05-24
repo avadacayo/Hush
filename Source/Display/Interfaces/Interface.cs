@@ -40,10 +40,10 @@ namespace Hush.Display.Interfaces
 
             }
 
-            Height = 600;
+            Height = 700;
             Location = new Point(0, 0);
             Text = TitleString;
-            Width = 600;
+            Width = 900;
 
         }
 

@@ -16,7 +16,7 @@ namespace Hush.Display
         public ParentWindow()
         {
 
-            BackColor = Color.FromArgb(255, 255, 255);
+            //BackColor = Color.FromArgb(255, 255, 255);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; 
@@ -33,10 +33,9 @@ namespace Hush.Display
             if (CurrentInterface != null)
                 Controls.Remove(CurrentInterface);
 
+            ClientSize = new Size(ToShow.Width, ToShow.Height);
             CurrentInterface = ToShow;
-            Height = ToShow.Height + 38;
             Text = ToShow.Text;
-            Width = ToShow.Width + 16;
 
             Controls.Add(ToShow);
 

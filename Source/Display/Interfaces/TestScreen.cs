@@ -15,6 +15,8 @@ namespace Hush.Display.Interfaces
         private Button RegisterAccountButton;
         private Button ForgotPasswordButton;
         private Button AddButton;
+        private Button ManageCategoriesButton;
+        private Button SearchButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
@@ -41,6 +43,15 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new Add());
         }
 
+        private void CategoryManagementButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new CategoryManagement());
+        }
+
+        private void SearchButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new Search());
+        }
 
         #region Designer
 
@@ -56,6 +67,8 @@ namespace Hush.Display.Interfaces
             RegisterAccountButton = new Button();
             ForgotPasswordButton = new Button();
             AddButton = new Button();
+            ManageCategoriesButton = new Button();
+            SearchButton = new Button();
 
             SuspendLayout();
 
@@ -84,16 +97,30 @@ namespace Hush.Display.Interfaces
             ForgotPasswordButton.UseVisualStyleBackColor = true;
 
             AddButton.Click += AddButtonClick;
-            AddButton.Location = new Point(10, 130);
+            AddButton.Location = new Point(10, 170);
             AddButton.Text = "Add Screen";
             AddButton.Size = new Size(150, 25);
             AddButton.UseVisualStyleBackColor = true;
+
+            ManageCategoriesButton.Click += CategoryManagementButtonClick;
+            ManageCategoriesButton.Location = new Point(10, 210);
+            ManageCategoriesButton.Text = "Manage Categories";
+            ManageCategoriesButton.Size = new Size(150, 25);
+            ManageCategoriesButton.UseVisualStyleBackColor = true;
+
+            SearchButton.Click += SearchButtonClick;
+            SearchButton.Location = new Point(10, 250);
+            SearchButton.Text = "Search";
+            SearchButton.Size = new Size(150, 25);
+            SearchButton.UseVisualStyleBackColor = true;
 
             Controls.Add(SettingsButton);
             Controls.Add(SignInButton);
             Controls.Add(RegisterAccountButton);
             Controls.Add(ForgotPasswordButton);
             Controls.Add(AddButton);
+            Controls.Add(ManageCategoriesButton);
+            Controls.Add(SearchButton);
             ResumeLayout(false);
             PerformLayout();
 

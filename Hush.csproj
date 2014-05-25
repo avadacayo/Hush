@@ -51,6 +51,9 @@
     <Compile Include="Source\Display\Controls\HushDataView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\CategoryManagement.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\Add.cs">
       <SubType>Component</SubType>
     </Compile>

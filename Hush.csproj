@@ -80,6 +80,9 @@
     <Compile Include="Source\Display\Interfaces\Settings.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\MainScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\TestScreen.cs">
       <SubType>Component</SubType>
     </Compile>

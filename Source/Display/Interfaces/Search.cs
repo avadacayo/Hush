@@ -12,66 +12,85 @@ namespace Hush.Display.Interfaces
 {
     class Search : Interface
     {
-        private TextBox SearchTextBox;
-        private GroupBox SearchFieldGroupBox;
         private CheckBox CategoryCheckBox;
-        private CheckBox TagsCheckBox;
-        private CheckBox NameCheckBox;
+        private Button CancelButton;
+        private Label DateFromLabel;
+        private DateTimePicker DateFromDateTimePicker;
+        private GroupBox DateRangeGroupBox;
+        private DateTimePicker DateToDateTimePicker;
+        private Label DateToLabel;
         private CheckBox FieldCheckBox;
         private TextBox FieldSearchTextBox;
-        private GroupBox DateRangeGroupBox;
-        private Label DateFromLabel;
-        private Label DateToLabel;
-        private DateTimePicker DateFromDateTimePicker;
-        private DateTimePicker DateToDateTimePicker;
+        private CheckBox NameCheckBox;
         private Button SearchButton;
-        private Button CancelButton;
+        private GroupBox SearchFieldGroupBox;
         private Label SearchTermLabel;
-
+        private TextBox SearchTextBox;
+        private CheckBox TagsCheckBox;
+        
         protected override void Initialize(List<String> Title)
         {
             Title.Add("Advanced Search");
 
             base.Initialize(Title);
 
-            SearchTextBox = new TextBox();
-            SearchFieldGroupBox = new GroupBox();
             CategoryCheckBox = new CheckBox();
-            TagsCheckBox = new CheckBox();
-            NameCheckBox = new CheckBox();
+            CancelButton = new Button();
+            DateFromDateTimePicker = new DateTimePicker();
+            DateFromLabel = new Label();
+            DateRangeGroupBox = new GroupBox();
+            DateToDateTimePicker = new DateTimePicker();
+            DateToLabel = new Label();
             FieldCheckBox = new CheckBox();
             FieldSearchTextBox = new TextBox();
-            DateRangeGroupBox = new GroupBox();
-            DateFromLabel = new Label();
-            DateToLabel = new Label();
-            DateFromDateTimePicker = new DateTimePicker();
-            DateToDateTimePicker = new DateTimePicker();
+            NameCheckBox = new CheckBox();
             SearchButton = new Button();
-            CancelButton = new Button();
+            SearchFieldGroupBox = new GroupBox();
             SearchTermLabel = new Label();
+            SearchTextBox = new TextBox();
+            TagsCheckBox = new CheckBox();
 
-            SearchTextBox.Location = new System.Drawing.Point(12, 25);
-            SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new System.Drawing.Size(361, 20);
 
+            CancelButton.Location = new System.Drawing.Point(289, 185);
+            CancelButton.Name = "CancelButton";
+            CancelButton.Size = new System.Drawing.Size(75, 23);
+            CancelButton.Text = "Cancel";
+            CancelButton.UseVisualStyleBackColor = true;
+            
             CategoryCheckBox.Location = new System.Drawing.Point(7, 28);
             CategoryCheckBox.Name = "CategoryCheckBox";
             CategoryCheckBox.Size = new System.Drawing.Size(68, 17);
             CategoryCheckBox.Text = "Category";
             CategoryCheckBox.UseVisualStyleBackColor = true;
 
-            TagsCheckBox.Location = new System.Drawing.Point(7, 51);
-            TagsCheckBox.Name = "TagsCheckBox";
-            TagsCheckBox.Size = new System.Drawing.Size(50, 17);
-            TagsCheckBox.Text = "Tags";
-            TagsCheckBox.UseVisualStyleBackColor = true;
+            DateFromDateTimePicker.Location = new System.Drawing.Point(10, 37);
+            DateFromDateTimePicker.Name = "DateFromDateTimePicker";
+            DateFromDateTimePicker.Size = new System.Drawing.Size(171, 20);
 
-            NameCheckBox.Location = new System.Drawing.Point(7, 74);
-            NameCheckBox.Name = "NameCheckBox";
-            NameCheckBox.Size = new System.Drawing.Size(54, 17);
-            NameCheckBox.Text = "Name";
-            NameCheckBox.UseVisualStyleBackColor = true;
+            DateFromLabel.Location = new System.Drawing.Point(7, 20);
+            DateFromLabel.Name = "DateFromLabel";
+            DateFromLabel.Size = new System.Drawing.Size(30, 13);
+            DateFromLabel.Text = "From";
 
+            DateRangeGroupBox.Controls.Add(DateToDateTimePicker);
+            DateRangeGroupBox.Controls.Add(DateFromDateTimePicker);
+            DateRangeGroupBox.Controls.Add(DateToLabel);
+            DateRangeGroupBox.Controls.Add(DateFromLabel);
+            DateRangeGroupBox.Location = new System.Drawing.Point(183, 51);
+            DateRangeGroupBox.Name = "DateRangeGroupBox";
+            DateRangeGroupBox.Size = new System.Drawing.Size(190, 114);
+            DateRangeGroupBox.TabStop = false;
+            DateRangeGroupBox.Text = "Date Range";
+
+            DateToDateTimePicker.Location = new System.Drawing.Point(10, 87);
+            DateToDateTimePicker.Name = "DateToDateTimePicker";
+            DateToDateTimePicker.Size = new System.Drawing.Size(171, 20);
+
+            DateToLabel.Location = new System.Drawing.Point(7, 67);
+            DateToLabel.Name = "DateToLabel";
+            DateToLabel.Size = new System.Drawing.Size(20, 13);
+            DateToLabel.Text = "To";
+            
             FieldCheckBox.Location = new System.Drawing.Point(7, 97);
             FieldCheckBox.Name = "FieldCheckBox";
             FieldCheckBox.Size = new System.Drawing.Size(51, 17);
@@ -82,41 +101,17 @@ namespace Hush.Display.Interfaces
             FieldSearchTextBox.Name = "FieldSearchTextBox";
             FieldSearchTextBox.Size = new System.Drawing.Size(122, 20);
         
-            DateFromLabel.Location = new System.Drawing.Point(7, 20);
-            DateFromLabel.Name = "DateFromLabel";
-            DateFromLabel.Size = new System.Drawing.Size(30, 13);
-            DateFromLabel.Text = "From";
-
-            DateToLabel.Location = new System.Drawing.Point(7, 67);
-            DateToLabel.Name = "DateToLabel";
-            DateToLabel.Size = new System.Drawing.Size(20, 13);
-            DateToLabel.Text = "To";
-
-            DateFromDateTimePicker.Location = new System.Drawing.Point(10, 37);
-            DateFromDateTimePicker.Name = "DateFromDateTimePicker";
-            DateFromDateTimePicker.Size = new System.Drawing.Size(171, 20);
-
-            DateToDateTimePicker.Location = new System.Drawing.Point(10, 87);
-            DateToDateTimePicker.Name = "DateToDateTimePicker";
-            DateToDateTimePicker.Size = new System.Drawing.Size(171, 20);
+            NameCheckBox.Location = new System.Drawing.Point(7, 74);
+            NameCheckBox.Name = "NameCheckBox";
+            NameCheckBox.Size = new System.Drawing.Size(54, 17);
+            NameCheckBox.Text = "Name";
+            NameCheckBox.UseVisualStyleBackColor = true;
 
             SearchButton.Location = new System.Drawing.Point(193, 185);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new System.Drawing.Size(75, 23);
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
-
-            CancelButton.Location = new System.Drawing.Point(289, 185);
-            CancelButton.Name = "CancelButton";
-            CancelButton.Size = new System.Drawing.Size(75, 23);
-            CancelButton.TabIndex = 4;
-            CancelButton.Text = "Cancel";
-            CancelButton.UseVisualStyleBackColor = true;
-
-            SearchTermLabel.Location = new System.Drawing.Point(12, 9);
-            SearchTermLabel.Name = "SearchTermLabel";
-            SearchTermLabel.Size = new System.Drawing.Size(76, 13);
-            SearchTermLabel.Text = "Search Terms:";
 
             SearchFieldGroupBox.Controls.Add(FieldSearchTextBox);
             SearchFieldGroupBox.Controls.Add(FieldCheckBox);
@@ -126,28 +121,30 @@ namespace Hush.Display.Interfaces
             SearchFieldGroupBox.Location = new System.Drawing.Point(12, 51);
             SearchFieldGroupBox.Name = "SearchFieldGroupBox";
             SearchFieldGroupBox.Size = new System.Drawing.Size(165, 157);
-            SearchFieldGroupBox.TabIndex = 1;
             SearchFieldGroupBox.TabStop = false;
             SearchFieldGroupBox.Text = "Search By";
 
-            DateRangeGroupBox.Controls.Add(DateToDateTimePicker);
-            DateRangeGroupBox.Controls.Add(DateFromDateTimePicker);
-            DateRangeGroupBox.Controls.Add(DateToLabel);
-            DateRangeGroupBox.Controls.Add(DateFromLabel);
-            DateRangeGroupBox.Location = new System.Drawing.Point(183, 51);
-            DateRangeGroupBox.Name = "DateRangeGroupBox";
-            DateRangeGroupBox.Size = new System.Drawing.Size(190, 114);
-            DateRangeGroupBox.TabIndex = 2;
-            DateRangeGroupBox.TabStop = false;
-            DateRangeGroupBox.Text = "Date Range";
-        
-            Controls.Add(SearchTextBox);
-            Controls.Add(SearchFieldGroupBox);
+            SearchTermLabel.Location = new System.Drawing.Point(12, 9);
+            SearchTermLabel.Name = "SearchTermLabel";
+            SearchTermLabel.Size = new System.Drawing.Size(76, 13);
+            SearchTermLabel.Text = "Search Terms:";
+
+            SearchTextBox.Location = new System.Drawing.Point(12, 25);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new System.Drawing.Size(361, 20);
+
+            TagsCheckBox.Location = new System.Drawing.Point(7, 51);
+            TagsCheckBox.Name = "TagsCheckBox";
+            TagsCheckBox.Size = new System.Drawing.Size(50, 17);
+            TagsCheckBox.Text = "Tags";
+            TagsCheckBox.UseVisualStyleBackColor = true;
+
+            Controls.Add(CancelButton);
             Controls.Add(DateRangeGroupBox);
             Controls.Add(SearchButton);
-            Controls.Add(CancelButton);
-            Controls.Add(SearchTermLabel);
             Controls.Add(SearchFieldGroupBox);
+            Controls.Add(SearchTextBox);
+            Controls.Add(SearchTermLabel);
         }
 
     }

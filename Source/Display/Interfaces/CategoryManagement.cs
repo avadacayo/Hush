@@ -13,10 +13,10 @@ namespace Hush.Display.Interfaces
     class CategoryManagement : Interface
     {
         private Button AddButton;
-        private Button EditButton;
-        private Button DeleteButton;
-        private ListBox CategoryListBox;
         private Button BackButton;
+        private ListBox CategoryListBox;
+        private Button DeleteButton;
+        private Button EditButton;
 
         protected override void Initialize(List<String> Title)
         {
@@ -25,10 +25,10 @@ namespace Hush.Display.Interfaces
             base.Initialize(Title);
 
             AddButton = new Button();
-            EditButton = new Button();
-            DeleteButton = new Button();
-            CategoryListBox = new ListBox();
             BackButton = new Button();
+            CategoryListBox = new ListBox();
+            DeleteButton = new Button();
+            EditButton = new Button();
 
             AddButton.Font = GlobalFont;
             AddButton.Location = new Point(10, 10);
@@ -37,12 +37,16 @@ namespace Hush.Display.Interfaces
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
 
-            EditButton.Font = GlobalFont;
-            EditButton.Location = new Point(120, 10);
-            EditButton.Name = "EditButton";
-            EditButton.Size = new Size(100, 25);
-            EditButton.Text = "Edit";
-            EditButton.UseVisualStyleBackColor = true;
+            BackButton.Font = GlobalFont;
+            BackButton.Location = new Point(230, 385);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(100, 25);
+            BackButton.Text = "Back";
+            BackButton.UseVisualStyleBackColor = true;
+
+            CategoryListBox.Location = new Point(10, 45);
+            CategoryListBox.Name = "CategoryListBox";
+            CategoryListBox.Size = new Size(320, 330);
 
             DeleteButton.Font = GlobalFont;
             DeleteButton.Location = new Point(230, 10);
@@ -51,23 +55,18 @@ namespace Hush.Display.Interfaces
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = true;
 
-            CategoryListBox.Location = new Point(10, 45);
-            CategoryListBox.Name = "CategoryListBox";
-            CategoryListBox.Size = new Size(320, 330);
-            
-
-            BackButton.Font = GlobalFont;
-            BackButton.Location = new Point(230, 385);
-            BackButton.Name = "BackButton";
-            BackButton.Size = new Size(100, 25);
-            BackButton.Text = "Back";
-            BackButton.UseVisualStyleBackColor = true;
+            EditButton.Font = GlobalFont;
+            EditButton.Location = new Point(120, 10);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(100, 25);
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
 
             Controls.Add(AddButton);
-            Controls.Add(EditButton);
-            Controls.Add(DeleteButton);
-            Controls.Add(CategoryListBox);
             Controls.Add(BackButton);
+            Controls.Add(CategoryListBox);
+            Controls.Add(DeleteButton);
+            Controls.Add(EditButton);
         }
 
 

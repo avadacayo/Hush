@@ -15,6 +15,9 @@ namespace Hush.Display.Interfaces
         private Button RegisterAccountButton;
         private Button ForgotPasswordButton;
         private Button AddButton;
+        private Button EditButton;
+        private Button ViewButton;
+        private Button DeleteButton;
         private Button ManageCategoriesButton;
         private Button SearchButton;
         private Button MainScreenButton;
@@ -42,6 +45,21 @@ namespace Hush.Display.Interfaces
         private void AddButtonClick(Object Sender, EventArgs Args)
         {
             Program.Window.ShowInterface(new Add());
+        }
+
+        private void EditButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new Edit());
+        }
+
+        private void DeleteButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new Delete());
+        }
+
+        private void ViewButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new View());
         }
 
         private void CategoryManagementButtonClick(Object Sender, EventArgs Args)
@@ -73,6 +91,9 @@ namespace Hush.Display.Interfaces
             RegisterAccountButton = new Button();
             ForgotPasswordButton = new Button();
             AddButton = new Button();
+            EditButton = new Button();
+            DeleteButton = new Button();
+            ViewButton = new Button();
             ManageCategoriesButton = new Button();
             SearchButton = new Button();
             MainScreenButton = new Button();
@@ -127,6 +148,24 @@ namespace Hush.Display.Interfaces
             MainScreenButton.Size = new Size(150, 25);
             MainScreenButton.UseVisualStyleBackColor = true;
 
+            EditButton.Click += EditButtonClick;
+            EditButton.Location = new Point(10, 330);
+            EditButton.Text = "Edit Screen";
+            EditButton.Size = new Size(150, 25);
+            EditButton.UseVisualStyleBackColor = true;
+
+            DeleteButton.Click += DeleteButtonClick;
+            DeleteButton.Location = new Point(10, 370);
+            DeleteButton.Text = "Delete Screen";
+            DeleteButton.Size = new Size(150, 25);
+            DeleteButton.UseVisualStyleBackColor = true;
+
+            ViewButton.Click += ViewButtonClick;
+            ViewButton.Location = new Point(10, 410);
+            ViewButton.Text = "View Screen";
+            ViewButton.Size = new Size(150, 25);
+            ViewButton.UseVisualStyleBackColor = true;
+
             Controls.Add(SettingsButton);
             Controls.Add(SignInButton);
             Controls.Add(RegisterAccountButton);
@@ -135,6 +174,9 @@ namespace Hush.Display.Interfaces
             Controls.Add(ManageCategoriesButton);
             Controls.Add(SearchButton);
             Controls.Add(MainScreenButton);
+            Controls.Add(EditButton);
+            Controls.Add(DeleteButton);
+            Controls.Add(ViewButton);
             ResumeLayout(false);
             PerformLayout();
 

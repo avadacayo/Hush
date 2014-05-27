@@ -57,6 +57,18 @@
     <Compile Include="Source\Display\Interfaces\Add.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\DeleteEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\DeleteEntry.Designer.cs">
+      <DependentUpon>DeleteEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\Delete.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\Edit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\ForgotPassword.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,6 +104,9 @@
     <Compile Include="Source\Display\Interfaces\TestScreen.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\View.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\ParentWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +124,8 @@
     </Compile>
     <EmbeddedResource Include="Source\Display\Interfaces\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Source\Display\Interfaces\DeleteEntry.resx">
+      <DependentUpon>DeleteEntry.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

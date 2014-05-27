@@ -116,8 +116,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     <EmbeddedResource Include="Source\Display\Interfaces\DeleteEntry.resx">
       <DependentUpon>DeleteEntry.cs</DependentUpon>
     </EmbeddedResource>

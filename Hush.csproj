@@ -57,12 +57,6 @@
     <Compile Include="Source\Display\Interfaces\Add.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\Display\Interfaces\DeleteEntry.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\Display\Interfaces\DeleteEntry.Designer.cs">
-      <DependentUpon>DeleteEntry.cs</DependentUpon>
-    </Compile>
     <Compile Include="Source\Display\Interfaces\Delete.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -116,9 +110,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\DeleteEntry.resx">
-      <DependentUpon>DeleteEntry.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

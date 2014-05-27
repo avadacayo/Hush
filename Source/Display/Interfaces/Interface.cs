@@ -21,6 +21,12 @@ namespace Hush.Display.Interfaces
             Initialize(new List<String>(new string[] {Title}));
         }
 
+        protected Font GetFontVariant(Boolean Bold)
+        {
+            FontStyle TempStyle =  Bold ? FontStyle.Bold : FontStyle.Regular;
+            return new Font("Verdana", 8F, TempStyle, GraphicsUnit.Point, ((Byte)(0)));
+        }
+
         #region Designer
 
         protected virtual void Initialize(List<String> Title)

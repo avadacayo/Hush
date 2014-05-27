@@ -11,11 +11,13 @@ namespace Hush.Display.Interfaces
     {
 
         private Panel ContentPanel;
-        private Button GeneralButton;
-        private Panel MenuPanel;
+        private Label SaveLabel;
+        private Panel SavePanel;
+        private Label SyncLabel;
+        private Panel SyncPanel;
         private Label TitleLabel;
-        private Button ThemeButton;
-        private Button SaveSettingsButton;
+        private Label UpdateLabel;
+        private Panel UpdatePanel;
 
         #region Designer
 
@@ -26,59 +28,70 @@ namespace Hush.Display.Interfaces
 
             base.Initialize(Title);
 
-            ContentPanel = new Panel();
-            GeneralButton = new Button();
-            MenuPanel = new Panel();
-            TitleLabel = new Label();
-            ThemeButton = new Button();
-            SaveSettingsButton = new Button();
+            BackColor = Color.White;
+            Height = 600;
+            Width = 500;
 
-            MenuPanel.SuspendLayout();
+            ContentPanel = new Panel();
+            SaveLabel = new Label();
+            SyncLabel = new Label();
+            TitleLabel = new Label();
+            UpdateLabel = new Label();
+
+            ContentPanel.SuspendLayout();
             SuspendLayout();
 
+            ContentPanel.AutoScroll = false;
+            ContentPanel.HorizontalScroll.Enabled = false;
+            ContentPanel.AutoScroll = true;
             ContentPanel.BackColor = Color.FromArgb(230, 230, 230);
-            ContentPanel.Location = new Point(180, 40);
-            ContentPanel.Size = new Size(410, 550);
-
-            GeneralButton.UseVisualStyleBackColor = true;
-            GeneralButton.Location = new Point(1, 1);
-            GeneralButton.Size = new Size(168, 30);
-            GeneralButton.Text = "General Settings";
-
-            MenuPanel.BackColor = Color.FromArgb(150, 150, 150);
-            MenuPanel.Location = new Point(10, 40);
-            MenuPanel.Size = new Size(170, 550);
+            ContentPanel.Location = new Point(10, 40);
+            ContentPanel.Size = new Size(Width - 20, 550);
 
             TitleLabel.BackColor = Color.FromArgb(70, 140, 210);
-            TitleLabel.Font = GlobalFont;
+            TitleLabel.Font = GetFontVariant(true);
             TitleLabel.ForeColor = Color.White;
             TitleLabel.Location = new Point(10, 10);
-            TitleLabel.Name = "TitleLabel";
             TitleLabel.Padding = new Padding(10, 0, 0, 0);
-            TitleLabel.Size = new Size(580, 30);
+            TitleLabel.Size = new Size(Width - 20, 30);
             TitleLabel.Text = "Settings";
             TitleLabel.TextAlign = ContentAlignment.MiddleLeft;
 
-            ThemeButton.UseVisualStyleBackColor = true;
-            ThemeButton.Location = new Point(1, 30);
-            ThemeButton.Size = new Size(168, 30);
-            ThemeButton.Text = "Change Theme";
+            SaveLabel.BackColor = Color.FromArgb(200, 200, 200);
+            SaveLabel.Font = GetFontVariant(true);
+            SaveLabel.ForeColor = Color.White;
+            SaveLabel.Location = new Point(0, 0);
+            SaveLabel.Padding = new Padding(20, 0, 0, 0);
+            SaveLabel.Size = new Size(Width - 20, 30);
+            SaveLabel.Text = "Save Options";
+            SaveLabel.TextAlign = ContentAlignment.MiddleLeft;
 
-            SaveSettingsButton.UseVisualStyleBackColor = true;
-            SaveSettingsButton.Location = new Point(1, 59);
-            SaveSettingsButton.Size = new Size(168, 30);
-            SaveSettingsButton.Text = "Save Settings";
+            SyncLabel.BackColor = Color.FromArgb(200, 200, 200);
+            SyncLabel.Font = GetFontVariant(true);
+            SyncLabel.ForeColor = Color.White;
+            SyncLabel.Location = new Point(0, 300);
+            SyncLabel.Padding = new Padding(20, 0, 0, 0);
+            SyncLabel.Size = new Size(Width - 20, 30);
+            SyncLabel.Text = "Sync Options";
+            SyncLabel.TextAlign = ContentAlignment.MiddleLeft;
 
-            MenuPanel.Controls.Add(GeneralButton);
-            MenuPanel.Controls.Add(ThemeButton);
-            MenuPanel.Controls.Add(SaveSettingsButton);
+            UpdateLabel.BackColor = Color.FromArgb(200, 200, 200);
+            UpdateLabel.Font = GetFontVariant(true);
+            UpdateLabel.ForeColor = Color.White;
+            UpdateLabel.Location = new Point(0, 600);
+            UpdateLabel.Padding = new Padding(20, 0, 0, 0);
+            UpdateLabel.Size = new Size(Width - 20, 30);
+            UpdateLabel.Text = "Update Options";
+            UpdateLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+            ContentPanel.Controls.Add(SaveLabel);
+            ContentPanel.Controls.Add(UpdateLabel);
+            ContentPanel.Controls.Add(SyncLabel);
 
             Controls.Add(ContentPanel);
-            Controls.Add(MenuPanel);
             Controls.Add(TitleLabel);
 
             ContentPanel.ResumeLayout(true);
-            MenuPanel.ResumeLayout(true);
             ResumeLayout(false);
             PerformLayout();
 

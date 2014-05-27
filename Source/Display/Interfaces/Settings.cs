@@ -34,9 +34,12 @@ namespace Hush.Display.Interfaces
 
             ContentPanel = new Panel();
             SaveLabel = new Label();
+            SavePanel = new Panel();
             SyncLabel = new Label();
+            SyncPanel = new Panel();
             TitleLabel = new Label();
             UpdateLabel = new Label();
+            UpdatePanel = new Panel();
 
             ContentPanel.SuspendLayout();
             SuspendLayout();
@@ -44,7 +47,7 @@ namespace Hush.Display.Interfaces
             ContentPanel.AutoScroll = false;
             ContentPanel.HorizontalScroll.Enabled = false;
             ContentPanel.AutoScroll = true;
-            ContentPanel.BackColor = Color.FromArgb(230, 230, 230);
+            ContentPanel.BackColor = Color.FromArgb(100, 140, 255);
             ContentPanel.Location = new Point(10, 40);
             ContentPanel.Size = new Size(Width - 20, 550);
 
@@ -66,6 +69,10 @@ namespace Hush.Display.Interfaces
             SaveLabel.Text = "Save Options";
             SaveLabel.TextAlign = ContentAlignment.MiddleLeft;
 
+            SavePanel.BackColor = Color.FromArgb(230, 230, 230);
+            SavePanel.Location = new Point(0, 30);
+            SavePanel.Size = new Size(Width - 20, 270);
+
             SyncLabel.BackColor = Color.FromArgb(200, 200, 200);
             SyncLabel.Font = GetFontVariant(true);
             SyncLabel.ForeColor = Color.White;
@@ -74,6 +81,10 @@ namespace Hush.Display.Interfaces
             SyncLabel.Size = new Size(Width - 20, 30);
             SyncLabel.Text = "Sync Options";
             SyncLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+            SyncPanel.BackColor = Color.FromArgb(230, 230, 230);
+            SyncPanel.Location = new Point(0, 330);
+            SyncPanel.Size = new Size(Width - 20, 270);
 
             UpdateLabel.BackColor = Color.FromArgb(200, 200, 200);
             UpdateLabel.Font = GetFontVariant(true);
@@ -84,9 +95,16 @@ namespace Hush.Display.Interfaces
             UpdateLabel.Text = "Update Options";
             UpdateLabel.TextAlign = ContentAlignment.MiddleLeft;
 
+            UpdatePanel.BackColor = Color.FromArgb(230, 230, 230);
+            UpdatePanel.Location = new Point(0, 630);
+            UpdatePanel.Size = new Size(Width - 20, 270);
+
             ContentPanel.Controls.Add(SaveLabel);
-            ContentPanel.Controls.Add(UpdateLabel);
+            ContentPanel.Controls.Add(SavePanel);
             ContentPanel.Controls.Add(SyncLabel);
+            ContentPanel.Controls.Add(SyncPanel);
+            ContentPanel.Controls.Add(UpdateLabel);
+            ContentPanel.Controls.Add(UpdatePanel);
 
             Controls.Add(ContentPanel);
             Controls.Add(TitleLabel);

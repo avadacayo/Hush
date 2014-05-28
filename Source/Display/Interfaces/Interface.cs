@@ -21,6 +21,11 @@ namespace Hush.Display.Interfaces
             Initialize(new List<String>(new string[] {Title}));
         }
 
+        protected void PlaceBelow(Control Anchor, Control ToPlace)
+        {
+            ToPlace.Location = new Point(Anchor.Location.X, Anchor.Location.Y + Anchor.Size.Height);
+        }
+
         protected Font GetFontVariant(Boolean Bold)
         {
             FontStyle TempStyle =  Bold ? FontStyle.Bold : FontStyle.Regular;

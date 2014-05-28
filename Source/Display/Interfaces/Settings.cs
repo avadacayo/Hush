@@ -35,6 +35,12 @@ namespace Hush.Display.Interfaces
         private RadioButton AutomaticUpdateRadioButton;
         private RadioButton PromptUpdateRadioButton;
 
+        private Label ScriptLabel;
+        private Panel ScriptPanel;
+        private RadioButton ManualScriptRadioButton;
+        private RadioButton AutomaticScriptRadioButton;
+        private RadioButton PromptScriptRadioButton;
+
         #region Designer
 
         protected override void Initialize(List<String> Title)
@@ -72,6 +78,12 @@ namespace Hush.Display.Interfaces
             ManualUpdateRadioButton = new RadioButton();
             AutomaticUpdateRadioButton = new RadioButton();
             PromptUpdateRadioButton = new RadioButton();
+
+            ScriptLabel = new Label();
+            ScriptPanel = new Panel();
+            ManualScriptRadioButton = new RadioButton();
+            AutomaticScriptRadioButton = new RadioButton();
+            PromptScriptRadioButton = new RadioButton();
 
             ContentPanel.SuspendLayout();
             SuspendLayout();
@@ -191,6 +203,35 @@ namespace Hush.Display.Interfaces
             PromptUpdateRadioButton.Text = "Prompt Save";
             PlaceBelow(AutomaticUpdateRadioButton, PromptUpdateRadioButton);
 
+            //
+            ScriptLabel.BackColor = Color.FromArgb(200, 200, 200);
+            ScriptLabel.Font = GetFontVariant(true);
+            ScriptLabel.ForeColor = Color.White;
+            ScriptLabel.Padding = new Padding(20, 0, 0, 0);
+            ScriptLabel.Size = new Size(Width - 20, 30);
+            ScriptLabel.Text = "Script Options";
+            ScriptLabel.TextAlign = ContentAlignment.MiddleLeft;
+            PlaceBelow(UpdatePanel, ScriptLabel);
+
+            ScriptPanel.BackColor = Color.FromArgb(230, 230, 230);
+            ScriptPanel.Size = new Size(Width - 20, 92);
+            PlaceBelow(ScriptLabel, ScriptPanel);
+
+            ManualScriptRadioButton.Font = GetFontVariant(false);
+            ManualScriptRadioButton.Location = new Point(10, 10);
+            ManualScriptRadioButton.Size = new Size(300, 24);
+            ManualScriptRadioButton.Text = "Manual Save";
+
+            AutomaticScriptRadioButton.Font = GetFontVariant(false);
+            AutomaticScriptRadioButton.Size = new Size(300, 24);
+            AutomaticScriptRadioButton.Text = "Automatic Save";
+            PlaceBelow(ManualScriptRadioButton, AutomaticScriptRadioButton);
+
+            PromptScriptRadioButton.Font = GetFontVariant(false);
+            PromptScriptRadioButton.Size = new Size(300, 24);
+            PromptScriptRadioButton.Text = "Prompt Save";
+            PlaceBelow(AutomaticScriptRadioButton, PromptScriptRadioButton);
+
             ThemePanel.Controls.Add(ThemeComboBox);
 
             SavePanel.Controls.Add(ManualSaveRadioButton);
@@ -205,6 +246,10 @@ namespace Hush.Display.Interfaces
             UpdatePanel.Controls.Add(AutomaticUpdateRadioButton);
             UpdatePanel.Controls.Add(PromptUpdateRadioButton);
 
+            ScriptPanel.Controls.Add(ManualScriptRadioButton);
+            ScriptPanel.Controls.Add(AutomaticScriptRadioButton);
+            ScriptPanel.Controls.Add(PromptScriptRadioButton);
+
             ContentPanel.Controls.Add(ThemeLabel);
             ContentPanel.Controls.Add(ThemePanel);
             ContentPanel.Controls.Add(SaveLabel);
@@ -213,6 +258,8 @@ namespace Hush.Display.Interfaces
             ContentPanel.Controls.Add(SyncPanel);
             ContentPanel.Controls.Add(UpdateLabel);
             ContentPanel.Controls.Add(UpdatePanel);
+            ContentPanel.Controls.Add(ScriptLabel);
+            ContentPanel.Controls.Add(ScriptPanel);
 
             Controls.Add(ContentPanel);
             Controls.Add(TitleLabel);

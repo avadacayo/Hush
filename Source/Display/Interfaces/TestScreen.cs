@@ -21,6 +21,7 @@ namespace Hush.Display.Interfaces
         private Button ManageCategoriesButton;
         private Button SearchButton;
         private Button MainScreenButton;
+        private Button UserProfileButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
@@ -77,6 +78,11 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new MainScreen());
         }
 
+        private void UserProfileButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new UserProfile());
+        }
+
         #region Designer
 
         protected override void Initialize(List<String> Title)
@@ -97,6 +103,7 @@ namespace Hush.Display.Interfaces
             ManageCategoriesButton = new Button();
             SearchButton = new Button();
             MainScreenButton = new Button();
+            UserProfileButton = new Button();
 
             SuspendLayout();
 
@@ -166,6 +173,12 @@ namespace Hush.Display.Interfaces
             ViewButton.Size = new Size(150, 25);
             ViewButton.UseVisualStyleBackColor = true;
 
+            UserProfileButton.Click += UserProfileButtonClick;
+            UserProfileButton.Location = new Point(10, 450);
+            UserProfileButton.Text = "User Profile Screen";
+            UserProfileButton.Size = new Size(150, 25);
+            UserProfileButton.UseVisualStyleBackColor = true;
+
             Controls.Add(SettingsButton);
             Controls.Add(SignInButton);
             Controls.Add(RegisterAccountButton);
@@ -177,6 +190,7 @@ namespace Hush.Display.Interfaces
             Controls.Add(EditButton);
             Controls.Add(DeleteButton);
             Controls.Add(ViewButton);
+            Controls.Add(UserProfileButton);
             ResumeLayout(false);
             PerformLayout();
 

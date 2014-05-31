@@ -35,7 +35,7 @@ namespace Hush.Display.Interfaces
         protected override void OnControlAdded(ControlEventArgs e)
         {
             base.OnControlAdded(e);
-            e.Control.Font = GlobalFont;
+            //e.Control.Font = GlobalFont;
         }
 
         #region Designer

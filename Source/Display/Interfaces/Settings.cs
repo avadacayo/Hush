@@ -50,6 +50,11 @@ namespace Hush.Display.Interfaces
 
             base.Initialize(Title);
 
+        }
+
+        protected override void InitializeComponent()
+        {
+
             BackColor = Color.White;
             Height = 600;
             Width = 500;

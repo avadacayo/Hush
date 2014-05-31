@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Hush.Display.Interfaces
 {
 
-    class Interface : Panel
+    class Interface : UserControl
     {
 
         protected Font GlobalFont = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
@@ -32,10 +32,18 @@ namespace Hush.Display.Interfaces
             return new Font("Verdana", 8F, TempStyle, GraphicsUnit.Point, ((Byte)(0)));
         }
 
+        protected override void OnControlAdded(ControlEventArgs e)
+        {
+            base.OnControlAdded(e);
+            e.Control.Font = GlobalFont;
+        }
+
         #region Designer
 
         protected virtual void Initialize(List<String> Title)
         {
+
+            InitializeComponent();
 
             String TitleString = String.Empty;
 
@@ -56,6 +64,11 @@ namespace Hush.Display.Interfaces
             Text = TitleString;
             Width = 900;
 
+        }
+
+        protected virtual void InitializeComponent()
+        {
+            return;
         }
 
         #endregion

@@ -28,8 +28,12 @@ namespace Hush.Display.Interfaces
         {
             Title.Add("User Profile");
             base.Initialize(Title);
+
+        }
+
+        protected override void InitializeComponent()
+        {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.userProfile = new System.Windows.Forms.Label();
             this.RealName = new System.Windows.Forms.Label();
             this.Handle = new System.Windows.Forms.Label();
             this.RealNameTextBox = new System.Windows.Forms.TextBox();
@@ -47,15 +51,6 @@ namespace Hush.Display.Interfaces
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // userProfile
-            // 
-            this.userProfile.AutoSize = true;
-            this.userProfile.Location = new System.Drawing.Point(268, 61);
-            this.userProfile.Name = "userProfile";
-            this.userProfile.Size = new System.Drawing.Size(61, 13);
-            this.userProfile.TabIndex = 1;
-            this.userProfile.Text = "User Profile";
-            // 
             // RealName
             // 
             this.RealName.AutoSize = true;
@@ -64,7 +59,6 @@ namespace Hush.Display.Interfaces
             this.RealName.Size = new System.Drawing.Size(57, 13);
             this.RealName.TabIndex = 2;
             this.RealName.Text = "RealName";
-            //this.RealName.Click += new System.EventHandler(this.RealName_Click);
             // 
             // Handle
             // 
@@ -109,15 +103,15 @@ namespace Hush.Display.Interfaces
             // 
             // cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(472, 223);
+            this.cancel.Location = new System.Drawing.Point(476, 223);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(75, 23);
             this.cancel.TabIndex = 8;
             this.cancel.Text = "Cancel";
             this.cancel.UseVisualStyleBackColor = true;
-            //this.cancel.Click += new System.EventHandler(this.cancel_Click);
-
-            this.ClientSize = new System.Drawing.Size(583, 271);
+            // 
+            // UserProfile
+            // 
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.save);
             this.Controls.Add(this.managePassword);
@@ -125,8 +119,9 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.RealNameTextBox);
             this.Controls.Add(this.Handle);
             this.Controls.Add(this.RealName);
-            this.Controls.Add(this.userProfile);
             this.Controls.Add(this.menuStrip1);
+            this.Name = "UserProfile";
+            this.Size = new System.Drawing.Size(583, 271);
             this.ResumeLayout(false);
             this.PerformLayout();
 

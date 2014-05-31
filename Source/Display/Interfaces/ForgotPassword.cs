@@ -19,45 +19,66 @@ namespace Hush.Display.Interfaces
         protected override void Initialize(List<String> Title)
         {
            Title.Add ("Forgot Password");
-           
-            base.Initialize(Title);
 
-            ForgotPasswordLabel = new Label();
-            AlternatePasswordButton = new Button();
-            PatternButton = new Button();
-            SecretQuestionButton = new Button();
+           base.Initialize(Title);
 
-            ForgotPasswordLabel.Location = new Point(145, 70);
-            ForgotPasswordLabel.Name = "ForgotPasswordLabel";
-            ForgotPasswordLabel.Size = new Size(300, 40);
-            ForgotPasswordLabel.Font = new Font("Arial", 27);
-            ForgotPasswordLabel.Text = "Forgot Password";
+        }
 
-            AlternatePasswordButton.Font = GlobalFont;
-            AlternatePasswordButton.Location = new Point(150, 130);
-            AlternatePasswordButton.Name = "AlternatePasswordButton";
-            AlternatePasswordButton.Size = new Size(300, 30);
-            AlternatePasswordButton.Text = "Provide Alternate Password";
-            AlternatePasswordButton.UseVisualStyleBackColor = true;
-
-            PatternButton.Font = GlobalFont;
-            PatternButton.Location = new Point(150, 170);
-            PatternButton.Name = "PatternButton";
-            PatternButton.Size = new Size(300, 30);
-            PatternButton.Text = "Enter Password Pattern";
-            PatternButton.UseVisualStyleBackColor = true;
-
-            SecretQuestionButton.Font = GlobalFont;
-            SecretQuestionButton.Location = new Point(150, 210);
-            SecretQuestionButton.Name = "SecretQuestionButton";
-            SecretQuestionButton.Size = new Size(300, 30);
-            SecretQuestionButton.Text = "Answer Secret Question";
-            SecretQuestionButton.UseVisualStyleBackColor = true;
-
-            Controls.Add(ForgotPasswordLabel);
-            Controls.Add(AlternatePasswordButton);
-            Controls.Add(PatternButton);
-            Controls.Add(SecretQuestionButton);
+        protected override void InitializeComponent()
+        {
+            this.ForgotPasswordLabel = new System.Windows.Forms.Label();
+            this.AlternatePasswordButton = new System.Windows.Forms.Button();
+            this.PatternButton = new System.Windows.Forms.Button();
+            this.SecretQuestionButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // ForgotPasswordLabel
+            // 
+            this.ForgotPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForgotPasswordLabel.Location = new System.Drawing.Point(145, 70);
+            this.ForgotPasswordLabel.Name = "ForgotPasswordLabel";
+            this.ForgotPasswordLabel.Size = new System.Drawing.Size(300, 40);
+            this.ForgotPasswordLabel.TabIndex = 0;
+            this.ForgotPasswordLabel.Text = "Forgot Password";
+            // 
+            // AlternatePasswordButton
+            // 
+            this.AlternatePasswordButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlternatePasswordButton.Location = new System.Drawing.Point(150, 134);
+            this.AlternatePasswordButton.Name = "AlternatePasswordButton";
+            this.AlternatePasswordButton.Size = new System.Drawing.Size(300, 30);
+            this.AlternatePasswordButton.TabIndex = 1;
+            this.AlternatePasswordButton.Text = "Provide Alternate Password";
+            this.AlternatePasswordButton.UseVisualStyleBackColor = true;
+            // 
+            // PatternButton
+            // 
+            this.PatternButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PatternButton.Location = new System.Drawing.Point(150, 170);
+            this.PatternButton.Name = "PatternButton";
+            this.PatternButton.Size = new System.Drawing.Size(300, 30);
+            this.PatternButton.TabIndex = 2;
+            this.PatternButton.Text = "Enter Password Pattern";
+            this.PatternButton.UseVisualStyleBackColor = true;
+            // 
+            // SecretQuestionButton
+            // 
+            this.SecretQuestionButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionButton.Location = new System.Drawing.Point(150, 210);
+            this.SecretQuestionButton.Name = "SecretQuestionButton";
+            this.SecretQuestionButton.Size = new System.Drawing.Size(300, 30);
+            this.SecretQuestionButton.TabIndex = 3;
+            this.SecretQuestionButton.Text = "Answer Secret Question";
+            this.SecretQuestionButton.UseVisualStyleBackColor = true;
+            // 
+            // ForgotPassword
+            // 
+            this.Controls.Add(this.ForgotPasswordLabel);
+            this.Controls.Add(this.AlternatePasswordButton);
+            this.Controls.Add(this.PatternButton);
+            this.Controls.Add(this.SecretQuestionButton);
+            this.Name = "ForgotPassword";
+            this.ResumeLayout(false);
 
         }   
         #endregion

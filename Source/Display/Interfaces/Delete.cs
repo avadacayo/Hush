@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-using Hush;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Hush.Display.Interfaces
 {
@@ -16,43 +13,59 @@ namespace Hush.Display.Interfaces
 
 
         #region Designer
+
         protected override void Initialize(List<String> Title)
         {
 
             Title.Add("Delete Record");
-
             base.Initialize(Title);
 
-            OkButton = new Button();
-            PasswordLabel = new Label();
-            PasswordTextBox = new TextBox();
+        }
 
-            OkButton.Font = GlobalFont;
-            this.OkButton.Location = new Point(497, 336);
+        protected override void InitializeComponent() {
+            this.OkButton = new System.Windows.Forms.Button();
+            this.PasswordLabel = new System.Windows.Forms.Label();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // OkButton
+            // 
+            this.OkButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OkButton.Location = new System.Drawing.Point(466, 228);
             this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new Size(75, 23);
+            this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 0;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
-
-            PasswordLabel.Font = GlobalFont;
+            // 
+            // PasswordLabel
+            // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new Point(118, 59);
-            this.PasswordLabel.Name = "label1";
-            this.PasswordLabel.Size = new Size(83, 13);
+            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordLabel.Location = new System.Drawing.Point(118, 59);
+            this.PasswordLabel.Name = "PasswordLabel";
+            this.PasswordLabel.Size = new System.Drawing.Size(100, 13);
             this.PasswordLabel.TabIndex = 1;
             this.PasswordLabel.Text = "Enter password:";
-
-            PasswordTextBox.Font = GlobalFont;
-            this.PasswordTextBox.Location = new Point(218, 59);
-            this.PasswordTextBox.Name = "textBox1";
-            this.PasswordTextBox.Size = new Size(323, 20);
+            // 
+            // PasswordTextBox
+            // 
+            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTextBox.Location = new System.Drawing.Point(218, 59);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(323, 20);
             this.PasswordTextBox.TabIndex = 2;
-   
-            this.ClientSize = new Size(663, 434);
+            // 
+            // Delete
+            // 
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.OkButton);
+            this.Name = "Delete";
+            this.Size = new System.Drawing.Size(923, 473);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

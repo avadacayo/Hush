@@ -78,9 +78,6 @@
     <Compile Include="Source\Display\Interfaces\Interface.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\Display\Interfaces\Demo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Source\Display\Interfaces\Search.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,25 +110,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Delete.resx">
-      <DependentUpon>Delete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\SignIn.resx">
-      <DependentUpon>SignIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
-      <DependentUpon>TestScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\UserProfile.resx">
-      <DependentUpon>UserProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\View.resx">
-      <DependentUpon>View.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

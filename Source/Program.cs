@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Hush.Display;
+using System;
 using System.Windows.Forms;
-
-using Hush.Display;
-using Hush.Display.Interfaces;
 
 namespace Hush
 {

@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Client\DataManager.cs" />
+    <Compile Include="Source\Client\Model\Field.cs" />
+    <Compile Include="Source\Client\Model\Option.cs" />
+    <Compile Include="Source\Client\Model\User.cs" />
     <Compile Include="Source\Display\Controls\BorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>

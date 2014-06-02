@@ -1,10 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Security.Permissions;
 
 namespace Hush.Client.Model
 {
-
-    class Category
+    [Serializable]
+    class Category : ISerializable
     {
-    }
+        private String _ID;
+        private String _Name;
+        private List<Record> _Records;
+        private DateTime _Created;
 
+
+        public Category()
+        {
+            //_ID = string.Empty;
+            //_Name = string.Empty;
+            //_Records = new List<Record>();
+            //_Created = DateTime.Now;
+        }
+
+        protected Category(SerializationInfo Info, StreamingContext context)
+        {
+            if (Info == null)
+                throw new System.ArgumentNullException("Info");
+
+            _ID = (String)Info.GetValue("ID", typeof(String));
+            _Name = (String)Info.GetValue("Name", typeof(String));
+            _Records = (List<Record>)Info.GetValue("Record", typeof(List<Record>));
+            _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
+        }
+
+        public String ID { get; set; }
+        public String Name { get; set; }
+        public List<Record> Records { get; set; }
+        public DateTime Created { get; set; }
+
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
+        public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)
+        {
+            if (Info == null)
+            {
+                throw new ArgumentNullException("Info");
+            }
+
+            Info.AddValue("ID", _ID);
+            Info.AddValue("Name", _Name);
+            Info.AddValue("Records", _Records);
+            Info.AddValue("Created", _Created);
+        }
+    }
 }

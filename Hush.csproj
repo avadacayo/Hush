@@ -111,7 +111,11 @@
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Tools\Encryption.cs" />
+    <Compile Include="Source\Tools\FileUtil.cs" />
+    <Compile Include="Source\Tools\Scripting\DataAccessObject.cs" />
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />
+    <Compile Include="Source\Tools\Scripting\RequestObject.cs" />
+    <Compile Include="Source\Tools\Scripting\UserInterfaceObject.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

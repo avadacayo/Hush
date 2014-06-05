@@ -5,6 +5,8 @@ using System.Text;
 using Jint;
 using Jint.Native;
 using Hush.Tools;
+using Jint.Parser;
+using Jint.Runtime;
 
 namespace Hush.Tools.Scripting
 {
@@ -35,30 +37,108 @@ namespace Hush.Tools.Scripting
 
         }
 
+        private void InitValues()
+        {
+
+            _Engine.SetValue("print", new Action<Object>(Console.WriteLine));
+
+        }
+
         public Boolean Load()
         {
+
             _Loaded = false;
+            _Source = String.Empty;
+
             if (_Name == String.Empty)
+            {
+
+                Console.WriteLine("script name is empty");
                 return false;
+
+            }
+
             _Source = FileUtil.ReadScriptFile(_Name);
+
             if (_Source.Length < 1)
+            {
+
+                Console.WriteLine("script source wasn't loaded");
                 return false;
-            _Engine.Execute(_Source);
-            _BodyFunction = _Engine.GetValue("body");
-            _HeadFunction = _Engine.GetValue("head");
-            if (_BodyFunction == JsValue.Undefined || _HeadFunction == JsValue.Undefined)
+
+            }
+
+            try
+            {
+
+                _Engine.Execute(_Source);
+                InitValues();
+
+                _HeadFunction = _Engine.GetValue("head");
+                _BodyFunction = _Engine.GetValue("body");
+
+                if (_HeadFunction == JsValue.Undefined)
+                {
+
+                    Console.WriteLine("head function not defined");
+                    return false;
+
+                }
+
+                if (_BodyFunction == JsValue.Undefined)
+                {
+
+                    Console.WriteLine("body function not defined");
+                    return false;
+
+                }
+
+            }
+            catch (Exception E)
+            {
+
+                System.Windows.Forms.MessageBox.Show(E.Message);
+                System.Console.WriteLine("problemo");
                 return false;
+
+            }
+
             _Loaded = true;
             return true;
+
         }
 
         public Boolean Run()
         {
+
             if (!_Loaded)
+            {
+
+                Console.WriteLine("script class not loaded on run");
                 return false;
-            var x = _HeadFunction.Invoke();
-            var y = _BodyFunction.Invoke();
+
+            }
+
+            try
+            {
+
+                JsValue HeadResult;
+                JsValue BodyResult;
+                
+                HeadResult = _HeadFunction.Invoke();
+                BodyResult = _BodyFunction.Invoke();
+
+            }
+            catch (JavaScriptException JSE)
+            {
+
+                Console.WriteLine("problem in run");
+                return false;
+
+            }
+
             return true;
+
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Hush.Client.Model;
 
 namespace Hush.Client
 {
@@ -8,7 +9,8 @@ namespace Hush.Client
     static class DataHolder
     {
 
-        static public List<String> UserList = default(List<String>);
+        static public User CurrentUser = default(User);
+        static public List<User> UserList = default(List<User>);
 
     }
 

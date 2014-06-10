@@ -146,7 +146,7 @@ namespace Hush.Display.Interfaces
             this.save.TabIndex = 1;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.save.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // cancel
             // 
@@ -192,7 +192,7 @@ namespace Hush.Display.Interfaces
         {
              //if ()
                 //{
-                    DataManager.AddRecord();
+                    DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, "", "");
                     MessageBox.Show("Saved");
                 //}
             //else

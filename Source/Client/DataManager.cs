@@ -42,14 +42,11 @@ namespace Hush.Client
 
         }
 
-        public static void AddRecord()
-        {
+        public static void AddRecord(Int32 RecordIndex, String Key, String Value) {
             Field f_k = new Field();
-            f_k.Value = this.Key.ToString();
-            f_k.Value = "adb";
-            Field f_v = new Field();
-            f_v.Value = this.Value.ToString();
-            DataHolder.CurrentUser.Records[dataGridViewRecords.CurrentCell.RowIndex].Fields.Add(f_k);
+            f_k.Key = Key;
+            f_k.Value = Value;
+            DataHolder.CurrentUser.Records[RecordIndex].Fields.Add(f_k);
 
             return;
         }
@@ -57,21 +54,21 @@ namespace Hush.Client
         public static void EditRecord(object sender, DataGridViewCellEventArgs e)
         {
 
-            var collection = this.dataGridViewRecords.Rows;
+            //var collection = this.dataGridViewRecords.Rows;
 
-            foreach (DataGridViewRow row in collection)
-            {
+            //foreach (DataGridViewRow row in collection)
+            //{
 
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    Field f = new Field();
-                    if (cell.Value != null)
-                    {
-                        f.Value = cell.Value.ToString();
-                        DataHolder.CurrentUser.Records[e.RowIndex].Fields.Add(f);
-                    }
-                }
-            }
+            //    foreach (DataGridViewCell cell in row.Cells)
+            //    {
+            //        Field f = new Field();
+            //        if (cell.Value != null)
+            //        {
+            //            f.Value = cell.Value.ToString();
+            //            DataHolder.CurrentUser.Records[e.RowIndex].Fields.Add(f);
+            //        }
+            //    }
+            //}
 
         }
 

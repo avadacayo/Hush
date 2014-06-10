@@ -42,7 +42,24 @@ namespace Hush.Client
 
         }
 
+        // adds a record
+        public static void AddRecord()
+        {
+            Record NewRecord = new Record();
+            DataHolder.CurrentUser.Records.Add(NewRecord);
+        }
+
+        // adds a field
+        public static void AddField(Record Record, String Key, String Value)
+        {
+            Field NewField = new Field();
+            NewField.Key = Key;
+            NewField.Value = Value;
+            Record.Fields.Add(NewField);
+        }
+
         public static void AddRecord(Int32 RecordIndex, String Key, String Value) {
+            Record r = new Record();
             Field f_k = new Field();
             f_k.Key = Key;
             f_k.Value = Value;

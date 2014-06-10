@@ -8,24 +8,26 @@ using System.Threading.Tasks;
 
 
 using Hush;
+using Hush.Client;
+using Hush.Client.Model;
+using System.Windows.Forms;
 
 namespace Hush.Display.Interfaces
 {
     class Add : Interface
     {
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_Temp;
+        private System.Windows.Forms.TextBox textBox_Cat;
+        private System.Windows.Forms.Button btn_Change;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Key;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label3;
+        private DataGridView dataGridViewRecords;
+        private DataGridViewTextBoxColumn Key;
+        private DataGridViewTextBoxColumn Value;
+        private Button save;
+        private Button cancel;
+        private GroupBox recordList;
         private System.Windows.Forms.Label label1;
 
         #region Designer
@@ -43,20 +45,19 @@ namespace Hush.Display.Interfaces
         protected override void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBox_Temp = new System.Windows.Forms.TextBox();
+            this.textBox_Cat = new System.Windows.Forms.TextBox();
+            this.btn_Change = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
+            this.recordList = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).BeginInit();
+            this.recordList.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -69,31 +70,31 @@ namespace Hush.Display.Interfaces
             this.label2.TabIndex = 1;
             this.label2.Text = "Category";
             // 
-            // textBox1
+            // textBox_Temp
             // 
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(121, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(326, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox_Temp.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Temp.Location = new System.Drawing.Point(121, 23);
+            this.textBox_Temp.Name = "textBox_Temp";
+            this.textBox_Temp.Size = new System.Drawing.Size(326, 20);
+            this.textBox_Temp.TabIndex = 2;
             // 
-            // textBox2
+            // textBox_Cat
             // 
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(121, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(326, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox_Cat.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Cat.Location = new System.Drawing.Point(121, 58);
+            this.textBox_Cat.Name = "textBox_Cat";
+            this.textBox_Cat.Size = new System.Drawing.Size(326, 20);
+            this.textBox_Cat.TabIndex = 3;
             // 
-            // button1
+            // btn_Change
             // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(520, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Change";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Change.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Change.Location = new System.Drawing.Point(520, 19);
+            this.btn_Change.Name = "btn_Change";
+            this.btn_Change.Size = new System.Drawing.Size(75, 23);
+            this.btn_Change.TabIndex = 4;
+            this.btn_Change.Text = "Change";
+            this.btn_Change.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -105,48 +106,27 @@ namespace Hush.Display.Interfaces
             this.button2.Text = "Change";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // label1
             // 
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(53, 116);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(575, 317);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(53, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Template";
             // 
-            // button4
+            // dataGridViewRecords
             // 
-            this.button4.Location = new System.Drawing.Point(467, 246);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Cancel";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(337, 259);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Save";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewRecords.AllowUserToOrderColumns = true;
+            this.dataGridViewRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
             this.Value});
-            this.dataGridView1.Location = new System.Drawing.Point(15, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(527, 221);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewRecords.Location = new System.Drawing.Point(15, 19);
+            this.dataGridViewRecords.Name = "dataGridViewRecords";
+            this.dataGridViewRecords.Size = new System.Drawing.Size(527, 221);
+            this.dataGridViewRecords.TabIndex = 0;
             // 
             // Key
             // 
@@ -158,45 +138,99 @@ namespace Hush.Display.Interfaces
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
             // 
-            // label1
+            // save
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Template";
+            this.save.Location = new System.Drawing.Point(337, 259);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 1;
+            this.save.Text = "Save";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // label3
+            // cancel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(390, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "label3";
+            this.cancel.Location = new System.Drawing.Point(467, 259);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.TabIndex = 2;
+            this.cancel.Text = "Cancel";
+            this.cancel.UseVisualStyleBackColor = true;
+            // 
+            // recordList
+            // 
+            this.recordList.Controls.Add(this.cancel);
+            this.recordList.Controls.Add(this.save);
+            this.recordList.Controls.Add(this.dataGridViewRecords);
+            this.recordList.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recordList.Location = new System.Drawing.Point(53, 116);
+            this.recordList.Name = "recordList";
+            this.recordList.Size = new System.Drawing.Size(575, 317);
+            this.recordList.TabIndex = 6;
+            this.recordList.TabStop = false;
+            this.recordList.Text = "RecordList";
             // 
             // Add
             // 
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.recordList);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btn_Change);
+            this.Controls.Add(this.textBox_Cat);
+            this.Controls.Add(this.textBox_Temp);
             this.Controls.Add(this.label2);
             this.Name = "Add";
             this.Size = new System.Drawing.Size(660, 458);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).EndInit();
+            this.recordList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
+        private void addRecord()
+        {
+            Field f_k = new Field();
+            f_k.Value = this.Key.ToString();
+            f_k.Value = "adb";
+            Field f_v = new Field();
+            f_v.Value = this.Value.ToString();
+            DataHolder.CurrentUser.Records[dataGridViewRecords.CurrentCell.RowIndex].Fields.Add(f_k);
+            
+            return;
+        }
 
+        private void editRecord(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            var collection = this.dataGridViewRecords.Rows;
+            
+            foreach (DataGridViewRow row in collection)
+            {
+                
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    Field f = new Field();
+                    if (cell.Value != null)
+                    {
+                        f.Value = cell.Value.ToString();
+                        DataHolder.CurrentUser.Records[e.RowIndex].Fields.Add(f);
+                    }
+                }
+            }
+
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+             //if ()
+                //{
+                    addRecord();
+                    MessageBox.Show("Saved");
+                //}
+            //else
+        }
     }
+
+
 }

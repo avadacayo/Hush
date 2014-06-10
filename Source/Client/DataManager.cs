@@ -41,6 +41,39 @@ namespace Hush.Client
 
         }
 
+        private void addRecord()
+        {
+            Field f_k = new Field();
+            f_k.Value = this.Key.ToString();
+            f_k.Value = "adb";
+            Field f_v = new Field();
+            f_v.Value = this.Value.ToString();
+            DataHolder.CurrentUser.Records[dataGridViewRecords.CurrentCell.RowIndex].Fields.Add(f_k);
+
+            return;
+        }
+
+        private void editRecord(object sender, DataGridViewCellEventArgs e)
+        {
+
+            var collection = this.dataGridViewRecords.Rows;
+
+            foreach (DataGridViewRow row in collection)
+            {
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    Field f = new Field();
+                    if (cell.Value != null)
+                    {
+                        f.Value = cell.Value.ToString();
+                        DataHolder.CurrentUser.Records[e.RowIndex].Fields.Add(f);
+                    }
+                }
+            }
+
+        }
+
     }
 
 }

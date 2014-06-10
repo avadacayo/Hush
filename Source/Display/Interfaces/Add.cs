@@ -188,11 +188,11 @@ namespace Hush.Display.Interfaces
 
         }
 
-        private void save_Click(object sender, EventArgs e)
+        private void SaveButtonClick(Object Sender, EventArgs Args)
         {
              //if ()
                 //{
-                    addRecord();
+                    DataManager.AddRecord();
                     MessageBox.Show("Saved");
                 //}
             //else

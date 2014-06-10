@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Hush.Client.Model;
+using System.Windows.Forms;
 
 namespace Hush.Client
 {
@@ -41,7 +42,7 @@ namespace Hush.Client
 
         }
 
-        private void addRecord()
+        public static void AddRecord()
         {
             Field f_k = new Field();
             f_k.Value = this.Key.ToString();
@@ -53,7 +54,7 @@ namespace Hush.Client
             return;
         }
 
-        private void editRecord(object sender, DataGridViewCellEventArgs e)
+        public static void EditRecord(object sender, DataGridViewCellEventArgs e)
         {
 
             var collection = this.dataGridViewRecords.Rows;

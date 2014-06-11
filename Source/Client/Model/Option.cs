@@ -28,9 +28,21 @@ namespace Hush.Client.Model
             _Value = (String)Info.GetValue("Value", typeof(String));
         }
 
-        public String ID { get; set; }
-        public String Key { get; set; }
-        public String Value { get; set; }
+        public String ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        public String Key
+        {
+            get { return _Key; }
+            set { _Key = value; }
+        }
+        public String Value
+        {
+            get { return _Key; }
+            set { _Key = value; }
+        }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)

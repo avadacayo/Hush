@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hush.Client;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -33,7 +34,8 @@ namespace Hush.Display.Interfaces
             Title.Add("Main");
 
             base.Initialize(Title);
-
+            UsernameLabel.Text = DataHolder.CurrentUser.FirstName;
+            
         }
 
         protected override void InitializeComponent()

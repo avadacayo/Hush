@@ -51,7 +51,24 @@ namespace Hush.Display
 
             base.OnClosing(Args);
 
-            if (!(CurrentInterface is TestScreen))
+            if (CurrentInterface is CategoryPrompt)
+            {
+
+                ShowInterface(new CategoryManagement());
+                Args.Cancel = true;
+
+            }
+            else if (CurrentInterface is Add || CurrentInterface is Edit
+                || CurrentInterface is Delete || CurrentInterface is Hush.Display.Interfaces.View
+                || CurrentInterface is Search || CurrentInterface is Settings
+                || CurrentInterface is CategoryManagement)
+            {
+
+                ShowInterface(new MainScreen());
+                Args.Cancel = true;
+
+            }
+            else if (!(CurrentInterface is TestScreen))
             {
 
                 ShowInterface(new TestScreen());

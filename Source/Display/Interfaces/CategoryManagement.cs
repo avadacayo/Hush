@@ -44,6 +44,7 @@ namespace Hush.Display.Interfaces
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += AddButton_Click;
             // 
             // BackButton
             // 
@@ -51,17 +52,21 @@ namespace Hush.Display.Interfaces
             this.BackButton.Location = new System.Drawing.Point(230, 380);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(100, 25);
-            this.BackButton.TabIndex = 1;
+            this.BackButton.TabIndex = 4;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Visible = false;
             // 
             // CategoryListBox
             // 
             this.CategoryListBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryListBox.Items.Add("One");
+            this.CategoryListBox.Items.Add("Two");
+            this.CategoryListBox.Items.Add("Three");
             this.CategoryListBox.Location = new System.Drawing.Point(10, 45);
             this.CategoryListBox.Name = "CategoryListBox";
             this.CategoryListBox.Size = new System.Drawing.Size(320, 329);
-            this.CategoryListBox.TabIndex = 2;
+            this.CategoryListBox.TabIndex = 3;
             // 
             // DeleteButton
             // 
@@ -69,9 +74,10 @@ namespace Hush.Display.Interfaces
             this.DeleteButton.Location = new System.Drawing.Point(230, 10);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(100, 25);
-            this.DeleteButton.TabIndex = 3;
+            this.DeleteButton.TabIndex = 2;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += DeleteButton_Click;
             // 
             // EditButton
             // 
@@ -79,7 +85,7 @@ namespace Hush.Display.Interfaces
             this.EditButton.Location = new System.Drawing.Point(120, 10);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(100, 25);
-            this.EditButton.TabIndex = 4;
+            this.EditButton.TabIndex = 1;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
             // 
@@ -95,6 +101,33 @@ namespace Hush.Display.Interfaces
 
         }
 
+        void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (this.CategoryListBox.SelectedItem != null)
+            {
+                Client.DataManager.DeleteCategory(this.CategoryListBox.SelectedItem.ToString());
+            }
+        }
 
+        void BackButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.Close();   
+        }
+
+        void EditButton_Click(object sender, EventArgs e)
+        {
+            if (this.CategoryListBox.SelectedItem != null)
+            {
+                Program.Window.ShowInterface(new CategoryPrompt(this.CategoryListBox.SelectedItem.ToString()));
+            }
+        }
+
+        void AddButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new CategoryPrompt());
+        }
+
+
+               
     }
 }

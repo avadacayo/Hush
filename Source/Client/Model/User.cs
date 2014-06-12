@@ -66,6 +66,7 @@ namespace Hush.Client.Model
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
         public List<Record> Records { get; set; }
+        public List<Category> Categories { get; set; }
 
         
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]

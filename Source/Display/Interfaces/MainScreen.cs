@@ -24,6 +24,7 @@ namespace Hush.Display.Interfaces
         private Panel UserPanel;
         private Label UserLabel;
         private Label UsernameLabel;
+        private Button button1;
 
         // listbox to replaced by custom control
         private ListBox listBox1;
@@ -54,6 +55,7 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.GeneralFunctionsPanel.SuspendLayout();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
@@ -67,16 +69,18 @@ namespace Hush.Display.Interfaces
             this.AddRecordButton.TabIndex = 0;
             this.AddRecordButton.Text = "add";
             this.AddRecordButton.UseVisualStyleBackColor = true;
+            this.AddRecordButton.Click += new System.EventHandler(this.AddRecordButton_Click);
             // 
             // AdvancedSearchButton
             // 
             this.AdvancedSearchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdvancedSearchButton.Location = new System.Drawing.Point(616, 10);
+            this.AdvancedSearchButton.Location = new System.Drawing.Point(589, 9);
             this.AdvancedSearchButton.Name = "AdvancedSearchButton";
-            this.AdvancedSearchButton.Size = new System.Drawing.Size(101, 23);
+            this.AdvancedSearchButton.Size = new System.Drawing.Size(128, 23);
             this.AdvancedSearchButton.TabIndex = 0;
             this.AdvancedSearchButton.Text = "advanced search";
             this.AdvancedSearchButton.UseVisualStyleBackColor = true;
+            this.AdvancedSearchButton.Click += new System.EventHandler(this.AdvancedSearchButton_Click);
             // 
             // DeleteRecordButton
             // 
@@ -86,6 +90,7 @@ namespace Hush.Display.Interfaces
             this.DeleteRecordButton.TabIndex = 2;
             this.DeleteRecordButton.Text = "delete";
             this.DeleteRecordButton.UseVisualStyleBackColor = true;
+            this.DeleteRecordButton.Click += new System.EventHandler(this.DeleteRecordButton_Click);
             // 
             // EditRecordButton
             // 
@@ -95,10 +100,12 @@ namespace Hush.Display.Interfaces
             this.EditRecordButton.TabIndex = 1;
             this.EditRecordButton.Text = "edit";
             this.EditRecordButton.UseVisualStyleBackColor = true;
+            this.EditRecordButton.Click += new System.EventHandler(this.EditRecordButton_Click);
             // 
             // GeneralFunctionsPanel
             // 
             this.GeneralFunctionsPanel.BackColor = System.Drawing.Color.White;
+            this.GeneralFunctionsPanel.Controls.Add(this.button1);
             this.GeneralFunctionsPanel.Controls.Add(this.SyncButton);
             this.GeneralFunctionsPanel.Controls.Add(this.ManageCategoriesButton);
             this.GeneralFunctionsPanel.Controls.Add(this.SettingsButton);
@@ -125,6 +132,7 @@ namespace Hush.Display.Interfaces
             this.ManageCategoriesButton.TabIndex = 1;
             this.ManageCategoriesButton.Text = "Manage Categories";
             this.ManageCategoriesButton.UseVisualStyleBackColor = true;
+            this.ManageCategoriesButton.Click += new System.EventHandler(this.ManageCategoriesButton_Click);
             // 
             // SettingsButton
             // 
@@ -134,6 +142,7 @@ namespace Hush.Display.Interfaces
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // LogoutLinkLabel
             // 
@@ -160,9 +169,9 @@ namespace Hush.Display.Interfaces
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(562, 10);
+            this.SearchButton.Location = new System.Drawing.Point(528, 9);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(47, 23);
+            this.SearchButton.Size = new System.Drawing.Size(55, 23);
             this.SearchButton.TabIndex = 3;
             this.SearchButton.Text = "search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -172,7 +181,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(197, 12);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(359, 20);
+            this.SearchTextBox.Size = new System.Drawing.Size(325, 20);
             this.SearchTextBox.TabIndex = 4;
             // 
             // UserPanel
@@ -210,10 +219,22 @@ namespace Hush.Display.Interfaces
             // 
             this.listBox1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "LIST OF RECORDS"});
             this.listBox1.Location = new System.Drawing.Point(197, 40);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(520, 355);
             this.listBox1.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(19, 192);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 68);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "TEST DISPLAY PAGE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainScreen
             // 
@@ -232,6 +253,41 @@ namespace Hush.Display.Interfaces
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void ManageCategoriesButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new CategoryManagement());
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Settings());
+        }
+
+        private void AddRecordButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Add());
+        }
+
+        private void EditRecordButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Edit());
+        }
+
+        private void DeleteRecordButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Delete());
+        }
+
+        private void AdvancedSearchButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Search());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new TestScreen());
         }
 
     }

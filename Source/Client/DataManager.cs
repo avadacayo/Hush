@@ -50,6 +50,20 @@ namespace Hush.Client
             DataHolder.CurrentUser.Records.Add(NewRecord);
         }
 
+        // adds a category
+        public static void AddCategory(string category)
+        {
+            Category newCategory = new Category();
+            newCategory.ID = category;
+            newCategory.Name = category;
+            newCategory.Created = DateTime.Now;
+
+            DataHolder.CurrentUser.Categories.Add(newCategory);
+          
+            // TODO : add Category object to file
+        }
+
+
         // adds a field
         public static void AddField(Record Record, String Key, String Value)
         {
@@ -84,6 +98,20 @@ namespace Hush.Client
                               
             }
          }
+
+        public static void DeleteCategory(string category)
+        {
+            // TODO:  find index of category object with matching name
+            // prompt user for confirmation
+            // remove category object from User.List<Category>
+        }
+
+        public static void EditCategory(string category)
+        {
+            // TODO:  get category object with matching name
+            // set category name to new name
+            // send updated object to file
+        }
 
         //public static void EditRecord(object sender, DataGridViewCellEventArgs e)
         //{

@@ -9,17 +9,10 @@ namespace Hush.Display.Interfaces
 
     class TestScreen : Interface
     {
-
-        private Button SettingsButton;
         private Button SignInButton;
         private Button RegisterAccountButton;
         private Button ForgotPasswordButton;
-        private Button AddButton;
-        private Button EditButton;
         private Button ViewButton;
-        private Button DeleteButton;
-        private Button ManageCategoriesButton;
-        private Button SearchButton;
         private Button MainScreenButton;
         private Button UserProfileButton;
 
@@ -96,30 +89,13 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
-            this.SettingsButton = new System.Windows.Forms.Button();
             this.SignInButton = new System.Windows.Forms.Button();
             this.RegisterAccountButton = new System.Windows.Forms.Button();
             this.ForgotPasswordButton = new System.Windows.Forms.Button();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.ManageCategoriesButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
             this.MainScreenButton = new System.Windows.Forms.Button();
-            this.EditButton = new System.Windows.Forms.Button();
-            this.DeleteButton = new System.Windows.Forms.Button();
             this.ViewButton = new System.Windows.Forms.Button();
             this.UserProfileButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // SettingsButton
-            // 
-            this.SettingsButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SettingsButton.Location = new System.Drawing.Point(10, 10);
-            this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(150, 25);
-            this.SettingsButton.TabIndex = 0;
-            this.SettingsButton.Text = "Settings Screen";
-            this.SettingsButton.UseVisualStyleBackColor = true;
-            this.SettingsButton.Click += new System.EventHandler(this.SettingsButtonClick);
             // 
             // SignInButton
             // 
@@ -154,39 +130,6 @@ namespace Hush.Display.Interfaces
             this.ForgotPasswordButton.UseVisualStyleBackColor = true;
             this.ForgotPasswordButton.Click += new System.EventHandler(this.ForgotPasswordButtonClick);
             // 
-            // AddButton
-            // 
-            this.AddButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddButton.Location = new System.Drawing.Point(10, 134);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(150, 25);
-            this.AddButton.TabIndex = 4;
-            this.AddButton.Text = "Add Screen";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButtonClick);
-            // 
-            // ManageCategoriesButton
-            // 
-            this.ManageCategoriesButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManageCategoriesButton.Location = new System.Drawing.Point(10, 165);
-            this.ManageCategoriesButton.Name = "ManageCategoriesButton";
-            this.ManageCategoriesButton.Size = new System.Drawing.Size(150, 25);
-            this.ManageCategoriesButton.TabIndex = 5;
-            this.ManageCategoriesButton.Text = "Manage Categories";
-            this.ManageCategoriesButton.UseVisualStyleBackColor = true;
-            this.ManageCategoriesButton.Click += new System.EventHandler(this.CategoryManagementButtonClick);
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(10, 196);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(150, 25);
-            this.SearchButton.TabIndex = 6;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButtonClick);
-            // 
             // MainScreenButton
             // 
             this.MainScreenButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -197,28 +140,6 @@ namespace Hush.Display.Interfaces
             this.MainScreenButton.Text = "Main";
             this.MainScreenButton.UseVisualStyleBackColor = true;
             this.MainScreenButton.Click += new System.EventHandler(this.MainScreenButtonClick);
-            // 
-            // EditButton
-            // 
-            this.EditButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditButton.Location = new System.Drawing.Point(10, 258);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(150, 25);
-            this.EditButton.TabIndex = 8;
-            this.EditButton.Text = "Edit Screen";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButtonClick);
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteButton.Location = new System.Drawing.Point(10, 289);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(150, 25);
-            this.DeleteButton.TabIndex = 9;
-            this.DeleteButton.Text = "Delete Screen";
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
             // 
             // ViewButton
             // 
@@ -244,16 +165,10 @@ namespace Hush.Display.Interfaces
             // 
             // TestScreen
             // 
-            this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
-            this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.ManageCategoriesButton);
-            this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.MainScreenButton);
-            this.Controls.Add(this.EditButton);
-            this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.UserProfileButton);
             this.Name = "TestScreen";

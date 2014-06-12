@@ -61,7 +61,7 @@ namespace Hush.Display.Interfaces
             // 
             this.CategoryCheckBox.Location = new System.Drawing.Point(7, 28);
             this.CategoryCheckBox.Name = "CategoryCheckBox";
-            this.CategoryCheckBox.Size = new System.Drawing.Size(68, 17);
+            this.CategoryCheckBox.Size = new System.Drawing.Size(86, 17);
             this.CategoryCheckBox.TabIndex = 4;
             this.CategoryCheckBox.Text = "Category";
             this.CategoryCheckBox.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@ namespace Hush.Display.Interfaces
             // 
             this.DateFromLabel.Location = new System.Drawing.Point(7, 20);
             this.DateFromLabel.Name = "DateFromLabel";
-            this.DateFromLabel.Size = new System.Drawing.Size(30, 13);
+            this.DateFromLabel.Size = new System.Drawing.Size(78, 14);
             this.DateFromLabel.TabIndex = 3;
             this.DateFromLabel.Text = "From";
             // 
@@ -116,7 +116,7 @@ namespace Hush.Display.Interfaces
             // 
             this.DateToLabel.Location = new System.Drawing.Point(7, 67);
             this.DateToLabel.Name = "DateToLabel";
-            this.DateToLabel.Size = new System.Drawing.Size(20, 13);
+            this.DateToLabel.Size = new System.Drawing.Size(69, 17);
             this.DateToLabel.TabIndex = 2;
             this.DateToLabel.Text = "To";
             // 
@@ -124,7 +124,7 @@ namespace Hush.Display.Interfaces
             // 
             this.FieldCheckBox.Location = new System.Drawing.Point(7, 97);
             this.FieldCheckBox.Name = "FieldCheckBox";
-            this.FieldCheckBox.Size = new System.Drawing.Size(51, 17);
+            this.FieldCheckBox.Size = new System.Drawing.Size(86, 17);
             this.FieldCheckBox.TabIndex = 1;
             this.FieldCheckBox.Text = "Field:";
             this.FieldCheckBox.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@ namespace Hush.Display.Interfaces
             // 
             this.NameCheckBox.Location = new System.Drawing.Point(7, 74);
             this.NameCheckBox.Name = "NameCheckBox";
-            this.NameCheckBox.Size = new System.Drawing.Size(54, 17);
+            this.NameCheckBox.Size = new System.Drawing.Size(86, 17);
             this.NameCheckBox.TabIndex = 2;
             this.NameCheckBox.Text = "Name";
             this.NameCheckBox.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@ namespace Hush.Display.Interfaces
             // 
             this.TagsCheckBox.Location = new System.Drawing.Point(7, 51);
             this.TagsCheckBox.Name = "TagsCheckBox";
-            this.TagsCheckBox.Size = new System.Drawing.Size(50, 17);
+            this.TagsCheckBox.Size = new System.Drawing.Size(86, 17);
             this.TagsCheckBox.TabIndex = 3;
             this.TagsCheckBox.Text = "Tags";
             this.TagsCheckBox.UseVisualStyleBackColor = true;

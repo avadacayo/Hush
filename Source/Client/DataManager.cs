@@ -209,6 +209,11 @@ namespace Hush.Client
             }
          }
 
+        public static void DeleteRecord(Record record)
+        {
+            DataHolder.CurrentUser.Records.Remove(record);
+        }
+
         public static void DeleteCategory(string category)
         {
             // TODO:  find index of category object with matching name

@@ -15,6 +15,10 @@ namespace Hush.Client
     {
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
+
+        static public string updateCategory;
+        public enum updateMode {None, Add, Edit, Delete};
+        static public updateMode update;
     }
 
     class DataManager
@@ -96,7 +100,7 @@ namespace Hush.Client
             newUser.Password = Password;
             newUser.SecretQuestion = SecretQuestion;
             newUser.SecretAnswer = SecretAnswer;
-      
+            
             Boolean created = false;
             try
             {
@@ -127,6 +131,8 @@ namespace Hush.Client
             } 
             return created;
         }
+
+        
 
         public Boolean DeserializeUsers(String filename)
         {
@@ -160,9 +166,32 @@ namespace Hush.Client
             DataHolder.CurrentUser.Records.Add(NewRecord);
         }
 
+        public static void ProcessCategory(string oldCategory, string newCategory, DataHolder.updateMode update)
+        {
+            if (update == DataHolder.updateMode.Edit)
+            {
+                EditCategory(oldCategory, newCategory);
+            }
+            else if (update == DataHolder.updateMode.Delete)
+            {
+                DeleteCategory(oldCategory);
+            }
+            else
+            {
+                AddCategory(newCategory);
+            }
+
+        }
+
         // adds a category
         public static void AddCategory(string category)
         {
+            if (DataHolder.CurrentUser.Categories == null)
+            {
+                List<Category> newCategoryList = new List<Category>();
+                DataHolder.CurrentUser.Categories = newCategoryList;
+            }
+
             Category newCategory = new Category();
             newCategory.ID = category;
             newCategory.Name = category;
@@ -170,7 +199,6 @@ namespace Hush.Client
 
             DataHolder.CurrentUser.Categories.Add(newCategory);
           
-            // TODO : add Category object to file
         }
 
 
@@ -216,16 +244,32 @@ namespace Hush.Client
 
         public static void DeleteCategory(string category)
         {
-            // TODO:  find index of category object with matching name
-            // prompt user for confirmation
-            // remove category object from User.List<Category>
+            List<Category> list = DataHolder.CurrentUser.Categories;
+            for (var x = 0; x < list.Count; x++)
+            {
+                if (list[x].Name == category)
+                {
+                    DataHolder.CurrentUser.Categories.RemoveAt(x);
+                    x = list.Count;
+                }
+                
+            }
         }
 
-        public static void EditCategory(string category)
+        public static void EditCategory(string oldCategory, string newCategory)
         {
             // TODO:  get category object with matching name
             // set category name to new name
             // send updated object to file
+            List<Category> list = DataHolder.CurrentUser.Categories;
+            for (var x = 0; x < list.Count; x++)
+            {
+                if (list[x].Name == oldCategory)
+                {
+                    DataHolder.CurrentUser.Categories[x].Name = newCategory;
+                    x = list.Count;
+                }
+            }
         }
 
         //public static void EditRecord(object sender, DataGridViewCellEventArgs e)
@@ -249,7 +293,7 @@ namespace Hush.Client
 
         //}
 
-
+        
     }
 
 }

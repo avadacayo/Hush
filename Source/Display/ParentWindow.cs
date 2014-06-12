@@ -61,7 +61,7 @@ namespace Hush.Display
             else if (CurrentInterface is Add || CurrentInterface is Edit
                 || CurrentInterface is Delete || CurrentInterface is Hush.Display.Interfaces.View
                 || CurrentInterface is Search || CurrentInterface is Settings
-                || CurrentInterface is CategoryManagement)
+                || CurrentInterface is CategoryManagement || CurrentInterface is UserProfile)
             {
 
                 ShowInterface(new MainScreen());

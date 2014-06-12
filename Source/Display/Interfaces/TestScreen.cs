@@ -12,9 +12,6 @@ namespace Hush.Display.Interfaces
         private Button SignInButton;
         private Button RegisterAccountButton;
         private Button ForgotPasswordButton;
-        private Button ViewButton;
-        private Button MainScreenButton;
-        private Button UserProfileButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
         {
@@ -92,9 +89,6 @@ namespace Hush.Display.Interfaces
             this.SignInButton = new System.Windows.Forms.Button();
             this.RegisterAccountButton = new System.Windows.Forms.Button();
             this.ForgotPasswordButton = new System.Windows.Forms.Button();
-            this.MainScreenButton = new System.Windows.Forms.Button();
-            this.ViewButton = new System.Windows.Forms.Button();
-            this.UserProfileButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SignInButton
@@ -130,47 +124,11 @@ namespace Hush.Display.Interfaces
             this.ForgotPasswordButton.UseVisualStyleBackColor = true;
             this.ForgotPasswordButton.Click += new System.EventHandler(this.ForgotPasswordButtonClick);
             // 
-            // MainScreenButton
-            // 
-            this.MainScreenButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainScreenButton.Location = new System.Drawing.Point(10, 227);
-            this.MainScreenButton.Name = "MainScreenButton";
-            this.MainScreenButton.Size = new System.Drawing.Size(150, 25);
-            this.MainScreenButton.TabIndex = 7;
-            this.MainScreenButton.Text = "Main";
-            this.MainScreenButton.UseVisualStyleBackColor = true;
-            this.MainScreenButton.Click += new System.EventHandler(this.MainScreenButtonClick);
-            // 
-            // ViewButton
-            // 
-            this.ViewButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewButton.Location = new System.Drawing.Point(10, 320);
-            this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(150, 25);
-            this.ViewButton.TabIndex = 10;
-            this.ViewButton.Text = "View Screen";
-            this.ViewButton.UseVisualStyleBackColor = true;
-            this.ViewButton.Click += new System.EventHandler(this.ViewButtonClick);
-            // 
-            // UserProfileButton
-            // 
-            this.UserProfileButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserProfileButton.Location = new System.Drawing.Point(10, 351);
-            this.UserProfileButton.Name = "UserProfileButton";
-            this.UserProfileButton.Size = new System.Drawing.Size(150, 25);
-            this.UserProfileButton.TabIndex = 11;
-            this.UserProfileButton.Text = "User Profile Screen";
-            this.UserProfileButton.UseVisualStyleBackColor = true;
-            this.UserProfileButton.Click += new System.EventHandler(this.UserProfileButtonClick);
-            // 
             // TestScreen
             // 
             this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
-            this.Controls.Add(this.MainScreenButton);
-            this.Controls.Add(this.ViewButton);
-            this.Controls.Add(this.UserProfileButton);
             this.Name = "TestScreen";
             this.ResumeLayout(false);
 

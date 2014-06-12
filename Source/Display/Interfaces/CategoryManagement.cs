@@ -18,6 +18,8 @@ namespace Hush.Display.Interfaces
         private Button DeleteButton;
         private Button EditButton;
 
+        private bool EditDeleteEnabled = true;
+
         protected override void Initialize(List<String> Title)
         {
 
@@ -44,7 +46,7 @@ namespace Hush.Display.Interfaces
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += AddButton_Click;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // BackButton
             // 
@@ -60,9 +62,6 @@ namespace Hush.Display.Interfaces
             // CategoryListBox
             // 
             this.CategoryListBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryListBox.Items.Add("One");
-            this.CategoryListBox.Items.Add("Two");
-            this.CategoryListBox.Items.Add("Three");
             this.CategoryListBox.Location = new System.Drawing.Point(10, 45);
             this.CategoryListBox.Name = "CategoryListBox";
             this.CategoryListBox.Size = new System.Drawing.Size(320, 329);
@@ -77,7 +76,7 @@ namespace Hush.Display.Interfaces
             this.DeleteButton.TabIndex = 2;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += DeleteButton_Click;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // EditButton
             // 
@@ -88,6 +87,7 @@ namespace Hush.Display.Interfaces
             this.EditButton.TabIndex = 1;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // CategoryManagement
             // 
@@ -101,11 +101,47 @@ namespace Hush.Display.Interfaces
 
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            AddCategoriesToListBox();
+
+            this.DeleteButton.Enabled = EditDeleteEnabled;
+            this.EditButton.Enabled = EditDeleteEnabled;
+        }
+
+        void AddCategoriesToListBox()
+        {
+            this.CategoryListBox.Items.Clear();
+            try
+            {
+                List<Client.Model.Category> categoryList = Client.DataHolder.CurrentUser.Categories;
+
+                if (categoryList == null)
+                {
+                    this.CategoryListBox.Items.Add("no categories found");
+                    EditDeleteEnabled = false;
+                }
+                else 
+                {
+                    foreach (Client.Model.Category c in categoryList)
+                    {
+                        this.CategoryListBox.Items.Add(c.Name.ToString());
+                    };
+                    EditDeleteEnabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.CategoryListBox.Items.Add("exception");
+            };
+        }
+
         void DeleteButton_Click(object sender, EventArgs e)
         {
             if (this.CategoryListBox.SelectedItem != null)
             {
-                Client.DataManager.DeleteCategory(this.CategoryListBox.SelectedItem.ToString());
+                Client.DataManager.ProcessCategory(this.CategoryListBox.SelectedItem.ToString(), "", Client.DataHolder.updateMode.Delete);
+                AddCategoriesToListBox();
             }
         }
 
@@ -118,7 +154,11 @@ namespace Hush.Display.Interfaces
         {
             if (this.CategoryListBox.SelectedItem != null)
             {
+                Client.DataHolder.updateCategory = this.CategoryListBox.SelectedItem.ToString();
+                Client.DataHolder.update = Client.DataHolder.updateMode.Edit;
                 Program.Window.ShowInterface(new CategoryPrompt(this.CategoryListBox.SelectedItem.ToString()));
+                Client.DataHolder.updateCategory = "";
+
             }
         }
 

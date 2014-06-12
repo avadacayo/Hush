@@ -17,6 +17,8 @@ namespace Hush.Client.Model
         private String _FirstName;
         private String _LastName;
         private String _Password;
+        private String _SecretQuestion;
+        private String _SecretAnswer;
         private Byte[] _Portrait;
         private DateTime _Created;
         private DateTime _Modified;
@@ -26,17 +28,6 @@ namespace Hush.Client.Model
 
         public User()
         {
-            //_ID = String.Empty;
-            //_Handle = String.Empty;
-            //_FirstName = String.Empty;
-            //_LastName = String.Empty;
-            //_Password = String.Empty;
-            //_Portrait = null;
-            //_Created = DateTime.Now;
-            //_Modified = DateTime.Now;
-            //_Records = new List<Record>(); 
-            //_Categories = new List<Category>();
-            //_Options = new List<Option>();
         }
 
         protected User(SerializationInfo Info, StreamingContext context)
@@ -49,6 +40,8 @@ namespace Hush.Client.Model
             _FirstName = (String)Info.GetValue("FirstName", typeof(String));
             _LastName = (String)Info.GetValue("LastName", typeof(String));
             _Password = (String)Info.GetValue("Password", typeof(String));
+            _SecretQuestion = (String)Info.GetValue("SecretQuestion", typeof(String));
+            _SecretAnswer = (String)Info.GetValue("SecretAnswer", typeof(String));
             _Portrait = (Byte[])Info.GetValue("Portrait", typeof(Byte[]));
             _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
             _Modified = (DateTime)Info.GetValue("Modified", typeof(DateTime));
@@ -57,16 +50,68 @@ namespace Hush.Client.Model
             _Options = (List<Option>)Info.GetValue("Options", typeof(List<Option>));
         }
 
-        public String ID { get; set; }
-        public String Handle { get; set; }
-        public String FirstName { get; set; }
-        public String LastName { get; set; }
-        public String Password { get; set; }
-        public Byte[] Portrait { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
-        public List<Record> Records { get; set; }
-        public List<Category> Categories { get; set; }
+        
+        public String ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        public String Handle
+        {
+            get { return _Handle; }
+            set { _Handle = value; }
+        }
+        public String FirstName
+        {
+            get { return _FirstName; }
+            set { _FirstName = value; }
+        }
+        public String LastName
+        {
+            get { return _LastName; }
+            set { _LastName = value; }
+        }
+        public String Password
+        {
+            get { return _Password; }
+            set { _Password = value; }
+        }
+        public String SecretQuestion
+        {
+            get { return _SecretQuestion; }
+            set { _SecretQuestion = value; }
+        }
+        public String SecretAnswer
+        {
+            get { return _SecretAnswer; }
+            set { _SecretAnswer = value; }
+        }
+        public Byte[] Portrait
+        {
+            get { return _Portrait; }
+            set { _Portrait = value; }
+        }
+        public DateTime Created
+        {
+            get { return _Created; }
+            set { _Created = value; }
+        }
+        public DateTime Modified
+        {
+            get { return _Modified; }
+            set { _Modified = value; }
+        }
+        public List<Record> Records
+        {
+            get { return _Records; }
+            set { _Records = value; }
+        }
+
+        public List<Category> Categories 
+        {
+            get { return _Categories;}
+            set { _Categories = value;} 
+        }
 
         
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
@@ -82,6 +127,8 @@ namespace Hush.Client.Model
             Info.AddValue("FirstName", _FirstName);
             Info.AddValue("LastName", _LastName);
             Info.AddValue("Password", _Password);
+            Info.AddValue("SecretQuestion", _SecretQuestion);
+            Info.AddValue("SecretAnswer", SecretAnswer);
             Info.AddValue("Portrait", _Portrait);
             Info.AddValue("Created", _Created);
             Info.AddValue("Modified", _Modified);

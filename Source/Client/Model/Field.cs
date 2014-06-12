@@ -37,11 +37,31 @@ namespace Hush.Client.Model
             _Modified = (DateTime)Info.GetValue("Modified", typeof(DateTime));
         }
 
-        public String ID { get; set; }
-        public String Key { get; set; }
-        public String Value { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime Modified { get; set; }
+        public String ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        public String Key
+        {
+            get { return _Key; }
+            set { _Key = value; }
+        }
+        public String Value
+        {
+            get { return _Value; }
+            set { _Value = value; }
+        }
+        public DateTime Created
+        {
+            get { return _Created; }
+            set { _Created = value; }
+        }
+        public DateTime Modified
+        {
+            get { return _Modified; }
+            set { _Modified = value; }
+        }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)

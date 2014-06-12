@@ -33,10 +33,26 @@ namespace Hush.Client.Model
             _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
         }
 
-        public String ID { get; set; }
-        public String Name { get; set; }
-        public List<Record> Records { get; set; }
-        public DateTime Created { get; set; }
+        public String ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        public String Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+        public List<Record> Records
+        {
+            get { return _Records; }
+            set { _Records = value; }
+        }
+        public DateTime Created
+        {
+            get { return _Created; }
+            set { _Created = value; }
+        }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)

@@ -38,11 +38,31 @@ namespace Hush.Client.Model
             _Modified = (DateTime)Info.GetValue("Modified", typeof(DateTime));
         }
 
-        public String ID { get; set; }
-        public String TemplateID { get; set; }
-        public Category Category { get; set; }
-        public List<Field> Fields { get; set; }
-        public DateTime Created { get; set; }
+        public String ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        public String TemplateID
+        {
+            get { return _TemplateID; }
+            set { _TemplateID = value; }
+        }
+        public Category Category
+        {
+            get { return _Category; }
+            set { _Category = value; }
+        }
+        public List<Field> Fields
+        {
+            get { return _Fields; }
+            set { _Fields = value; }
+        }
+        public DateTime Created
+        {
+            get { return _Created; }
+            set { _Created = value; }
+        }
         public DateTime Modified { get; set; }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]

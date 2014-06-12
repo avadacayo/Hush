@@ -115,10 +115,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Tools\Encryption.cs" />
     <Compile Include="Source\Tools\FileUtil.cs" />
-    <Compile Include="Source\Tools\Scripting\DataAccessObject.cs" />
+    <Compile Include="Source\Tools\ReturnValue.cs" />
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />
-    <Compile Include="Source\Tools\Scripting\RequestObject.cs" />
-    <Compile Include="Source\Tools\Scripting\UserInterfaceObject.cs" />
+    <Compile Include="Source\Tools\Scripting\WebHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -131,6 +130,15 @@
     </Compile>
     <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\RegisterAccount.resx">
+      <DependentUpon>RegisterAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\SignIn.resx">
+      <DependentUpon>SignIn.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -41,31 +41,32 @@ namespace Hush.Tools.Scripting
         {
 
             _Engine.SetValue("print", new Action<Object>(Console.WriteLine));
+            _Engine.SetValue("WebHandler", new WebHandler());
 
         }
 
-        public Boolean Load()
+        public ReturnValue Load()
         {
+
+            ReturnValue ReturnValue = new ReturnValue("", true);
 
             _Loaded = false;
             _Source = String.Empty;
 
             if (_Name == String.Empty)
             {
-
-                Console.WriteLine("script name is empty");
-                return false;
-
+                ReturnValue.Message = "script name is empty";
+                ReturnValue.Success = false;
+                return ReturnValue;
             }
 
             _Source = FileUtil.ReadScriptFile(_Name);
 
             if (_Source.Length < 1)
             {
-
-                Console.WriteLine("script source wasn't loaded");
-                return false;
-
+                ReturnValue.Message = "script source was not loaded";
+                ReturnValue.Success = false;
+                return ReturnValue;
             }
 
             try
@@ -79,43 +80,40 @@ namespace Hush.Tools.Scripting
 
                 if (_HeadFunction == JsValue.Undefined)
                 {
-
-                    Console.WriteLine("head function not defined");
-                    return false;
-
+                    ReturnValue.Message = "head function not defined";
+                    ReturnValue.Success = false;
+                    return ReturnValue;
                 }
 
                 if (_BodyFunction == JsValue.Undefined)
                 {
-
-                    Console.WriteLine("body function not defined");
-                    return false;
-
+                    ReturnValue.Message = "body function not defined";
+                    ReturnValue.Success = false;
+                    return ReturnValue;
                 }
 
             }
             catch (Exception E)
             {
-
-                System.Windows.Forms.MessageBox.Show(E.Message);
-                System.Console.WriteLine("problemo");
-                return false;
-
+                ReturnValue.Message = "problemo";
+                ReturnValue.Success = false;
+                return ReturnValue;
             }
 
             _Loaded = true;
-            return true;
+            return ReturnValue;
 
         }
 
-        public Boolean Run()
+        public ReturnValue Run()
         {
+
+            ReturnValue ReturnValue = new ReturnValue("", true);
 
             if (!_Loaded)
             {
 
                 Console.WriteLine("script class not loaded on run");
-                return false;
 
             }
 
@@ -132,12 +130,12 @@ namespace Hush.Tools.Scripting
             catch (JavaScriptException JSE)
             {
 
-                Console.WriteLine("problem in run");
-                return false;
+                Console.WriteLine("problem in run" + JSE.Message);
+//                return false;
 
             }
 
-            return true;
+            return ReturnValue;
 
         }
 

@@ -10,6 +10,17 @@ namespace Hush.Tools
     static class FileUtil
     {
 
+        public static void OutputScriptData(String Data)
+        {
+            String Name = DateTime.Now.ToString(@"MM dd yyyy h mm tt") + ".html";
+            File.Create(Name).Close();
+            using (StreamWriter W = new StreamWriter(Name, true))
+            {
+                W.Write(Data);
+            }
+
+        }
+
         public static String ReadDataFile(String FileName)
         {
             return String.Empty;

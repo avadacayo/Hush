@@ -40,6 +40,7 @@ namespace Hush.Tools.Scripting
         private void InitValues()
         {
 
+            _Engine.SetValue("output", new Action<String>(Hush.Tools.FileUtil.OutputScriptData));
             _Engine.SetValue("print", new Action<Object>(Console.WriteLine));
             _Engine.SetValue("WebHandler", new WebHandler());
 

@@ -120,6 +120,9 @@
     <Compile Include="Source\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Tools\Encryption.cs" />
+    <Compile Include="Source\Tools\ExtendedWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Tools\FileUtil.cs" />
     <Compile Include="Source\Tools\ReturnValue.cs" />
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />

@@ -9,7 +9,24 @@ namespace Hush.Display.Interfaces
     class Interface : UserControl
     {
 
+        private ParentWindow _ParentWindow = null;
         protected Font GlobalFont = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+
+        #region Properties
+
+        public ParentWindow ParentWindow
+        {
+            get
+            {
+                return _ParentWindow;
+            }
+            set
+            {
+                _ParentWindow = value;
+            }
+        }
+
+        #endregion
 
         public Interface()
         {

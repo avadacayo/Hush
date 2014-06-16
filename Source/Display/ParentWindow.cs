@@ -11,12 +11,20 @@ namespace Hush.Display
     class ParentWindow : Form
     {
 
-        private Interface CurrentInterface = null;
+        private Interface _CurrentInterface = null;
+        private ParentWindow _DialogChild = null;
+        private ParentWindow _DialogParent = null;
 
-        public ParentWindow()
+        public ParentWindow(ParentWindow DialogParent = null)
         {
 
-            //BackColor = Color.FromArgb(255, 255, 255);
+            _DialogParent = DialogParent;
+
+            if (DialogParent == null)
+            {
+                _DialogChild = new ParentWindow(this);
+            }
+
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; 
@@ -30,17 +38,31 @@ namespace Hush.Display
 
             SuspendLayout();
 
-            if (CurrentInterface != null)
-                Controls.Remove(CurrentInterface);
+            if (_CurrentInterface != null)
+                Controls.Remove(_CurrentInterface);
 
             ClientSize = new Size(ToShow.Width, ToShow.Height);
-            CurrentInterface = ToShow;
+            _CurrentInterface = ToShow;
             Text = ToShow.Text;
 
             Controls.Add(ToShow);
 
             ResumeLayout(true);
             return;
+
+        }
+
+        public void ShowInterfaceDialog(Interface ToShow)
+        {
+
+            if (_DialogChild != null)
+            {
+
+                _DialogChild.Hide();
+                _DialogChild.ShowInterface(ToShow);
+                _DialogChild.ShowDialog(this);
+
+            }
 
         }
 
@@ -51,24 +73,29 @@ namespace Hush.Display
 
             base.OnClosing(Args);
 
-            if (CurrentInterface is CategoryPrompt)
+            if (_DialogParent != null)
+            {
+                return;
+            }
+
+            if (_CurrentInterface is CategoryPrompt)
             {
 
                 ShowInterface(new CategoryManagement());
                 Args.Cancel = true;
 
             }
-            else if (CurrentInterface is Add || CurrentInterface is Edit
-                || CurrentInterface is Delete || CurrentInterface is Hush.Display.Interfaces.View
-                || CurrentInterface is Search || CurrentInterface is Settings
-                || CurrentInterface is CategoryManagement || CurrentInterface is UserProfile)
+            else if (_CurrentInterface is Add || _CurrentInterface is Edit
+                || _CurrentInterface is Delete || _CurrentInterface is Hush.Display.Interfaces.View
+                || _CurrentInterface is Search || _CurrentInterface is Settings
+                || _CurrentInterface is CategoryManagement || _CurrentInterface is UserProfile)
             {
 
                 ShowInterface(new MainScreen());
                 Args.Cancel = true;
 
             }
-            else if (!(CurrentInterface is TestScreen))
+            else if (!(_CurrentInterface is TestScreen))
             {
 
                 ShowInterface(new TestScreen());

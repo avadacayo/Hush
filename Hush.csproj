@@ -58,6 +58,9 @@
     <Compile Include="Source\Display\Controls\BorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Source\Display\Controls\ExtendoPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\Display\Controls\HushDataView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -80,6 +83,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\RegisterAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\ScriptDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\UserProfile.cs">

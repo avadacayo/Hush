@@ -37,6 +37,7 @@ namespace Hush.Display.Interfaces
             this.OkButton.TabIndex = 0;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // PasswordLabel
             // 
@@ -69,6 +70,11 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new MainScreen());
+        }
 
     }
 

@@ -73,6 +73,9 @@
     <Compile Include="Source\Display\Interfaces\Add.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\ViewRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\Delete.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,8 +143,23 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\Delete.resx">
+      <DependentUpon>Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
+      <DependentUpon>ViewRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\RegisterAccount.resx">
       <DependentUpon>RegisterAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\View.resx">
+      <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

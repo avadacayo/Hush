@@ -9,6 +9,7 @@ namespace Hush.Client.Model
     class Record : ISerializable
     {
         private String _ID;
+        private String _Name;
         private String _TemplateID;
         private Category _Category;
         private List<Field> _Fields;
@@ -31,6 +32,7 @@ namespace Hush.Client.Model
                 throw new System.ArgumentNullException("Info");
 
             _ID = (String)Info.GetValue("ID", typeof(String));
+            _Name = (String)Info.GetValue("Name", typeof(String));
             _TemplateID = (String)Info.GetValue("TemplateID", typeof(String));
             _Category = (Category)Info.GetValue("Category", typeof(Category));
             _Fields = (List<Field>)Info.GetValue("Fields", typeof(List<Field>));
@@ -43,6 +45,13 @@ namespace Hush.Client.Model
             get { return _ID; }
             set { _ID = value; }
         }
+
+        public String Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+
         public String TemplateID
         {
             get { return _TemplateID; }
@@ -74,6 +83,7 @@ namespace Hush.Client.Model
             }
 
             Info.AddValue("ID", _ID);
+            Info.AddValue("Name", _Name);
             Info.AddValue("TemplateID", _TemplateID);
             Info.AddValue("Category", _Category);
             Info.AddValue("Fields", _Fields);

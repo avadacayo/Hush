@@ -205,41 +205,67 @@ namespace Hush.Client
         // adds a field
         public static void AddField(Record Record, String Key, String Value)
         {
+            if (DataHolder.CurrentUser.Records == null)
+            {
+                List<Record> recordList = new List<Record>();
+                DataHolder.CurrentUser.Records = recordList;
+            }
+
+            if (Record.Fields == null)
+            {
+                List<Field> fieldList = new List<Field>();
+                Record.Fields = fieldList;
+            }
             Field NewField = new Field();
             NewField.Key = Key;
             NewField.Value = Value;
             Record.Fields.Add(NewField);
         }
 
-        public static void AddRecord(Int32 RecordIndex, String Key, String Value) {
-            Field NewField = new Field();
-            NewField.Key = Key;
-            NewField.Value = Value;
-            DataHolder.CurrentUser.Records[RecordIndex].Fields.Add(NewField);
+        public static void AddRecord(String RecordName, String Key, String Value)
+        {
 
+            if (DataHolder.CurrentUser.Records == null)
+            {
+                List<Record> recordList = new List<Record>();
+                DataHolder.CurrentUser.Records = recordList;
+            }
+            Record rc = new Record();
+            rc.Name = RecordName;
+            DataHolder.CurrentUser.Records.Add(rc);
+            AddField(rc, Key, Value);
             return;
         }
 
         public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data)
         {
-            DataTable DT;
-            DataView DV = (DataView)Data.DataSource;
-            DT = DV.Table.DataSet.Tables[0];
+            if (CurrentRecord == null)
+            {
+                CurrentRecord = new Record();
+            }
             CurrentRecord.Fields.Clear();
             
-            foreach ( DataRow Row in  DT.Rows) {
+            foreach ( DataGridViewRow Row in  Data.Rows) {
                 
                     Field f = new Field();
-                    f.Key = Row[0].ToString();
-                    f.Value = Row[1].ToString();
-                    CurrentRecord.Fields.Add(f);
-                              
+                    if (Row.Index < Data.NewRowIndex)
+                    {
+                        f.Key = Row.Cells[0].Value.ToString();
+                        f.Value = Row.Cells[1].Value.ToString();
+                   
+                        CurrentRecord.Fields.Add(f);
+                    }       
             }
          }
 
         public static void DeleteRecord(Record record)
         {
             DataHolder.CurrentUser.Records.Remove(record);
+        }
+
+        public static Record GetRecord(Int32 recordIndex)
+        {
+            return DataHolder.CurrentUser.Records[recordIndex];
         }
 
         public static void DeleteCategory(string category)
@@ -271,28 +297,6 @@ namespace Hush.Client
                 }
             }
         }
-
-        //public static void EditRecord(object sender, DataGridViewCellEventArgs e)
-        //{
-
-            //var collection = this.dataGridViewRecords.Rows;
-
-            //foreach (DataGridViewRow row in collection)
-            //{
-
-            //    foreach (DataGridViewCell cell in row.Cells)
-            //    {
-            //        Field f = new Field();
-            //        if (cell.Value != null)
-            //        {
-            //            f.Value = cell.Value.ToString();
-            //            DataHolder.CurrentUser.Records[e.RowIndex].Fields.Add(f);
-            //        }
-            //    }
-            //}
-
-        //}
-
         
     }
 

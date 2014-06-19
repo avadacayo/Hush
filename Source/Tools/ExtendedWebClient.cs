@@ -1,24 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace Hush.Tools
 {
 
     class ExtendedWebClient : WebClient
     {
-        private CookieContainer m_container = new CookieContainer();
 
-        protected override WebRequest GetWebRequest(Uri address)
+        private CookieContainer _Cookies = new CookieContainer();
+
+        protected override WebRequest GetWebRequest(Uri Address)
         {
-            WebRequest request = base.GetWebRequest(address);
-            if (request is HttpWebRequest)
+
+            WebRequest Request = base.GetWebRequest(Address);
+
+            if (Request is HttpWebRequest)
             {
-                (request as HttpWebRequest).CookieContainer = m_container;
+
+                (Request as HttpWebRequest).CookieContainer = _Cookies;
+
             }
-            return request;
+
+            return Request;
+
         }
 
     }

@@ -7,12 +7,20 @@ using Jint.Native;
 using Hush.Tools;
 using Jint.Parser;
 using Jint.Runtime;
+using Hush.Display;
+using Hush.Tools.Scripting.Handlers;
 
 namespace Hush.Tools.Scripting
 {
 
     class HushScript
     {
+
+        private AccessHandler _AccessHandler;
+        private ParentWindow _ParentWindow;
+        private Int32 _State;
+        private ViewHandler _ViewHandler;
+        private WebHandler _WebHandler;
 
         private JsValue _BodyFunction;
         private Engine _Engine;
@@ -30,6 +38,24 @@ namespace Hush.Tools.Scripting
         public HushScript()
         {
 
+            _ViewHandler = new ViewHandler();
+            _WebHandler = new WebHandler();
+
+            _Engine = new Engine();
+            _Loaded = false;
+            _Name = String.Empty;
+            _Source = String.Empty;
+
+        }
+
+        public HushScript(ParentWindow ParentWindow)
+        {
+
+            _ParentWindow = ParentWindow;
+            _State = 0;
+            _ViewHandler = new ViewHandler(this, ParentWindow);
+            _WebHandler = new WebHandler();
+
             _Engine = new Engine();
             _Loaded = false;
             _Name = String.Empty;
@@ -40,9 +66,11 @@ namespace Hush.Tools.Scripting
         private void InitValues()
         {
 
+            _Engine.SetValue("ViewHandler", _ViewHandler);
+            _Engine.SetValue("WebHandler", _WebHandler);
+
             _Engine.SetValue("output", new Action<String>(Hush.Tools.FileUtil.OutputScriptData));
             _Engine.SetValue("print", new Action<Object>(Console.WriteLine));
-            _Engine.SetValue("WebHandler", new WebHandler());
 
         }
 
@@ -106,6 +134,36 @@ namespace Hush.Tools.Scripting
 
         }
 
+        public ReturnValue RunBody(Int32 Mode, Int32 Value)
+        {
+
+            ReturnValue ReturnValue = new ReturnValue("", true);
+
+            if (!_Loaded)
+            {
+
+                Console.WriteLine("script class not loaded on run");
+
+            }
+
+            try
+            {
+
+                JsValue BodyResult;
+
+                BodyResult = _BodyFunction.Invoke(new JsValue(_State++), new JsValue(Mode), new JsValue(Value));
+
+            }
+            catch (JavaScriptException JSE)
+            {
+
+                Console.WriteLine("problem in run" + JSE.Message);
+
+            }
+
+            return ReturnValue;
+        }
+
         public ReturnValue Run()
         {
 
@@ -122,19 +180,18 @@ namespace Hush.Tools.Scripting
             {
 
                 JsValue HeadResult;
-                JsValue BodyResult;
                 
                 HeadResult = _HeadFunction.Invoke();
-                BodyResult = _BodyFunction.Invoke();
 
             }
             catch (JavaScriptException JSE)
             {
 
                 Console.WriteLine("problem in run" + JSE.Message);
-//                return false;
 
             }
+
+            RunBody(0, 0);
 
             return ReturnValue;
 

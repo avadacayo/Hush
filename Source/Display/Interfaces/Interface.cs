@@ -38,6 +38,13 @@ namespace Hush.Display.Interfaces
             Initialize(new List<String>(new string[] {Title}));
         }
 
+        public void Close()
+        {
+
+            _ParentWindow.Close();
+
+        }
+
         protected void PlaceBelow(Control Anchor, Control ToPlace)
         {
             ToPlace.Location = new Point(Anchor.Location.X, Anchor.Location.Y + Anchor.Size.Height);

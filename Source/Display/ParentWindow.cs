@@ -43,6 +43,7 @@ namespace Hush.Display
 
             ClientSize = new Size(ToShow.Width, ToShow.Height);
             _CurrentInterface = ToShow;
+            _CurrentInterface.ParentWindow = this;
             Text = ToShow.Text;
 
             Controls.Add(ToShow);
@@ -58,9 +59,16 @@ namespace Hush.Display
             if (_DialogChild != null)
             {
 
-                _DialogChild.Hide();
+                Boolean test = false;
+                if (_DialogChild.Visible)
+                    test = true;
+
                 _DialogChild.ShowInterface(ToShow);
-                _DialogChild.ShowDialog(this);
+                if (!test)
+                {
+                    _DialogChild.Hide();
+                    _DialogChild.ShowDialog(this);
+                }
 
             }
 

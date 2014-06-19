@@ -128,8 +128,10 @@
     </Compile>
     <Compile Include="Source\Tools\FileUtil.cs" />
     <Compile Include="Source\Tools\ReturnValue.cs" />
+    <Compile Include="Source\Tools\Scripting\Handlers\AccessHandler.cs" />
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />
-    <Compile Include="Source\Tools\Scripting\WebHandler.cs" />
+    <Compile Include="Source\Tools\Scripting\Handlers\ViewHandler.cs" />
+    <Compile Include="Source\Tools\Scripting\Handlers\WebHandler.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -145,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Delete.resx">
       <DependentUpon>Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
+      <DependentUpon>TestScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
       <DependentUpon>ViewRecord.cs</DependentUpon>

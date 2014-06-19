@@ -1,30 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 
-namespace Hush.Tools.Scripting
+namespace Hush.Tools.Scripting.Handlers
 {
 
     class WebHandler
     {
-
-        public class PostValues
-        {
-
-            private NameValueCollection _Data;
-
-            public PostValues()
-            {
-
-                _Data = new NameValueCollection();
-
-            }
-
-        }
 
         private ExtendedWebClient _Client;
 
@@ -45,8 +27,13 @@ namespace Hush.Tools.Scripting
         public String SendGet(String URI)
         {
 
-            StreamReader Reader = new StreamReader(_Client.OpenRead(URI));
-            return Reader.ReadToEnd();
+            String ReturnValue;
+
+            using (StreamReader Reader = new StreamReader(_Client.OpenRead(URI))) {
+                ReturnValue = Reader.ReadToEnd();
+            }
+
+            return ReturnValue;
 
         }
 

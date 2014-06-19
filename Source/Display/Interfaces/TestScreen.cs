@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Hush.Tools;
+using Hush.Tools.Scripting;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -11,6 +14,7 @@ namespace Hush.Display.Interfaces
     {
         private Button SignInButton;
         private Button RegisterAccountButton;
+        private Button button1;
         private Button ForgotPasswordButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
@@ -89,6 +93,7 @@ namespace Hush.Display.Interfaces
             this.SignInButton = new System.Windows.Forms.Button();
             this.RegisterAccountButton = new System.Windows.Forms.Button();
             this.ForgotPasswordButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SignInButton
@@ -124,8 +129,19 @@ namespace Hush.Display.Interfaces
             this.ForgotPasswordButton.UseVisualStyleBackColor = true;
             this.ForgotPasswordButton.Click += new System.EventHandler(this.ForgotPasswordButtonClick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(681, 551);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 99);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "SCRIPT TEST";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TestScreen
             // 
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
@@ -135,6 +151,25 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            // this is testing code to run the testing.js file
+            if (File.Exists("testing.js"))
+            {
+                HushScript x = new HushScript(Program.Window);
+                x.Name = "testing";
+                ReturnValue status = x.Load();
+                //    if (status.Success == false)
+                //  {
+                //   MessageBox.Show(status.Message);
+                // }
+                x.Run();
+            }
+
+        }
 
     }
 

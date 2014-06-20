@@ -71,7 +71,7 @@ namespace Hush.Client.Model
 
         }
 
-        protected Category(SerializationInfo Info, StreamingContext context)
+        protected Category(SerializationInfo Info, StreamingContext Context)
         {
 
             if (Info == null)

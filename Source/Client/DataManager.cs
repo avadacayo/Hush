@@ -13,12 +13,15 @@ namespace Hush.Client
 
     static class DataHolder
     {
+
+        static public List<Template> Templates = default(List<Template>);
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
 
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
         static public updateMode update;
+
     }
 
     class DataManager

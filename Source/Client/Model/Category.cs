@@ -10,21 +10,13 @@ namespace Hush.Client.Model
     class Category : ISerializable
     {
 
-        private Category _Category;
         private DateTime _Created;
         private String _ID;
         private String _Name;
+        private Category _ParentCategory;
         private List<Record> _Records;
 
         #region Properties
-
-        public Category ParentCategory
-        {
-
-            get { return _Category; }
-            set { _Category = value; }
-
-        }
 
         public DateTime Created
         {
@@ -50,6 +42,14 @@ namespace Hush.Client.Model
 
         }
 
+        public Category ParentCategory
+        {
+
+            get { return _ParentCategory; }
+            set { _ParentCategory = value; }
+
+        }
+
         public List<Record> Records
         {
 
@@ -63,10 +63,10 @@ namespace Hush.Client.Model
         public Category()
         {
 
-            _Category = null;
             _Created = DateTime.Now;
             _ID = String.Empty;
             _Name = String.Empty;
+            _ParentCategory = null;
             _Records = new List<Record>();
 
         }
@@ -81,10 +81,10 @@ namespace Hush.Client.Model
 
             }
 
-            _Category = null;
             _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
             _ID = (String)Info.GetValue("ID", typeof(String));
             _Name = (String)Info.GetValue("Name", typeof(String));
+            _ParentCategory = null;
             _Records = (List<Record>)Info.GetValue("Record", typeof(List<Record>));
 
         }
@@ -100,10 +100,10 @@ namespace Hush.Client.Model
 
             }
 
-            Info.AddValue("Category", 0);
             Info.AddValue("Created", _Created);
             Info.AddValue("ID", _ID);
             Info.AddValue("Name", _Name);
+            Info.AddValue("ParentCategory", 0);
             Info.AddValue("Records", _Records);
 
         }

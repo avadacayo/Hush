@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace Hush.Client.Model
 {
+
+    [Serializable]
     class Option : ISerializable
     {
+
         private String _ID;
         private String _Key;
         private String _Value;

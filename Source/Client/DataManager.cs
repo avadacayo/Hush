@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Hush.Client.Model;
+using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Hush.Client.Model;
-using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Data;
-
+using System.Windows.Forms;
 
 namespace Hush.Client
 {

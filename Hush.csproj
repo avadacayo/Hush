@@ -133,6 +133,7 @@
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />
     <Compile Include="Source\Tools\Scripting\Handlers\ViewHandler.cs" />
     <Compile Include="Source\Tools\Scripting\Handlers\WebHandler.cs" />
+    <Compile Include="Source\Tools\StringUtil.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -18,7 +18,7 @@ namespace Hush.Client.Model
 
         #region Properties
 
-        public Category Category
+        public Category ParentCategory
         {
 
             get { return _Category; }

@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Hush.Display.Interfaces;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-
-using Hush.Display.Interfaces;
-using System.ComponentModel;
 
 namespace Hush.Display
 {
@@ -12,21 +10,23 @@ namespace Hush.Display
     {
 
         private Interface _CurrentInterface = null;
-        private ParentWindow _DialogChild = null;
-        private ParentWindow _DialogParent = null;
+        private ParentWindow _Dialog = null;
+        private ParentWindow _Parent = null;
 
-        public ParentWindow(ParentWindow DialogParent = null)
+        public ParentWindow(ParentWindow Parent = null)
         {
 
-            _DialogParent = DialogParent;
+            _Parent = Parent;
 
-            if (DialogParent == null)
+            if (Parent == null)
             {
-                _DialogChild = new ParentWindow(this);
+
+                _Dialog = new ParentWindow(this);
+
             }
 
-            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             StartPosition = FormStartPosition.CenterScreen; 
 
             ShowInterface(new TestScreen());
@@ -39,35 +39,35 @@ namespace Hush.Display
             SuspendLayout();
 
             if (_CurrentInterface != null)
+            {
+
                 Controls.Remove(_CurrentInterface);
 
+            }
+
             ClientSize = new Size(ToShow.Width, ToShow.Height);
-            _CurrentInterface = ToShow;
-            _CurrentInterface.ParentWindow = this;
+            ToShow.ParentWindow = this;
             Text = ToShow.Text;
-
             Controls.Add(ToShow);
-
             ResumeLayout(true);
-            return;
+
+            _CurrentInterface = ToShow;
 
         }
 
         public void ShowInterfaceDialog(Interface ToShow)
         {
 
-            if (_DialogChild != null)
+            if (_Dialog != null)
             {
 
-                Boolean test = false;
-                if (_DialogChild.Visible)
-                    test = true;
+                _Dialog.ShowInterface(ToShow);
 
-                _DialogChild.ShowInterface(ToShow);
-                if (!test)
+                if (!_Dialog.Visible)
                 {
-                    _DialogChild.Hide();
-                    _DialogChild.ShowDialog(this);
+
+                    _Dialog.ShowDialog(this);
+
                 }
 
             }
@@ -81,33 +81,44 @@ namespace Hush.Display
 
             base.OnClosing(Args);
 
-            if (_DialogParent != null)
+            if (_Dialog != null)
             {
-                return;
+
+                _Dialog.Close();
+
             }
 
-            if (_CurrentInterface is CategoryPrompt)
+            if (_Parent == null)
             {
 
-                ShowInterface(new CategoryManagement());
-                Args.Cancel = true;
+                switch (_CurrentInterface.GetType().Name)
+                {
 
-            }
-            else if (_CurrentInterface is Add || _CurrentInterface is Edit
-                || _CurrentInterface is Delete || _CurrentInterface is Hush.Display.Interfaces.View
-                || _CurrentInterface is Search || _CurrentInterface is Settings
-                || _CurrentInterface is CategoryManagement || _CurrentInterface is UserProfile)
-            {
+                    case "CategoryPrompt":
+                        ShowInterface(new CategoryManagement());
+                        Args.Cancel = true;
+                        break;
 
-                ShowInterface(new MainScreen());
-                Args.Cancel = true;
+                    case "Add":
+                    case "Edit":
+                    case "Delete":
+                    case "View":
+                    case "Search":
+                    case "CategoryManagement":
+                    case "UserProfile":
+                        ShowInterface(new MainScreen());
+                        Args.Cancel = true;
+                        break;
 
-            }
-            else if (!(_CurrentInterface is TestScreen))
-            {
+                    case "TestScreen":
+                        break;
 
-                ShowInterface(new TestScreen());
-                Args.Cancel = true;
+                    default:
+                        ShowInterface(new TestScreen());
+                        Args.Cancel = true;
+                        break;
+
+                }
 
             }
 

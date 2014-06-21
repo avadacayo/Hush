@@ -1,38 +1,18 @@
-var pages = {
-	form : "http://zenit.senecac.on.ca/wiki/index.php?title=Special:UserLogin",
-	action : "http://zenit.senecac.on.ca/wiki/index.php?title=Special:UserLogin&action=submitlogin&type=login&returnto=Main_Page",
-	pref: "http://zenit.senecac.on.ca/wiki/index.php/Special:Preferences",
-};
-
 function head() {
 }
 
-function body() {
+function body(state, mode, value) {
 
-	var loginToken;
-	var zenitUsername = "";
-	var zenitPassword = ""; 
+    switch (state) {
 
-	loginToken = getLoginToken();
+        case 0:
+            ViewHandler.ShowTextDialog("testing");
+            break;
 
-	if (loginToken != false) {
-		WebHandler.SendPost(pages.action, "wpName=" + zenitUsername + "&wpPassword=" + zenitPassword + "&wpLoginattempt=Log+in&wpLoginToken=" + loginToken);
-		var content = WebHandler.SendGet(pages.pref);
-		output(content.toString());
-	}
+        case 1:
+            ViewHandler.Close();
+            break;
 
-}
-
-function getLoginToken() {
-
-	var page = WebHandler.SendGet(pages.form);
-	var regex = /name="wpLoginToken" value="([^"]+)"/ig;
-	var result = regex.exec(page);
-
-	if (result.length >= 2) {
-		return result[1];
-	}
-
-	return false;
+    }
 
 }

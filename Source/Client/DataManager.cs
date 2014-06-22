@@ -1,4 +1,5 @@
 ﻿using Hush.Client.Model;
+using Hush.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;

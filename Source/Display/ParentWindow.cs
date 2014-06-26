@@ -122,6 +122,13 @@ namespace Hush.Display
 
             }
 
+            else
+            {
+
+                _Parent.Focus();
+
+            }
+
         }
 
         #endregion

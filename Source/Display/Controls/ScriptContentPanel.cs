@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace Hush.Display.Controls
 {
 
-    class ExtendoPanel : Panel
+    class ScriptContentPanel : Panel
     {
 
         private void RefactorHeight()
@@ -22,6 +22,13 @@ namespace Hush.Display.Controls
                     NewSize.Height = Item.Location.Y + Item.Size.Height;
 
                 }
+
+            }
+
+            if (NewSize.Height >= 150)
+            {
+
+                NewSize.Height = 150;
 
             }
 

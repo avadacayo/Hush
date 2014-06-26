@@ -24,7 +24,8 @@ namespace Hush.Display.Interfaces
         protected Button OkButton;
         protected Button PreviousButton;
 
-        protected ExtendoPanel ContentPanel;
+        protected FlowLayoutPanel ButtonFlowLayoutPanel;
+        protected ScriptContentPanel ContentPanel;
 
         #endregion
 
@@ -46,23 +47,13 @@ namespace Hush.Display.Interfaces
 
         }
 
-        protected void AddButton(String ButtonType)
+        protected void AddButton(Button ToAdd)
         {
 
-            switch (ButtonType)
-            {
+            ButtonFlowLayoutPanel.SuspendLayout();
+            ButtonFlowLayoutPanel.Controls.Add(ToAdd);
+            ButtonFlowLayoutPanel.ResumeLayout(true);
 
-                case "Ok":
-                    OkButton = new Button();
-                    break;
-
-            }
-
-        }
-
-        private void TOKBCLICK(Object S, EventArgs E)
-        {
-            _ParentScript.RunBody(5, 5);
         }
 
         #region Designer
@@ -75,18 +66,36 @@ namespace Hush.Display.Interfaces
             SuspendLayout();
             ClientSize = new Size(500, 200);
 
-            ContentPanel = new ExtendoPanel();
-//            ContentPanel.BackColor = Color.DarkCyan;
+            ContentPanel = new ScriptContentPanel();
+            ContentPanel.AutoScroll = true;
             ContentPanel.Location = new Point(10, 10);
             ContentPanel.Size = new Size(ClientSize.Width - 20, 1);
 
+            ButtonFlowLayoutPanel = new FlowLayoutPanel();
+            ButtonFlowLayoutPanel.FlowDirection = FlowDirection.RightToLeft;
+            ButtonFlowLayoutPanel.Location = new Point(10, 165);
+            ButtonFlowLayoutPanel.Size = new Size(ClientSize.Width - 20, 25);
+
+            BackButton = new Button();
+            BackButton.Text = "Back";
+
+            CancelButton = new Button();
+            CancelButton.Text = "Cancel";
+
+            ConfirmButton = new Button();
+            ConfirmButton.Text = "Confirm";
+
+            NextButton = new Button();
+            NextButton.Text = "Next";
+
             OkButton = new Button();
             OkButton.Text = "Ok";
-            OkButton.Location = new Point(450, 170);
-            OkButton.Click += TOKBCLICK;
+
+            PreviousButton = new Button();
+            PreviousButton.Text = "Previous";
 
             Controls.Add(ContentPanel);
-            Controls.Add(OkButton);
+            Controls.Add(ButtonFlowLayoutPanel);
             ResumeLayout(true);
 
         }
@@ -100,7 +109,7 @@ namespace Hush.Display.Interfaces
 
         #region Controls
 
-        private Label TextLabel;
+        private RichTextBox TextRichTextBox;
 
         #endregion
 
@@ -108,24 +117,41 @@ namespace Hush.Display.Interfaces
             : base(ParentScript)
         {
 
-            TextLabel = new Label();
-            TextLabel.Location = new Point(0, 0);
-            TextLabel.AutoSize = true;
-            TextLabel.AutoSizeChanged += TextLabelAutoSizeChanged;
-            TextLabel.Text = Text;
+            TextRichTextBox = new RichTextBox();
+            TextRichTextBox.BackColor = SystemColors.Control;
+            TextRichTextBox.BorderStyle = BorderStyle.None;
+            TextRichTextBox.Font = new Font("Verdana", 11f, FontStyle.Regular);
+            TextRichTextBox.Location = new Point(0, 0);
+            TextRichTextBox.ReadOnly = true;
+            TextRichTextBox.Size = new Size(480, 150);
+            TextRichTextBox.Text = Text;
 
             ContentPanel.SuspendLayout();
-            ContentPanel.Controls.Add(TextLabel);
+            ContentPanel.Controls.Add(TextRichTextBox);
             ContentPanel.ResumeLayout();
 
         }
 
         #region Events
 
-        private void TextLabelAutoSizeChanged(Object Sender, EventArgs Args)
+        private void OkButtonClick(Object Sender, EventArgs Args)
         {
 
-            // limit textbox size
+            _ParentScript.RunBody(1, "");
+
+        }
+
+        #endregion
+
+        #region Designer
+
+        protected override void Initialize(List<String> Title)
+        {
+
+            base.Initialize(Title);
+            AddButton(OkButton);
+
+            OkButton.Click += OkButtonClick;
 
         }
 

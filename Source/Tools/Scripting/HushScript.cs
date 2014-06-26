@@ -17,55 +17,48 @@ namespace Hush.Tools.Scripting
     {
 
         private AccessHandler _AccessHandler;
-        private ParentWindow _ParentWindow;
+        private Engine _Engine;
         private Int32 _State;
+        private Boolean _Loaded;
+        private ParentWindow _ParentWindow;
+        private String _Name;
+        private String _Source;
         private ViewHandler _ViewHandler;
         private WebHandler _WebHandler;
 
         private JsValue _BodyFunction;
-        private Engine _Engine;
         private JsValue _HeadFunction;
-        private Boolean _Loaded;
-        private String _Name;
-        private String _Source;
 
         public String Name
         {
+
             get { return _Name; }
             set { _Name = value; }
-        }
-
-        public HushScript()
-        {
-
-            _ViewHandler = new ViewHandler();
-            _WebHandler = new WebHandler();
-
-            _Engine = new Engine();
-            _Loaded = false;
-            _Name = String.Empty;
-            _Source = String.Empty;
 
         }
 
         public HushScript(ParentWindow ParentWindow)
         {
 
-            _ParentWindow = ParentWindow;
+            _AccessHandler = new AccessHandler();
+            _Engine = new Engine();
             _State = 0;
+            _Loaded = false;
+            _ParentWindow = ParentWindow;
+            _Name = String.Empty;
+            _Source = String.Empty;
             _ViewHandler = new ViewHandler(this, ParentWindow);
             _WebHandler = new WebHandler();
 
-            _Engine = new Engine();
-            _Loaded = false;
-            _Name = String.Empty;
-            _Source = String.Empty;
+            _BodyFunction = JsValue.Undefined;
+            _HeadFunction = JsValue.Undefined;
 
         }
 
         private void InitValues()
         {
 
+            _Engine.SetValue("AccessHandler", _AccessHandler);
             _Engine.SetValue("ViewHandler", _ViewHandler);
             _Engine.SetValue("WebHandler", _WebHandler);
 
@@ -77,25 +70,31 @@ namespace Hush.Tools.Scripting
         public ReturnValue Load()
         {
 
-            ReturnValue ReturnValue = new ReturnValue("", true);
+            ReturnValue ReturnValue = new ReturnValue();
+            ReturnValue.Message = String.Empty;
+            ReturnValue.Success = true;
 
             _Loaded = false;
             _Source = String.Empty;
 
             if (_Name == String.Empty)
             {
-                ReturnValue.Message = "script name is empty";
+
+                ReturnValue.Message = "No script name provided.";
                 ReturnValue.Success = false;
                 return ReturnValue;
+
             }
 
             _Source = FileUtil.ReadScriptFile(_Name);
 
             if (_Source.Length < 1)
             {
-                ReturnValue.Message = "script source was not loaded";
+
+                ReturnValue.Message = "Script source could not be loaded.";
                 ReturnValue.Success = false;
                 return ReturnValue;
+
             }
 
             try
@@ -109,59 +108,36 @@ namespace Hush.Tools.Scripting
 
                 if (_HeadFunction == JsValue.Undefined)
                 {
-                    ReturnValue.Message = "head function not defined";
+
+                    ReturnValue.Message = "Head function not defined.";
                     ReturnValue.Success = false;
                     return ReturnValue;
+
                 }
 
                 if (_BodyFunction == JsValue.Undefined)
                 {
-                    ReturnValue.Message = "body function not defined";
+
+                    ReturnValue.Message = "Body function not defined.";
                     ReturnValue.Success = false;
                     return ReturnValue;
+
                 }
 
             }
             catch (Exception E)
             {
-                ReturnValue.Message = "problemo";
+
+                ReturnValue.Message = "Problem with initalizing the script.";
                 ReturnValue.Success = false;
                 return ReturnValue;
+
             }
 
             _Loaded = true;
-            return ReturnValue;
-
-        }
-
-        public ReturnValue RunBody(Int32 Mode, Int32 Value)
-        {
-
-            ReturnValue ReturnValue = new ReturnValue("", true);
-
-            if (!_Loaded)
-            {
-
-                Console.WriteLine("script class not loaded on run");
-
-            }
-
-            try
-            {
-
-                JsValue BodyResult;
-
-                BodyResult = _BodyFunction.Invoke(new JsValue(_State++), new JsValue(Mode), new JsValue(Value));
-
-            }
-            catch (JavaScriptException JSE)
-            {
-
-                Console.WriteLine("problem in run" + JSE.Message);
-
-            }
 
             return ReturnValue;
+
         }
 
         public ReturnValue Run()
@@ -169,29 +145,82 @@ namespace Hush.Tools.Scripting
 
             ReturnValue ReturnValue = new ReturnValue("", true);
 
+            RunHead();
+            RunBody(0, "");
+
+            return ReturnValue;
+
+        }
+
+        public ReturnValue RunHead()
+        {
+
+            ReturnValue ReturnValue = new ReturnValue();
+            ReturnValue.Message = String.Empty;
+            ReturnValue.Success = true;
+
             if (!_Loaded)
             {
 
-                Console.WriteLine("script class not loaded on run");
+                ReturnValue.Message = "Script class not loaded.";
+                ReturnValue.Success = false;
+                return ReturnValue;
 
             }
 
             try
             {
 
-                JsValue HeadResult;
-                
-                HeadResult = _HeadFunction.Invoke();
+                _HeadFunction.Invoke();
 
             }
             catch (JavaScriptException JSE)
             {
 
-                Console.WriteLine("problem in run" + JSE.Message);
+                ReturnValue.Message = "Error running script.";
+                ReturnValue.Success = false;
+                return ReturnValue;
 
             }
 
-            RunBody(0, 0);
+            return ReturnValue;
+
+        }
+
+        public ReturnValue RunBody(Int32 Mode, String Value)
+        {
+
+            ReturnValue ReturnValue = new ReturnValue();
+            ReturnValue.Message = String.Empty;
+            ReturnValue.Success = true;
+
+            if (!_Loaded)
+            {
+
+                ReturnValue.Message = "Script class not loaded.";
+                ReturnValue.Success = false;
+                return ReturnValue;
+
+            }
+
+            try
+            {
+
+                _BodyFunction.Invoke(
+                    new JsValue(_State++),
+                    new JsValue(Mode),
+                    new JsValue(Value)
+                );
+
+            }
+            catch (JavaScriptException JSE)
+            {
+
+                ReturnValue.Message = "Error running script.";
+                ReturnValue.Success = false;
+                return ReturnValue;
+
+            }
 
             return ReturnValue;
 

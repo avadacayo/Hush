@@ -59,7 +59,7 @@
     <Compile Include="Source\Display\Controls\BorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\Display\Controls\ExtendoPanel.cs">
+    <Compile Include="Source\Display\Controls\ScriptContentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Display\Controls\HushDataView.cs">

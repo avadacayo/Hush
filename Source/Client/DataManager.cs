@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Data;
+using System.Text.RegularExpressions;
 
 
 namespace Hush.Client
@@ -25,15 +26,84 @@ namespace Hush.Client
     {
 
         private Boolean loaded = false;
-        BinaryFormatter bFormatter;
+        BinaryFormatter BFormatter;
 
+        public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
+        {
+            BFormatter = new BinaryFormatter(); 
+            User NewUser = new User();
+            NewUser.Username = Username;
+            NewUser.Password = Password;
+            NewUser.SecretQuestion = SecretQuestion;
+            NewUser.SecretAnswer = SecretAnswer;
+            NewUser.Created = DateTime.Now;
+            NewUser.Modified = DateTime.Now;
+            
+            Boolean created = false;
+            try
+            {
+                FileStream writerFS;
+                if (!Directory.Exists("./Data"))
+                {
+                    Directory.CreateDirectory("./Data");
+                }
+                //TODO change filename
+                if (!File.Exists("./Data/" + Username + ".user"))
+                {
+                    writerFS =
+                    new FileStream("./Data/" + Username + ".user", FileMode.Create, FileAccess.Write);
+                }
+                else
+                {
+                    writerFS =
+                    new FileStream("./Data/" + Username + ".user", FileMode.Append, FileAccess.Write);
+                }
+                if (!loaded)
+                {
+                    LoadUsers();
+                }
+                BFormatter.Serialize(writerFS, NewUser);
+                writerFS.Close();
+                DataHolder.CurrentUser = NewUser;
+                created = true;
+            }
+            catch (Exception) {
+                
+            } 
+            return created;
+        }
+
+        public Boolean DeserializeUsers(String filename)
+        {
+            Boolean retrieved;
+            User getUser;
+            
+            try
+            {
+                FileStream readerFileStream = new FileStream(filename,
+                    FileMode.Open, FileAccess.Read);
+                BFormatter = new BinaryFormatter();
+                getUser = (User)BFormatter.Deserialize(readerFileStream);
+                DataHolder.CurrentUser = getUser;
+                DataHolder.UserList.Add(getUser);
+                readerFileStream.Close();
+                retrieved = true;
+            }
+
+            catch (Exception)
+            {
+                retrieved = false;
+            }
+            return retrieved;
+        }
         public Boolean LoadUsers()
         {
             DataHolder.UserList = new List<User>();
             Boolean retrieved;
             try
             {
-                String[] filenames = Directory.GetFiles("./test/", "*.txt");
+                String[] filenames = Directory.GetFiles("./Data/", "*.user");
+                // TODO use file util class
                 foreach (string f in filenames)
                 {
                     DeserializeUsers(f);
@@ -61,7 +131,7 @@ namespace Hush.Client
 
             if (loaded)
             {
-                unique = DataHolder.UserList.Exists(x => x.FirstName == Username);
+                unique = DataHolder.UserList.Exists(x => x.Username == Username);
             }
             return !unique;
         }
@@ -78,7 +148,7 @@ namespace Hush.Client
 
             if (loaded)
             {
-                user = DataHolder.UserList.Find(x => x.FirstName.Equals(Username));
+                user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
                 if (user != null)
                 {
                     if (Password == user.Password)
@@ -92,74 +162,42 @@ namespace Hush.Client
 
         }
 
-        public Boolean CreateAccount(String FirstName, String Password, String SecretQuestion, String SecretAnswer)
+        public Int32 PasswordStrength(String Password)
         {
-            bFormatter = new BinaryFormatter(); 
-            User newUser = new User();
-            newUser.FirstName = FirstName;
-            newUser.Password = Password;
-            newUser.SecretQuestion = SecretQuestion;
-            newUser.SecretAnswer = SecretAnswer;
-            
-            Boolean created = false;
-            try
+            Int32 val = 0;
+            Regex regex = new Regex("[A-Z]");
+
+            if (regex.IsMatch(Password))
             {
-                FileStream writerFS;
-                if (!File.Exists("./test/" + FirstName + ".txt"))
-                {
-                    writerFS =
-                    new FileStream("./test/" + FirstName + ".txt", FileMode.Create, FileAccess.Write);
-                }
-                else
-                {
-                    writerFS =
-                    new FileStream("./test/" + FirstName + ".txt", FileMode.Append, FileAccess.Write);
-                }
-                List<User> getUserList = new List<User>();
-                if (!loaded)
-                {
-                    LoadUsers();
-                }
-                //getUserList.Add(newUser);
-                bFormatter.Serialize(writerFS, newUser);
-                writerFS.Close();
-                DataHolder.CurrentUser = newUser;
-                created = true;
+                val++;
             }
-            catch (Exception) {
-                
-            } 
-            return created;
+
+            regex = new Regex("[0-9]");
+            if (regex.IsMatch(Password))
+            {
+                val++;
+            }
+
+            regex = new Regex("[^A-Za-z0-9]");
+            if (regex.IsMatch(Password))
+            {
+                val++;
+            }
+
+            if (Password.Length > 6)
+            {
+                val++;
+            }
+
+            regex = new Regex(@"(.)\1");
+            if (regex.IsMatch(Password))
+            {
+                val--;
+            }
+
+            return val;
         }
-
-        
-
-        public Boolean DeserializeUsers(String filename)
-        {
-            Boolean retrieved;
-            User getUser;
-            
-            try
-            {
-                FileStream readerFileStream = new FileStream(filename,
-                    FileMode.Open, FileAccess.Read);
-                bFormatter = new BinaryFormatter();
-                getUser = (User)bFormatter.Deserialize(readerFileStream);
-                DataHolder.CurrentUser = getUser;
-                DataHolder.UserList.Add(getUser);
-                readerFileStream.Close();
-                retrieved = true;
-            }
-
-            catch (Exception)
-            {
-                retrieved = false;
-            }
-            return retrieved;
-        }
-
-
-        // adds a record
+       
         public static void AddRecord()
         {
             Record NewRecord = new Record();

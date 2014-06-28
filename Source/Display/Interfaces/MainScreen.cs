@@ -36,7 +36,7 @@ namespace Hush.Display.Interfaces
             Title.Add("Main");
 
             base.Initialize(Title);
-            UsernameLabel.Text = DataHolder.CurrentUser.FirstName;
+            UsernameLabel.Text = DataHolder.CurrentUser.Username;
             
         }
 

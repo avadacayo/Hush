@@ -131,9 +131,6 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\RegisterAccount.resx">
-      <DependentUpon>RegisterAccount.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

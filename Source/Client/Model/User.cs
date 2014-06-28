@@ -13,7 +13,7 @@ namespace Hush.Client.Model
     class User : ISerializable
     {
         private String _ID;
-        private String _Handle;
+        private String _Username;
         private String _FirstName;
         private String _LastName;
         private String _Password;
@@ -36,7 +36,7 @@ namespace Hush.Client.Model
                 throw new System.ArgumentNullException("Info");
 
             _ID = (String)Info.GetValue("ID", typeof(String));
-            _Handle = (String)Info.GetValue("Handle", typeof(String));
+            _Username = (String)Info.GetValue("Username", typeof(String));
             _FirstName = (String)Info.GetValue("FirstName", typeof(String));
             _LastName = (String)Info.GetValue("LastName", typeof(String));
             _Password = (String)Info.GetValue("Password", typeof(String));
@@ -56,10 +56,10 @@ namespace Hush.Client.Model
             get { return _ID; }
             set { _ID = value; }
         }
-        public String Handle
+        public String Username
         {
-            get { return _Handle; }
-            set { _Handle = value; }
+            get { return _Username; }
+            set { _Username = value; }
         }
         public String FirstName
         {
@@ -123,7 +123,7 @@ namespace Hush.Client.Model
             }
 
             Info.AddValue("ID", _ID);
-            Info.AddValue("Handle", _Handle);
+            Info.AddValue("Username", _Username);
             Info.AddValue("FirstName", _FirstName);
             Info.AddValue("LastName", _LastName);
             Info.AddValue("Password", _Password);

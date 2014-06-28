@@ -26,8 +26,9 @@ namespace Hush.Display.Interfaces
         private Label PasswordLabel;
         private TextBox PasswordTextBox;
         private LinkLabel ForgotPasswordLinkLabel;
+        private Button DemoButton;
         private Label ErrorMsgsLabel;
-
+        
         private void LoginButtonClick(Object Sender, EventArgs Args)
         {
             if ((new DataManager().TryLogin(UsernameTextBox.Text, PasswordTextBox.Text)))
@@ -45,6 +46,34 @@ namespace Hush.Display.Interfaces
         {
             Program.Window.ShowInterface(new RegisterAccount());
         }
+
+        private void Fields_TextChanged(object sender, EventArgs e)
+        {
+            if (UsernameTextBox.Text.Length > 0 && PasswordTextBox.Text.Length > 0)
+                LoginButton.Enabled = true;
+
+            else
+                LoginButton.Enabled = false;
+           
+        }
+
+        private void DemoButton_Click(object sender, EventArgs e)
+        {
+            if ((new DataManager().TryLogin("demo", "demo")))
+            {
+                Program.Window.ShowInterface(new MainScreen());
+                return;
+            }
+
+            else
+            {
+                if (new DataManager().CreateAccount("demo", "demo", "demo", "demo"))
+                {
+                    Program.Window.ShowInterface(new MainScreen());
+                }
+            }
+
+        }
         #region Designer
 
         protected override void Initialize(List<String> Title)
@@ -53,6 +82,7 @@ namespace Hush.Display.Interfaces
             Title.Add("Sign In");
 
             base.Initialize(Title);
+            LoginButton.Enabled = false;
 
         }
 
@@ -67,12 +97,13 @@ namespace Hush.Display.Interfaces
             this.RegisterPageButton = new System.Windows.Forms.Button();
             this.ForgotPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
+            this.DemoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LoginLabel
             // 
             this.LoginLabel.Font = new System.Drawing.Font("Arial", 27F);
-            this.LoginLabel.Location = new System.Drawing.Point(145, 110);
+            this.LoginLabel.Location = new System.Drawing.Point(302, 142);
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(300, 40);
             this.LoginLabel.TabIndex = 1;
@@ -80,15 +111,16 @@ namespace Hush.Display.Interfaces
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(150, 240);
+            this.PasswordTextBox.Location = new System.Drawing.Point(307, 272);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(300, 20);
             this.PasswordTextBox.TabIndex = 5;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // PasswordLabel
             // 
-            this.PasswordLabel.Location = new System.Drawing.Point(150, 220);
+            this.PasswordLabel.Location = new System.Drawing.Point(307, 252);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(300, 15);
             this.PasswordLabel.TabIndex = 4;
@@ -96,14 +128,15 @@ namespace Hush.Display.Interfaces
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(150, 190);
+            this.UsernameTextBox.Location = new System.Drawing.Point(307, 222);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(300, 20);
             this.UsernameTextBox.TabIndex = 3;
+            this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // UsernameLabel
             // 
-            this.UsernameLabel.Location = new System.Drawing.Point(150, 170);
+            this.UsernameLabel.Location = new System.Drawing.Point(307, 202);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(300, 15);
             this.UsernameLabel.TabIndex = 2;
@@ -111,7 +144,7 @@ namespace Hush.Display.Interfaces
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(150, 270);
+            this.LoginButton.Location = new System.Drawing.Point(307, 302);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(300, 30);
             this.LoginButton.TabIndex = 6;
@@ -121,7 +154,7 @@ namespace Hush.Display.Interfaces
             // 
             // RegisterPageButton
             // 
-            this.RegisterPageButton.Location = new System.Drawing.Point(150, 316);
+            this.RegisterPageButton.Location = new System.Drawing.Point(307, 348);
             this.RegisterPageButton.Name = "RegisterPageButton";
             this.RegisterPageButton.Size = new System.Drawing.Size(300, 30);
             this.RegisterPageButton.TabIndex = 8;
@@ -131,7 +164,7 @@ namespace Hush.Display.Interfaces
             // 
             // ForgotPasswordLinkLabel
             // 
-            this.ForgotPasswordLinkLabel.Location = new System.Drawing.Point(150, 300);
+            this.ForgotPasswordLinkLabel.Location = new System.Drawing.Point(307, 332);
             this.ForgotPasswordLinkLabel.Name = "ForgotPasswordLinkLabel";
             this.ForgotPasswordLinkLabel.Size = new System.Drawing.Size(86, 13);
             this.ForgotPasswordLinkLabel.TabIndex = 7;
@@ -145,8 +178,19 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
             this.ErrorMsgsLabel.TabIndex = 0;
             // 
+            // DemoButton
+            // 
+            this.DemoButton.Location = new System.Drawing.Point(307, 452);
+            this.DemoButton.Name = "button1";
+            this.DemoButton.Size = new System.Drawing.Size(300, 23);
+            this.DemoButton.TabIndex = 9;
+            this.DemoButton.Text = "Sign in as demo user";
+            this.DemoButton.UseVisualStyleBackColor = true;
+            this.DemoButton.Click += new System.EventHandler(this.DemoButton_Click);
+            // 
             // SignIn
             // 
+            this.Controls.Add(this.DemoButton);
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
@@ -163,6 +207,8 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+
+       
 
     }
 

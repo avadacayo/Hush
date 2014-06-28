@@ -44,7 +44,7 @@ namespace Hush.Display.Interfaces
             // AlternatePasswordButton
             // 
             this.AlternatePasswordButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AlternatePasswordButton.Location = new System.Drawing.Point(150, 134);
+            this.AlternatePasswordButton.Location = new System.Drawing.Point(305, 173);
             this.AlternatePasswordButton.Name = "AlternatePasswordButton";
             this.AlternatePasswordButton.Size = new System.Drawing.Size(300, 30);
             this.AlternatePasswordButton.TabIndex = 1;
@@ -54,7 +54,7 @@ namespace Hush.Display.Interfaces
             // PatternButton
             // 
             this.PatternButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PatternButton.Location = new System.Drawing.Point(150, 170);
+            this.PatternButton.Location = new System.Drawing.Point(305, 211);
             this.PatternButton.Name = "PatternButton";
             this.PatternButton.Size = new System.Drawing.Size(300, 30);
             this.PatternButton.TabIndex = 2;
@@ -64,7 +64,7 @@ namespace Hush.Display.Interfaces
             // SecretQuestionButton
             // 
             this.SecretQuestionButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionButton.Location = new System.Drawing.Point(150, 210);
+            this.SecretQuestionButton.Location = new System.Drawing.Point(305, 249);
             this.SecretQuestionButton.Name = "SecretQuestionButton";
             this.SecretQuestionButton.Size = new System.Drawing.Size(300, 30);
             this.SecretQuestionButton.TabIndex = 3;

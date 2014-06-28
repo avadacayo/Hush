@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using Hush;
 using Hush.Client;
+using System.Text.RegularExpressions;
 
 namespace Hush.Display.Interfaces
 {
@@ -15,8 +16,9 @@ namespace Hush.Display.Interfaces
     {
         private Label ErrorMsgsLabel;
         private Label RegisterLabel;
-        private Label FirstNameLabel;
-        private TextBox FirstNameTextBox;
+        private Label UsernameLabel;
+        private Label PasswordStrengthLabel;
+        private TextBox UsernameTextBox;
         private Label PasswordLabel;
         private TextBox PasswordTextBox;
         private Label RepeatPasswordLabel;
@@ -27,60 +29,102 @@ namespace Hush.Display.Interfaces
         private TextBox SecretAnswerTextBox;
         private Button RegisterButton;
         private Button CancelButton;
-        private Label ErrFirstNameLabel;
+        private Label ErrUsernameLabel;
         private Label ErrPasswordLabel;
 
         private void RegisterButtonClick(Object Sender, EventArgs Args)
         {
-            //TODO: Finish error messages
-            if (FirstNameTextBox.Text != "")
+            String pattern = "[a-zA-Z0-9]{3,15}$";
+            Regex regex = new Regex(pattern);
+            UsernameTextBox.Text = UsernameTextBox.Text.Trim();
+
+            ErrUsernameLabel.Text = "";
+            ErrPasswordLabel.Text = "";
+            
+            if (!regex.IsMatch(UsernameTextBox.Text))
+                ErrUsernameLabel.Text = "*Enter a valid username. 5 - 25 characters";
+
+            if (PasswordTextBox.Text.Length <= 5)
+                ErrPasswordLabel.Text = "*Enter a valid password. 6-30 characters";
+    
+            if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
+                ErrPasswordLabel.Text = "*Passwords do not match";
+
+            if (PasswordTextBox.Text.Equals(UsernameTextBox.Text))
+                ErrPasswordLabel.Text = "*Password is the same as username";
+
+            //TODO: Stop if weak password has been used?
+            if (regex.IsMatch(UsernameTextBox.Text) && PasswordTextBox.Text.Length >= 6 
+                && PasswordTextBox.Text == RepeatPasswordTextBox.Text
+                && !PasswordTextBox.Text.Equals(UsernameTextBox.Text))
             {
-                ErrFirstNameLabel.Text = "";
-                ErrPasswordLabel.Text = "";
-                if (new DataManager().UniqueAccount(FirstNameTextBox.Text))
+                if (new DataManager().UniqueAccount(UsernameTextBox.Text))
                 {
-                    if (PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text)
-                    {
-                        if (new DataManager().CreateAccount(FirstNameTextBox.Text, PasswordTextBox.Text, SecretQuestionTextBox.Text,
+
+                    if (new DataManager().CreateAccount(UsernameTextBox.Text, PasswordTextBox.Text, SecretQuestionTextBox.Text,
                             SecretAnswerTextBox.Text))
-                        {
-                            Program.Window.ShowInterface(new MainScreen());
-                        }
+                    {
+                        Program.Window.ShowInterface(new MainScreen());
                     }
-
-                    else
-                        ErrPasswordLabel.Text = "*Please make sure passwords are the same";
                 }
-
                 else
-                    ErrFirstNameLabel.Text = "*FirstName has been used";
+                    ErrUsernameLabel.Text = "*Username has been used";
+            }
+               
+        }
+
+        private void Fields_TextChanged(object sender, EventArgs e)
+        {
+            if (PasswordTextBox.Text.Length > 0)
+            {   
+                int x = new DataManager().PasswordStrength(PasswordTextBox.Text);
+                if (x <= 0)
+                    PasswordStrengthLabel.Text = "  Very weak";
+
+                else if (x == 1)
+                    PasswordStrengthLabel.Text = "         Weak";
+
+                else if (x == 2)
+                    PasswordStrengthLabel.Text = "            Fair";
+
+                else if (x == 3)
+                    PasswordStrengthLabel.Text = "        Strong";
+
+                else if (x == 4)
+                    PasswordStrengthLabel.Text = "Very Strong";
             }
 
-            else
+            if (UsernameTextBox.Text.Length > 0 && PasswordTextBox.Text.Length > 0 && RepeatPasswordTextBox.Text.Length > 0
+                && SecretQuestionTextBox.Text.Length > 0 && SecretAnswerTextBox.Text.Length > 0)
             {
-                ErrFirstNameLabel.Text = "*Enter a username";
-                if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                ErrPasswordLabel.Text = "";
+                RegisterButton.Enabled = true;
+                               
             }
-                return;
+            else
+                RegisterButton.Enabled = false;
+
         }
 
         private void CancelButtonClick(Object Sender, EventArgs Args)
         {
            // this.Close();
+            
         }
+
+        #region Designer
         protected override void Initialize(List<String> Title)
         {
             Title.Add("Register");
             base.Initialize(Title);
-
+            RegisterButton.Enabled = false;
         }
 
         protected override void InitializeComponent()
         {
             this.RegisterLabel = new System.Windows.Forms.Label();
-            this.FirstNameLabel = new System.Windows.Forms.Label();
-            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameLabel = new System.Windows.Forms.Label();
+            this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.PasswordStrengthLabel = new System.Windows.Forms.Label();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.RepeatPasswordLabel = new System.Windows.Forms.Label();
@@ -92,7 +136,7 @@ namespace Hush.Display.Interfaces
             this.RegisterButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
-            this.ErrFirstNameLabel = new System.Windows.Forms.Label();
+            this.ErrUsernameLabel = new System.Windows.Forms.Label();
             this.ErrPasswordLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -105,32 +149,32 @@ namespace Hush.Display.Interfaces
             this.RegisterLabel.TabIndex = 0;
             this.RegisterLabel.Text = "Register";
             // 
-            // FirstNameLabel
+            // UsernameLabel
             // 
-            this.FirstNameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstNameLabel.Location = new System.Drawing.Point(150, 130);
-            this.FirstNameLabel.Name = "FirstNameLabel";
-            this.FirstNameLabel.Size = new System.Drawing.Size(300, 15);
-            this.FirstNameLabel.TabIndex = 1;
-            this.FirstNameLabel.Text = "Username";
+            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameLabel.Location = new System.Drawing.Point(150, 130);
+            this.UsernameLabel.Name = "UsernameLabel";
+            this.UsernameLabel.Size = new System.Drawing.Size(300, 15);
+            this.UsernameLabel.TabIndex = 1;
+            this.UsernameLabel.Text = "Username";
             // 
-            // FirstNameTextBox
+            // UsernameTextBox
             // 
-            this.FirstNameTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstNameTextBox.Location = new System.Drawing.Point(150, 150);
-            this.FirstNameTextBox.Name = "FirstNameTextBox";
-            this.FirstNameTextBox.Size = new System.Drawing.Size(300, 20);
-            this.FirstNameTextBox.TabIndex = 2;
+            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameTextBox.Location = new System.Drawing.Point(150, 150);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.Size = new System.Drawing.Size(300, 20);
+            this.UsernameTextBox.TabIndex = 2;
+            this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
-            // ErrFirstNameLabel
+            // PasswordStrengthLabel
             // 
-            this.ErrFirstNameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrFirstNameLabel.Location = new System.Drawing.Point(450, 150);
-            this.ErrFirstNameLabel.Name = "ErrFirstNameLabel";
-            this.ErrFirstNameLabel.Size = new System.Drawing.Size(300, 15);
-            this.ErrFirstNameLabel.TabIndex = 3;
-            this.ErrFirstNameLabel.Text = "";
-            
+            this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(378, 180);
+            this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
+            this.PasswordStrengthLabel.Size = new System.Drawing.Size(115, 15);
+            this.PasswordStrengthLabel.TabIndex = 3;
+            this.PasswordStrengthLabel.Text = " ";
             // 
             // PasswordLabel
             // 
@@ -149,15 +193,7 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(300, 20);
             this.PasswordTextBox.TabIndex = 4;
-            // 
-            // ErrPasswordLabel
-            // 
-            this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrPasswordLabel.Location = new System.Drawing.Point(450, 200);
-            this.ErrPasswordLabel.Name = "ErrPasswordLabel";
-            this.ErrPasswordLabel.Size = new System.Drawing.Size(300, 15);
-            this.ErrPasswordLabel.TabIndex = 3;
-            this.ErrPasswordLabel.Text = "";
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // RepeatPasswordLabel
             // 
@@ -176,6 +212,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordTextBox.PasswordChar = '*';
             this.RepeatPasswordTextBox.Size = new System.Drawing.Size(300, 20);
             this.RepeatPasswordTextBox.TabIndex = 6;
+            this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // SecretQuestionLabel
             // 
@@ -193,6 +230,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
             this.SecretQuestionTextBox.Size = new System.Drawing.Size(300, 20);
             this.SecretQuestionTextBox.TabIndex = 8;
+            this.SecretQuestionTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // SecretAnswerLabel
             // 
@@ -210,6 +248,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
             this.SecretAnswerTextBox.Size = new System.Drawing.Size(300, 20);
             this.SecretAnswerTextBox.TabIndex = 10;
+            this.SecretAnswerTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // RegisterButton
             // 
@@ -220,7 +259,7 @@ namespace Hush.Display.Interfaces
             this.RegisterButton.TabIndex = 11;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
-            this.RegisterButton.Click += RegisterButtonClick;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButtonClick);
             // 
             // CancelButton
             // 
@@ -238,13 +277,29 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
             this.ErrorMsgsLabel.TabIndex = 0;
-            this.ErrorMsgsLabel.Text = "";
+            // 
+            // ErrUsernameLabel
+            // 
+            this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrUsernameLabel.Location = new System.Drawing.Point(450, 150);
+            this.ErrUsernameLabel.Name = "ErrUsernameLabel";
+            this.ErrUsernameLabel.Size = new System.Drawing.Size(300, 15);
+            this.ErrUsernameLabel.TabIndex = 3;
+            // 
+            // ErrPasswordLabel
+            // 
+            this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(450, 200);
+            this.ErrPasswordLabel.Name = "ErrPasswordLabel";
+            this.ErrPasswordLabel.Size = new System.Drawing.Size(300, 15);
+            this.ErrPasswordLabel.TabIndex = 3;
             // 
             // RegisterAccount
             // 
             this.Controls.Add(this.RegisterLabel);
-            this.Controls.Add(this.FirstNameLabel);
-            this.Controls.Add(this.FirstNameTextBox);
+            this.Controls.Add(this.UsernameLabel);
+            this.Controls.Add(this.UsernameTextBox);
+            this.Controls.Add(this.PasswordStrengthLabel);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.RepeatPasswordLabel);
@@ -255,7 +310,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SecretAnswerTextBox);
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.ErrFirstNameLabel);
+            this.Controls.Add(this.ErrUsernameLabel);
             this.Controls.Add(this.ErrPasswordLabel);
             this.Name = "RegisterAccount";
             this.ResumeLayout(false);
@@ -263,4 +318,5 @@ namespace Hush.Display.Interfaces
 
         }
     }
+#endregion
 }

@@ -9,34 +9,62 @@ namespace Hush.Display.Interfaces
     class Interface : UserControl
     {
 
-        protected Font GlobalFont = new Font("Verdana", 8F, FontStyle.Regular, GraphicsUnit.Point, ((Byte)(0)));
+        private ParentWindow _ParentWindow = null;
+
+        #region Properties
+
+        public ParentWindow ParentWindow
+        {
+
+            get { return _ParentWindow; }
+            set { _ParentWindow = value; }
+
+        }
+
+        #endregion
 
         public Interface()
         {
+
             Initialize(new List<String>());
+
         }
 
         public Interface(String Title)
         {
-            Initialize(new List<String>(new string[] {Title}));
+
+            Initialize(new List<String>(new String[] {Title}));
+
+        }
+
+        public void Close()
+        {
+
+            _ParentWindow.Close();
+
         }
 
         protected void PlaceBelow(Control Anchor, Control ToPlace)
         {
+
             ToPlace.Location = new Point(Anchor.Location.X, Anchor.Location.Y + Anchor.Size.Height);
+
         }
 
-        protected Font GetFontVariant(Boolean Bold)
-        {
-            FontStyle TempStyle =  Bold ? FontStyle.Bold : FontStyle.Regular;
-            return new Font("Verdana", 8F, TempStyle, GraphicsUnit.Point, ((Byte)(0)));
-        }
+        #region Overrides
 
         protected override void OnControlAdded(ControlEventArgs e)
         {
+
             base.OnControlAdded(e);
-            //e.Control.Font = GlobalFont;
+
+            Font OldFont = e.Control.Font;
+            Font NewFont = new Font("Verdana", OldFont.Size, OldFont.Style, OldFont.Unit, OldFont.GdiCharSet);
+            e.Control.Font = NewFont;
+
         }
+
+        #endregion
 
         #region Designer
 
@@ -68,7 +96,9 @@ namespace Hush.Display.Interfaces
 
         protected virtual void InitializeComponent()
         {
+
             return;
+
         }
 
         #endregion

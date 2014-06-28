@@ -6,80 +6,132 @@ using System.Security.Permissions;
 namespace Hush.Client.Model
 {
 
+    [Serializable]
     class Record : ISerializable
     {
-        private String _ID;
-        private String _TemplateID;
-        private Category _Category;
-        private List<Field> _Fields;
-        private DateTime _Created;
-        private DateTime _Modified;
 
-        public Record()
+        private Category _Category;
+        private DateTime _Created;
+        private List<Field> _Fields;
+        private String _ID;
+        private DateTime _Modified;
+        private String _Name;
+        private String _Template;
+
+        #region Properties
+
+        public Category Category
         {
-            //_ID = string.Empty;
-            //_TemplateID = string.Empty;
-            //_Category = new Category();
-            //_Fields = new List<Field>();
-            //_Created = DateTime.Now;
-            //_Modified = DateTime.Now;
+
+            get { return _Category; }
+            set { _Category = value; }
+
         }
 
-        protected Record(SerializationInfo Info, StreamingContext context)
+        public DateTime Created
         {
-            if (Info == null)
-                throw new System.ArgumentNullException("Info");
 
-            _ID = (String)Info.GetValue("ID", typeof(String));
-            _TemplateID = (String)Info.GetValue("TemplateID", typeof(String));
-            _Category = (Category)Info.GetValue("Category", typeof(Category));
-            _Fields = (List<Field>)Info.GetValue("Fields", typeof(List<Field>));
-            _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
-            _Modified = (DateTime)Info.GetValue("Modified", typeof(DateTime));
+            get { return _Created; }
+            set { _Created = value; }
+
+        }
+
+        public List<Field> Fields
+        {
+
+            get { return _Fields; }
+            set { _Fields = value; }
+
         }
 
         public String ID
         {
+
             get { return _ID; }
             set { _ID = value; }
+
         }
-        public String TemplateID
+
+        public DateTime Modified
         {
-            get { return _TemplateID; }
-            set { _TemplateID = value; }
+
+            get { return _Modified; }
+            set { _Modified = value; }
+
         }
-        public Category Category
+
+        public String Name
         {
-            get { return _Category; }
-            set { _Category = value; }
+
+            get { return _Name; }
+            set { _Name = value; }
+
         }
-        public List<Field> Fields
+
+        public String Template
         {
-            get { return _Fields; }
-            set { _Fields = value; }
+
+            get { return _Template; }
+            set { _Template = value; }
+
         }
-        public DateTime Created
+
+        #endregion
+
+        public Record()
         {
-            get { return _Created; }
-            set { _Created = value; }
+
+            _Category = new Category();
+            _Created = DateTime.Now;
+            _Fields = new List<Field>();
+            _ID = String.Empty;
+            _Modified = DateTime.Now;
+            _Name = String.Empty;
+            _Template = String.Empty;
+
         }
-        public DateTime Modified { get; set; }
+
+        protected Record(SerializationInfo Info, StreamingContext Context)
+        {
+
+            if (Info == null)
+            {
+
+                throw new System.ArgumentNullException("Info");
+
+            }
+
+            _Category = (Category)Info.GetValue("Category", typeof(Category));
+            _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
+            _Fields = (List<Field>)Info.GetValue("Fields", typeof(List<Field>));
+            _ID = (String)Info.GetValue("ID", typeof(String));
+            _Modified = (DateTime)Info.GetValue("Modified", typeof(DateTime));
+            _Name = (String)Info.GetValue("Name", typeof(String));
+            _Template = (String)Info.GetValue("Template", typeof(String));
+
+        }
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public virtual void GetObjectData(SerializationInfo Info, StreamingContext Context)
         {
+
             if (Info == null)
             {
+
                 throw new ArgumentNullException("Info");
+
             }
 
-            Info.AddValue("ID", _ID);
-            Info.AddValue("TemplateID", _TemplateID);
             Info.AddValue("Category", _Category);
-            Info.AddValue("Fields", _Fields);
             Info.AddValue("Created", _Created);
+            Info.AddValue("Fields", _Fields);
+            Info.AddValue("ID", _ID);
             Info.AddValue("Modified", _Modified);
+            Info.AddValue("Name", _Name);
+            Info.AddValue("Template", _Template);
+
         }
+
     }
 
 }

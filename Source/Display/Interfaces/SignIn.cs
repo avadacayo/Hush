@@ -102,7 +102,7 @@ namespace Hush.Display.Interfaces
             // 
             // LoginLabel
             // 
-            this.LoginLabel.Font = new System.Drawing.Font("Arial", 27F);
+            this.LoginLabel.Font = new System.Drawing.Font("Verdana", 27F);
             this.LoginLabel.Location = new System.Drawing.Point(302, 142);
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(300, 40);
@@ -111,15 +111,17 @@ namespace Hush.Display.Interfaces
             // 
             // PasswordTextBox
             // 
+            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTextBox.Location = new System.Drawing.Point(307, 272);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(300, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(300, 21);
             this.PasswordTextBox.TabIndex = 5;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // PasswordLabel
             // 
+            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordLabel.Location = new System.Drawing.Point(307, 252);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(300, 15);
@@ -128,14 +130,16 @@ namespace Hush.Display.Interfaces
             // 
             // UsernameTextBox
             // 
+            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameTextBox.Location = new System.Drawing.Point(307, 222);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(300, 20);
+            this.UsernameTextBox.Size = new System.Drawing.Size(300, 21);
             this.UsernameTextBox.TabIndex = 3;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // UsernameLabel
             // 
+            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameLabel.Location = new System.Drawing.Point(307, 202);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(300, 15);
@@ -144,6 +148,7 @@ namespace Hush.Display.Interfaces
             // 
             // LoginButton
             // 
+            this.LoginButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginButton.Location = new System.Drawing.Point(307, 302);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(300, 30);
@@ -154,6 +159,7 @@ namespace Hush.Display.Interfaces
             // 
             // RegisterPageButton
             // 
+            this.RegisterPageButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterPageButton.Location = new System.Drawing.Point(307, 348);
             this.RegisterPageButton.Name = "RegisterPageButton";
             this.RegisterPageButton.Size = new System.Drawing.Size(300, 30);
@@ -164,15 +170,17 @@ namespace Hush.Display.Interfaces
             // 
             // ForgotPasswordLinkLabel
             // 
+            this.ForgotPasswordLinkLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForgotPasswordLinkLabel.Location = new System.Drawing.Point(307, 332);
             this.ForgotPasswordLinkLabel.Name = "ForgotPasswordLinkLabel";
-            this.ForgotPasswordLinkLabel.Size = new System.Drawing.Size(86, 13);
+            this.ForgotPasswordLinkLabel.Size = new System.Drawing.Size(122, 13);
             this.ForgotPasswordLinkLabel.TabIndex = 7;
             this.ForgotPasswordLinkLabel.TabStop = true;
             this.ForgotPasswordLinkLabel.Text = "Forgot Password";
             // 
             // ErrorMsgsLabel
             // 
+            this.ErrorMsgsLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrorMsgsLabel.Location = new System.Drawing.Point(150, 89);
             this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
@@ -180,8 +188,9 @@ namespace Hush.Display.Interfaces
             // 
             // DemoButton
             // 
+            this.DemoButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DemoButton.Location = new System.Drawing.Point(307, 452);
-            this.DemoButton.Name = "button1";
+            this.DemoButton.Name = "DemoButton";
             this.DemoButton.Size = new System.Drawing.Size(300, 23);
             this.DemoButton.TabIndex = 9;
             this.DemoButton.Text = "Sign in as demo user";

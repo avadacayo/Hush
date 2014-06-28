@@ -11,6 +11,7 @@ using Hush;
 using Hush.Client;
 using Hush.Client.Model;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Hush.Display.Interfaces
 {
@@ -22,12 +23,14 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Button btn_Change;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button5;
+        private Button save;
+        private Button cancel;
+        private GroupBox record;
         private DataGridView dataGridViewRecords;
         private DataGridViewTextBoxColumn Key;
         private DataGridViewTextBoxColumn Value;
-        private Button save;
-        private Button cancel;
-        private GroupBox recordList;
+        private Label recordName;
+        private TextBox RecordTextBox;
         private System.Windows.Forms.Label label1;
 
         #region Designer
@@ -50,14 +53,16 @@ namespace Hush.Display.Interfaces
             this.btn_Change = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.save = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
+            this.record = new System.Windows.Forms.GroupBox();
+            this.RecordTextBox = new System.Windows.Forms.TextBox();
+            this.recordName = new System.Windows.Forms.Label();
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.save = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
-            this.recordList = new System.Windows.Forms.GroupBox();
+            this.record.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).BeginInit();
-            this.recordList.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -116,6 +121,56 @@ namespace Hush.Display.Interfaces
             this.label1.TabIndex = 7;
             this.label1.Text = "Template";
             // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(336, 288);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 1;
+            this.save.Text = "Save";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.SaveButtonClick);
+            // 
+            // cancel
+            // 
+            this.cancel.Location = new System.Drawing.Point(467, 288);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.TabIndex = 2;
+            this.cancel.Text = "Cancel";
+            this.cancel.UseVisualStyleBackColor = true;
+            // 
+            // record
+            // 
+            this.record.Controls.Add(this.RecordTextBox);
+            this.record.Controls.Add(this.recordName);
+            this.record.Controls.Add(this.cancel);
+            this.record.Controls.Add(this.save);
+            this.record.Controls.Add(this.dataGridViewRecords);
+            this.record.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.record.Location = new System.Drawing.Point(53, 116);
+            this.record.Name = "record";
+            this.record.Size = new System.Drawing.Size(575, 317);
+            this.record.TabIndex = 6;
+            this.record.TabStop = false;
+            this.record.Text = "Record";
+            // 
+            // RecordTextBox
+            // 
+            this.RecordTextBox.Location = new System.Drawing.Point(68, 29);
+            this.RecordTextBox.Name = "RecordTextBox";
+            this.RecordTextBox.Size = new System.Drawing.Size(170, 20);
+            this.RecordTextBox.TabIndex = 4;
+            // 
+            // recordName
+            // 
+            this.recordName.AutoSize = true;
+            this.recordName.Location = new System.Drawing.Point(15, 29);
+            this.recordName.Name = "recordName";
+            this.recordName.Size = new System.Drawing.Size(45, 13);
+            this.recordName.TabIndex = 3;
+            this.recordName.Text = "Name:";
+            // 
             // dataGridViewRecords
             // 
             this.dataGridViewRecords.AllowUserToOrderColumns = true;
@@ -123,7 +178,7 @@ namespace Hush.Display.Interfaces
             this.dataGridViewRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
             this.Value});
-            this.dataGridViewRecords.Location = new System.Drawing.Point(15, 19);
+            this.dataGridViewRecords.Location = new System.Drawing.Point(15, 61);
             this.dataGridViewRecords.Name = "dataGridViewRecords";
             this.dataGridViewRecords.Size = new System.Drawing.Size(527, 221);
             this.dataGridViewRecords.TabIndex = 0;
@@ -138,42 +193,10 @@ namespace Hush.Display.Interfaces
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
             // 
-            // save
-            // 
-            this.save.Location = new System.Drawing.Point(337, 259);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 1;
-            this.save.Text = "Save";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.SaveButtonClick);
-            // 
-            // cancel
-            // 
-            this.cancel.Location = new System.Drawing.Point(467, 259);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(75, 23);
-            this.cancel.TabIndex = 2;
-            this.cancel.Text = "Cancel";
-            this.cancel.UseVisualStyleBackColor = true;
-            // 
-            // recordList
-            // 
-            this.recordList.Controls.Add(this.cancel);
-            this.recordList.Controls.Add(this.save);
-            this.recordList.Controls.Add(this.dataGridViewRecords);
-            this.recordList.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.recordList.Location = new System.Drawing.Point(53, 116);
-            this.recordList.Name = "recordList";
-            this.recordList.Size = new System.Drawing.Size(575, 317);
-            this.recordList.TabIndex = 6;
-            this.recordList.TabStop = false;
-            this.recordList.Text = "RecordList";
-            // 
             // Add
             // 
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.recordList);
+            this.Controls.Add(this.record);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_Change);
             this.Controls.Add(this.textBox_Cat);
@@ -181,21 +204,83 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.label2);
             this.Name = "Add";
             this.Size = new System.Drawing.Size(660, 458);
+            this.record.ResumeLayout(false);
+            this.record.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).EndInit();
-            this.recordList.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            //this.CategoryTextBox.Text = Client.DataHolder.updateCategory;
+        }
+
+        //private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    // Get all rows entered on each press of Enter.
+        //    var collection = this.dataGridViewRecords.Rows;
+        //    string output = "";
+        //    foreach (DataGridViewRow row in collection)
+        //    {
+        //        foreach (DataGridViewCell cell in row.Cells)
+        //        {
+        //            if (cell.Value != null)
+        //            {
+        //                output += cell.Value.ToString() + " ";
+        //                DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), this.Value.ToString());
+        //            }
+        //        }
+        //    }
+        //    // Display.
+        //    this.Text = output;
+        //}
+
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
+            //DataTable dt = new DataTable();
+           //dt = (this.dataGridViewRecords.DataSource as DataTable).Copy();
+            //dt.Columns.Add("Key", typeof(string));
+            //dt.Columns.Add("Value", typeof(string));
+            Record rc = new Record();
+            for (int i = 0; i < this.dataGridViewRecords.NewRowIndex; i++)
+            {
+                string k = this.dataGridViewRecords.Rows[i].Cells["Key"].Value.ToString();
+                string v = this.dataGridViewRecords.Rows[i].Cells["Value"].Value.ToString();
+                DataManager.AddField(rc, k, v);
+                //DataManager.AddRecord(this.recordName.Text);
+
+                //dt.Rows[i]["Key"] = this.dataGridViewRecords.Rows[i].Cells["Key"].Value;
+                //dt.Rows[i]["Value"] = this.dataGridViewRecords.Rows[i].Cells["Value"].Value;
+            }
+
+            rc.Name = this.RecordTextBox.Text;
+            DataHolder.CurrentUser.Records.Add(rc);
+            //DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), "");
+           // this.dataGridViewRecords.DataSource = dt;
+
+            //DataTable dt = new DataTable();
+            //dt = (this.dataGridView1.DataSource as DataTable).Copy();
+           // dt.Columns.Add("Address", typeof(string));
+            //for (int i = 0; i < this.dataGridViewRecords.NewRowIndex; i++)
+            //{
+            //   // dt.Rows[i]["Address"] = this.dataGridViewRecords.Rows[i].Cells["Address"].Value;
+            //    //DataManager.AddRecord(i, this.dataGridViewRecords.Rows[i].Cells["Key"].Value.ToString(), this.dataGridViewRecords.Rows[i].Cells["Value"].Value.ToString());
+            //}
+
+            //this.dataGridView2.DataSource = dt;
+
              //if ()
                 //{
-                    DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, "", "");
-                    MessageBox.Show("Saved");
+                   // DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), "");
+                    //MessageBox.Show("Saved");
                 //}
             //else
+            //DataManager.AddRecord(0, this.dataGridViewRecords);
+                    //Client.DataManager.ProcessCategory(categoryName, this.CategoryTextBox.Text, Client.DataHolder.update);
+                    //Client.DataHolder.update = Client.DataHolder.updateMode.None;
+                    Program.Window.ShowInterface(new MainScreen());
         }
     }
 

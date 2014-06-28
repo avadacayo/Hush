@@ -29,7 +29,7 @@ namespace Hush.Display.Interfaces
         private Button ViewButton;
 
         // listbox to replaced by custom control
-        private ListBox listBox1;
+        private ListBox RecordsListBox;
         
         protected override void Initialize(List<String> Title)
         {
@@ -59,7 +59,7 @@ namespace Hush.Display.Interfaces
             this.LogoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.RecordsListBox = new System.Windows.Forms.ListBox();
             this.GeneralFunctionsPanel.SuspendLayout();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
@@ -240,16 +240,16 @@ namespace Hush.Display.Interfaces
             this.UserLabel.TabIndex = 2;
             this.UserLabel.Text = "User:";
             // 
-            // listBox1
+            // RecordsListBox
             // 
-            this.listBox1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
+            this.RecordsListBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsListBox.FormattingEnabled = true;
+            this.RecordsListBox.Items.AddRange(new object[] {
             "LIST OF RECORDS"});
-            this.listBox1.Location = new System.Drawing.Point(197, 40);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(520, 355);
-            this.listBox1.TabIndex = 5;
+            this.RecordsListBox.Location = new System.Drawing.Point(197, 40);
+            this.RecordsListBox.Name = "RecordsListBox";
+            this.RecordsListBox.Size = new System.Drawing.Size(520, 355);
+            this.RecordsListBox.TabIndex = 5;
             // 
             // MainScreen
             // 
@@ -260,7 +260,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.UserPanel);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.RecordsListBox);
             this.Name = "MainScreen";
             this.GeneralFunctionsPanel.ResumeLayout(false);
             this.RecordFunctionsPanel.ResumeLayout(false);
@@ -283,7 +283,7 @@ namespace Hush.Display.Interfaces
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new View());
+            Program.Window.ShowInterface(new ViewRecord(this.RecordsListBox.SelectedIndex));
         }
 
         private void AddRecordButton_Click(object sender, EventArgs e)
@@ -293,12 +293,20 @@ namespace Hush.Display.Interfaces
 
         private void EditRecordButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new Edit());
+            if (this.RecordsListBox.SelectedItem != null)
+            {
+                Program.Window.ShowInterface(new Edit(this.RecordsListBox.SelectedIndex));
+            }
         }
 
         private void DeleteRecordButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new Delete());
+            if (this.RecordsListBox.SelectedItem != null)
+            {
+                DataManager.DeleteRecord(DataManager.GetRecord(this.RecordsListBox.SelectedIndex));
+                AddRecordsToListBox();
+            }
         }
 
         private void AdvancedSearchButton_Click(object sender, EventArgs e)
@@ -311,7 +319,35 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new UserProfile());
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            AddRecordsToListBox();
+        }
 
+        void AddRecordsToListBox()
+        {
+            this.RecordsListBox.Items.Clear();
+            try
+            {
+                List<Client.Model.Record> recordList = Client.DataHolder.CurrentUser.Records;
+
+                if (recordList == null)
+                {
+                    this.RecordsListBox.Items.Add("No Records");
+                }
+                else
+                {
+                    foreach (Client.Model.Record r in recordList)
+                    {
+                        this.RecordsListBox.Items.Add(r.Name.ToString());
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                this.RecordsListBox.Items.Add("exception");
+            };
+        }
     }
 
 }

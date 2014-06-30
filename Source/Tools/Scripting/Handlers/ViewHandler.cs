@@ -58,6 +58,14 @@ namespace Hush.Tools.Scripting.Handlers
 
         }
 
+        public void ShowInputDialog(String Text)
+        {
+
+            _CurrentDialog = new ScriptDialogInput(_ParentScript, Text);
+            _ParentWindow.ShowInterfaceDialog(_CurrentDialog);
+
+        }
+
     }
 
 }

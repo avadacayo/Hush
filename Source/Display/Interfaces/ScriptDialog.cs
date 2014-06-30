@@ -47,9 +47,18 @@ namespace Hush.Display.Interfaces
 
         }
 
+        protected void Resize(Int32 NewHeight)
+        {
+
+            ClientSize = new Size(500, NewHeight);
+            ButtonFlowLayoutPanel.Location = new Point(10, ClientSize.Height - 35);
+
+        }
+
         protected void AddButton(Button ToAdd)
         {
 
+            ButtonFlowLayoutPanel.BringToFront();
             ButtonFlowLayoutPanel.SuspendLayout();
             ButtonFlowLayoutPanel.Controls.Add(ToAdd);
             ButtonFlowLayoutPanel.ResumeLayout(true);
@@ -61,6 +70,7 @@ namespace Hush.Display.Interfaces
         protected override void Initialize(List<String> Title)
         {
 
+            Title.Add("Popup Dialog");
             base.Initialize(Title);
 
             SuspendLayout();
@@ -109,7 +119,7 @@ namespace Hush.Display.Interfaces
 
         #region Controls
 
-        private RichTextBox TextRichTextBox;
+        private Label TextLabel;
 
         #endregion
 
@@ -117,17 +127,17 @@ namespace Hush.Display.Interfaces
             : base(ParentScript)
         {
 
-            TextRichTextBox = new RichTextBox();
-            TextRichTextBox.BackColor = SystemColors.Control;
-            TextRichTextBox.BorderStyle = BorderStyle.None;
-            TextRichTextBox.Font = new Font("Verdana", 11f, FontStyle.Regular);
-            TextRichTextBox.Location = new Point(0, 0);
-            TextRichTextBox.ReadOnly = true;
-            TextRichTextBox.Size = new Size(480, 150);
-            TextRichTextBox.Text = Text;
+            TextLabel = new Label();
+            TextLabel.AutoSize = true;
+            TextLabel.BackColor = SystemColors.Control;
+            TextLabel.BorderStyle = BorderStyle.None;
+            TextLabel.Font = new Font("Verdana", 11f, FontStyle.Regular);
+            TextLabel.Location = new Point(0, 0);
+            TextLabel.MaximumSize = new Size(480, 0);
+            TextLabel.Text = Text;
 
             ContentPanel.SuspendLayout();
-            ContentPanel.Controls.Add(TextRichTextBox);
+            ContentPanel.Controls.Add(TextLabel);
             ContentPanel.ResumeLayout();
 
         }
@@ -159,8 +169,74 @@ namespace Hush.Display.Interfaces
 
     }
 
-    class ScriptDialogPrompt : ScriptDialog
+    class ScriptDialogInput : ScriptDialog
     {
+
+        #region Controls
+
+        private Label TextLabel;
+        private TextBox InputTextBox;
+
+        #endregion
+
+        public ScriptDialogInput(HushScript ParentScript, String Text)
+            : base(ParentScript)
+        {
+
+            if (Text.Length > 40)
+            {
+                Text = Text.Substring(0, 40);
+            }
+
+            TextLabel = new Label();
+            TextLabel.AutoSize = false;
+            TextLabel.AutoEllipsis = true;
+            TextLabel.BackColor = SystemColors.Control;
+            TextLabel.BorderStyle = BorderStyle.None;
+            TextLabel.Font = new Font("Verdana", 9f, FontStyle.Regular);
+            TextLabel.Location = new Point(0, 0);
+            TextLabel.Size = new Size(480, 25);
+            TextLabel.Text = Text;
+            TextLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+            InputTextBox = new TextBox();
+            InputTextBox.Location = new Point(0, 25);
+            InputTextBox.Size = new Size(200, 25);
+
+            ContentPanel.SuspendLayout();
+            ContentPanel.Controls.Add(TextLabel);
+            ContentPanel.Controls.Add(InputTextBox);
+            ContentPanel.ResumeLayout();
+
+            Resize(100);
+
+        }
+
+        #region Events
+
+        private void OkButtonClick(Object Sender, EventArgs Args)
+        {
+
+            _ParentScript.RunBody(1, InputTextBox.Text);
+
+        }
+
+        #endregion
+
+        #region Designer
+
+        protected override void Initialize(List<String> Title)
+        {
+
+            base.Initialize(Title);
+            AddButton(OkButton);
+
+            OkButton.Click += OkButtonClick;
+
+        }
+
+        #endregion
+
     }
 
 }

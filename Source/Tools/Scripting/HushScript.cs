@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Hush.Display;
+using Hush.Tools.Scripting.Handlers;
 using Jint;
 using Jint.Native;
-using Hush.Tools;
-using Jint.Parser;
 using Jint.Runtime;
-using Hush.Display;
-using Hush.Tools.Scripting.Handlers;
+using System;
 
 namespace Hush.Tools.Scripting
 {
@@ -19,15 +14,13 @@ namespace Hush.Tools.Scripting
         private AccessHandler _AccessHandler;
         private Engine _Engine;
         private Int32 _State;
+        private JsValue _BodyFunction;
         private Boolean _Loaded;
         private ParentWindow _ParentWindow;
         private String _Name;
         private String _Source;
         private ViewHandler _ViewHandler;
         private WebHandler _WebHandler;
-
-        private JsValue _BodyFunction;
-        private JsValue _HeadFunction;
 
         public String Name
         {
@@ -43,15 +36,13 @@ namespace Hush.Tools.Scripting
             _AccessHandler = new AccessHandler();
             _Engine = new Engine();
             _State = 0;
+            _BodyFunction = JsValue.Undefined;
             _Loaded = false;
             _ParentWindow = ParentWindow;
             _Name = String.Empty;
             _Source = String.Empty;
             _ViewHandler = new ViewHandler(this, ParentWindow);
             _WebHandler = new WebHandler();
-
-            _BodyFunction = JsValue.Undefined;
-            _HeadFunction = JsValue.Undefined;
 
         }
 
@@ -103,17 +94,7 @@ namespace Hush.Tools.Scripting
                 _Engine.Execute(_Source);
                 InitValues();
 
-                _HeadFunction = _Engine.GetValue("head");
                 _BodyFunction = _Engine.GetValue("body");
-
-                if (_HeadFunction == JsValue.Undefined)
-                {
-
-                    ReturnValue.Message = "Head function not defined.";
-                    ReturnValue.Success = false;
-                    return ReturnValue;
-
-                }
 
                 if (_BodyFunction == JsValue.Undefined)
                 {
@@ -145,43 +126,7 @@ namespace Hush.Tools.Scripting
 
             ReturnValue ReturnValue = new ReturnValue("", true);
 
-            RunHead();
             RunBody(0, "");
-
-            return ReturnValue;
-
-        }
-
-        public ReturnValue RunHead()
-        {
-
-            ReturnValue ReturnValue = new ReturnValue();
-            ReturnValue.Message = String.Empty;
-            ReturnValue.Success = true;
-
-            if (!_Loaded)
-            {
-
-                ReturnValue.Message = "Script class not loaded.";
-                ReturnValue.Success = false;
-                return ReturnValue;
-
-            }
-
-            try
-            {
-
-                _HeadFunction.Invoke();
-
-            }
-            catch (JavaScriptException JSE)
-            {
-
-                ReturnValue.Message = "Error running script.";
-                ReturnValue.Success = false;
-                return ReturnValue;
-
-            }
 
             return ReturnValue;
 

@@ -67,6 +67,7 @@ namespace Hush.Display.Interfaces
             // 
             // ViewButton
             // 
+            this.ViewButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewButton.Location = new System.Drawing.Point(12, 77);
             this.ViewButton.Name = "ViewButton";
             this.ViewButton.Size = new System.Drawing.Size(170, 23);
@@ -178,6 +179,7 @@ namespace Hush.Display.Interfaces
             this.SearchButton.TabIndex = 3;
             this.SearchButton.Text = "search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // SearchTextBox
             // 
@@ -363,6 +365,24 @@ namespace Hush.Display.Interfaces
             {
                 this.RecordsListBox.Items.Add("exception");
             };
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            String SearchName = this.SearchTextBox.Text;
+            List<Client.Model.Record> recordList = DataManager.GetRecordListByName(SearchName);
+            this.RecordsListBox.Items.Clear();
+            if (recordList == null)
+            {
+                this.RecordsListBox.Items.Add("No Records");
+            }
+            else
+            {
+                foreach (Client.Model.Record r in recordList)
+                {
+                    this.RecordsListBox.Items.Add(r.Name.ToString());
+                };
+            }
         }
     }
 

@@ -39,7 +39,7 @@ namespace Hush.Display.Interfaces
             this.RecordListBox.FormattingEnabled = true;
             this.RecordListBox.Items.AddRange(new object[] {
             "Field1: value",
-            "FIeld2: value",
+            "Field2: value",
             "Field3: value"});
             this.RecordListBox.Location = new System.Drawing.Point(54, 45);
             this.RecordListBox.Name = "RecordListBox";

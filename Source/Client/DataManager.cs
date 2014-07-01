@@ -308,6 +308,16 @@ namespace Hush.Client
             return DataHolder.CurrentUser.Records[recordIndex];
         }
 
+        public static Record GetRecordByName(String RecordName)
+        {
+            return DataHolder.CurrentUser.Records.Find(x => x.Name.Contains(RecordName));
+        }
+
+        public static List<Record> GetRecordListByName(String RecordName)
+        {
+            return DataHolder.CurrentUser.Records.FindAll(x => x.Name.Contains(RecordName));
+        }
+
         public static void DeleteCategory(string category)
         {
             List<Category> list = DataHolder.CurrentUser.Categories;

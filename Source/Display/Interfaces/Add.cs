@@ -18,8 +18,6 @@ namespace Hush.Display.Interfaces
     class Add : Interface
     {
         private System.Windows.Forms.Label Category;
-        private System.Windows.Forms.Button TemplateChange;
-        private System.Windows.Forms.Button CategoryChange;
         private System.Windows.Forms.Button button5;
         private Button Save;
         private Button Cancel;
@@ -48,8 +46,6 @@ namespace Hush.Display.Interfaces
         protected override void InitializeComponent()
         {
             this.Category = new System.Windows.Forms.Label();
-            this.TemplateChange = new System.Windows.Forms.Button();
-            this.CategoryChange = new System.Windows.Forms.Button();
             this.Template = new System.Windows.Forms.Label();
             this.Save = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
@@ -74,26 +70,6 @@ namespace Hush.Display.Interfaces
             this.Category.Size = new System.Drawing.Size(60, 13);
             this.Category.TabIndex = 1;
             this.Category.Text = "Category";
-            // 
-            // TemplateChange
-            // 
-            this.TemplateChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TemplateChange.Location = new System.Drawing.Point(520, 19);
-            this.TemplateChange.Name = "TemplateChange";
-            this.TemplateChange.Size = new System.Drawing.Size(75, 23);
-            this.TemplateChange.TabIndex = 4;
-            this.TemplateChange.Text = "Change";
-            this.TemplateChange.UseVisualStyleBackColor = true;
-            // 
-            // CategoryChange
-            // 
-            this.CategoryChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryChange.Location = new System.Drawing.Point(520, 59);
-            this.CategoryChange.Name = "CategoryChange";
-            this.CategoryChange.Size = new System.Drawing.Size(75, 23);
-            this.CategoryChange.TabIndex = 5;
-            this.CategoryChange.Text = "Change";
-            this.CategoryChange.UseVisualStyleBackColor = true;
             // 
             // Template
             // 
@@ -179,6 +155,7 @@ namespace Hush.Display.Interfaces
             // 
             // TemplateComboBox
             // 
+            this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(121, 20);
             this.TemplateComboBox.Name = "TemplateComboBox";
@@ -187,11 +164,13 @@ namespace Hush.Display.Interfaces
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(121, 61);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(326, 21);
             this.CategoryComboBox.TabIndex = 9;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // Add
             // 
@@ -199,8 +178,6 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.TemplateComboBox);
             this.Controls.Add(this.Template);
             this.Controls.Add(this.Record);
-            this.Controls.Add(this.CategoryChange);
-            this.Controls.Add(this.TemplateChange);
             this.Controls.Add(this.Category);
             this.Name = "Add";
             this.Size = new System.Drawing.Size(660, 458);
@@ -225,6 +202,11 @@ namespace Hush.Display.Interfaces
             rc.Name = this.RecordTextBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
             Program.Window.ShowInterface(new MainScreen());
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

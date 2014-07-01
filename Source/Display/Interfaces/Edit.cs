@@ -196,7 +196,7 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
-        private void displayRecord()
+        private void DisplayRecord()
         {
             List<Field> fieldList = DataHolder.CurrentUser.Records[RecordIndex].Fields;
             DataTable DT = new DataTable();
@@ -209,13 +209,13 @@ namespace Hush.Display.Interfaces
 
         protected override void OnLoad(EventArgs e)
         {
-            displayRecord();
+            DisplayRecord();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[RecordIndex], EditDataGridView);
-            displayRecord();
+            DisplayRecord();
             Program.Window.ShowInterface(new MainScreen());
         }
 

@@ -18,8 +18,6 @@ namespace Hush.Display.Interfaces
     class Add : Interface
     {
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_Temp;
-        private System.Windows.Forms.TextBox textBox_Cat;
         private System.Windows.Forms.Button btn_Change;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button5;
@@ -31,6 +29,8 @@ namespace Hush.Display.Interfaces
         private DataGridViewTextBoxColumn Value;
         private Label recordName;
         private TextBox RecordTextBox;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
         private System.Windows.Forms.Label label1;
 
         #region Designer
@@ -48,8 +48,6 @@ namespace Hush.Display.Interfaces
         protected override void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox_Temp = new System.Windows.Forms.TextBox();
-            this.textBox_Cat = new System.Windows.Forms.TextBox();
             this.btn_Change = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,6 +59,8 @@ namespace Hush.Display.Interfaces
             this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.record.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).BeginInit();
             this.SuspendLayout();
@@ -74,22 +74,6 @@ namespace Hush.Display.Interfaces
             this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Category";
-            // 
-            // textBox_Temp
-            // 
-            this.textBox_Temp.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Temp.Location = new System.Drawing.Point(121, 23);
-            this.textBox_Temp.Name = "textBox_Temp";
-            this.textBox_Temp.Size = new System.Drawing.Size(326, 20);
-            this.textBox_Temp.TabIndex = 2;
-            // 
-            // textBox_Cat
-            // 
-            this.textBox_Cat.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Cat.Location = new System.Drawing.Point(121, 58);
-            this.textBox_Cat.Name = "textBox_Cat";
-            this.textBox_Cat.Size = new System.Drawing.Size(326, 20);
-            this.textBox_Cat.TabIndex = 3;
             // 
             // btn_Change
             // 
@@ -193,14 +177,30 @@ namespace Hush.Display.Interfaces
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(121, 20);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(326, 21);
+            this.comboBox1.TabIndex = 8;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(121, 61);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(326, 21);
+            this.comboBox2.TabIndex = 9;
+            // 
             // Add
             // 
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.record);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_Change);
-            this.Controls.Add(this.textBox_Cat);
-            this.Controls.Add(this.textBox_Temp);
             this.Controls.Add(this.label2);
             this.Name = "Add";
             this.Size = new System.Drawing.Size(660, 458);

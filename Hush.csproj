@@ -158,9 +158,6 @@
     <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
       <DependentUpon>ViewRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
-      <DependentUpon>Edit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +165,10 @@
       <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Packages.config" />
+    <EmbeddedResource Include="Source\Display\Interfaces\RegisterAccount.resx">
+      <DependentUpon>RegisterAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

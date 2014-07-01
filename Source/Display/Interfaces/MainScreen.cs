@@ -283,7 +283,10 @@ namespace Hush.Display.Interfaces
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new ViewRecord(this.RecordsListBox.SelectedIndex));
+            if (this.RecordsListBox.SelectedIndex >= 0)
+            {
+                Program.Window.ShowInterface(new ViewRecord(this.RecordsListBox.SelectedIndex));
+            }
         }
 
         private void AddRecordButton_Click(object sender, EventArgs e)
@@ -293,7 +296,7 @@ namespace Hush.Display.Interfaces
 
         private void EditRecordButton_Click(object sender, EventArgs e)
         {
-            if (this.RecordsListBox.SelectedItem != null)
+            if (this.RecordsListBox.SelectedIndex >= 0)
             {
                 Program.Window.ShowInterface(new Edit(this.RecordsListBox.SelectedIndex));
             }
@@ -301,9 +304,10 @@ namespace Hush.Display.Interfaces
 
         private void DeleteRecordButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new Delete());
-            if (this.RecordsListBox.SelectedItem != null)
+
+            if (this.RecordsListBox.SelectedIndex >= 0)
             {
+                Program.Window.ShowInterface(new Delete());
                 DataManager.DeleteRecord(DataManager.GetRecord(this.RecordsListBox.SelectedIndex));
                 AddRecordsToListBox();
             }
@@ -322,6 +326,18 @@ namespace Hush.Display.Interfaces
         protected override void OnLoad(EventArgs e)
         {
             AddRecordsToListBox();
+            if (this.RecordsListBox.Items.Count == 0)
+            {
+                ViewButton.Enabled = false;
+                EditRecordButton.Enabled = false;
+                DeleteRecordButton.Enabled = false;
+            }
+            else
+            {
+                ViewButton.Enabled = true;
+                EditRecordButton.Enabled = true;
+                DeleteRecordButton.Enabled = true;
+            }
         }
 
         void AddRecordsToListBox()

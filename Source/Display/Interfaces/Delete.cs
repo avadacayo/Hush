@@ -54,6 +54,7 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTextBox.Location = new System.Drawing.Point(218, 59);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(323, 20);
             this.PasswordTextBox.TabIndex = 2;
             // 

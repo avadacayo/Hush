@@ -17,21 +17,21 @@ namespace Hush.Display.Interfaces
 {
     class Add : Interface
     {
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btn_Change;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label Category;
+        private System.Windows.Forms.Button TemplateChange;
+        private System.Windows.Forms.Button CategoryChange;
         private System.Windows.Forms.Button button5;
-        private Button save;
-        private Button cancel;
-        private GroupBox record;
-        private DataGridView dataGridViewRecords;
+        private Button Save;
+        private Button Cancel;
+        private GroupBox Record;
+        private DataGridView RecordsDataGridView;
         private DataGridViewTextBoxColumn Key;
         private DataGridViewTextBoxColumn Value;
-        private Label recordName;
+        private Label RecordName;
         private TextBox RecordTextBox;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private System.Windows.Forms.Label label1;
+        private ComboBox TemplateComboBox;
+        private ComboBox CategoryComboBox;
+        private System.Windows.Forms.Label Template;
 
         #region Designer
 
@@ -47,97 +47,97 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_Change = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.save = new System.Windows.Forms.Button();
-            this.cancel = new System.Windows.Forms.Button();
-            this.record = new System.Windows.Forms.GroupBox();
+            this.Category = new System.Windows.Forms.Label();
+            this.TemplateChange = new System.Windows.Forms.Button();
+            this.CategoryChange = new System.Windows.Forms.Button();
+            this.Template = new System.Windows.Forms.Label();
+            this.Save = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
+            this.Record = new System.Windows.Forms.GroupBox();
             this.RecordTextBox = new System.Windows.Forms.TextBox();
-            this.recordName = new System.Windows.Forms.Label();
-            this.dataGridViewRecords = new System.Windows.Forms.DataGridView();
+            this.RecordName = new System.Windows.Forms.Label();
+            this.RecordsDataGridView = new System.Windows.Forms.DataGridView();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.record.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).BeginInit();
+            this.TemplateComboBox = new System.Windows.Forms.ComboBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.Record.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
+            // Category
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(55, 58);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Category";
+            this.Category.AutoSize = true;
+            this.Category.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Category.Location = new System.Drawing.Point(55, 58);
+            this.Category.Name = "Category";
+            this.Category.Size = new System.Drawing.Size(60, 13);
+            this.Category.TabIndex = 1;
+            this.Category.Text = "Category";
             // 
-            // btn_Change
+            // TemplateChange
             // 
-            this.btn_Change.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Change.Location = new System.Drawing.Point(520, 19);
-            this.btn_Change.Name = "btn_Change";
-            this.btn_Change.Size = new System.Drawing.Size(75, 23);
-            this.btn_Change.TabIndex = 4;
-            this.btn_Change.Text = "Change";
-            this.btn_Change.UseVisualStyleBackColor = true;
+            this.TemplateChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TemplateChange.Location = new System.Drawing.Point(520, 19);
+            this.TemplateChange.Name = "TemplateChange";
+            this.TemplateChange.Size = new System.Drawing.Size(75, 23);
+            this.TemplateChange.TabIndex = 4;
+            this.TemplateChange.Text = "Change";
+            this.TemplateChange.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // CategoryChange
             // 
-            this.button2.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(520, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Change";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CategoryChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryChange.Location = new System.Drawing.Point(520, 59);
+            this.CategoryChange.Name = "CategoryChange";
+            this.CategoryChange.Size = new System.Drawing.Size(75, 23);
+            this.CategoryChange.TabIndex = 5;
+            this.CategoryChange.Text = "Change";
+            this.CategoryChange.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // Template
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Template";
+            this.Template.AutoSize = true;
+            this.Template.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Template.Location = new System.Drawing.Point(53, 19);
+            this.Template.Name = "Template";
+            this.Template.Size = new System.Drawing.Size(59, 13);
+            this.Template.TabIndex = 7;
+            this.Template.Text = "Template";
             // 
-            // save
+            // Save
             // 
-            this.save.Location = new System.Drawing.Point(336, 288);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 1;
-            this.save.Text = "Save";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.SaveButtonClick);
+            this.Save.Location = new System.Drawing.Point(336, 288);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 1;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.SaveButtonClick);
             // 
-            // cancel
+            // Cancel
             // 
-            this.cancel.Location = new System.Drawing.Point(467, 288);
-            this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(75, 23);
-            this.cancel.TabIndex = 2;
-            this.cancel.Text = "Cancel";
-            this.cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Location = new System.Drawing.Point(467, 288);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 23);
+            this.Cancel.TabIndex = 2;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
             // 
-            // record
+            // Record
             // 
-            this.record.Controls.Add(this.RecordTextBox);
-            this.record.Controls.Add(this.recordName);
-            this.record.Controls.Add(this.cancel);
-            this.record.Controls.Add(this.save);
-            this.record.Controls.Add(this.dataGridViewRecords);
-            this.record.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.record.Location = new System.Drawing.Point(53, 116);
-            this.record.Name = "record";
-            this.record.Size = new System.Drawing.Size(575, 317);
-            this.record.TabIndex = 6;
-            this.record.TabStop = false;
-            this.record.Text = "Record";
+            this.Record.Controls.Add(this.RecordTextBox);
+            this.Record.Controls.Add(this.RecordName);
+            this.Record.Controls.Add(this.Cancel);
+            this.Record.Controls.Add(this.Save);
+            this.Record.Controls.Add(this.RecordsDataGridView);
+            this.Record.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Record.Location = new System.Drawing.Point(53, 116);
+            this.Record.Name = "Record";
+            this.Record.Size = new System.Drawing.Size(575, 317);
+            this.Record.TabIndex = 6;
+            this.Record.TabStop = false;
+            this.Record.Text = "Record";
             // 
             // RecordTextBox
             // 
@@ -146,26 +146,26 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Size = new System.Drawing.Size(170, 20);
             this.RecordTextBox.TabIndex = 4;
             // 
-            // recordName
+            // RecordName
             // 
-            this.recordName.AutoSize = true;
-            this.recordName.Location = new System.Drawing.Point(15, 29);
-            this.recordName.Name = "recordName";
-            this.recordName.Size = new System.Drawing.Size(45, 13);
-            this.recordName.TabIndex = 3;
-            this.recordName.Text = "Name:";
+            this.RecordName.AutoSize = true;
+            this.RecordName.Location = new System.Drawing.Point(15, 29);
+            this.RecordName.Name = "RecordName";
+            this.RecordName.Size = new System.Drawing.Size(45, 13);
+            this.RecordName.TabIndex = 3;
+            this.RecordName.Text = "Name:";
             // 
-            // dataGridViewRecords
+            // RecordsDataGridView
             // 
-            this.dataGridViewRecords.AllowUserToOrderColumns = true;
-            this.dataGridViewRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RecordsDataGridView.AllowUserToOrderColumns = true;
+            this.RecordsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RecordsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
             this.Value});
-            this.dataGridViewRecords.Location = new System.Drawing.Point(15, 61);
-            this.dataGridViewRecords.Name = "dataGridViewRecords";
-            this.dataGridViewRecords.Size = new System.Drawing.Size(527, 221);
-            this.dataGridViewRecords.TabIndex = 0;
+            this.RecordsDataGridView.Location = new System.Drawing.Point(15, 61);
+            this.RecordsDataGridView.Name = "RecordsDataGridView";
+            this.RecordsDataGridView.Size = new System.Drawing.Size(527, 221);
+            this.RecordsDataGridView.TabIndex = 0;
             // 
             // Key
             // 
@@ -177,110 +177,54 @@ namespace Hush.Display.Interfaces
             this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
             // 
-            // comboBox1
+            // TemplateComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(121, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(326, 21);
-            this.comboBox1.TabIndex = 8;
+            this.TemplateComboBox.FormattingEnabled = true;
+            this.TemplateComboBox.Location = new System.Drawing.Point(121, 20);
+            this.TemplateComboBox.Name = "TemplateComboBox";
+            this.TemplateComboBox.Size = new System.Drawing.Size(326, 21);
+            this.TemplateComboBox.TabIndex = 8;
             // 
-            // comboBox2
+            // CategoryComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(121, 61);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(326, 21);
-            this.comboBox2.TabIndex = 9;
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(121, 61);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(326, 21);
+            this.CategoryComboBox.TabIndex = 9;
             // 
             // Add
             // 
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.record);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btn_Change);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CategoryComboBox);
+            this.Controls.Add(this.TemplateComboBox);
+            this.Controls.Add(this.Template);
+            this.Controls.Add(this.Record);
+            this.Controls.Add(this.CategoryChange);
+            this.Controls.Add(this.TemplateChange);
+            this.Controls.Add(this.Category);
             this.Name = "Add";
             this.Size = new System.Drawing.Size(660, 458);
-            this.record.ResumeLayout(false);
-            this.record.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRecords)).EndInit();
+            this.Record.ResumeLayout(false);
+            this.Record.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            //this.CategoryTextBox.Text = Client.DataHolder.updateCategory;
-        }
-
-        //private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    // Get all rows entered on each press of Enter.
-        //    var collection = this.dataGridViewRecords.Rows;
-        //    string output = "";
-        //    foreach (DataGridViewRow row in collection)
-        //    {
-        //        foreach (DataGridViewCell cell in row.Cells)
-        //        {
-        //            if (cell.Value != null)
-        //            {
-        //                output += cell.Value.ToString() + " ";
-        //                DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), this.Value.ToString());
-        //            }
-        //        }
-        //    }
-        //    // Display.
-        //    this.Text = output;
-        //}
-
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
-            //DataTable dt = new DataTable();
-           //dt = (this.dataGridViewRecords.DataSource as DataTable).Copy();
-            //dt.Columns.Add("Key", typeof(string));
-            //dt.Columns.Add("Value", typeof(string));
             Record rc = new Record();
-            for (int i = 0; i < this.dataGridViewRecords.NewRowIndex; i++)
+            for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
             {
-                string k = this.dataGridViewRecords.Rows[i].Cells["Key"].Value.ToString();
-                string v = this.dataGridViewRecords.Rows[i].Cells["Value"].Value.ToString();
+                string k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
+                string v = this.RecordsDataGridView.Rows[i].Cells["Value"].Value.ToString();
                 DataManager.AddField(rc, k, v);
-                //DataManager.AddRecord(this.recordName.Text);
-
-                //dt.Rows[i]["Key"] = this.dataGridViewRecords.Rows[i].Cells["Key"].Value;
-                //dt.Rows[i]["Value"] = this.dataGridViewRecords.Rows[i].Cells["Value"].Value;
             }
 
             rc.Name = this.RecordTextBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
-            //DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), "");
-           // this.dataGridViewRecords.DataSource = dt;
-
-            //DataTable dt = new DataTable();
-            //dt = (this.dataGridView1.DataSource as DataTable).Copy();
-           // dt.Columns.Add("Address", typeof(string));
-            //for (int i = 0; i < this.dataGridViewRecords.NewRowIndex; i++)
-            //{
-            //   // dt.Rows[i]["Address"] = this.dataGridViewRecords.Rows[i].Cells["Address"].Value;
-            //    //DataManager.AddRecord(i, this.dataGridViewRecords.Rows[i].Cells["Key"].Value.ToString(), this.dataGridViewRecords.Rows[i].Cells["Value"].Value.ToString());
-            //}
-
-            //this.dataGridView2.DataSource = dt;
-
-             //if ()
-                //{
-                   // DataManager.AddRecord(dataGridViewRecords.CurrentCell.RowIndex, this.Key.ToString(), "");
-                    //MessageBox.Show("Saved");
-                //}
-            //else
-            //DataManager.AddRecord(0, this.dataGridViewRecords);
-                    //Client.DataManager.ProcessCategory(categoryName, this.CategoryTextBox.Text, Client.DataHolder.update);
-                    //Client.DataHolder.update = Client.DataHolder.updateMode.None;
-                    Program.Window.ShowInterface(new MainScreen());
+            Program.Window.ShowInterface(new MainScreen());
         }
     }
 

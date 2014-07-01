@@ -145,12 +145,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
-    <EmbeddedResource Include="Source\Display\Interfaces\Delete.resx">
-      <DependentUpon>Delete.cs</DependentUpon>
+    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
+      <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
       <DependentUpon>TestScreen.cs</DependentUpon>
@@ -161,13 +158,7 @@
     <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\View.resx">
-      <DependentUpon>View.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Packages.config" />
-    <EmbeddedResource Include="Source\Display\Interfaces\RegisterAccount.resx">
-      <DependentUpon>RegisterAccount.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

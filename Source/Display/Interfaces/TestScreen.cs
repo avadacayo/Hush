@@ -1,4 +1,5 @@
-﻿using Hush.Tools;
+﻿using Hush.Client.Model;
+using Hush.Tools;
 using Hush.Tools.Scripting;
 using System;
 using System.Collections.Generic;
@@ -156,10 +157,20 @@ namespace Hush.Display.Interfaces
         {
 
 
+            Record R = new Record();
+            for (int i = 0; i < 10; i++)
+            {
+                Field A = new Field();
+                A.Key = "key" + i.ToString();
+                A.Value = "value" + i.ToString();
+                R.Fields.Add(A);
+            }
+            R.Name = "Testing Record";
+
             // this is testing code to run the testing.js file
             if (File.Exists("Data/test.js"))
             {
-                HushScript x = new HushScript(Program.Window);
+                HushScript x = new HushScript(Program.Window, R);
                 x.Name = "Data/test";
                 ReturnValue status = x.Load();
                 //    if (status.Success == false)

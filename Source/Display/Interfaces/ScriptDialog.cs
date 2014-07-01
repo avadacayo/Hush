@@ -6,6 +6,7 @@ using Hush.Display.Controls;
 using System.Windows.Forms;
 using System.Drawing;
 using Hush.Tools.Scripting;
+using Hush.Client.Model;
 
 namespace Hush.Display.Interfaces
 {
@@ -107,6 +108,91 @@ namespace Hush.Display.Interfaces
             Controls.Add(ContentPanel);
             Controls.Add(ButtonFlowLayoutPanel);
             ResumeLayout(true);
+
+        }
+
+        #endregion
+
+    }
+
+    class ScriptDialogInit : ScriptDialog
+    {
+
+        #region Controls
+
+        private Label TextLabel;
+
+        #endregion
+
+        public ScriptDialogInit(HushScript ParentScript, Record Record)
+            : base(ParentScript)
+        {
+
+            String Text = String.Empty;
+            Text = String.Format("This script is requesting access to the record named \"{0}\". ", Record.Name);
+
+            if (Record.Fields.Count > 0)
+            {
+
+                Text += "This record has the following fields:\n\n";
+                foreach (Field Item in Record.Fields)
+                {
+                    Text += Item.Key + "\n";
+                }
+
+            }
+
+            else
+            {
+
+                Text += "This record has no data.";
+
+            }
+
+            TextLabel = new Label();
+            TextLabel.AutoSize = true;
+            TextLabel.BackColor = SystemColors.Control;
+            TextLabel.BorderStyle = BorderStyle.None;
+            TextLabel.Font = new Font("Verdana", 11f, FontStyle.Regular);
+            TextLabel.Location = new Point(0, 0);
+            TextLabel.MaximumSize = new Size(480, 0);
+            TextLabel.Text = Text;
+
+            ContentPanel.SuspendLayout();
+            ContentPanel.Controls.Add(TextLabel);
+            ContentPanel.ResumeLayout();
+
+        }
+
+        #region Events
+
+        private void OkButtonClick(Object Sender, EventArgs Args)
+        {
+
+            _ParentScript.RunBody(0, "");
+
+        }
+
+        private void CancelButtonClick(Object Sender, EventArgs Args)
+        {
+
+            Close();
+
+        }
+
+        #endregion
+
+        #region Designer
+
+        protected override void Initialize(List<String> Title)
+        {
+
+            base.Initialize(Title);
+            AddButton(OkButton);
+            AddButton(CancelButton);
+
+            OkButton.Click += OkButtonClick;
+            CancelButton.Click += CancelButtonClick;
 
         }
 

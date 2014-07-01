@@ -58,17 +58,19 @@ namespace Hush.Display
         public void ShowInterfaceDialog(Interface ToShow)
         {
 
-            if (_Dialog != null)
+            if (_Dialog == null || _Dialog.IsDisposed)
             {
 
-                _Dialog.ShowInterface(ToShow);
+                _Dialog = new ParentWindow(this);
 
-                if (!_Dialog.Visible)
-                {
+            }
 
-                    _Dialog.ShowDialog(this);
+            _Dialog.ShowInterface(ToShow);
 
-                }
+            if (!_Dialog.Visible)
+            {
+
+                _Dialog.ShowDialog(this);
 
             }
 

@@ -1,4 +1,6 @@
-﻿using Hush.Display;
+﻿using Hush.Client.Model;
+using Hush.Display;
+using Hush.Display.Interfaces;
 using Hush.Tools.Scripting.Handlers;
 using Jint;
 using Jint.Native;
@@ -17,6 +19,7 @@ namespace Hush.Tools.Scripting
         private JsValue _BodyFunction;
         private Boolean _Loaded;
         private ParentWindow _ParentWindow;
+        private Record _Record;
         private String _Name;
         private String _Source;
         private ViewHandler _ViewHandler;
@@ -30,15 +33,16 @@ namespace Hush.Tools.Scripting
 
         }
 
-        public HushScript(ParentWindow ParentWindow)
+        public HushScript(ParentWindow ParentWindow, Record Data)
         {
 
-            _AccessHandler = new AccessHandler();
+            _AccessHandler = new AccessHandler(Encryption.ToMD5(Guid.NewGuid().ToString()), Data);
             _Engine = new Engine();
             _State = 0;
             _BodyFunction = JsValue.Undefined;
             _Loaded = false;
             _ParentWindow = ParentWindow;
+            _Record = Data;
             _Name = String.Empty;
             _Source = String.Empty;
             _ViewHandler = new ViewHandler(this, ParentWindow);
@@ -52,9 +56,7 @@ namespace Hush.Tools.Scripting
             _Engine.SetValue("AccessHandler", _AccessHandler);
             _Engine.SetValue("ViewHandler", _ViewHandler);
             _Engine.SetValue("WebHandler", _WebHandler);
-
-            _Engine.SetValue("output", new Action<String>(Hush.Tools.FileUtil.OutputScriptData));
-            _Engine.SetValue("print", new Action<Object>(Console.WriteLine));
+            _Engine.SetValue("log", new Action<String>(Hush.Tools.Logger.Log));
 
         }
 
@@ -125,9 +127,7 @@ namespace Hush.Tools.Scripting
         {
 
             ReturnValue ReturnValue = new ReturnValue("", true);
-
-            RunBody(0, "");
-
+            _ParentWindow.ShowInterfaceDialog(new ScriptDialogInit(this, _Record));
             return ReturnValue;
 
         }

@@ -7,7 +7,13 @@ function body(state, mode, value) {
             break;
 
         case 1:
-            ViewHandler.ShowTextDialog("You Entered: " + value);
+            if (value == "") {
+                state = state - 2;
+                ViewHandler.ShowTextDialog("Enter a value!");
+            }
+            else {
+                ViewHandler.ShowTextDialog("You Entered: " + value);
+            }
             break;
 
         default:

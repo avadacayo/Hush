@@ -128,6 +128,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\Tools\FileUtil.cs" />
+    <Compile Include="Source\Tools\Logger.cs" />
     <Compile Include="Source\Tools\ReturnValue.cs" />
     <Compile Include="Source\Tools\Scripting\Handlers\AccessHandler.cs" />
     <Compile Include="Source\Tools\Scripting\HushScript.cs" />

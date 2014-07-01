@@ -14,14 +14,6 @@ namespace Hush.Tools.Scripting.Handlers
         private String _AccessKey;
         private Record _Record;
 
-        public AccessHandler()
-        {
-
-            _AccessKey = String.Empty;
-            _Record = null;
-
-        }
-
         public AccessHandler(String AccessKey, Record Record)
         {
 
@@ -30,23 +22,11 @@ namespace Hush.Tools.Scripting.Handlers
 
         }
 
-        public JsValue Access()
+        public JsValue Access(String Name)
         {
 
             return new JsValue();
 
-        }
-
-        public void GrantAccess(String AccessKey)
-        {
-        }
-
-        public void RequestAccess()
-        {
-        }
-
-        public void RevokeAccess(String AccessKey)
-        {
         }
 
     }

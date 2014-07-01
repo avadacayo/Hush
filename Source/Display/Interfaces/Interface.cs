@@ -40,7 +40,13 @@ namespace Hush.Display.Interfaces
         public void Close()
         {
 
-            _ParentWindow.Close();
+            try
+            {
+                _ParentWindow.Close();
+            }
+            catch (Exception E)
+            {
+            }
 
         }
 

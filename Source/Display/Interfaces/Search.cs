@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Hush;
+using Hush.Client;
 
 namespace Hush.Display.Interfaces
 {
@@ -78,6 +79,7 @@ namespace Hush.Display.Interfaces
             // 
             // DateFromDateTimePicker
             // 
+            this.DateFromDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateFromDateTimePicker.Location = new System.Drawing.Point(10, 37);
             this.DateFromDateTimePicker.Name = "DateFromDateTimePicker";
             this.DateFromDateTimePicker.Size = new System.Drawing.Size(171, 20);
@@ -107,6 +109,7 @@ namespace Hush.Display.Interfaces
             // 
             // DateToDateTimePicker
             // 
+            this.DateToDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateToDateTimePicker.Location = new System.Drawing.Point(10, 87);
             this.DateToDateTimePicker.Name = "DateToDateTimePicker";
             this.DateToDateTimePicker.Size = new System.Drawing.Size(171, 20);
@@ -126,7 +129,7 @@ namespace Hush.Display.Interfaces
             this.FieldCheckBox.Name = "FieldCheckBox";
             this.FieldCheckBox.Size = new System.Drawing.Size(86, 17);
             this.FieldCheckBox.TabIndex = 1;
-            this.FieldCheckBox.Text = "Field:";
+            this.FieldCheckBox.Text = "Field";
             this.FieldCheckBox.UseVisualStyleBackColor = true;
             // 
             // FieldSearchTextBox
@@ -154,6 +157,7 @@ namespace Hush.Display.Interfaces
             this.SearchButton.TabIndex = 2;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // SearchFieldGroupBox
             // 
@@ -211,6 +215,16 @@ namespace Hush.Display.Interfaces
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            String SearchName = this.SearchTextBox.Text;
+            Client.DataHolder.RecordList = DataManager.GetRecordListByName(SearchName);
+            if (FieldCheckBox.Checked)
+                Client.DataHolder.RecordList = DataManager.GetRecordListByFieldName(SearchName, FieldSearchTextBox.Text);
+        
+            Program.Window.ShowInterface(new MainScreen());
         }
 
     }

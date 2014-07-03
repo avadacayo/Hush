@@ -17,6 +17,7 @@ namespace Hush.Client
         static public List<Template> Templates = default(List<Template>);
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
+        static public List<Record> RecordList = default(List<Record>);
 
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
@@ -397,8 +398,14 @@ namespace Hush.Client
                     Field f = new Field();
                     if (Row.Index < Data.NewRowIndex)
                     {
-                        f.Key = Row.Cells[0].Value.ToString();
-                        f.Value = Row.Cells[1].Value.ToString();
+                        if (Row.Cells[0].Value == null)
+                            f.Key = "";
+                        else
+                            f.Key = Row.Cells[0].Value.ToString();
+                        if (Row.Cells[1].Value == null)
+                            f.Value = "";
+                        else
+                            f.Value = Row.Cells[1].Value.ToString();
                    
                         CurrentRecord.Fields.Add(f);
                     }       
@@ -422,7 +429,20 @@ namespace Hush.Client
 
         public static List<Record> GetRecordListByName(String RecordName)
         {
-            return DataHolder.CurrentUser.Records.FindAll(x => x.Name.Contains(RecordName));
+            return DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
+        }
+
+        public static List<Record> GetRecordListByFieldName(String RecordName, String FieldKey)
+        {
+            List<Record> Records = new List<Record>();
+            DataHolder.RecordList = DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
+            DataHolder.RecordList.ForEach(delegate(Record rc)
+                {
+                    Field fd = rc.Fields.Find(f => f.Key.Contains(FieldKey));
+                     
+                    Records.AddRange(DataHolder.RecordList.FindAll(rr => rr.Fields.Contains(fd))); 
+                });
+                return Records;
         }
 
         public static void DeleteCategory(string category)

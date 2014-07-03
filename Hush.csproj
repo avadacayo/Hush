@@ -154,6 +154,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
       <DependentUpon>TestScreen.cs</DependentUpon>

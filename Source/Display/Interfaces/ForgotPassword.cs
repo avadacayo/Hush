@@ -114,7 +114,7 @@ namespace Hush.Display.Interfaces
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new MainScreen());
+            Program.Window.ShowInterface(new SignIn());
         }
 
         private void SecretQuestionButton_Click(object sender, EventArgs e)

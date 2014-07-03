@@ -113,6 +113,18 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ScriptDialog
+            // 
+            this.Name = "ScriptDialog";
+            this.Size = new System.Drawing.Size(740, 415);
+            this.ResumeLayout(false);
+
+        }
+
     }
 
     class ScriptDialogInit : ScriptDialog

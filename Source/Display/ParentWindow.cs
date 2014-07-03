@@ -13,6 +13,10 @@ namespace Hush.Display
         private ParentWindow _Dialog = null;
         private ParentWindow _Parent = null;
 
+        // set to false to view test screen
+        // set to true to open with sign in page
+        private bool demo_setup = false;
+
         public ParentWindow(ParentWindow Parent = null)
         {
 
@@ -27,9 +31,15 @@ namespace Hush.Display
 
             MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            StartPosition = FormStartPosition.CenterScreen; 
+            StartPosition = FormStartPosition.CenterScreen;
 
-            ShowInterface(new TestScreen());
+            if (demo_setup) 
+            { 
+                ShowInterface(new SignIn()); 
+            }
+            else
+                ShowInterface(new TestScreen());
+            
 
         }
 
@@ -113,10 +123,18 @@ namespace Hush.Display
                         break;
 
                     case "TestScreen":
+                    case "SignIn":
                         break;
 
                     default:
-                        ShowInterface(new TestScreen());
+                        if (demo_setup)
+                        {
+                            ShowInterface(new SignIn());
+                        }
+                        else
+                        {
+                            ShowInterface(new TestScreen());
+                        }
                         Args.Cancel = true;
                         break;
 
@@ -134,6 +152,18 @@ namespace Hush.Display
         }
 
         #endregion
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ParentWindow
+            // 
+            this.ClientSize = new System.Drawing.Size(740, 415);
+            this.Name = "ParentWindow";
+            this.ResumeLayout(false);
+
+        }
 
     }
 

@@ -26,6 +26,7 @@ namespace Hush.Display.Interfaces
         private GroupBox SearchFieldGroupBox;
         private Label SearchTermLabel;
         private TextBox SearchTextBox;
+        private Label AdvancedSearchLabel;
         private CheckBox TagsCheckBox;
         
         protected override void Initialize(List<String> Title)
@@ -53,6 +54,7 @@ namespace Hush.Display.Interfaces
             this.TagsCheckBox = new System.Windows.Forms.CheckBox();
             this.SearchTermLabel = new System.Windows.Forms.Label();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.AdvancedSearchLabel = new System.Windows.Forms.Label();
             this.DateRangeGroupBox.SuspendLayout();
             this.SearchFieldGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -62,25 +64,26 @@ namespace Hush.Display.Interfaces
             this.CategoryCheckBox.Location = new System.Drawing.Point(7, 28);
             this.CategoryCheckBox.Name = "CategoryCheckBox";
             this.CategoryCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.CategoryCheckBox.TabIndex = 4;
+            this.CategoryCheckBox.TabIndex = 0;
             this.CategoryCheckBox.Text = "Category";
             this.CategoryCheckBox.UseVisualStyleBackColor = true;
             // 
             // CancelButton
             // 
             this.CancelButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(298, 185);
+            this.CancelButton.Location = new System.Drawing.Point(295, 448);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 0;
+            this.CancelButton.Size = new System.Drawing.Size(100, 25);
+            this.CancelButton.TabIndex = 6;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // DateFromDateTimePicker
             // 
-            this.DateFromDateTimePicker.Location = new System.Drawing.Point(10, 37);
+            this.DateFromDateTimePicker.Location = new System.Drawing.Point(64, 37);
             this.DateFromDateTimePicker.Name = "DateFromDateTimePicker";
-            this.DateFromDateTimePicker.Size = new System.Drawing.Size(171, 20);
+            this.DateFromDateTimePicker.Size = new System.Drawing.Size(235, 27);
             this.DateFromDateTimePicker.TabIndex = 1;
             // 
             // DateFromLabel
@@ -88,7 +91,7 @@ namespace Hush.Display.Interfaces
             this.DateFromLabel.Location = new System.Drawing.Point(7, 20);
             this.DateFromLabel.Name = "DateFromLabel";
             this.DateFromLabel.Size = new System.Drawing.Size(78, 14);
-            this.DateFromLabel.TabIndex = 3;
+            this.DateFromLabel.TabIndex = 0;
             this.DateFromLabel.Text = "From";
             // 
             // DateRangeGroupBox
@@ -98,19 +101,19 @@ namespace Hush.Display.Interfaces
             this.DateRangeGroupBox.Controls.Add(this.DateToLabel);
             this.DateRangeGroupBox.Controls.Add(this.DateFromLabel);
             this.DateRangeGroupBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateRangeGroupBox.Location = new System.Drawing.Point(183, 51);
+            this.DateRangeGroupBox.Location = new System.Drawing.Point(16, 294);
             this.DateRangeGroupBox.Name = "DateRangeGroupBox";
-            this.DateRangeGroupBox.Size = new System.Drawing.Size(190, 114);
-            this.DateRangeGroupBox.TabIndex = 1;
+            this.DateRangeGroupBox.Size = new System.Drawing.Size(354, 132);
+            this.DateRangeGroupBox.TabIndex = 4;
             this.DateRangeGroupBox.TabStop = false;
             this.DateRangeGroupBox.Text = "Date Range";
             // 
             // DateToDateTimePicker
             // 
-            this.DateToDateTimePicker.Location = new System.Drawing.Point(10, 87);
+            this.DateToDateTimePicker.Location = new System.Drawing.Point(64, 87);
             this.DateToDateTimePicker.Name = "DateToDateTimePicker";
-            this.DateToDateTimePicker.Size = new System.Drawing.Size(171, 20);
-            this.DateToDateTimePicker.TabIndex = 0;
+            this.DateToDateTimePicker.Size = new System.Drawing.Size(235, 27);
+            this.DateToDateTimePicker.TabIndex = 3;
             // 
             // DateToLabel
             // 
@@ -125,7 +128,7 @@ namespace Hush.Display.Interfaces
             this.FieldCheckBox.Location = new System.Drawing.Point(7, 97);
             this.FieldCheckBox.Name = "FieldCheckBox";
             this.FieldCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.FieldCheckBox.TabIndex = 1;
+            this.FieldCheckBox.TabIndex = 3;
             this.FieldCheckBox.Text = "Field:";
             this.FieldCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -133,8 +136,8 @@ namespace Hush.Display.Interfaces
             // 
             this.FieldSearchTextBox.Location = new System.Drawing.Point(27, 120);
             this.FieldSearchTextBox.Name = "FieldSearchTextBox";
-            this.FieldSearchTextBox.Size = new System.Drawing.Size(122, 20);
-            this.FieldSearchTextBox.TabIndex = 0;
+            this.FieldSearchTextBox.Size = new System.Drawing.Size(306, 27);
+            this.FieldSearchTextBox.TabIndex = 4;
             // 
             // NameCheckBox
             // 
@@ -148,10 +151,10 @@ namespace Hush.Display.Interfaces
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(193, 185);
+            this.SearchButton.Location = new System.Drawing.Point(186, 448);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(75, 23);
-            this.SearchButton.TabIndex = 2;
+            this.SearchButton.Size = new System.Drawing.Size(100, 25);
+            this.SearchButton.TabIndex = 5;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
             // 
@@ -163,9 +166,9 @@ namespace Hush.Display.Interfaces
             this.SearchFieldGroupBox.Controls.Add(this.TagsCheckBox);
             this.SearchFieldGroupBox.Controls.Add(this.CategoryCheckBox);
             this.SearchFieldGroupBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchFieldGroupBox.Location = new System.Drawing.Point(12, 51);
+            this.SearchFieldGroupBox.Location = new System.Drawing.Point(16, 124);
             this.SearchFieldGroupBox.Name = "SearchFieldGroupBox";
-            this.SearchFieldGroupBox.Size = new System.Drawing.Size(165, 157);
+            this.SearchFieldGroupBox.Size = new System.Drawing.Size(354, 157);
             this.SearchFieldGroupBox.TabIndex = 3;
             this.SearchFieldGroupBox.TabStop = false;
             this.SearchFieldGroupBox.Text = "Search By";
@@ -175,29 +178,40 @@ namespace Hush.Display.Interfaces
             this.TagsCheckBox.Location = new System.Drawing.Point(7, 51);
             this.TagsCheckBox.Name = "TagsCheckBox";
             this.TagsCheckBox.Size = new System.Drawing.Size(86, 17);
-            this.TagsCheckBox.TabIndex = 3;
+            this.TagsCheckBox.TabIndex = 1;
             this.TagsCheckBox.Text = "Tags";
             this.TagsCheckBox.UseVisualStyleBackColor = true;
             // 
             // SearchTermLabel
             // 
             this.SearchTermLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTermLabel.Location = new System.Drawing.Point(12, 9);
+            this.SearchTermLabel.Location = new System.Drawing.Point(33, 69);
             this.SearchTermLabel.Name = "SearchTermLabel";
-            this.SearchTermLabel.Size = new System.Drawing.Size(76, 13);
-            this.SearchTermLabel.TabIndex = 5;
+            this.SearchTermLabel.Size = new System.Drawing.Size(144, 26);
+            this.SearchTermLabel.TabIndex = 1;
             this.SearchTermLabel.Text = "Search Terms:";
             // 
             // SearchTextBox
             // 
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTextBox.Location = new System.Drawing.Point(12, 25);
+            this.SearchTextBox.Location = new System.Drawing.Point(9, 98);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(361, 20);
-            this.SearchTextBox.TabIndex = 4;
+            this.SearchTextBox.Size = new System.Drawing.Size(361, 27);
+            this.SearchTextBox.TabIndex = 2;
+            // 
+            // AdvancedSearchLabel
+            // 
+            this.AdvancedSearchLabel.AutoSize = true;
+            this.AdvancedSearchLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdvancedSearchLabel.Location = new System.Drawing.Point(40, 30);
+            this.AdvancedSearchLabel.Name = "AdvancedSearchLabel";
+            this.AdvancedSearchLabel.Size = new System.Drawing.Size(245, 29);
+            this.AdvancedSearchLabel.TabIndex = 0;
+            this.AdvancedSearchLabel.Text = "Advanced Search";
             // 
             // Search
             // 
+            this.Controls.Add(this.AdvancedSearchLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.DateRangeGroupBox);
             this.Controls.Add(this.SearchButton);
@@ -212,7 +226,10 @@ namespace Hush.Display.Interfaces
             this.PerformLayout();
 
         }
-
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new MainScreen());
+        }
     }
 
 }

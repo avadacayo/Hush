@@ -105,10 +105,9 @@ namespace Hush.Display.Interfaces
 
         }
 
-        private void CancelButtonClick(Object Sender, EventArgs Args)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-           // this.Close();
-            
+            Program.Window.ShowInterface(new MainScreen());
         }
 
         #region Designer
@@ -121,6 +120,7 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
+            this.ErrorMsgsLabel = new System.Windows.Forms.Label();
             this.RegisterLabel = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
@@ -135,141 +135,9 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox = new System.Windows.Forms.TextBox();
             this.RegisterButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.ErrorMsgsLabel = new System.Windows.Forms.Label();
             this.ErrUsernameLabel = new System.Windows.Forms.Label();
             this.ErrPasswordLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // RegisterLabel
-            // 
-            this.RegisterLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterLabel.Location = new System.Drawing.Point(145, 50);
-            this.RegisterLabel.Name = "RegisterLabel";
-            this.RegisterLabel.Size = new System.Drawing.Size(300, 40);
-            this.RegisterLabel.TabIndex = 0;
-            this.RegisterLabel.Text = "Register";
-            // 
-            // UsernameLabel
-            // 
-            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(150, 130);
-            this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(300, 15);
-            this.UsernameLabel.TabIndex = 1;
-            this.UsernameLabel.Text = "Username";
-            // 
-            // UsernameTextBox
-            // 
-            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(150, 150);
-            this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(300, 20);
-            this.UsernameTextBox.TabIndex = 2;
-            this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // PasswordStrengthLabel
-            // 
-            this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordStrengthLabel.Location = new System.Drawing.Point(378, 180);
-            this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
-            this.PasswordStrengthLabel.Size = new System.Drawing.Size(115, 15);
-            this.PasswordStrengthLabel.TabIndex = 3;
-            this.PasswordStrengthLabel.Text = " ";
-            // 
-            // PasswordLabel
-            // 
-            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(150, 180);
-            this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(300, 15);
-            this.PasswordLabel.TabIndex = 3;
-            this.PasswordLabel.Text = "Password";
-            // 
-            // PasswordTextBox
-            // 
-            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(150, 200);
-            this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(300, 20);
-            this.PasswordTextBox.TabIndex = 4;
-            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // RepeatPasswordLabel
-            // 
-            this.RepeatPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordLabel.Location = new System.Drawing.Point(150, 230);
-            this.RepeatPasswordLabel.Name = "RepeatPasswordLabel";
-            this.RepeatPasswordLabel.Size = new System.Drawing.Size(300, 15);
-            this.RepeatPasswordLabel.TabIndex = 5;
-            this.RepeatPasswordLabel.Text = "Repeat Password";
-            // 
-            // RepeatPasswordTextBox
-            // 
-            this.RepeatPasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(150, 250);
-            this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
-            this.RepeatPasswordTextBox.PasswordChar = '*';
-            this.RepeatPasswordTextBox.Size = new System.Drawing.Size(300, 20);
-            this.RepeatPasswordTextBox.TabIndex = 6;
-            this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // SecretQuestionLabel
-            // 
-            this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionLabel.Location = new System.Drawing.Point(150, 280);
-            this.SecretQuestionLabel.Name = "SecretQuestionLabel";
-            this.SecretQuestionLabel.Size = new System.Drawing.Size(300, 15);
-            this.SecretQuestionLabel.TabIndex = 7;
-            this.SecretQuestionLabel.Text = "Secret Question";
-            // 
-            // SecretQuestionTextBox
-            // 
-            this.SecretQuestionTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionTextBox.Location = new System.Drawing.Point(150, 300);
-            this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
-            this.SecretQuestionTextBox.Size = new System.Drawing.Size(300, 20);
-            this.SecretQuestionTextBox.TabIndex = 8;
-            this.SecretQuestionTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // SecretAnswerLabel
-            // 
-            this.SecretAnswerLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerLabel.Location = new System.Drawing.Point(150, 330);
-            this.SecretAnswerLabel.Name = "SecretAnswerLabel";
-            this.SecretAnswerLabel.Size = new System.Drawing.Size(300, 15);
-            this.SecretAnswerLabel.TabIndex = 9;
-            this.SecretAnswerLabel.Text = "Answer";
-            // 
-            // SecretAnswerTextBox
-            // 
-            this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox.Location = new System.Drawing.Point(150, 350);
-            this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
-            this.SecretAnswerTextBox.Size = new System.Drawing.Size(300, 20);
-            this.SecretAnswerTextBox.TabIndex = 10;
-            this.SecretAnswerTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // RegisterButton
-            // 
-            this.RegisterButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterButton.Location = new System.Drawing.Point(150, 390);
-            this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(300, 30);
-            this.RegisterButton.TabIndex = 11;
-            this.RegisterButton.Text = "Register";
-            this.RegisterButton.UseVisualStyleBackColor = true;
-            this.RegisterButton.Click += new System.EventHandler(this.RegisterButtonClick);
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(148, 435);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(70, 30);
-            this.CancelButton.TabIndex = 12;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // ErrorMsgsLabel
             // 
@@ -278,21 +146,155 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
             this.ErrorMsgsLabel.TabIndex = 0;
             // 
+            // RegisterLabel
+            // 
+            this.RegisterLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegisterLabel.Location = new System.Drawing.Point(40, 30);
+            this.RegisterLabel.Name = "RegisterLabel";
+            this.RegisterLabel.Size = new System.Drawing.Size(300, 40);
+            this.RegisterLabel.TabIndex = 0;
+            this.RegisterLabel.Text = "Register";
+            // 
+            // UsernameLabel
+            // 
+            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameLabel.Location = new System.Drawing.Point(42, 84);
+            this.UsernameLabel.Name = "UsernameLabel";
+            this.UsernameLabel.Size = new System.Drawing.Size(107, 17);
+            this.UsernameLabel.TabIndex = 1;
+            this.UsernameLabel.Text = "Username";
+            // 
+            // UsernameTextBox
+            // 
+            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameTextBox.Location = new System.Drawing.Point(42, 104);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.Size = new System.Drawing.Size(334, 27);
+            this.UsernameTextBox.TabIndex = 3;
+            this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // PasswordStrengthLabel
+            // 
+            this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(273, 134);
+            this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
+            this.PasswordStrengthLabel.Size = new System.Drawing.Size(115, 15);
+            this.PasswordStrengthLabel.TabIndex = 6;
+            this.PasswordStrengthLabel.Text = " ";
+            // 
+            // PasswordLabel
+            // 
+            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordLabel.Location = new System.Drawing.Point(42, 138);
+            this.PasswordLabel.Name = "PasswordLabel";
+            this.PasswordLabel.Size = new System.Drawing.Size(107, 15);
+            this.PasswordLabel.TabIndex = 4;
+            this.PasswordLabel.Text = "Password";
+            // 
+            // PasswordTextBox
+            // 
+            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTextBox.Location = new System.Drawing.Point(42, 158);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
+            this.PasswordTextBox.Size = new System.Drawing.Size(334, 27);
+            this.PasswordTextBox.TabIndex = 7;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // RepeatPasswordLabel
+            // 
+            this.RepeatPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RepeatPasswordLabel.Location = new System.Drawing.Point(42, 192);
+            this.RepeatPasswordLabel.Name = "RepeatPasswordLabel";
+            this.RepeatPasswordLabel.Size = new System.Drawing.Size(300, 15);
+            this.RepeatPasswordLabel.TabIndex = 8;
+            this.RepeatPasswordLabel.Text = "Repeat Password";
+            // 
+            // RepeatPasswordTextBox
+            // 
+            this.RepeatPasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(42, 212);
+            this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
+            this.RepeatPasswordTextBox.PasswordChar = '*';
+            this.RepeatPasswordTextBox.Size = new System.Drawing.Size(334, 27);
+            this.RepeatPasswordTextBox.TabIndex = 9;
+            this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // SecretQuestionLabel
+            // 
+            this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionLabel.Location = new System.Drawing.Point(42, 246);
+            this.SecretQuestionLabel.Name = "SecretQuestionLabel";
+            this.SecretQuestionLabel.Size = new System.Drawing.Size(300, 15);
+            this.SecretQuestionLabel.TabIndex = 10;
+            this.SecretQuestionLabel.Text = "Secret Question";
+            // 
+            // SecretQuestionTextBox
+            // 
+            this.SecretQuestionTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionTextBox.Location = new System.Drawing.Point(42, 266);
+            this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
+            this.SecretQuestionTextBox.Size = new System.Drawing.Size(334, 27);
+            this.SecretQuestionTextBox.TabIndex = 11;
+            this.SecretQuestionTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // SecretAnswerLabel
+            // 
+            this.SecretAnswerLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretAnswerLabel.Location = new System.Drawing.Point(42, 300);
+            this.SecretAnswerLabel.Name = "SecretAnswerLabel";
+            this.SecretAnswerLabel.Size = new System.Drawing.Size(300, 15);
+            this.SecretAnswerLabel.TabIndex = 12;
+            this.SecretAnswerLabel.Text = "Answer";
+            // 
+            // SecretAnswerTextBox
+            // 
+            this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 320);
+            this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
+            this.SecretAnswerTextBox.Size = new System.Drawing.Size(334, 27);
+            this.SecretAnswerTextBox.TabIndex = 13;
+            this.SecretAnswerTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // RegisterButton
+            // 
+            this.RegisterButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegisterButton.Location = new System.Drawing.Point(42, 370);
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.Size = new System.Drawing.Size(334, 30);
+            this.RegisterButton.TabIndex = 14;
+            this.RegisterButton.Text = "Register";
+            this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButtonClick);
+            // 
+            // CancelButton
+            // 
+            this.CancelButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.Location = new System.Drawing.Point(280, 453);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(100, 25);
+            this.CancelButton.TabIndex = 15;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // ErrUsernameLabel
             // 
             this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrUsernameLabel.Location = new System.Drawing.Point(450, 150);
+            this.ErrUsernameLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrUsernameLabel.Location = new System.Drawing.Point(137, 84);
             this.ErrUsernameLabel.Name = "ErrUsernameLabel";
             this.ErrUsernameLabel.Size = new System.Drawing.Size(300, 15);
-            this.ErrUsernameLabel.TabIndex = 3;
+            this.ErrUsernameLabel.TabIndex = 2;
             // 
             // ErrPasswordLabel
             // 
             this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrPasswordLabel.Location = new System.Drawing.Point(450, 200);
+            this.ErrPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(137, 138);
             this.ErrPasswordLabel.Name = "ErrPasswordLabel";
             this.ErrPasswordLabel.Size = new System.Drawing.Size(300, 15);
-            this.ErrPasswordLabel.TabIndex = 3;
+            this.ErrPasswordLabel.TabIndex = 5;
             // 
             // RegisterAccount
             // 

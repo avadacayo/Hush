@@ -132,7 +132,8 @@ namespace Hush.Display.Interfaces
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(681, 551);
+            this.button1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(29, 269);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 99);
             this.button1.TabIndex = 4;
@@ -147,6 +148,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
             this.Name = "TestScreen";
+            this.Size = new System.Drawing.Size(740, 415);
             this.ResumeLayout(false);
 
         }

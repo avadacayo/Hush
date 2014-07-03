@@ -56,8 +56,8 @@ namespace Hush.Display.Interfaces
         {
 
             BackColor = Color.White;
-            Height = 600;
-            Width = 500;
+            Height = 740;
+            Width = 415;
 
             ContentPanel = new Panel();
             TitleLabel = new Label();

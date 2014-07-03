@@ -152,14 +152,14 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10F);
             this.UsernameLabel.Location = new System.Drawing.Point(42, 70);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(300, 22);
+            this.UsernameLabel.Size = new System.Drawing.Size(98, 22);
             this.UsernameLabel.TabIndex = 1;
             this.UsernameLabel.Text = "Username";
             // 
             // LoginButton
             // 
             this.LoginButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginButton.Location = new System.Drawing.Point(42, 192);
+            this.LoginButton.Location = new System.Drawing.Point(43, 178);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(324, 30);
             this.LoginButton.TabIndex = 5;
@@ -193,9 +193,10 @@ namespace Hush.Display.Interfaces
             // ErrorMsgsLabel
             // 
             this.ErrorMsgsLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMsgsLabel.Location = new System.Drawing.Point(141, 68);
+            this.ErrorMsgsLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrorMsgsLabel.Location = new System.Drawing.Point(41, 211);
             this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
-            this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
+            this.ErrorMsgsLabel.Size = new System.Drawing.Size(370, 24);
             this.ErrorMsgsLabel.TabIndex = 6;
             // 
             // SignIn

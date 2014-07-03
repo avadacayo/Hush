@@ -171,17 +171,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
-    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
-      <DependentUpon>Edit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
-      <DependentUpon>ViewRecord.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Packages.config" />
     <None Include="packages.config" />

@@ -120,7 +120,7 @@ namespace Hush.Display.Interfaces
 
             ThemePanel.BackColor = Color.FromArgb(230, 230, 230);
             ThemePanel.Size = new Size(Width - 20, 41);
-            PlaceBelow(ThemeLabel, ThemePanel);
+         //   PlaceBelow(ThemeLabel, ThemePanel);
 
             ThemeComboBox.Location = new Point(10, 10);
 
@@ -131,11 +131,11 @@ namespace Hush.Display.Interfaces
             SaveLabel.Size = new Size(Width - 20, 30);
             SaveLabel.Text = "Save Options";
             SaveLabel.TextAlign = ContentAlignment.MiddleLeft;
-            PlaceBelow(ThemePanel, SaveLabel);
+         //   PlaceBelow(ThemePanel, SaveLabel);
 
             SavePanel.BackColor = Color.FromArgb(230, 230, 230);
             SavePanel.Size = new Size(Width - 20, 92);
-            PlaceBelow(SaveLabel, SavePanel);
+            //PlaceBelow(SaveLabel, SavePanel);
 
             ManualSaveRadioButton.Font = new Font("Arial", 8F);
             ManualSaveRadioButton.Location = new Point(10, 10);
@@ -145,12 +145,12 @@ namespace Hush.Display.Interfaces
             AutomaticSaveRadioButton.Font = new Font("Arial", 8F);
             AutomaticSaveRadioButton.Size = new Size(300, 24);
             AutomaticSaveRadioButton.Text = "Automatic Save";
-            PlaceBelow(ManualSaveRadioButton, AutomaticSaveRadioButton);
+          //  PlaceBelow(ManualSaveRadioButton, AutomaticSaveRadioButton);
 
             PromptSaveRadioButton.Font = new Font("Arial", 8F);
             PromptSaveRadioButton.Size = new Size(300, 24);
             PromptSaveRadioButton.Text = "Prompt Save";
-            PlaceBelow(AutomaticSaveRadioButton, PromptSaveRadioButton);
+            //PlaceBelow(AutomaticSaveRadioButton, PromptSaveRadioButton);
 
             SyncLabel.BackColor = Color.FromArgb(200, 200, 200);
             SyncLabel.Font = new Font("Arial", 8F);
@@ -159,11 +159,11 @@ namespace Hush.Display.Interfaces
             SyncLabel.Size = new Size(Width - 20, 30);
             SyncLabel.Text = "Sync Options";
             SyncLabel.TextAlign = ContentAlignment.MiddleLeft;
-            PlaceBelow(SavePanel, SyncLabel);
+            //PlaceBelow(SavePanel, SyncLabel);
 
             SyncPanel.BackColor = Color.FromArgb(230, 230, 230);
             SyncPanel.Size = new Size(Width - 20, 92);
-            PlaceBelow(SyncLabel, SyncPanel);
+            //PlaceBelow(SyncLabel, SyncPanel);
 
             ManualSyncRadioButton.Font = new Font("Arial", 8F);
             ManualSyncRadioButton.Location = new Point(10, 10);
@@ -173,12 +173,12 @@ namespace Hush.Display.Interfaces
             AutomaticSyncRadioButton.Font = new Font("Arial", 8F);
             AutomaticSyncRadioButton.Size = new Size(300, 24);
             AutomaticSyncRadioButton.Text = "Automatic Save";
-            PlaceBelow(ManualSyncRadioButton, AutomaticSyncRadioButton);
+            //PlaceBelow(ManualSyncRadioButton, AutomaticSyncRadioButton);
 
             PromptSyncRadioButton.Font = new Font("Arial", 8F);
             PromptSyncRadioButton.Size = new Size(300, 24);
             PromptSyncRadioButton.Text = "Prompt Save";
-            PlaceBelow(AutomaticSyncRadioButton, PromptSyncRadioButton);
+            //PlaceBelow(AutomaticSyncRadioButton, PromptSyncRadioButton);
 
             UpdateLabel.BackColor = Color.FromArgb(200, 200, 200);
             UpdateLabel.Font = new Font("Arial", 8F);
@@ -187,11 +187,11 @@ namespace Hush.Display.Interfaces
             UpdateLabel.Size = new Size(Width - 20, 30);
             UpdateLabel.Text = "Update Options";
             UpdateLabel.TextAlign = ContentAlignment.MiddleLeft;
-            PlaceBelow(SyncPanel, UpdateLabel);
+            //PlaceBelow(SyncPanel, UpdateLabel);
 
             UpdatePanel.BackColor = Color.FromArgb(230, 230, 230);
             UpdatePanel.Size = new Size(Width - 20, 92);
-            PlaceBelow(UpdateLabel, UpdatePanel);
+            //PlaceBelow(UpdateLabel, UpdatePanel);
 
             ManualUpdateRadioButton.Font = new Font("Arial", 8F);
             ManualUpdateRadioButton.Location = new Point(10, 10);
@@ -201,12 +201,12 @@ namespace Hush.Display.Interfaces
             AutomaticUpdateRadioButton.Font = new Font("Arial", 8F);
             AutomaticUpdateRadioButton.Size = new Size(300, 24);
             AutomaticUpdateRadioButton.Text = "Automatic Save";
-            PlaceBelow(ManualUpdateRadioButton, AutomaticUpdateRadioButton);
+            //PlaceBelow(ManualUpdateRadioButton, AutomaticUpdateRadioButton);
 
             PromptUpdateRadioButton.Font = new Font("Arial", 8F);
             PromptUpdateRadioButton.Size = new Size(300, 24);
             PromptUpdateRadioButton.Text = "Prompt Save";
-            PlaceBelow(AutomaticUpdateRadioButton, PromptUpdateRadioButton);
+            //PlaceBelow(AutomaticUpdateRadioButton, PromptUpdateRadioButton);
 
             //
             ScriptLabel.BackColor = Color.FromArgb(200, 200, 200);
@@ -216,11 +216,11 @@ namespace Hush.Display.Interfaces
             ScriptLabel.Size = new Size(Width - 20, 30);
             ScriptLabel.Text = "Script Options";
             ScriptLabel.TextAlign = ContentAlignment.MiddleLeft;
-            PlaceBelow(UpdatePanel, ScriptLabel);
+            //PlaceBelow(UpdatePanel, ScriptLabel);
 
             ScriptPanel.BackColor = Color.FromArgb(230, 230, 230);
             ScriptPanel.Size = new Size(Width - 20, 92);
-            PlaceBelow(ScriptLabel, ScriptPanel);
+            //PlaceBelow(ScriptLabel, ScriptPanel);
 
             ManualScriptRadioButton.Font = new Font("Arial", 8F);
             ManualScriptRadioButton.Location = new Point(10, 10);
@@ -230,12 +230,12 @@ namespace Hush.Display.Interfaces
             AutomaticScriptRadioButton.Font = new Font("Arial", 8F);
             AutomaticScriptRadioButton.Size = new Size(300, 24);
             AutomaticScriptRadioButton.Text = "Automatic Save";
-            PlaceBelow(ManualScriptRadioButton, AutomaticScriptRadioButton);
+            //PlaceBelow(ManualScriptRadioButton, AutomaticScriptRadioButton);
 
             PromptScriptRadioButton.Font = new Font("Arial", 8F);
             PromptScriptRadioButton.Size = new Size(300, 24);
             PromptScriptRadioButton.Text = "Prompt Save";
-            PlaceBelow(AutomaticScriptRadioButton, PromptScriptRadioButton);
+            //PlaceBelow(AutomaticScriptRadioButton, PromptScriptRadioButton);
 
             ThemePanel.Controls.Add(ThemeComboBox);
 

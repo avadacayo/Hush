@@ -504,6 +504,69 @@ namespace Hush.Client
                 return Records;
         }
 
+        public static bool SaveUserProfileChanges(string username, string fullname) 
+        {
+            bool result = true;
+            if (username.Trim().Length > 0)
+            {
+                if (new DataManager().UniqueAccount(username))
+                {
+                    DataHolder.CurrentUser.Username = username.Trim();
+                }
+                else 
+                {
+                    result = false;
+                }
+                  
+            }
+            else
+            {
+                // return error - username blank
+                // check if username already exists
+                result = false;
+            }
+            
+            if (fullname.Trim().Length > 0)
+            {
+                DataHolder.CurrentUser.FirstName = fullname.Trim();
+            }
+            else
+            {
+                // return error - fullname blank
+                result = false;
+            }
+            return result; // need way to return error msg too
+        }
+         
+        public static string SaveUserProfilePassword(string currentPassword, string newPassword, string confirmPassword) 
+        {
+            string result;
+            if (currentPassword == DataHolder.CurrentUser.Password)
+            {
+                if (newPassword.Trim().Length < 1)
+                {
+                    result = "password blank";
+                }
+                else if (newPassword.Trim() != confirmPassword.Trim())
+                {
+                    // return error - new/confirm passwords don't match
+                    result = "new passwords don't match";
+                    
+                }
+                else
+                {
+                    // password strength
+                    result = "password changed";
+                }
+            }
+            else
+            {
+                // current password incorrect
+                result = "password incorrect";
+            }
+            return result;
+        }
+
         public static void DeleteCategory(string category)
         {
             List<Category> list = DataHolder.CurrentUser.Categories;
@@ -533,7 +596,15 @@ namespace Hush.Client
                 }
             }
         }
-        
+
+        public static void Logout()
+        {
+            bool result = false;
+            DataHolder.CurrentUser = null;
+
+        //    return result;
+        }
+
     }
 
 }

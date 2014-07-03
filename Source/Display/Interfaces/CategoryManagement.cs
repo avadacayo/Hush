@@ -161,10 +161,6 @@ namespace Hush.Display.Interfaces
             }
         }
 
-        void BackButton_Click(object sender, EventArgs e)
-        {
-            Program.Window.Close();   
-        }
 
         void EditButton_Click(object sender, EventArgs e)
         {

@@ -73,9 +73,15 @@ namespace Hush.Display.Interfaces
         {
 
             base.OnControlAdded(e);
+            
 
             Font OldFont = e.Control.Font;
-            Font NewFont = new Font("Verdana", OldFont.Size, OldFont.Style, OldFont.Unit, OldFont.GdiCharSet);
+            float size = OldFont.Size;
+            if (size < 10)
+            {
+                size = 10;
+            }
+            Font NewFont = new Font("Verdana", size, OldFont.Style, OldFont.Unit, OldFont.GdiCharSet);
             e.Control.Font = NewFont;
 
         }

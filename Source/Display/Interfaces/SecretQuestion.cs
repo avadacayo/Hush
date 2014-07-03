@@ -22,6 +22,8 @@ namespace Hush.Display.Interfaces
         private TextBox UsernameTextBox;
         private Button AnswerQuestionButton;
         private Label PasswordStrengthLabel;
+        private Label SecretQuestionHeaderLabel;
+        private Button CancelButton;
         private TextBox RepeatPasswordTextBox;
     
 
@@ -45,137 +47,164 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
-            this.SecretQuestionLabel = new System.Windows.Forms.Label();
-            this.SecretAnswerTextBox = new System.Windows.Forms.TextBox();
-            this.ContinueButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.PasswordLabel = new System.Windows.Forms.Label();
-            this.RepeatPasswordLabel = new System.Windows.Forms.Label();
-            this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.RepeatPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.UsernameLabel = new System.Windows.Forms.Label();
-            this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.AnswerQuestionButton = new System.Windows.Forms.Button();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.SecretQuestionHeaderLabel = new System.Windows.Forms.Label();
             this.PasswordStrengthLabel = new System.Windows.Forms.Label();
+            this.AnswerQuestionButton = new System.Windows.Forms.Button();
+            this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameLabel = new System.Windows.Forms.Label();
+            this.RepeatPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.RepeatPasswordLabel = new System.Windows.Forms.Label();
+            this.PasswordLabel = new System.Windows.Forms.Label();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.ContinueButton = new System.Windows.Forms.Button();
+            this.SecretAnswerTextBox = new System.Windows.Forms.TextBox();
+            this.SecretQuestionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // SecretQuestionLabel
+            // CancelButton
             // 
-            this.SecretQuestionLabel.AutoSize = true;
-            this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionLabel.Location = new System.Drawing.Point(294, 199);
-            this.SecretQuestionLabel.Name = "SecretQuestionLabel";
-            this.SecretQuestionLabel.Size = new System.Drawing.Size(124, 13);
-            this.SecretQuestionLabel.TabIndex = 0;
-            this.SecretQuestionLabel.Text = "SecretQuestionLabel";
+            this.CancelButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.Location = new System.Drawing.Point(280, 453);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(100, 25);
+            this.CancelButton.TabIndex = 16;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // SecretAnswerTextBox
+            // SecretQuestionHeaderLabel
             // 
-            this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox.Location = new System.Drawing.Point(297, 217);
-            this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
-            this.SecretAnswerTextBox.Size = new System.Drawing.Size(331, 21);
-            this.SecretAnswerTextBox.TabIndex = 1;
-            // 
-            // ContinueButton
-            // 
-            this.ContinueButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContinueButton.Location = new System.Drawing.Point(297, 244);
-            this.ContinueButton.Name = "ContinueButton";
-            this.ContinueButton.Size = new System.Drawing.Size(75, 23);
-            this.ContinueButton.TabIndex = 2;
-            this.ContinueButton.Text = "Continue";
-            this.ContinueButton.UseVisualStyleBackColor = true;
-            this.ContinueButton.Click += new System.EventHandler(this.Continue_Click);
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveButton.Location = new System.Drawing.Point(294, 415);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(331, 23);
-            this.SaveButton.TabIndex = 3;
-            this.SaveButton.Text = "Save and Log In";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
-            // PasswordLabel
-            // 
-            this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(294, 306);
-            this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(91, 13);
-            this.PasswordLabel.TabIndex = 4;
-            this.PasswordLabel.Text = "PasswordLabel";
-            // 
-            // RepeatPasswordLabel
-            // 
-            this.RepeatPasswordLabel.AutoSize = true;
-            this.RepeatPasswordLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordLabel.Location = new System.Drawing.Point(294, 362);
-            this.RepeatPasswordLabel.Name = "RepeatPasswordLabel";
-            this.RepeatPasswordLabel.Size = new System.Drawing.Size(131, 13);
-            this.RepeatPasswordLabel.TabIndex = 5;
-            this.RepeatPasswordLabel.Text = "RepeatPasswordLabel";
-            // 
-            // PasswordTextBox
-            // 
-            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(297, 323);
-            this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(328, 21);
-            this.PasswordTextBox.TabIndex = 6;
-            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            // 
-            // RepeatPasswordTextBox
-            // 
-            this.RepeatPasswordTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(297, 379);
-            this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
-            this.RepeatPasswordTextBox.Size = new System.Drawing.Size(328, 21);
-            this.RepeatPasswordTextBox.TabIndex = 7;
-            // 
-            // UsernameLabel
-            // 
-            this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(294, 108);
-            this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(95, 13);
-            this.UsernameLabel.TabIndex = 8;
-            this.UsernameLabel.Text = "UsernameLabel";
-            // 
-            // UsernameTextBox
-            // 
-            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(297, 124);
-            this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(328, 21);
-            this.UsernameTextBox.TabIndex = 9;
-            // 
-            // AnswerQuestionButton
-            // 
-            this.AnswerQuestionButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnswerQuestionButton.Location = new System.Drawing.Point(297, 151);
-            this.AnswerQuestionButton.Name = "AnswerQuestionButton";
-            this.AnswerQuestionButton.Size = new System.Drawing.Size(75, 23);
-            this.AnswerQuestionButton.TabIndex = 10;
-            this.AnswerQuestionButton.Text = "Continue";
-            this.AnswerQuestionButton.UseVisualStyleBackColor = true;
-            this.AnswerQuestionButton.Click += new System.EventHandler(this.AnswerQuestionButton_Click);
+            this.SecretQuestionHeaderLabel.AutoSize = true;
+            this.SecretQuestionHeaderLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionHeaderLabel.Location = new System.Drawing.Point(40, 30);
+            this.SecretQuestionHeaderLabel.Name = "SecretQuestionHeaderLabel";
+            this.SecretQuestionHeaderLabel.Size = new System.Drawing.Size(192, 25);
+            this.SecretQuestionHeaderLabel.TabIndex = 12;
+            this.SecretQuestionHeaderLabel.Text = "Reset Password";
             // 
             // PasswordStrengthLabel
             // 
-            this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordStrengthLabel.Location = new System.Drawing.Point(548, 306);
+            this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(296, 271);
             this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
             this.PasswordStrengthLabel.Size = new System.Drawing.Size(115, 15);
             this.PasswordStrengthLabel.TabIndex = 11;
             this.PasswordStrengthLabel.Text = " ";
             // 
+            // AnswerQuestionButton
+            // 
+            this.AnswerQuestionButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnswerQuestionButton.Location = new System.Drawing.Point(280, 113);
+            this.AnswerQuestionButton.Name = "AnswerQuestionButton";
+            this.AnswerQuestionButton.Size = new System.Drawing.Size(100, 25);
+            this.AnswerQuestionButton.TabIndex = 10;
+            this.AnswerQuestionButton.Text = "Continue";
+            this.AnswerQuestionButton.UseVisualStyleBackColor = true;
+            this.AnswerQuestionButton.Click += new System.EventHandler(this.AnswerQuestionButton_Click);
+            // 
+            // UsernameTextBox
+            // 
+            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameTextBox.Location = new System.Drawing.Point(42, 83);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.Size = new System.Drawing.Size(338, 28);
+            this.UsernameTextBox.TabIndex = 9;
+            // 
+            // UsernameLabel
+            // 
+            this.UsernameLabel.AutoSize = true;
+            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameLabel.Location = new System.Drawing.Point(42, 63);
+            this.UsernameLabel.Name = "UsernameLabel";
+            this.UsernameLabel.Size = new System.Drawing.Size(147, 20);
+            this.UsernameLabel.TabIndex = 8;
+            this.UsernameLabel.Text = "Enter Username";
+            // 
+            // RepeatPasswordTextBox
+            // 
+            this.RepeatPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(42, 344);
+            this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
+            this.RepeatPasswordTextBox.PasswordChar = '*';
+            this.RepeatPasswordTextBox.Size = new System.Drawing.Size(338, 28);
+            this.RepeatPasswordTextBox.TabIndex = 7;
+            // 
+            // PasswordTextBox
+            // 
+            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTextBox.Location = new System.Drawing.Point(42, 289);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
+            this.PasswordTextBox.Size = new System.Drawing.Size(338, 28);
+            this.PasswordTextBox.TabIndex = 6;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            // 
+            // RepeatPasswordLabel
+            // 
+            this.RepeatPasswordLabel.AutoSize = true;
+            this.RepeatPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RepeatPasswordLabel.Location = new System.Drawing.Point(42, 324);
+            this.RepeatPasswordLabel.Name = "RepeatPasswordLabel";
+            this.RepeatPasswordLabel.Size = new System.Drawing.Size(155, 20);
+            this.RepeatPasswordLabel.TabIndex = 5;
+            this.RepeatPasswordLabel.Text = "Repeat Password";
+            // 
+            // PasswordLabel
+            // 
+            this.PasswordLabel.AutoSize = true;
+            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordLabel.Location = new System.Drawing.Point(42, 271);
+            this.PasswordLabel.Name = "PasswordLabel";
+            this.PasswordLabel.Size = new System.Drawing.Size(132, 20);
+            this.PasswordLabel.TabIndex = 4;
+            this.PasswordLabel.Text = "New Password";
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveButton.Location = new System.Drawing.Point(42, 380);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(338, 25);
+            this.SaveButton.TabIndex = 3;
+            this.SaveButton.Text = "Save and Log In";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // ContinueButton
+            // 
+            this.ContinueButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContinueButton.Location = new System.Drawing.Point(280, 218);
+            this.ContinueButton.Name = "ContinueButton";
+            this.ContinueButton.Size = new System.Drawing.Size(100, 25);
+            this.ContinueButton.TabIndex = 2;
+            this.ContinueButton.Text = "Continue";
+            this.ContinueButton.UseVisualStyleBackColor = true;
+            this.ContinueButton.Click += new System.EventHandler(this.Continue_Click);
+            // 
+            // SecretAnswerTextBox
+            // 
+            this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 184);
+            this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
+            this.SecretAnswerTextBox.Size = new System.Drawing.Size(338, 28);
+            this.SecretAnswerTextBox.TabIndex = 1;
+            // 
+            // SecretQuestionLabel
+            // 
+            this.SecretQuestionLabel.AutoSize = true;
+            this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionLabel.Location = new System.Drawing.Point(41, 161);
+            this.SecretQuestionLabel.Name = "SecretQuestionLabel";
+            this.SecretQuestionLabel.Size = new System.Drawing.Size(146, 20);
+            this.SecretQuestionLabel.TabIndex = 0;
+            this.SecretQuestionLabel.Text = "Secret Question";
+            // 
             // SecretQuestion
             // 
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SecretQuestionHeaderLabel);
             this.Controls.Add(this.PasswordStrengthLabel);
             this.Controls.Add(this.AnswerQuestionButton);
             this.Controls.Add(this.UsernameTextBox);
@@ -294,8 +323,12 @@ namespace Hush.Display.Interfaces
             else
                 SaveButton.Enabled = false;
 
-        }  
+        }
 
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new MainScreen());
+        }
 
     }
 }

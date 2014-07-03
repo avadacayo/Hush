@@ -170,15 +170,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
-    <EmbeddedResource Include="Source\Display\Interfaces\Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Packages.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -197,8 +191,6 @@
   <ItemGroup>
     <Content Include="Blogger-Key.ico" />
     <Content Include="Data\test.js" />
-    <Content Include="Hopstarter-Malware-Spy.ico" />
-    <Content Include="Rafiqul-Hassan-Blogger-Key.ico" />
     <Content Include="Spy.ico" />
   </ItemGroup>
   <ItemGroup>

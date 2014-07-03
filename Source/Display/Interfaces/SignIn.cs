@@ -27,7 +27,6 @@ namespace Hush.Display.Interfaces
         private TextBox PasswordTextBox;
         private LinkLabel ForgotPasswordLinkLabel;
         private Button DemoButton;
-        private LinkLabel RegisterPageLinkLabel;
         private Label ErrorMsgsLabel;
         
         private void LoginButtonClick(Object Sender, EventArgs Args)
@@ -98,44 +97,42 @@ namespace Hush.Display.Interfaces
             this.RegisterPageButton = new System.Windows.Forms.LinkLabel();
             this.ForgotPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
-            this.RegisterPageLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // DemoButton
             // 
-            this.DemoButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DemoButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DemoButton.Location = new System.Drawing.Point(45, 435);
             this.DemoButton.Name = "DemoButton";
-            this.DemoButton.Size = new System.Drawing.Size(300, 36);
+            this.DemoButton.Size = new System.Drawing.Size(321, 36);
             this.DemoButton.TabIndex = 10;
             this.DemoButton.Text = "Sign in as demo user";
             this.DemoButton.UseVisualStyleBackColor = true;
             this.DemoButton.Click += new System.EventHandler(this.DemoButton_Click);
             // 
             // LoginLabel
-            //
+            // 
             this.LoginLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginLabel.Location = new System.Drawing.Point(40, 30);
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(300, 40);
             this.LoginLabel.TabIndex = 0;
             this.LoginLabel.Text = "Sign In";
-
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 8F);
-            this.PasswordTextBox.Location = new System.Drawing.Point(42, 158);
+            this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F);
+            this.PasswordTextBox.Location = new System.Drawing.Point(42, 144);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(300, 27);
+            this.PasswordTextBox.Size = new System.Drawing.Size(324, 28);
             this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // PasswordLabel
             // 
-            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 8F);
-            this.PasswordLabel.Location = new System.Drawing.Point(42, 138);
+            this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.PasswordLabel.Location = new System.Drawing.Point(42, 124);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(300, 20);
             this.PasswordLabel.TabIndex = 3;
@@ -143,17 +140,17 @@ namespace Hush.Display.Interfaces
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 8F);
-            this.UsernameTextBox.Location = new System.Drawing.Point(42, 104);
+            this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F);
+            this.UsernameTextBox.Location = new System.Drawing.Point(42, 90);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(300, 27);
+            this.UsernameTextBox.Size = new System.Drawing.Size(324, 28);
             this.UsernameTextBox.TabIndex = 2;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // UsernameLabel
             // 
-            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 8F);
-            this.UsernameLabel.Location = new System.Drawing.Point(42, 84);
+            this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.UsernameLabel.Location = new System.Drawing.Point(42, 70);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(300, 22);
             this.UsernameLabel.TabIndex = 1;
@@ -161,10 +158,10 @@ namespace Hush.Display.Interfaces
             // 
             // LoginButton
             // 
-            this.LoginButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginButton.Location = new System.Drawing.Point(42, 206);
+            this.LoginButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginButton.Location = new System.Drawing.Point(42, 192);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(300, 30);
+            this.LoginButton.Size = new System.Drawing.Size(324, 30);
             this.LoginButton.TabIndex = 5;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
@@ -172,51 +169,37 @@ namespace Hush.Display.Interfaces
             // 
             // RegisterPageButton
             // 
-            this.RegisterPageButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageButton.Location = new System.Drawing.Point(42, 337);
+            this.RegisterPageButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegisterPageButton.Location = new System.Drawing.Point(39, 283);
             this.RegisterPageButton.Name = "RegisterPageButton";
             this.RegisterPageButton.Size = new System.Drawing.Size(300, 30);
-
             this.RegisterPageButton.TabIndex = 9;
-
             this.RegisterPageButton.TabStop = true;
-
-            this.RegisterPageButton.Text = "Create an Account";
+            this.RegisterPageButton.Text = "Create New Account";
             this.RegisterPageButton.Click += new System.EventHandler(this.RegisterPageButtonClick);
             // 
             // ForgotPasswordLinkLabel
             // 
-            this.ForgotPasswordLinkLabel.Font = new System.Drawing.Font("Verdana", 8F);
-            this.ForgotPasswordLinkLabel.Location = new System.Drawing.Point(42, 262);
+            this.ForgotPasswordLinkLabel.Font = new System.Drawing.Font("Verdana", 10F);
+            this.ForgotPasswordLinkLabel.Location = new System.Drawing.Point(39, 249);
             this.ForgotPasswordLinkLabel.Name = "ForgotPasswordLinkLabel";
             this.ForgotPasswordLinkLabel.Size = new System.Drawing.Size(158, 25);
             this.ForgotPasswordLinkLabel.TabIndex = 7;
             this.ForgotPasswordLinkLabel.TabStop = true;
-            this.ForgotPasswordLinkLabel.Text = "Forgot password";
+            this.ForgotPasswordLinkLabel.Text = "Forgot Password";
+            this.ForgotPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForgotPasswordLinkLabel_LinkClicked);
+            this.ForgotPasswordLinkLabel.Click += new System.EventHandler(this.ForgotPasswordLinkLabel_Click);
             // 
             // ErrorMsgsLabel
             // 
-            this.ErrorMsgsLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMsgsLabel.Location = new System.Drawing.Point(141, 82);
+            this.ErrorMsgsLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorMsgsLabel.Location = new System.Drawing.Point(141, 68);
             this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
             this.ErrorMsgsLabel.TabIndex = 6;
             // 
-            // RegisterPageLinkLabel
-            // 
-            this.RegisterPageLinkLabel.AutoSize = true;
-            this.RegisterPageLinkLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterPageLinkLabel.Location = new System.Drawing.Point(43, 298);
-            this.RegisterPageLinkLabel.Name = "RegisterPageLinkLabel";
-            this.RegisterPageLinkLabel.Size = new System.Drawing.Size(157, 18);
-            this.RegisterPageLinkLabel.TabIndex = 8;
-            this.RegisterPageLinkLabel.TabStop = true;
-            this.RegisterPageLinkLabel.Text = "Create an account";
-            this.RegisterPageLinkLabel.Click += new System.EventHandler(this.RegisterPageButtonClick);
-            // 
             // SignIn
             // 
-            this.Controls.Add(this.RegisterPageLinkLabel);
             this.Controls.Add(this.DemoButton);
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.PasswordTextBox);
@@ -234,6 +217,16 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+
+        private void ForgotPasswordLinkLabel_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new ForgotPassword());
+        }
+
+        private void ForgotPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.Window.ShowInterface(new ForgotPassword());
+        }
 
        
 

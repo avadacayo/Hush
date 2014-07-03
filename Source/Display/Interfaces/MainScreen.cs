@@ -275,12 +275,12 @@ namespace Hush.Display.Interfaces
 
         private void ManageCategoriesButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new CategoryManagement());
+            Program.Window.ShowInterfaceDialog(new CategoryManagement());
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new Settings());
+            Program.Window.ShowInterfaceDialog(new Settings());
         }
 
         private void ViewButton_Click(object sender, EventArgs e)

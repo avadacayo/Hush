@@ -30,6 +30,113 @@ namespace Hush.Client
         private Boolean loaded = false;
         BinaryFormatter BFormatter;
 
+        public static String GetUserSaveOption()
+        {
+
+            String SaveOption = "Automatic";
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Save")
+                {
+
+                    SaveOption = Item.Value;
+                    break;
+
+                }
+
+            }
+
+            Console.WriteLine(SaveOption);
+            return SaveOption;
+
+        }
+
+        public static void SetUserSaveOption(String SaveValue)
+        {
+
+            Boolean HasSaveValue = false;
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Save")
+                {
+
+                    HasSaveValue = true;
+                    Item.Value = SaveValue;
+                    break;
+
+                }
+
+            }
+
+            if (!HasSaveValue)
+            {
+
+                Option NewOption = new Option();
+                NewOption.Key = "Save";
+                NewOption.Value = SaveValue;
+                DataHolder.CurrentUser.Options.Add(NewOption);
+
+            }
+
+        }
+
+        public static String GetUserSyncOption()
+        {
+
+            String SyncOption = "Automatic";
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Sync")
+                {
+
+                    SyncOption = Item.Value;
+                    break;
+
+                }
+
+            }
+
+            return SyncOption;
+
+        }
+
+        public static void SetUserSyncOption(String SyncValue)
+        {
+
+            Boolean HasSyncValue = false;
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Sync")
+                {
+
+                    HasSyncValue = true;
+                    Item.Value = SyncValue;
+                    break;
+
+                }
+
+            }
+
+            if (!HasSyncValue)
+            {
+
+                Option NewOption = new Option();
+                NewOption.Key = "Sync";
+                NewOption.Value = SyncValue;
+                DataHolder.CurrentUser.Options.Add(NewOption);
+
+            }
+
+        }
+
         public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
         {
             BFormatter = new BinaryFormatter(); 

@@ -20,7 +20,7 @@ namespace Hush.Display.Interfaces
     {
         private Label LoginLabel;
         private Button LoginButton;
-        private Button RegisterPageButton;
+        private LinkLabel RegisterPageButton;
         private Label UsernameLabel;
         private TextBox UsernameTextBox;
         private Label PasswordLabel;
@@ -34,7 +34,6 @@ namespace Hush.Display.Interfaces
             if ((new DataManager().TryLogin(UsernameTextBox.Text, PasswordTextBox.Text)))
             {
                 Program.Window.ShowInterface(new MainScreen());
-                return;
             }
 
             else
@@ -94,7 +93,7 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.LoginButton = new System.Windows.Forms.Button();
-            this.RegisterPageButton = new System.Windows.Forms.Button();
+            this.RegisterPageButton = new System.Windows.Forms.LinkLabel();
             this.ForgotPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
             this.DemoButton = new System.Windows.Forms.Button();
@@ -103,9 +102,9 @@ namespace Hush.Display.Interfaces
             // LoginLabel
             // 
             this.LoginLabel.Font = new System.Drawing.Font("Verdana", 27F);
-            this.LoginLabel.Location = new System.Drawing.Point(302, 142);
+            this.LoginLabel.Location = new System.Drawing.Point(302, 136);
             this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(300, 40);
+            this.LoginLabel.Size = new System.Drawing.Size(300, 66);
             this.LoginLabel.TabIndex = 1;
             this.LoginLabel.Text = "Log in";
             // 
@@ -164,8 +163,8 @@ namespace Hush.Display.Interfaces
             this.RegisterPageButton.Name = "RegisterPageButton";
             this.RegisterPageButton.Size = new System.Drawing.Size(300, 30);
             this.RegisterPageButton.TabIndex = 8;
+            this.RegisterPageButton.TabStop = true;
             this.RegisterPageButton.Text = "Create an Account";
-            this.RegisterPageButton.UseVisualStyleBackColor = true;
             this.RegisterPageButton.Click += new System.EventHandler(this.RegisterPageButtonClick);
             // 
             // ForgotPasswordLinkLabel

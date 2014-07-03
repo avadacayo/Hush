@@ -27,9 +27,53 @@ namespace Hush.Client
     class DataManager
     {
 
-        private Boolean loaded = false;
+        private Boolean loaded = false , updated = false;
         BinaryFormatter BFormatter;
 
+        public Boolean ForgotPassword(String Username, String Password)
+        {
+            if (!loaded)
+            {
+                LoadUsers();
+            }
+            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (!Username.Equals(Password))
+            {
+                user.Password = Password;
+
+                try
+                {
+                    FileStream writerFS;
+                    
+                        writerFS =
+                        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
+                    
+                    if (!loaded)
+                    {
+                        LoadUsers();
+                    }
+                    BFormatter.Serialize(writerFS, user);
+                    writerFS.Close();
+                    DataHolder.CurrentUser = user;
+                    updated = true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            return updated;
+        }
+
+        public Boolean CheckSecretAnswer(String Username, String Answer)
+        {
+            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (user.SecretAnswer.Equals(Answer))
+                return true;
+
+            else
+                return false;
+        }
         public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
         {
             BFormatter = new BinaryFormatter(); 
@@ -123,6 +167,18 @@ namespace Hush.Client
             return retrieved;
         }
 
+        public String GetSecretQuestion(String Username)
+        {
+            LoadUsers();
+
+            User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (tempUser != null)
+                return tempUser.SecretQuestion;
+
+            else
+                return "";
+        }
+
         public Boolean UniqueAccount(String Username)
         {
             Boolean unique = false;
@@ -164,6 +220,7 @@ namespace Hush.Client
 
         }
 
+        //TODO: move this somewhere
         public Int32 PasswordStrength(String Password)
         {
             Int32 val = 0;
@@ -199,7 +256,8 @@ namespace Hush.Client
 
             return val;
         }
-       
+
+        
         public static void AddRecord()
         {
             Record NewRecord = new Record();

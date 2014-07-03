@@ -16,6 +16,7 @@ namespace Hush.Display.Interfaces
         private Button SignInButton;
         private Button RegisterAccountButton;
         private Button button1;
+        private Button GeneratePasswordButton;
         private Button ForgotPasswordButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
@@ -78,6 +79,10 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new UserProfile());
         }
 
+        private void GeneratePasswordButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new GeneratePassword());
+        }
         #region Designer
 
         protected override void Initialize(List<String> Title)
@@ -95,6 +100,7 @@ namespace Hush.Display.Interfaces
             this.RegisterAccountButton = new System.Windows.Forms.Button();
             this.ForgotPasswordButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.GeneratePasswordButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SignInButton
@@ -130,6 +136,17 @@ namespace Hush.Display.Interfaces
             this.ForgotPasswordButton.UseVisualStyleBackColor = true;
             this.ForgotPasswordButton.Click += new System.EventHandler(this.ForgotPasswordButtonClick);
             // 
+            // GeneratePasswordButton
+            // 
+            this.GeneratePasswordButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GeneratePasswordButton.Location = new System.Drawing.Point(10, 133);
+            this.GeneratePasswordButton.Name = "GeneratePasswordButton";
+            this.GeneratePasswordButton.Size = new System.Drawing.Size(150, 25);
+            this.GeneratePasswordButton.TabIndex = 3;
+            this.GeneratePasswordButton.Text = "Generate Password Screen";
+            this.GeneratePasswordButton.UseVisualStyleBackColor = true;
+            this.GeneratePasswordButton.Click += new System.EventHandler(this.GeneratePasswordButtonClick);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,6 +164,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
+            this.Controls.Add(this.GeneratePasswordButton);
             this.Name = "TestScreen";
             this.Size = new System.Drawing.Size(740, 415);
             this.ResumeLayout(false);

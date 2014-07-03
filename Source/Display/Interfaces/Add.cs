@@ -108,7 +108,9 @@ namespace Hush.Display.Interfaces
             this.Cancel.TabIndex = 9;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+
             this.Cancel.Click += new System.EventHandler(this.CancelButton_Click);
+
             // 
             // CategoryComboBox
             // 
@@ -199,15 +201,23 @@ namespace Hush.Display.Interfaces
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
             Record rc = new Record();
+            string k, v;
             for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
             {
-                string k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
-                string v = this.RecordsDataGridView.Rows[i].Cells["Value"].Value.ToString();
+                if (this.RecordsDataGridView.Rows[i].Cells["Key"].Value == null)
+                    k = "";
+                else
+                    k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
+                if (this.RecordsDataGridView.Rows[i].Cells["Value"].Value == null)
+                    v = "";
+                else
+                    v = this.RecordsDataGridView.Rows[i].Cells["Value"].Value.ToString();
                 DataManager.AddField(rc, k, v);
             }
 
             rc.Name = this.RecordTextBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
+            DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
             Program.Window.ShowInterface(new MainScreen());
         }
 

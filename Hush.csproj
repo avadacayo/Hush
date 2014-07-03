@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -90,6 +91,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\Add.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\GeneratePassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Display\Interfaces\SecretQuestion.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\Display\Interfaces\ViewRecord.cs">
@@ -164,6 +171,18 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
+      <DependentUpon>ViewRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Packages.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -17,6 +17,7 @@ namespace Hush.Client
         static public List<Template> Templates = default(List<Template>);
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
+        static public List<Record> RecordList = default(List<Record>);
 
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
@@ -27,8 +28,160 @@ namespace Hush.Client
     class DataManager
     {
 
-        private Boolean loaded = false;
+        private Boolean loaded = false , updated = false;
         BinaryFormatter BFormatter;
+
+        public Boolean ForgotPassword(String Username, String Password)
+        {
+            if (!loaded)
+            {
+                LoadUsers();
+            }
+            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (!Username.Equals(Password))
+            {
+                user.Password = Password;
+
+                try
+                {
+                    FileStream writerFS;
+                    
+                        writerFS =
+                        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
+                    
+                    if (!loaded)
+                    {
+                        LoadUsers();
+                    }
+                    BFormatter.Serialize(writerFS, user);
+                    writerFS.Close();
+                    DataHolder.CurrentUser = user;
+                    updated = true;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            return updated;
+        }
+
+        public Boolean CheckSecretAnswer(String Username, String Answer)
+        {
+            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (user.SecretAnswer.Equals(Answer))
+                return true;
+
+            else
+                return false;
+        }
+
+        public static String GetUserSaveOption()
+        {
+
+            String SaveOption = "Automatic";
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Save")
+                {
+
+                    SaveOption = Item.Value;
+                    break;
+
+                }
+
+            }
+
+            Console.WriteLine(SaveOption);
+            return SaveOption;
+
+        }
+
+        public static void SetUserSaveOption(String SaveValue)
+        {
+
+            Boolean HasSaveValue = false;
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Save")
+                {
+
+                    HasSaveValue = true;
+                    Item.Value = SaveValue;
+                    break;
+
+                }
+
+            }
+
+            if (!HasSaveValue)
+            {
+
+                Option NewOption = new Option();
+                NewOption.Key = "Save";
+                NewOption.Value = SaveValue;
+                DataHolder.CurrentUser.Options.Add(NewOption);
+
+            }
+
+        }
+
+        public static String GetUserSyncOption()
+        {
+
+            String SyncOption = "Automatic";
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Sync")
+                {
+
+                    SyncOption = Item.Value;
+                    break;
+
+                }
+
+            }
+
+            return SyncOption;
+
+        }
+
+        public static void SetUserSyncOption(String SyncValue)
+        {
+
+            Boolean HasSyncValue = false;
+
+            foreach (Option Item in DataHolder.CurrentUser.Options)
+            {
+
+                if (Item.Key == "Sync")
+                {
+
+                    HasSyncValue = true;
+                    Item.Value = SyncValue;
+                    break;
+
+                }
+
+            }
+
+            if (!HasSyncValue)
+            {
+
+                Option NewOption = new Option();
+                NewOption.Key = "Sync";
+                NewOption.Value = SyncValue;
+                DataHolder.CurrentUser.Options.Add(NewOption);
+
+            }
+
+        }
 
         public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
         {
@@ -123,6 +276,18 @@ namespace Hush.Client
             return retrieved;
         }
 
+        public String GetSecretQuestion(String Username)
+        {
+            LoadUsers();
+
+            User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            if (tempUser != null)
+                return tempUser.SecretQuestion;
+
+            else
+                return "";
+        }
+
         public Boolean UniqueAccount(String Username)
         {
             Boolean unique = false;
@@ -164,6 +329,7 @@ namespace Hush.Client
 
         }
 
+        //TODO: move this somewhere
         public Int32 PasswordStrength(String Password)
         {
             Int32 val = 0;
@@ -199,7 +365,8 @@ namespace Hush.Client
 
             return val;
         }
-       
+
+        
         public static void AddRecord()
         {
             Record NewRecord = new Record();
@@ -290,8 +457,14 @@ namespace Hush.Client
                     Field f = new Field();
                     if (Row.Index < Data.NewRowIndex)
                     {
-                        f.Key = Row.Cells[0].Value.ToString();
-                        f.Value = Row.Cells[1].Value.ToString();
+                        if (Row.Cells[0].Value == null)
+                            f.Key = "";
+                        else
+                            f.Key = Row.Cells[0].Value.ToString();
+                        if (Row.Cells[1].Value == null)
+                            f.Value = "";
+                        else
+                            f.Value = Row.Cells[1].Value.ToString();
                    
                         CurrentRecord.Fields.Add(f);
                     }       
@@ -315,7 +488,20 @@ namespace Hush.Client
 
         public static List<Record> GetRecordListByName(String RecordName)
         {
-            return DataHolder.CurrentUser.Records.FindAll(x => x.Name.Contains(RecordName));
+            return DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
+        }
+
+        public static List<Record> GetRecordListByFieldName(String RecordName, String FieldKey)
+        {
+            List<Record> Records = new List<Record>();
+            DataHolder.RecordList = DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
+            DataHolder.RecordList.ForEach(delegate(Record rc)
+                {
+                    Field fd = rc.Fields.Find(f => f.Key.Contains(FieldKey));
+                     
+                    Records.AddRange(DataHolder.RecordList.FindAll(rr => rr.Fields.Contains(fd))); 
+                });
+                return Records;
         }
 
         public static void DeleteCategory(string category)

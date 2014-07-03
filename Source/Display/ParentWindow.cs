@@ -1,4 +1,6 @@
-﻿using Hush.Display.Interfaces;
+﻿using Hush.Client;
+using Hush.Display.Interfaces;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -91,6 +93,29 @@ namespace Hush.Display
         protected override void OnClosing(CancelEventArgs Args)
         {
 
+            if (_CurrentInterface != null && _CurrentInterface.HasClosingSave == true)
+            {
+
+                String SaveOption = DataManager.GetUserSaveOption();
+
+                if (SaveOption == "Automatic")
+                {
+                    _CurrentInterface.ClosingSave();
+                }
+
+                if (SaveOption == "Prompt")
+                {
+
+                    DialogResult Result = MessageBox.Show("Changes have been made, do you wish to save?", "", MessageBoxButtons.YesNo);
+                    if (Result == DialogResult.Yes)
+                    {
+                        _CurrentInterface.ClosingSave();
+                    }
+
+                }
+
+            }
+
             base.OnClosing(Args);
 
             if (_Dialog != null)
@@ -122,6 +147,7 @@ namespace Hush.Display
                         Args.Cancel = true;
                         break;
 
+                    case "Settings":
                     case "TestScreen":
                     case "SignIn":
                         break;

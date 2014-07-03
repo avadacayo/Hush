@@ -28,9 +28,10 @@ namespace Hush.Display.Interfaces
         private Label SecretAnswerLabel;
         private TextBox SecretAnswerTextBox;
         private Button RegisterButton;
-        private Button CancelButton;
+        private Button SignInButton;
         private Label ErrUsernameLabel;
         private Label ErrPasswordLabel;
+	private Button CancelButton;
 
         private void RegisterButtonClick(Object Sender, EventArgs Args)
         {
@@ -108,6 +109,11 @@ namespace Hush.Display.Interfaces
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());
+	}
+        private void SignInButtonClick(Object Sender, EventArgs Args)
+        {
+            Program.Window.ShowInterface(new SignIn());
+            
         }
 
         #region Designer
@@ -135,6 +141,8 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox = new System.Windows.Forms.TextBox();
             this.RegisterButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.SignInButton = new System.Windows.Forms.Button();
+            this.ErrorMsgsLabel = new System.Windows.Forms.Label();
             this.ErrUsernameLabel = new System.Windows.Forms.Label();
             this.ErrPasswordLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -278,6 +286,25 @@ namespace Hush.Display.Interfaces
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // SignInButton
+            // 
+
+            this.SignInButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SignInButton.Location = new System.Drawing.Point(148, 435);
+            this.SignInButton.Name = "CancelButton";
+            this.SignInButton.Size = new System.Drawing.Size(70, 30);
+            this.SignInButton.TabIndex = 12;
+            this.SignInButton.Text = "Sign In";
+            this.SignInButton.UseVisualStyleBackColor = true;
+            this.SignInButton.Click += new System.EventHandler(this.SignInButtonClick);
+            // 
+            // ErrorMsgsLabel
+            // 
+            this.ErrorMsgsLabel.Location = new System.Drawing.Point(147, 30);
+            this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
+            this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
+            this.ErrorMsgsLabel.TabIndex = 0;
+            // 
             // ErrUsernameLabel
             // 
             this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -311,9 +338,10 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SecretAnswerLabel);
             this.Controls.Add(this.SecretAnswerTextBox);
             this.Controls.Add(this.RegisterButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.ErrUsernameLabel);
             this.Controls.Add(this.ErrPasswordLabel);
+	    this.Controls.Add(this.CancelButton);
             this.Name = "RegisterAccount";
             this.ResumeLayout(false);
             this.PerformLayout();

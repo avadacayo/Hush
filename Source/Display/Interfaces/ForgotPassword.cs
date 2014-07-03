@@ -95,6 +95,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionButton.TabIndex = 4;
             this.SecretQuestionButton.Text = "Answer Secret Question";
             this.SecretQuestionButton.UseVisualStyleBackColor = true;
+            this.SecretQuestionButton.Click += new System.EventHandler(this.SecretQuestionButton_Click);
             // 
             // ForgotPassword
             // 
@@ -115,5 +116,11 @@ namespace Hush.Display.Interfaces
         {
             Program.Window.ShowInterface(new MainScreen());
         }
+
+        private void SecretQuestionButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new SecretQuestion());
+        }
+
     }
 }

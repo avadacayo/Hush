@@ -25,6 +25,7 @@ namespace Hush.Display.Interfaces
         private Label UsernameLabel;
         private LinkLabel ProfileLinkLabel;
         private Button ViewButton;
+        List<Client.Model.Record> recordList;
 
         // listbox to replaced by custom control
         private ListBox RecordsListBox;
@@ -254,12 +255,12 @@ namespace Hush.Display.Interfaces
 
         private void ManageCategoriesButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new CategoryManagement());
+            Program.Window.ShowInterfaceDialog(new CategoryManagement());
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new Settings());
+            Program.Window.ShowInterfaceDialog(new Settings());
         }
 
         private void ViewButton_Click(object sender, EventArgs e)
@@ -294,11 +295,6 @@ namespace Hush.Display.Interfaces
             }
         }
 
-        private void AdvancedSearchButton_Click(object sender, EventArgs e)
-        {
-            Program.Window.ShowInterface(new Search());
-        }
-
         private void ProfileLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Program.Window.ShowInterface(new UserProfile());
@@ -326,15 +322,15 @@ namespace Hush.Display.Interfaces
             this.RecordsListBox.Items.Clear();
             try
             {
-                List<Client.Model.Record> recordList = Client.DataHolder.CurrentUser.Records;
+                //DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
 
-                if (recordList == null)
+                if (DataHolder.RecordList == null)
                 {
-                    this.RecordsListBox.Items.Add("No Records");
+                    //MessageBox.Show("No Records");
                 }
                 else
                 {
-                    foreach (Client.Model.Record r in recordList)
+                    foreach (Client.Model.Record r in DataHolder.RecordList)
                     {
                         this.RecordsListBox.Items.Add(r.Name.ToString());
                     };
@@ -342,26 +338,30 @@ namespace Hush.Display.Interfaces
             }
             catch (Exception ex)
             {
-                this.RecordsListBox.Items.Add("exception");
+                MessageBox.Show(ex.Message);
             };
         }
-
+       
         private void SearchButton_Click(object sender, EventArgs e)
         {
             String SearchName = this.SearchTextBox.Text;
-            List<Client.Model.Record> recordList = DataManager.GetRecordListByName(SearchName);
+            DataHolder.RecordList = DataManager.GetRecordListByName(SearchName);
             this.RecordsListBox.Items.Clear();
-            if (recordList == null)
+            if (DataHolder.RecordList == null)
             {
-                this.RecordsListBox.Items.Add("No Records");
+                MessageBox.Show("No Records");
             }
             else
             {
-                foreach (Client.Model.Record r in recordList)
+                foreach (Client.Model.Record r in DataHolder.RecordList)
                 {
                     this.RecordsListBox.Items.Add(r.Name.ToString());
                 };
             }
+        }
+        private void AdvancedSearchButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new Search());
         }
     }
 

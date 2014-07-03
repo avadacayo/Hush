@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hush.Client;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,9 +10,18 @@ namespace Hush.Display.Interfaces
     class Interface : UserControl
     {
 
+        protected Boolean _HasClosingSave = false;
+        protected Boolean _SizeOverride = false;
         private ParentWindow _ParentWindow = null;
 
         #region Properties
+
+        public Boolean HasClosingSave
+        {
+
+            get { return _HasClosingSave; }
+
+        }
 
         public ParentWindow ParentWindow
         {
@@ -33,8 +43,12 @@ namespace Hush.Display.Interfaces
         public Interface(String Title)
         {
 
-            Initialize(new List<String>(new String[] {Title}));
+            Initialize(new List<String>(new String[] { Title }));
 
+        }
+
+        public virtual void ClosingSave()
+        {
         }
 
         public void Close()
@@ -42,18 +56,14 @@ namespace Hush.Display.Interfaces
 
             try
             {
+
                 _ParentWindow.Close();
+
             }
+
             catch (Exception E)
             {
             }
-
-        }
-
-        protected void PlaceBelow(Control Anchor, Control ToPlace)
-        {
-
-            ToPlace.Location = new Point(Anchor.Location.X, Anchor.Location.Y + Anchor.Size.Height);
 
         }
 
@@ -79,6 +89,7 @@ namespace Hush.Display.Interfaces
 
             InitializeComponent();
 
+            Size FormSize = this.ClientSize;
             String TitleString = String.Empty;
 
             Title.Add("Hush");
@@ -97,6 +108,13 @@ namespace Hush.Display.Interfaces
             Location = new Point(0, 0);
             Text = TitleString;
             Width = 900;
+
+            if (_SizeOverride)
+            {
+
+                ClientSize = FormSize;
+
+            }
 
         }
 

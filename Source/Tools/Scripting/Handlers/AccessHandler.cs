@@ -25,7 +25,23 @@ namespace Hush.Tools.Scripting.Handlers
         public JsValue Access(String Name)
         {
 
-            return new JsValue();
+            String ReturnValue = String.Empty;
+
+            if (_Record != null && _Record.Fields.Count > 0)
+            {
+                foreach (Field Item in _Record.Fields)
+                {
+                    if (Item.Key == Name)
+                    {
+                        ReturnValue = Item.Value;
+                        break;
+                    }
+                }
+            }
+
+            if (ReturnValue != String.Empty)
+                return new JsValue(ReturnValue);
+            return JsValue.Undefined;
 
         }
 

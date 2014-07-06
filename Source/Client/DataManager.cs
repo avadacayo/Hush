@@ -22,7 +22,7 @@ namespace Hush.Client
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
         static public updateMode update;
-
+        static public Int32 RecordIndex;
     }
 
     class DataManager
@@ -502,6 +502,17 @@ namespace Hush.Client
                     Records.AddRange(DataHolder.RecordList.FindAll(rr => rr.Fields.Contains(fd))); 
                 });
                 return Records;
+        }
+
+        public static Boolean VerifyPassword(String Password)
+        {
+            Boolean Validpassword = false;
+                 if (Password == DataHolder.CurrentUser.Password)
+                     Validpassword = true;
+
+                 return Validpassword;
+
+
         }
 
         public static bool SaveUserProfileChanges(string username, string fullname) 

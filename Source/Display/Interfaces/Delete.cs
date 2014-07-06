@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hush.Client;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -115,7 +116,14 @@ namespace Hush.Display.Interfaces
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new MainScreen());
+            Boolean valid = DataManager.VerifyPassword(this.PasswordTextBox.Text);
+            if (valid)
+            {
+                DataManager.DeleteRecord(DataManager.GetRecord(DataHolder.RecordIndex));
+                Program.Window.ShowInterface(new MainScreen());
+            }
+            else
+                this.ErrPasswordLabel.Visible = true;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

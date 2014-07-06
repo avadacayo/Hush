@@ -30,6 +30,7 @@ namespace Hush.Display.Interfaces
         private ComboBox CategoryComboBox;
         private Label AddRecordLabel;
         private System.Windows.Forms.Label Template;
+        private Record rc = new Record();
 
         #region Designer
 
@@ -121,6 +122,10 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 26);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
+            this.CategoryComboBox.DisplayMember = "Name";
+            this.CategoryComboBox.ValueMember = "Name";
+
             // 
             // TemplateComboBox
             // 
@@ -200,7 +205,6 @@ namespace Hush.Display.Interfaces
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
-            Record rc = new Record();
             string k, v;
             for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
             {
@@ -223,7 +227,12 @@ namespace Hush.Display.Interfaces
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
 
+            if (cat != null)
+            {
+                rc.Category = cat;
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

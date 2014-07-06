@@ -271,6 +271,8 @@ namespace Hush.Display.Interfaces
 
         }
 
+        public Int32 RecordSelected { get; set; }
+
         private void ManageCategoriesButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new CategoryManagement());
@@ -285,7 +287,8 @@ namespace Hush.Display.Interfaces
         {
             if (this.RecordsListBox.SelectedIndex >= 0)
             {
-                Program.Window.ShowInterface(new ViewRecord(this.RecordsListBox.SelectedIndex));
+                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
+                Program.Window.ShowInterface(new ViewRecord());
             }
         }
 
@@ -298,7 +301,8 @@ namespace Hush.Display.Interfaces
         {
             if (this.RecordsListBox.SelectedIndex >= 0)
             {
-                Program.Window.ShowInterface(new Edit(this.RecordsListBox.SelectedIndex));
+                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
+                Program.Window.ShowInterface(new Edit());
             }
         }
 
@@ -307,9 +311,9 @@ namespace Hush.Display.Interfaces
 
             if (this.RecordsListBox.SelectedIndex >= 0)
             {
+                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
                 Program.Window.ShowInterface(new Delete());
-                // TODO:  move delete record to Delete interface or only when Delete returns password check
-                DataManager.DeleteRecord(DataManager.GetRecord(this.RecordsListBox.SelectedIndex));
+
                 AddRecordsToListBox();
             }
         }
@@ -346,7 +350,8 @@ namespace Hush.Display.Interfaces
 
                 if (DataHolder.RecordList == null)
                 {
-                    this.RecordsListBox.Items.Add("no accounts stored");
+                    //dont add text msg as a record, it will cause exception when there is no record to be operated. thinking..
+                    //this.RecordsListBox.Items.Add("no accounts stored");
                 }
                 else
                 {

@@ -22,7 +22,6 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label Template;
-        private Int32 RecordIndex;
         private System.Windows.Forms.ComboBox TemplateComboBox;
         private System.Windows.Forms.DataGridView EditDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
@@ -35,10 +34,6 @@ namespace Hush.Display.Interfaces
         #region Designer
 
         public Edit() { }
-
-        public Edit(Int32 RcIndex) {
-            RecordIndex = RcIndex;   
-        }
 
         protected override void Initialize(List<String> Title)
         {
@@ -148,6 +143,9 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(250, 28);
             this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
+            this.CategoryComboBox.DisplayMember = "Name";
+            this.CategoryComboBox.ValueMember = "Name";
             // 
             // EditDataGridView
             // 
@@ -203,6 +201,7 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Name = "RecordTextBox";
             this.RecordTextBox.Size = new System.Drawing.Size(334, 27);
             this.RecordTextBox.TabIndex = 2;
+            this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
             // 
             // Edit
             // 
@@ -229,9 +228,9 @@ namespace Hush.Display.Interfaces
 
         private void DisplayRecord()
         {
-            List<Field> fieldList = DataHolder.CurrentUser.Records[RecordIndex].Fields;
+            List<Field> fieldList = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Fields;
             DataTable DT = new DataTable();
-
+            DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name = this.RecordTextBox.Text;
             foreach (Field f in fieldList)
             {
                 EditDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());
@@ -243,9 +242,19 @@ namespace Hush.Display.Interfaces
             DisplayRecord();
         }
 
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
+
+            if (cat != null)
+            {
+                DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Category = cat;
+            }
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[RecordIndex], EditDataGridView);
+            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView);
             DisplayRecord();
             Program.Window.ShowInterface(new MainScreen());
         }

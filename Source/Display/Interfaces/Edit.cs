@@ -201,7 +201,8 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Name = "RecordTextBox";
             this.RecordTextBox.Size = new System.Drawing.Size(334, 27);
             this.RecordTextBox.TabIndex = 2;
-            this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
+            if(DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex) 
+                this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
             // 
             // Edit
             // 

@@ -17,7 +17,6 @@ namespace Hush.Display.Interfaces
     class ViewRecord : Interface
     {
         private String recordName;
-        //private Int32 RecordIndex;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label ViewRecordLabel;
@@ -112,7 +111,7 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Name = "RecordTextBox";
             this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
-            this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
+            this.RecordTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Name.ToString();
             // 
             // TemplateComboBox
             // 
@@ -190,7 +189,6 @@ namespace Hush.Display.Interfaces
             this.CategoryTextBox.Size = new System.Drawing.Size(331, 24);
             this.CategoryTextBox.TabIndex = 11;
             this.CategoryTextBox.Enabled = false;
-            this.CategoryTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Category.Name.ToString();
             // 
             // ViewRecord
             // 
@@ -216,9 +214,10 @@ namespace Hush.Display.Interfaces
 
         private void displayRecord()
         {
-            List<Field> fieldList = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Fields;
+            List<Field> fieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
             DataTable DT = new DataTable();
 
+            this.CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
             foreach (Field f in fieldList)
             {
                 ViewDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());

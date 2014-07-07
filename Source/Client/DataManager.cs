@@ -17,7 +17,7 @@ namespace Hush.Client
         static public List<Template> Templates = default(List<Template>);
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
-        static public List<Record> RecordList = default(List<Record>);
+        static public IEnumerable<Record> RecordList = default(IEnumerable<Record>);
 
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
@@ -486,22 +486,19 @@ namespace Hush.Client
             return DataHolder.CurrentUser.Records.Find(x => x.Name.Contains(RecordName));
         }
 
-        public static List<Record> GetRecordListByName(String RecordName)
+        public static List<Record> GetRecordsByName(String RecordName)
         {
             return DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
         }
 
-        public static List<Record> GetRecordListByFieldName(String RecordName, String FieldKey)
+        public static List<Record> GetRecordListByName(List<Record> CurrentRecords, String RecordName)
         {
-            List<Record> Records = new List<Record>();
-            DataHolder.RecordList = DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
-            DataHolder.RecordList.ForEach(delegate(Record rc)
-                {
-                    Field fd = rc.Fields.Find(f => f.Key.Contains(FieldKey));
-                     
-                    Records.AddRange(DataHolder.RecordList.FindAll(rr => rr.Fields.Contains(fd))); 
-                });
-                return Records;
+            return CurrentRecords.FindAll(r => r.Name.Contains(RecordName));
+        }
+
+        public static List<Record> GetRecordListByCategory(List<Record> CurrentRecords, String CategoryName)
+        {
+            return CurrentRecords.FindAll(r => r.Category.Name.Contains(CategoryName));
         }
 
         public static Boolean VerifyPassword(String Password)

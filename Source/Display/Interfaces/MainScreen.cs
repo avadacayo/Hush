@@ -25,7 +25,7 @@ namespace Hush.Display.Interfaces
         private Label UsernameLabel;
         private LinkLabel ProfileLinkLabel;
         private Button ViewButton;
-        List<Client.Model.Record> recordList;
+        //List<Client.Model.Record> recordList;
         private Label AccountsStoredLabel;
 
         // listbox to replaced by custom control
@@ -346,8 +346,6 @@ namespace Hush.Display.Interfaces
             this.RecordsListBox.Items.Clear();
             try
             {
-                //DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
-
                 if (DataHolder.RecordList == null)
                 {
                     //dont add text msg as a record, it will cause exception when there is no record to be operated. thinking..
@@ -370,7 +368,7 @@ namespace Hush.Display.Interfaces
         private void SearchButton_Click(object sender, EventArgs e)
         {
             String SearchName = this.SearchTextBox.Text;
-            DataHolder.RecordList = DataManager.GetRecordListByName(SearchName);
+            DataHolder.RecordList = DataManager.GetRecordsByName(SearchName);
             this.RecordsListBox.Items.Clear();
             if (DataHolder.RecordList == null)
             {

@@ -31,7 +31,8 @@ namespace Hush.Display.Interfaces
         
         private void LoginButtonClick(Object Sender, EventArgs Args)
         {
-            if ((new DataManager().TryLogin(UsernameTextBox.Text, PasswordTextBox.Text)))
+            UsernameTextBox.Text = UsernameTextBox.Text.Trim();
+            if ((new DataManager().TryLogin(UsernameTextBox.Text.Trim(), PasswordTextBox.Text)))
             {
                 Program.Window.ShowInterface(new MainScreen());
             }

@@ -21,15 +21,10 @@ namespace Hush.Display.Interfaces
 
     class GeneratePassword : Interface
     {
-        private Label PasswordLengthLabel;
-        private TextBox PasswordLengthTextBox;
-        private TextBox SpecialCharactersTextBox;
         private Label PasswordLabel;
         private TextBox PasswordTextBox;
-        private Label SpecialCharactersLabel;
         private TextBox LengthTextBox;
         private Label LengthLabel;
-        private LinkLabel AddRecordLinkLabel;
         private Label label1;
         private Button CancelButton;
         private Button GenerateButton;
@@ -48,41 +43,14 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
-            this.PasswordLengthLabel = new System.Windows.Forms.Label();
-            this.PasswordLengthTextBox = new System.Windows.Forms.TextBox();
-            this.SpecialCharactersTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.GenerateButton = new System.Windows.Forms.Button();
-            this.SpecialCharactersLabel = new System.Windows.Forms.Label();
             this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.LengthLabel = new System.Windows.Forms.Label();
-            this.AddRecordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // PasswordLengthLabel
-            // 
-            this.PasswordLengthLabel.Location = new System.Drawing.Point(0, 0);
-            this.PasswordLengthLabel.Name = "PasswordLengthLabel";
-            this.PasswordLengthLabel.Size = new System.Drawing.Size(100, 23);
-            this.PasswordLengthLabel.TabIndex = 0;
-            // 
-            // PasswordLengthTextBox
-            // 
-            this.PasswordLengthTextBox.Location = new System.Drawing.Point(0, 0);
-            this.PasswordLengthTextBox.Name = "PasswordLengthTextBox";
-            this.PasswordLengthTextBox.Size = new System.Drawing.Size(100, 22);
-            this.PasswordLengthTextBox.TabIndex = 0;
-            // 
-            // SpecialCharactersTextBox
-            // 
-            this.SpecialCharactersTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpecialCharactersTextBox.Location = new System.Drawing.Point(42, 153);
-            this.SpecialCharactersTextBox.Name = "SpecialCharactersTextBox";
-            this.SpecialCharactersTextBox.Size = new System.Drawing.Size(338, 28);
-            this.SpecialCharactersTextBox.TabIndex = 5;
             // 
             // PasswordTextBox
             // 
@@ -105,7 +73,7 @@ namespace Hush.Display.Interfaces
             // GenerateButton
             // 
             this.GenerateButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GenerateButton.Location = new System.Drawing.Point(42, 339);
+            this.GenerateButton.Location = new System.Drawing.Point(42, 135);
             this.GenerateButton.Name = "GenerateButton";
             this.GenerateButton.Size = new System.Drawing.Size(338, 23);
             this.GenerateButton.TabIndex = 6;
@@ -113,22 +81,12 @@ namespace Hush.Display.Interfaces
             this.GenerateButton.UseVisualStyleBackColor = true;
             this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
-            // SpecialCharactersLabel
-            // 
-            this.SpecialCharactersLabel.AutoSize = true;
-            this.SpecialCharactersLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SpecialCharactersLabel.Location = new System.Drawing.Point(42, 133);
-            this.SpecialCharactersLabel.Name = "SpecialCharactersLabel";
-            this.SpecialCharactersLabel.Size = new System.Drawing.Size(352, 20);
-            this.SpecialCharactersLabel.TabIndex = 7;
-            this.SpecialCharactersLabel.Text = "Minimum Number of Special Characters";
-            // 
             // LengthTextBox
             // 
             this.LengthTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LengthTextBox.Location = new System.Drawing.Point(42, 99);
             this.LengthTextBox.Name = "LengthTextBox";
-            this.LengthTextBox.Size = new System.Drawing.Size(338, 28);
+            this.LengthTextBox.Size = new System.Drawing.Size(338, 24);
             this.LengthTextBox.TabIndex = 8;
             // 
             // LengthLabel
@@ -137,21 +95,9 @@ namespace Hush.Display.Interfaces
             this.LengthLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LengthLabel.Location = new System.Drawing.Point(42, 79);
             this.LengthLabel.Name = "LengthLabel";
-            this.LengthLabel.Size = new System.Drawing.Size(154, 20);
+            this.LengthLabel.Size = new System.Drawing.Size(129, 17);
             this.LengthLabel.TabIndex = 9;
             this.LengthLabel.Text = "Password Length";
-            // 
-            // AddRecordLinkLabel
-            // 
-            this.AddRecordLinkLabel.AutoSize = true;
-            this.AddRecordLinkLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddRecordLinkLabel.Location = new System.Drawing.Point(42, 384);
-            this.AddRecordLinkLabel.Name = "AddRecordLinkLabel";
-            this.AddRecordLinkLabel.Size = new System.Drawing.Size(269, 20);
-            this.AddRecordLinkLabel.TabIndex = 10;
-            this.AddRecordLinkLabel.TabStop = true;
-            this.AddRecordLinkLabel.Text = "Use Password and Add Record";
-            this.AddRecordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddRecordLinkLabel_LinkClicked);
             // 
             // label1
             // 
@@ -159,7 +105,7 @@ namespace Hush.Display.Interfaces
             this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(40, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 25);
+            this.label1.Size = new System.Drawing.Size(183, 18);
             this.label1.TabIndex = 11;
             this.label1.Text = "Generate Password";
             // 
@@ -178,11 +124,8 @@ namespace Hush.Display.Interfaces
             // 
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.AddRecordLinkLabel);
             this.Controls.Add(this.LengthLabel);
             this.Controls.Add(this.LengthTextBox);
-            this.Controls.Add(this.SpecialCharactersLabel);
-            this.Controls.Add(this.SpecialCharactersTextBox);
             this.Controls.Add(this.GenerateButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
@@ -196,30 +139,29 @@ namespace Hush.Display.Interfaces
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
-            Int32 PwdLength = 8, NoOfSpecialChar = 2;
+            Int32 PwdLength = 8, NoOfSpecialChar = 0;
             String pattern = "^[0-9]+$";
             Regex regex = new Regex(pattern);
 
-            Boolean test = regex.IsMatch(LengthTextBox.Text);
-            Boolean test2 = regex.IsMatch(SpecialCharactersTextBox.Text);
-
-            if (regex.IsMatch(LengthTextBox.Text) && regex.IsMatch(SpecialCharactersTextBox.Text))
+            if (regex.IsMatch(LengthTextBox.Text) && Convert.ToInt32(LengthTextBox.Text) <= 128 && Convert.ToInt32(LengthTextBox.Text) > 0)
             {
                 PwdLength = Convert.ToInt32(LengthTextBox.Text);
-                NoOfSpecialChar = Convert.ToInt32(SpecialCharactersTextBox.Text);
                 PasswordTextBox.Text = Membership.GeneratePassword(PwdLength, NoOfSpecialChar);
             }
             else
             {
                 String message = "";
 
-                if (LengthTextBox.Text.Length <= 0 || SpecialCharactersTextBox.Text.Length <= 0)
+                if (LengthTextBox.Text.Length <= 0)
                     message = "Please enter a value";
 
-                else if(!regex.IsMatch(LengthTextBox.Text) || !regex.IsMatch(SpecialCharactersTextBox.Text))
+                else if(!regex.IsMatch(LengthTextBox.Text))
                     message = "Invalid input. Only numbers are allowed.";
 
-                    MessageBox.Show(message);
+                else if (Convert.ToInt32(LengthTextBox.Text) > 128 || Convert.ToInt32(LengthTextBox.Text) < 1)
+                    message = "Please enter a number between 1 - 128.";
+
+                MessageBox.Show(message);
             }
         }
 

@@ -202,12 +202,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Blogger-Key.ico" />
+    <Content Include="Data\Templates\CDOT Wiki\Change Password.js" />
+    <Content Include="Data\Templates\CDOT Wiki\Nothing.js" />
     <Content Include="Data\test.js" />
     <Content Include="Spy.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

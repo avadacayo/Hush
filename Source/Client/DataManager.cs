@@ -76,6 +76,44 @@ namespace Hush.Client
                 return false;
         }
 
+        public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)
+        {
+
+            TemplateName = "CDOT Wiki";
+            List<String> Files = FileUtil.GetScriptList(TemplateName);
+
+            ComboControl.Items.Clear();
+
+            if (Files.Count < 1)
+            {
+
+                ComboControl.Visible = false;
+                ButtonControl.Visible = false;
+
+            }
+
+            else
+            {
+
+                ComboControl.Visible = true;
+                ButtonControl.Visible = true;
+
+                ComboControl.Items.Add("Select...");
+                ComboControl.SelectedIndex = 0;
+
+                foreach (String Item in Files)
+                {
+
+                    ComboControl.Items.Add(Item);
+
+                }
+
+            }
+
+            return;
+
+        }
+
         public static String GetUserSaveOption()
         {
 

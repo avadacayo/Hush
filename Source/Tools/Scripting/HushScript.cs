@@ -22,6 +22,7 @@ namespace Hush.Tools.Scripting
         private Record _Record;
         private String _Name;
         private String _Source;
+        private String _Template;
         private ViewHandler _ViewHandler;
         private WebHandler _WebHandler;
 
@@ -30,6 +31,14 @@ namespace Hush.Tools.Scripting
 
             get { return _Name; }
             set { _Name = value; }
+
+        }
+
+        public String Template
+        {
+
+            get { return _Template; }
+            set { _Template = value; }
 
         }
 
@@ -79,7 +88,7 @@ namespace Hush.Tools.Scripting
 
             }
 
-            _Source = FileUtil.ReadScriptFile(_Name);
+            _Source = FileUtil.ReadScriptFile(_Template, _Name);
 
             if (_Source.Length < 1)
             {

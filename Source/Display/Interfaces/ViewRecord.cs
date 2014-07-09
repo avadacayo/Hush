@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-using Hush;
+﻿using Hush.Client;
 using Hush.Client.Model;
+using Hush.Tools;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using Hush.Client;
+using System.Linq;
 
 namespace Hush.Display.Interfaces
 {
+
     class ViewRecord : Interface
     {
-        private String recordName;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.ComboBox ScriptComboBox;
         private System.Windows.Forms.Label ViewRecordLabel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox RecordTextBox;
@@ -30,7 +24,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.TextBox CategoryTextBox;
-        private Record record;
+        private System.Windows.Forms.Button RunButton;
 
         #region Designer
 
@@ -45,8 +39,7 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ScriptComboBox = new System.Windows.Forms.ComboBox();
             this.ViewRecordLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.RecordTextBox = new System.Windows.Forms.TextBox();
@@ -58,29 +51,19 @@ namespace Hush.Display.Interfaces
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryTextBox = new System.Windows.Forms.TextBox();
+            this.RunButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ViewDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // ScriptComboBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(227, 453);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 17);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "run";
-            this.label1.Visible = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(36, 453);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 24);
-            this.comboBox1.TabIndex = 8;
-            this.comboBox1.Visible = false;
+            this.ScriptComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ScriptComboBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScriptComboBox.FormattingEnabled = true;
+            this.ScriptComboBox.Location = new System.Drawing.Point(36, 453);
+            this.ScriptComboBox.Name = "ScriptComboBox";
+            this.ScriptComboBox.Size = new System.Drawing.Size(161, 24);
+            this.ScriptComboBox.TabIndex = 8;
             // 
             // ViewRecordLabel
             // 
@@ -95,13 +78,13 @@ namespace Hush.Display.Interfaces
             // CancelButton
             // 
             this.CancelButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(280, 453);
+            this.CancelButton.Location = new System.Drawing.Point(279, 452);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(100, 25);
+            this.CancelButton.Size = new System.Drawing.Size(100, 26);
             this.CancelButton.TabIndex = 10;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancelButton.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // RecordTextBox
             // 
@@ -111,7 +94,6 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Name = "RecordTextBox";
             this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
-            this.RecordTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Name.ToString();
             // 
             // TemplateComboBox
             // 
@@ -129,7 +111,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(70, 17);
+            this.Template.Size = new System.Drawing.Size(72, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 
@@ -137,7 +119,7 @@ namespace Hush.Display.Interfaces
             // 
             this.Category.AutoSize = true;
             this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Category.Location = new System.Drawing.Point(42, 127);
+            this.Category.Location = new System.Drawing.Point(42, 128);
             this.Category.Name = "Category";
             this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
@@ -147,7 +129,7 @@ namespace Hush.Display.Interfaces
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLabel.Location = new System.Drawing.Point(42, 73);
+            this.NameLabel.Location = new System.Drawing.Point(42, 74);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(47, 17);
             this.NameLabel.TabIndex = 1;
@@ -183,15 +165,27 @@ namespace Hush.Display.Interfaces
             // 
             // CategoryTextBox
             // 
-            this.CategoryTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryTextBox.Location = new System.Drawing.Point(45, 148);
-            this.CategoryTextBox.Name = "CategoryTextBox";
-            this.CategoryTextBox.Size = new System.Drawing.Size(331, 24);
-            this.CategoryTextBox.TabIndex = 11;
             this.CategoryTextBox.Enabled = false;
+            this.CategoryTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryTextBox.Location = new System.Drawing.Point(42, 148);
+            this.CategoryTextBox.Name = "CategoryTextBox";
+            this.CategoryTextBox.Size = new System.Drawing.Size(334, 24);
+            this.CategoryTextBox.TabIndex = 11;
+            // 
+            // RunButton
+            // 
+            this.RunButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RunButton.Location = new System.Drawing.Point(198, 452);
+            this.RunButton.Name = "RunButton";
+            this.RunButton.Size = new System.Drawing.Size(51, 26);
+            this.RunButton.TabIndex = 12;
+            this.RunButton.Text = "Run";
+            this.RunButton.UseVisualStyleBackColor = true;
+            this.RunButton.Click += new System.EventHandler(this.RunButtonClick);
             // 
             // ViewRecord
             // 
+            this.Controls.Add(this.RunButton);
             this.Controls.Add(this.CategoryTextBox);
             this.Controls.Add(this.ViewDataGridView);
             this.Controls.Add(this.NameLabel);
@@ -200,8 +194,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.Template);
             this.Controls.Add(this.Category);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ScriptComboBox);
             this.Controls.Add(this.ViewRecordLabel);
             this.Name = "ViewRecord";
             ((System.ComponentModel.ISupportInitialize)(this.ViewDataGridView)).EndInit();
@@ -212,28 +205,50 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
-        private void displayRecord()
+        private void DisplayRecord()
         {
-            List<Field> fieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
-            DataTable DT = new DataTable();
 
-            this.CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
-            foreach (Field f in fieldList)
+            List<Field> FieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
+            CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
+
+            foreach (Field Item in FieldList)
             {
-                ViewDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());
+
+                ViewDataGridView.Rows.Add(Item.Key.ToString(), Item.Value.ToString());
+
             }
+
+            RecordTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Name;
+
         }
 
-        protected override void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs Args)
         {
-            displayRecord();
+
+            DisplayRecord();
+            DataManager.PopulateScriptBox(ScriptComboBox, RunButton, "");
+
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CancelButtonClick(Object Sender, EventArgs Args)
         {
+
             Program.Window.ShowInterface(new MainScreen());
+
         }
 
+        private void RunButtonClick(Object Sender, EventArgs Args)
+        {
+
+            if (true || ScriptComboBox.SelectedText != "Select..." && ScriptComboBox.SelectedIndex != 0)
+            {
+
+                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.SelectedText));
+
+            }
+
+        }
 
     }
+
 }

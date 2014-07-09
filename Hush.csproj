@@ -204,6 +204,7 @@
     <Content Include="Blogger-Key.ico" />
     <Content Include="Data\Templates\CDOT Wiki\Change Password.js" />
     <Content Include="Data\Templates\CDOT Wiki\Nothing.js" />
+    <Content Include="Data\Templates\CDOT Wiki\What Do I Have.js" />
     <Content Include="Data\test.js" />
     <Content Include="Spy.ico" />
   </ItemGroup>

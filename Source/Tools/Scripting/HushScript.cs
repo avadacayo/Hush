@@ -6,6 +6,7 @@ using Jint;
 using Jint.Native;
 using Jint.Runtime;
 using System;
+using System.Windows.Forms;
 
 namespace Hush.Tools.Scripting
 {
@@ -170,7 +171,10 @@ namespace Hush.Tools.Scripting
             catch (JavaScriptException JSE)
             {
 
-                ReturnValue.Message = "Error running script.";
+                MessageBox.Show(JSE.ToString());
+                _ViewHandler.Close();
+
+                ReturnValue.Message = JSE.ToString();
                 ReturnValue.Success = false;
                 return ReturnValue;
 

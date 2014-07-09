@@ -1,6 +1,7 @@
 ﻿using Hush.Client;
 using Hush.Client.Model;
 using Hush.Tools;
+using Hush.Tools.Scripting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -243,7 +244,17 @@ namespace Hush.Display.Interfaces
             if (ScriptComboBox.Text != "Select..." && ScriptComboBox.SelectedIndex != 0)
             {
 
-                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.Text));
+                HushScript x = new HushScript(Program.Window, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex));
+                x.Name = ScriptComboBox.Text;
+                x.Template = "CDOT Wiki";
+                ReturnValue status = x.Load();
+                //    if (status.Success == false)
+                //  {
+                //   MessageBox.Show(status.Message);
+                // }
+                x.Run();
+
+//                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.Text));
 
             }
 

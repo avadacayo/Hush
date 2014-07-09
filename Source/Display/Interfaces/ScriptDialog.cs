@@ -169,7 +169,7 @@ namespace Hush.Display.Interfaces
         private void OkButtonClick(Object Sender, EventArgs Args)
         {
 
-            _ParentScript.RunBody(0, "");
+            _ParentScript.RunBody(1, "");
 
         }
 

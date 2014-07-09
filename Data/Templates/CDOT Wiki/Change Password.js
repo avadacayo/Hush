@@ -1,6 +1,11 @@
-﻿function body(state, mode, value) {
+﻿var index = 0
 
-    switch (state) {
+function body(state, mode, value) {
+
+    if (mode == 1)
+        index++;
+
+    switch (index) {
 
         case 0:
             ViewHandler.ShowDialog("Change Password!!!");

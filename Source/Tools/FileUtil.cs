@@ -71,8 +71,6 @@ namespace Hush.Tools
         private static String ReadFile(String FileName)
         {
 
-            System.Console.WriteLine(FileName);
-
             if (!File.Exists(FileName))
             {
 
@@ -106,7 +104,7 @@ namespace Hush.Tools
 
             }
 
-            return ReadFile(DataDirectory + TemplateName + Path.DirectorySeparatorChar + FunctionName + ScriptExtension);
+            return ReadFile(DataDirectory + "Templates" + Path.DirectorySeparatorChar + TemplateName + Path.DirectorySeparatorChar + FunctionName + ScriptExtension);
 
         }
 

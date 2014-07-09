@@ -240,10 +240,10 @@ namespace Hush.Display.Interfaces
         private void RunButtonClick(Object Sender, EventArgs Args)
         {
 
-            if (true || ScriptComboBox.SelectedText != "Select..." && ScriptComboBox.SelectedIndex != 0)
+            if (ScriptComboBox.Text != "Select..." && ScriptComboBox.SelectedIndex != 0)
             {
 
-                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.SelectedText));
+                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.Text));
 
             }
 

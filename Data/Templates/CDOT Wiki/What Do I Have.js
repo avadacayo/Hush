@@ -14,6 +14,10 @@ function body(state, mode, value) {
         count = AccessHandler.Count();
     }
 
+    if (count == undefined) {
+        ViewHandler.Close();
+    }
+
     if (count > 0 && fieldIndex < count) {
         name = AccessHandler.AccessNameByIndex(fieldIndex);
         value = AccessHandler.AccessValueByIndex(fieldIndex);

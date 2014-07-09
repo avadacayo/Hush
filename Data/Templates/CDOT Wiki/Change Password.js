@@ -7,7 +7,7 @@ function body(state, mode, value) {
 
     switch (index) {
 
-        case 0:
+        case 1:
             ViewHandler.ShowDialog("Change Password!!!");
             break;
 

@@ -1,4 +1,5 @@
 ﻿using Hush.Client;
+using Hush.Client.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -27,6 +28,7 @@ namespace Hush.Display.Interfaces
         private Button ViewButton;
         //List<Client.Model.Record> recordList;
         private Label AccountsStoredLabel;
+        private TreeView RecordsTreeView;
 
         // listbox to replaced by custom control
         private ListBox RecordsListBox;
@@ -59,6 +61,7 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
             this.RecordsListBox = new System.Windows.Forms.ListBox();
+            this.RecordsTreeView = new System.Windows.Forms.TreeView();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
             this.SuspendLayout();
@@ -247,11 +250,20 @@ namespace Hush.Display.Interfaces
             "LIST OF RECORDS"});
             this.RecordsListBox.Location = new System.Drawing.Point(24, 99);
             this.RecordsListBox.Name = "RecordsListBox";
-            this.RecordsListBox.Size = new System.Drawing.Size(359, 212);
+            this.RecordsListBox.Size = new System.Drawing.Size(202, 212);
             this.RecordsListBox.TabIndex = 1;
+            // 
+            // RecordsTreeView
+            // 
+            this.RecordsTreeView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsTreeView.Location = new System.Drawing.Point(235, 99);
+            this.RecordsTreeView.Name = "RecordsTreeView";
+            this.RecordsTreeView.Size = new System.Drawing.Size(148, 212);
+            this.RecordsTreeView.TabIndex = 10;
             // 
             // MainScreen
             // 
+            this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SettingsButton);
@@ -326,6 +338,7 @@ namespace Hush.Display.Interfaces
         protected override void OnLoad(EventArgs e)
         {
             AddRecordsToListBox();
+            PopulateTreeView();
             if (this.RecordsListBox.Items.Count == 0)
             {
 
@@ -339,6 +352,60 @@ namespace Hush.Display.Interfaces
                 EditRecordButton.Enabled = true;
                 DeleteRecordButton.Enabled = true;
             }
+        }
+
+        private void PopulateTreeView()
+        {
+
+            RecordsTreeView.BeginUpdate();
+            RecordsTreeView.Nodes.Clear();
+
+            if (DataHolder.RecordList == null)
+            {
+
+                return;
+
+            }
+
+            foreach (Record Item in DataHolder.CurrentUser.Records)
+            {
+
+                AddNestedNode(RecordsTreeView, Item);
+                //RecordsTreeView.Nodes.Add(Item.Name);
+
+            }
+
+            RecordsTreeView.EndUpdate();
+
+        }
+
+        private void AddNestedNode(TreeView Control, Record Item)
+        {
+
+            String CategoryName = Item.Category.Name;
+            System.Console.WriteLine(CategoryName);
+            if (CategoryName.Length < 1)
+            {
+
+                Control.Nodes.Add("record::" + Item.Name, Item.Name);
+
+            }
+
+            else
+            {
+
+                if (!Control.Nodes.ContainsKey("category::" + CategoryName))
+                {
+
+
+                    Control.Nodes.Add("category::" + CategoryName, CategoryName);
+
+                }
+
+                Control.Nodes["category::" + CategoryName].Nodes.Add("record::" + Item.Name, Item.Name);
+
+            }
+
         }
 
         void AddRecordsToListBox()

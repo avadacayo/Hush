@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Hush;
+using Hush.Client;
 
 namespace Hush.Display.Interfaces
 {
@@ -38,8 +39,11 @@ namespace Hush.Display.Interfaces
 
         protected override void Initialize(List<String> Title)
         {
+
             Title.Add("User Profile");
             base.Initialize(Title);
+
+            UsernameTextBox.Text = DataHolder.CurrentUser.Username;
 
         }
 

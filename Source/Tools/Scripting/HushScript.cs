@@ -137,7 +137,8 @@ namespace Hush.Tools.Scripting
         {
 
             ReturnValue ReturnValue = new ReturnValue("", true);
-            _ParentWindow.ShowInterfaceDialog(new ScriptDialogInit(this, _Record));
+            _ViewHandler.CurrentDialog = new ScriptDialogInit(this, _Record);
+            _ParentWindow.ShowInterfaceDialog(_ViewHandler.CurrentDialog);
             return ReturnValue;
 
         }

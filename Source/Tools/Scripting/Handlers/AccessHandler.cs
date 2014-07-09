@@ -98,8 +98,7 @@ namespace Hush.Tools.Scripting.Handlers
         public JsValue Count()
         {
 
-
-            if (_Record != null)
+            if (_Record != null && _Record.Fields != null)
             {
 
                 return new JsValue(_Record.Fields.Count);

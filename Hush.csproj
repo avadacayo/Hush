@@ -176,6 +176,9 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\GeneratePassword.resx">
+      <DependentUpon>GeneratePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>

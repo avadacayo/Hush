@@ -12,6 +12,14 @@ namespace Hush.Tools.Scripting.Handlers
         private HushScript _ParentScript;
         private ParentWindow _ParentWindow;
 
+        public ScriptDialog CurrentDialog
+        {
+
+            get { return _CurrentDialog; }
+            set { _CurrentDialog = value; }
+
+        }
+
         public ViewHandler()
         {
 

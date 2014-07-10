@@ -166,7 +166,7 @@ namespace Hush.Display.Interfaces
             // 
             // Key
             // 
-            this.Key.HeaderText = "Key";
+            this.Key.HeaderText = "Field";
             this.Key.Name = "Key";
             // 
             // Value

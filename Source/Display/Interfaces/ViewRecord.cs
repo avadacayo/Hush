@@ -22,9 +22,9 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.DataGridView ViewDataGridView;
+        private System.Windows.Forms.TextBox CategoryTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
-        private System.Windows.Forms.TextBox CategoryTextBox;
         private System.Windows.Forms.Button RunButton;
 
         #region Designer
@@ -49,10 +49,10 @@ namespace Hush.Display.Interfaces
             this.Category = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.ViewDataGridView = new System.Windows.Forms.DataGridView();
-            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryTextBox = new System.Windows.Forms.TextBox();
             this.RunButton = new System.Windows.Forms.Button();
+            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ViewDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,7 +112,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(72, 17);
+            this.Template.Size = new System.Drawing.Size(70, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 
@@ -154,16 +154,6 @@ namespace Hush.Display.Interfaces
             this.ViewDataGridView.Size = new System.Drawing.Size(342, 180);
             this.ViewDataGridView.TabIndex = 7;
             // 
-            // Key
-            // 
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            // 
             // CategoryTextBox
             // 
             this.CategoryTextBox.Enabled = false;
@@ -183,6 +173,16 @@ namespace Hush.Display.Interfaces
             this.RunButton.Text = "Run";
             this.RunButton.UseVisualStyleBackColor = true;
             this.RunButton.Click += new System.EventHandler(this.RunButtonClick);
+            // 
+            // Key
+            // 
+            this.Key.HeaderText = "Field";
+            this.Key.Name = "Key";
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
             // 
             // ViewRecord
             // 

@@ -22,14 +22,14 @@ namespace Hush.Display.Interfaces
         private Button Save;
         private Button Cancel;
         private DataGridView RecordsDataGridView;
-        private DataGridViewTextBoxColumn Key;
-        private DataGridViewTextBoxColumn Value;
         private Label RecordName;
         private TextBox RecordTextBox;
         private ComboBox TemplateComboBox;
         private ComboBox CategoryComboBox;
         private Label AddRecordLabel;
         private System.Windows.Forms.Label Template;
+        private DataGridViewTextBoxColumn Key;
+        private DataGridViewTextBoxColumn Value;
         private Record rc = new Record();
 
         #region Designer
@@ -54,10 +54,10 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.TemplateComboBox = new System.Windows.Forms.ComboBox();
             this.RecordsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Template = new System.Windows.Forms.Label();
             this.Category = new System.Windows.Forms.Label();
+            this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,31 +67,31 @@ namespace Hush.Display.Interfaces
             this.AddRecordLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddRecordLabel.Location = new System.Drawing.Point(40, 30);
             this.AddRecordLabel.Name = "AddRecordLabel";
-            this.AddRecordLabel.Size = new System.Drawing.Size(168, 29);
+            this.AddRecordLabel.Size = new System.Drawing.Size(110, 18);
             this.AddRecordLabel.TabIndex = 0;
             this.AddRecordLabel.Text = "Add Record";
             // 
             // RecordName
             // 
             this.RecordName.AutoSize = true;
-            this.RecordName.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordName.Location = new System.Drawing.Point(42, 73);
             this.RecordName.Name = "RecordName";
-            this.RecordName.Size = new System.Drawing.Size(55, 18);
+            this.RecordName.Size = new System.Drawing.Size(47, 17);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
             // 
             // RecordTextBox
             // 
-            this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordTextBox.Location = new System.Drawing.Point(42, 94);
             this.RecordTextBox.Name = "RecordTextBox";
-            this.RecordTextBox.Size = new System.Drawing.Size(334, 27);
+            this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
             // 
             // Save
             // 
-            this.Save.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Save.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Save.Location = new System.Drawing.Point(162, 453);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(100, 25);
@@ -102,39 +102,35 @@ namespace Hush.Display.Interfaces
             // 
             // Cancel
             // 
-            this.Cancel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cancel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cancel.Location = new System.Drawing.Point(280, 453);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(100, 25);
             this.Cancel.TabIndex = 9;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
-
             this.Cancel.Click += new System.EventHandler(this.CancelButton_Click);
-
             // 
             // CategoryComboBox
             // 
-            this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 8F);
+            this.CategoryComboBox.DisplayMember = "Name";
+            this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(334, 26);
+            this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
-            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.ValueMember = "Name";
-
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // TemplateComboBox
             // 
             this.TemplateComboBox.Enabled = false;
-            this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 8F);
+            this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
-            this.TemplateComboBox.Size = new System.Drawing.Size(334, 26);
+            this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 6;
             // 
             // RecordsDataGridView
@@ -147,42 +143,42 @@ namespace Hush.Display.Interfaces
             this.RecordsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
             this.Value});
-            this.RecordsDataGridView.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsDataGridView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordsDataGridView.GridColor = System.Drawing.Color.White;
             this.RecordsDataGridView.Location = new System.Drawing.Point(37, 254);
             this.RecordsDataGridView.Name = "RecordsDataGridView";
             this.RecordsDataGridView.Size = new System.Drawing.Size(342, 180);
             this.RecordsDataGridView.TabIndex = 7;
             // 
-            // Key
-            // 
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
-            // 
             // Template
             // 
             this.Template.AutoSize = true;
-            this.Template.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(83, 18);
+            this.Template.Size = new System.Drawing.Size(70, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 
             // Category
             // 
             this.Category.AutoSize = true;
-            this.Category.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Category.Location = new System.Drawing.Point(42, 127);
             this.Category.Name = "Category";
-            this.Category.Size = new System.Drawing.Size(81, 18);
+            this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
+            // 
+            // Key
+            // 
+            this.Key.HeaderText = "Field";
+            this.Key.Name = "Key";
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
             // 
             // Add
             // 

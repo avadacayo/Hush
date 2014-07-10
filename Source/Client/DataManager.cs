@@ -553,38 +553,11 @@ namespace Hush.Client
             }
 
         }
-        public static bool SaveUserProfileChanges(string username, string fullname) 
+        public static void SaveUserProfileChanges(string username, string firstName, string lastName) 
         {
-            bool result = true;
-            if (username.Trim().Length > 0)
-            {
-                if (new DataManager().UniqueAccount(username))
-                {
-                    DataHolder.CurrentUser.Username = username.Trim();
-                }
-                else 
-                {
-                    result = false;
-                }
-                  
-            }
-            else
-            {
-                // return error - username blank
-                // check if username already exists
-                result = false;
-            }
-            
-            if (fullname.Trim().Length > 0)
-            {
-                DataHolder.CurrentUser.FirstName = fullname.Trim();
-            }
-            else
-            {
-                // return error - fullname blank
-                result = false;
-            }
-            return result; // need way to return error msg too
+            DataHolder.CurrentUser.Username = username;
+            DataHolder.CurrentUser.FirstName = firstName;
+            DataHolder.CurrentUser.LastName = lastName;
         }
          
         public static string SaveUserProfilePassword(string currentPassword, string newPassword, string confirmPassword) 
@@ -592,9 +565,13 @@ namespace Hush.Client
             string result;
             if (currentPassword == DataHolder.CurrentUser.Password)
             {
-                if (newPassword.Trim().Length < 1)
+                if (newPassword.Length < 6 || newPassword.Length > 25)
                 {
-                    result = "password blank";
+                    result = "password length";
+                }
+                else if (newPassword == DataHolder.CurrentUser.Username) 
+                {
+                    result = "matches username";
                 }
                 else if (newPassword.Trim() != confirmPassword.Trim())
                 {
@@ -646,6 +623,7 @@ namespace Hush.Client
         public static void Logout()
         {
             bool result = false;
+            
             DataHolder.CurrentUser = null;
 
         //    return result;
@@ -675,6 +653,57 @@ namespace Hush.Client
 
         }
 
+        public static bool ValidateUsernameLength(string username)
+        {
+            bool result = true;
+
+            if (username.Length < 3 || username.Length > 25)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public static bool ValidateFirstName(string firstName)
+        {
+            bool result = true;
+
+            if (firstName.Length < 2 || firstName.Length > 25)
+            {
+                result = false;
+            }
+            
+            String pattern = "[a-zA-Z]{1,25}$";
+            Regex regex = new Regex(pattern);
+            
+            if (!regex.IsMatch(firstName)) 
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public static bool ValidateLastName(string lastName)
+        {
+            bool result = true;
+
+            if (lastName.Length < 3 || lastName.Length > 25)
+            {
+                result = false;
+            }
+
+            String pattern = "[a-zA-Z]{1,25}$";
+            Regex regex = new Regex(pattern);
+
+            if (!regex.IsMatch(lastName))
+            {
+                result = false;
+            }
+
+            return result;
+        }
     }
 
 }

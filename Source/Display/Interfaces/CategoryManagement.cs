@@ -144,6 +144,7 @@ namespace Hush.Display.Interfaces
                         this.CategoryListBox.Items.Add(c.Name.ToString());
                     };
                     EditDeleteEnabled = true;
+                    this.CategoryListBox.SetSelected(0, true);
                 }
             }
             catch (Exception ex)

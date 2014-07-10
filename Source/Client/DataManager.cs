@@ -7,6 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Hush.Client
 {
@@ -411,26 +412,11 @@ namespace Hush.Client
             DataHolder.CurrentUser.Records.Add(NewRecord);
         }
 
-        public static void ProcessCategory(string oldCategory, string newCategory, DataHolder.updateMode update)
-        {
-            if (update == DataHolder.updateMode.Edit)
-            {
-                EditCategory(oldCategory, newCategory);
-            }
-            else if (update == DataHolder.updateMode.Delete)
-            {
-                DeleteCategory(oldCategory);
-            }
-            else
-            {
-                AddCategory(newCategory);
-            }
-
-        }
 
         // adds a category
         public static void AddCategory(string category)
         {
+           
             if (DataHolder.CurrentUser.Categories == null)
             {
                 List<Category> newCategoryList = new List<Category>();
@@ -443,7 +429,7 @@ namespace Hush.Client
             newCategory.Created = DateTime.Now;
 
             DataHolder.CurrentUser.Categories.Add(newCategory);
-          
+           
         }
 
 
@@ -550,6 +536,23 @@ namespace Hush.Client
 
         }
 
+        public static void ProcessCategory(string oldCategory, string newCategory, DataHolder.updateMode update)
+        {
+
+            if (update == DataHolder.updateMode.Edit)
+            {
+                EditCategory(oldCategory, newCategory);
+            }
+            else if (update == DataHolder.updateMode.Delete)
+            {
+                DeleteCategory(oldCategory);
+            }
+            else
+            {
+                AddCategory(newCategory);
+            }
+
+        }
         public static bool SaveUserProfileChanges(string username, string fullname) 
         {
             bool result = true;
@@ -629,9 +632,6 @@ namespace Hush.Client
 
         public static void EditCategory(string oldCategory, string newCategory)
         {
-            // TODO:  get category object with matching name
-            // set category name to new name
-            // send updated object to file
             List<Category> list = DataHolder.CurrentUser.Categories;
             for (var x = 0; x < list.Count; x++)
             {
@@ -649,6 +649,30 @@ namespace Hush.Client
             DataHolder.CurrentUser = null;
 
         //    return result;
+        }
+
+        public static bool ValidateCategoryUnique(string category)
+        {
+            bool result = true;
+
+            var item = DataHolder.CurrentUser.Categories.FirstOrDefault(o => o.Name == category);
+            if (item != null)
+                result = false;
+
+            return result;
+        }
+
+        public static bool ValidateCategoryLength(string category)
+        {
+            bool result = true;
+
+            if (category.Length < 3 || category.Length > 25)
+            {
+                result = false;
+            }
+            
+            return result;
+
         }
 
     }

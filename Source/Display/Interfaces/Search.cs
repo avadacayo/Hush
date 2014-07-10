@@ -65,7 +65,7 @@ namespace Hush.Display.Interfaces
             // 
             this.CategoryCheckBox.Location = new System.Drawing.Point(7, 28);
             this.CategoryCheckBox.Name = "CategoryCheckBox";
-            this.CategoryCheckBox.Size = new System.Drawing.Size(86, 25);
+            this.CategoryCheckBox.Size = new System.Drawing.Size(149, 25);
             this.CategoryCheckBox.TabIndex = 0;
             this.CategoryCheckBox.Text = "Category";
             this.CategoryCheckBox.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@ namespace Hush.Display.Interfaces
             // CancelButton
             // 
             this.CancelButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(295, 448);
+            this.CancelButton.Location = new System.Drawing.Point(280, 453);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 25);
             this.CancelButton.TabIndex = 6;
@@ -83,16 +83,16 @@ namespace Hush.Display.Interfaces
             // 
             // DateFromDateTimePicker
             // 
-            this.DateFromDateTimePicker.Location = new System.Drawing.Point(64, 37);
+            this.DateFromDateTimePicker.Location = new System.Drawing.Point(64, 26);
             this.DateFromDateTimePicker.Name = "DateFromDateTimePicker";
-            this.DateFromDateTimePicker.Size = new System.Drawing.Size(235, 24);
+            this.DateFromDateTimePicker.Size = new System.Drawing.Size(260, 28);
             this.DateFromDateTimePicker.TabIndex = 1;
             // 
             // DateFromLabel
             // 
-            this.DateFromLabel.Location = new System.Drawing.Point(7, 20);
+            this.DateFromLabel.Location = new System.Drawing.Point(7, 26);
             this.DateFromLabel.Name = "DateFromLabel";
-            this.DateFromLabel.Size = new System.Drawing.Size(78, 14);
+            this.DateFromLabel.Size = new System.Drawing.Size(78, 28);
             this.DateFromLabel.TabIndex = 0;
             this.DateFromLabel.Text = "From";
             // 
@@ -103,49 +103,49 @@ namespace Hush.Display.Interfaces
             this.DateRangeGroupBox.Controls.Add(this.DateToLabel);
             this.DateRangeGroupBox.Controls.Add(this.DateFromLabel);
             this.DateRangeGroupBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateRangeGroupBox.Location = new System.Drawing.Point(16, 310);
+            this.DateRangeGroupBox.Location = new System.Drawing.Point(35, 332);
             this.DateRangeGroupBox.Name = "DateRangeGroupBox";
-            this.DateRangeGroupBox.Size = new System.Drawing.Size(354, 132);
+            this.DateRangeGroupBox.Size = new System.Drawing.Size(345, 112);
             this.DateRangeGroupBox.TabIndex = 4;
             this.DateRangeGroupBox.TabStop = false;
             this.DateRangeGroupBox.Text = "Date Range";
             // 
             // DateToDateTimePicker
             // 
-            this.DateToDateTimePicker.Location = new System.Drawing.Point(64, 87);
+            this.DateToDateTimePicker.Location = new System.Drawing.Point(64, 68);
             this.DateToDateTimePicker.Name = "DateToDateTimePicker";
-            this.DateToDateTimePicker.Size = new System.Drawing.Size(235, 24);
+            this.DateToDateTimePicker.Size = new System.Drawing.Size(260, 28);
             this.DateToDateTimePicker.TabIndex = 3;
             // 
             // DateToLabel
             // 
-            this.DateToLabel.Location = new System.Drawing.Point(7, 67);
+            this.DateToLabel.Location = new System.Drawing.Point(6, 68);
             this.DateToLabel.Name = "DateToLabel";
-            this.DateToLabel.Size = new System.Drawing.Size(69, 17);
+            this.DateToLabel.Size = new System.Drawing.Size(69, 28);
             this.DateToLabel.TabIndex = 2;
             this.DateToLabel.Text = "To";
             // 
             // FieldCheckBox
             // 
-            this.FieldCheckBox.Location = new System.Drawing.Point(7, 97);
+            this.FieldCheckBox.Location = new System.Drawing.Point(7, 118);
             this.FieldCheckBox.Name = "FieldCheckBox";
-            this.FieldCheckBox.Size = new System.Drawing.Size(86, 33);
+            this.FieldCheckBox.Size = new System.Drawing.Size(131, 33);
             this.FieldCheckBox.TabIndex = 3;
             this.FieldCheckBox.Text = "Field:";
             this.FieldCheckBox.UseVisualStyleBackColor = true;
             // 
             // FieldSearchTextBox
             // 
-            this.FieldSearchTextBox.Location = new System.Drawing.Point(27, 136);
+            this.FieldSearchTextBox.Location = new System.Drawing.Point(29, 153);
             this.FieldSearchTextBox.Name = "FieldSearchTextBox";
-            this.FieldSearchTextBox.Size = new System.Drawing.Size(306, 24);
+            this.FieldSearchTextBox.Size = new System.Drawing.Size(295, 28);
             this.FieldSearchTextBox.TabIndex = 4;
             // 
             // NameCheckBox
             // 
-            this.NameCheckBox.Location = new System.Drawing.Point(7, 74);
+            this.NameCheckBox.Location = new System.Drawing.Point(7, 88);
             this.NameCheckBox.Name = "NameCheckBox";
-            this.NameCheckBox.Size = new System.Drawing.Size(86, 31);
+            this.NameCheckBox.Size = new System.Drawing.Size(131, 31);
             this.NameCheckBox.TabIndex = 2;
             this.NameCheckBox.Text = "Name";
             this.NameCheckBox.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@ namespace Hush.Display.Interfaces
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(189, 448);
+            this.SearchButton.Location = new System.Drawing.Point(150, 453);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(100, 25);
             this.SearchButton.TabIndex = 5;
@@ -169,27 +169,27 @@ namespace Hush.Display.Interfaces
             this.SearchFieldGroupBox.Controls.Add(this.TagsCheckBox);
             this.SearchFieldGroupBox.Controls.Add(this.CategoryCheckBox);
             this.SearchFieldGroupBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchFieldGroupBox.Location = new System.Drawing.Point(16, 124);
+            this.SearchFieldGroupBox.Location = new System.Drawing.Point(35, 124);
             this.SearchFieldGroupBox.Name = "SearchFieldGroupBox";
-            this.SearchFieldGroupBox.Size = new System.Drawing.Size(354, 180);
+            this.SearchFieldGroupBox.Size = new System.Drawing.Size(345, 202);
             this.SearchFieldGroupBox.TabIndex = 3;
             this.SearchFieldGroupBox.TabStop = false;
             this.SearchFieldGroupBox.Text = "Search By";
             // 
             // TagsCheckBox
             // 
-            this.TagsCheckBox.Location = new System.Drawing.Point(7, 51);
+            this.TagsCheckBox.Enabled = false;
+            this.TagsCheckBox.Location = new System.Drawing.Point(7, 58);
             this.TagsCheckBox.Name = "TagsCheckBox";
-            this.TagsCheckBox.Size = new System.Drawing.Size(86, 30);
+            this.TagsCheckBox.Size = new System.Drawing.Size(131, 30);
             this.TagsCheckBox.TabIndex = 1;
             this.TagsCheckBox.Text = "Tags";
             this.TagsCheckBox.UseVisualStyleBackColor = true;
-            this.TagsCheckBox.Enabled = false;
             // 
             // SearchTermLabel
             // 
             this.SearchTermLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTermLabel.Location = new System.Drawing.Point(20, 59);
+            this.SearchTermLabel.Location = new System.Drawing.Point(42, 59);
             this.SearchTermLabel.Name = "SearchTermLabel";
             this.SearchTermLabel.Size = new System.Drawing.Size(144, 26);
             this.SearchTermLabel.TabIndex = 1;
@@ -198,18 +198,18 @@ namespace Hush.Display.Interfaces
             // SearchTextBox
             // 
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTextBox.Location = new System.Drawing.Point(9, 88);
+            this.SearchTextBox.Location = new System.Drawing.Point(42, 79);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(361, 24);
+            this.SearchTextBox.Size = new System.Drawing.Size(317, 28);
             this.SearchTextBox.TabIndex = 2;
             // 
             // AdvancedSearchLabel
             // 
             this.AdvancedSearchLabel.AutoSize = true;
             this.AdvancedSearchLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AdvancedSearchLabel.Location = new System.Drawing.Point(40, 27);
+            this.AdvancedSearchLabel.Location = new System.Drawing.Point(40, 30);
             this.AdvancedSearchLabel.Name = "AdvancedSearchLabel";
-            this.AdvancedSearchLabel.Size = new System.Drawing.Size(160, 18);
+            this.AdvancedSearchLabel.Size = new System.Drawing.Size(204, 25);
             this.AdvancedSearchLabel.TabIndex = 0;
             this.AdvancedSearchLabel.Text = "Advanced Search";
             // 

@@ -173,24 +173,6 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
       <DependentUpon>Add.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Delete.resx">
-      <DependentUpon>Delete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
-      <DependentUpon>Edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\GeneratePassword.resx">
-      <DependentUpon>GeneratePassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
-      <DependentUpon>MainScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
-      <DependentUpon>Search.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\ViewRecord.resx">
-      <DependentUpon>ViewRecord.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

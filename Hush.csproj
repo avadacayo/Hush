@@ -211,7 +211,11 @@
     <Content Include="Data\test.js" />
     <Content Include="Spy.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\Templates\000Webhost\" />
+    <Folder Include="Data\Templates\Facebook\" />
+    <Folder Include="Data\Templates\Gmail\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

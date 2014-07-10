@@ -1,20 +1,21 @@
+/*
+
+the state parameter is currently unused
+
+*/
+
+var status = -1;
+
 function body(state, mode, value) {
 
-    switch (state) {
+    if (mode == 1) {
+        status++;
+    }
+    else {
+        ViewHandler.Close();
+    }
 
-        case 0:
-            ViewHandler.ShowInputDialog("Enter In A Value:");
-            break;
-
-        case 1:
-            if (value == "") {
-                state = state - 2;
-                ViewHandler.ShowTextDialog("Enter a value!");
-            }
-            else {
-                ViewHandler.ShowTextDialog("You Entered: " + value);
-            }
-            break;
+    switch (status) {
 
         default:
             ViewHandler.Close();

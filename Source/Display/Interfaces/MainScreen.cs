@@ -415,8 +415,7 @@ namespace Hush.Display.Interfaces
             {
                 if (DataHolder.RecordList == null)
                 {
-                    //dont add text msg as a record, it will cause exception when there is no record to be operated. thinking..
-                    //this.RecordsListBox.Items.Add("no accounts stored");
+                    this.RecordsListBox.Items.Add("no accounts stored");
                 }
                 else
                 {

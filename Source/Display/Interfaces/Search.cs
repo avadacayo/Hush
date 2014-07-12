@@ -85,7 +85,7 @@ namespace Hush.Display.Interfaces
             // 
             this.DateFromDateTimePicker.Location = new System.Drawing.Point(64, 26);
             this.DateFromDateTimePicker.Name = "DateFromDateTimePicker";
-            this.DateFromDateTimePicker.Size = new System.Drawing.Size(260, 28);
+            this.DateFromDateTimePicker.Size = new System.Drawing.Size(260, 24);
             this.DateFromDateTimePicker.TabIndex = 1;
             // 
             // DateFromLabel
@@ -114,7 +114,7 @@ namespace Hush.Display.Interfaces
             // 
             this.DateToDateTimePicker.Location = new System.Drawing.Point(64, 68);
             this.DateToDateTimePicker.Name = "DateToDateTimePicker";
-            this.DateToDateTimePicker.Size = new System.Drawing.Size(260, 28);
+            this.DateToDateTimePicker.Size = new System.Drawing.Size(260, 24);
             this.DateToDateTimePicker.TabIndex = 3;
             // 
             // DateToLabel
@@ -138,7 +138,7 @@ namespace Hush.Display.Interfaces
             // 
             this.FieldSearchTextBox.Location = new System.Drawing.Point(29, 153);
             this.FieldSearchTextBox.Name = "FieldSearchTextBox";
-            this.FieldSearchTextBox.Size = new System.Drawing.Size(295, 28);
+            this.FieldSearchTextBox.Size = new System.Drawing.Size(295, 24);
             this.FieldSearchTextBox.TabIndex = 4;
             // 
             // NameCheckBox
@@ -200,7 +200,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(42, 79);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(317, 28);
+            this.SearchTextBox.Size = new System.Drawing.Size(317, 24);
             this.SearchTextBox.TabIndex = 2;
             // 
             // AdvancedSearchLabel
@@ -209,7 +209,7 @@ namespace Hush.Display.Interfaces
             this.AdvancedSearchLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AdvancedSearchLabel.Location = new System.Drawing.Point(40, 30);
             this.AdvancedSearchLabel.Name = "AdvancedSearchLabel";
-            this.AdvancedSearchLabel.Size = new System.Drawing.Size(204, 25);
+            this.AdvancedSearchLabel.Size = new System.Drawing.Size(160, 18);
             this.AdvancedSearchLabel.TabIndex = 0;
             this.AdvancedSearchLabel.Text = "Advanced Search";
             // 

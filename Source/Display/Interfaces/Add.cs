@@ -54,10 +54,10 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.TemplateComboBox = new System.Windows.Forms.ComboBox();
             this.RecordsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Template = new System.Windows.Forms.Label();
-            this.Category = new System.Windows.Forms.Label();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Template = new System.Windows.Forms.Label();
+            this.Category = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,10 +145,20 @@ namespace Hush.Display.Interfaces
             this.Value});
             this.RecordsDataGridView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordsDataGridView.GridColor = System.Drawing.Color.White;
-            this.RecordsDataGridView.Location = new System.Drawing.Point(37, 254);
+            this.RecordsDataGridView.Location = new System.Drawing.Point(43, 251);
             this.RecordsDataGridView.Name = "RecordsDataGridView";
             this.RecordsDataGridView.Size = new System.Drawing.Size(342, 180);
             this.RecordsDataGridView.TabIndex = 7;
+            // 
+            // Key
+            // 
+            this.Key.HeaderText = "Field";
+            this.Key.Name = "Key";
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
             // 
             // Template
             // 
@@ -169,16 +179,6 @@ namespace Hush.Display.Interfaces
             this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
-            // 
-            // Key
-            // 
-            this.Key.HeaderText = "Field";
-            this.Key.Name = "Key";
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
             // 
             // Add
             // 

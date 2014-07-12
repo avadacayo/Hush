@@ -625,7 +625,7 @@ namespace Hush.Client
             bool result = false;
             
             DataHolder.CurrentUser = null;
-
+              
         //    return result;
         }
 

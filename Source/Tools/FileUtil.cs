@@ -23,6 +23,29 @@ namespace Hush.Tools
 
         }
 
+        public static List<String> GetTemplateList()
+        {
+
+            List<String> ReturnValue = new List<String>();
+
+            if (Directory.Exists(DataDirectory + "Templates"))
+            {
+
+                String[] Files = Directory.GetDirectories(DataDirectory + "Templates");
+
+                foreach (String DirName in Files)
+                {
+
+                    ReturnValue.Add(Path.GetFileName(Path.GetDirectoryName(DirName + Path.DirectorySeparatorChar)));
+
+                }
+
+            }
+
+            return ReturnValue;
+
+        }
+
         public static List<String> GetScriptList(String Template)
         {
 

@@ -82,6 +82,35 @@ namespace Hush.Client
                 return false;
         }
 
+        public static List<String> GetTemplateList()
+        {
+
+            return FileUtil.GetTemplateList();
+
+        }
+
+        public static void PopulateTemplateBox(ComboBox ComboControl)
+        {
+
+            List<String> Templates = GetTemplateList();
+
+            ComboControl.Items.Clear();
+
+            if (Templates.Count > 0)
+            {
+                ComboControl.Items.Add("");
+            }
+
+            foreach (String Item in Templates)
+            {
+                if (Item.Trim().Length != 0)
+                {
+                    ComboControl.Items.Add(Item);
+                }
+            }
+
+        }
+
         public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)
         {
 

@@ -39,6 +39,7 @@ namespace Hush.Display.Interfaces
 
             Title.Add("Add");
             base.Initialize(Title);
+            DataManager.PopulateTemplateBox(TemplateComboBox);
 
         }
 
@@ -120,15 +121,11 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.ValueMember = "Name";
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories; 
-            this.CategoryComboBox.DisplayMember = "Name"; 
-            this.CategoryComboBox.ValueMember = "Name"; 
-
             // 
             // TemplateComboBox
             // 
-            this.TemplateComboBox.Enabled = false;
             this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
@@ -169,7 +166,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(70, 17);
+            this.Template.Size = new System.Drawing.Size(72, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 

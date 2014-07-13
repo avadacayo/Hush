@@ -177,6 +177,9 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\SecretQuestion.resx">
+      <DependentUpon>SecretQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

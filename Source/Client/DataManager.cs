@@ -72,7 +72,7 @@ namespace Hush.Client
             return updated;
         }
 
-        public Boolean CheckSecretAnswer(String Username, String Answer)
+        public Boolean CheckSecretAnswer(String Username, String Answer, Int32 QuestionNumber)
         {
             User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
             if (user.SecretAnswer.Equals(Answer))
@@ -227,7 +227,9 @@ namespace Hush.Client
 
         }
 
-        public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
+        public Boolean CreateAccount(String Username, String Password, 
+                                     String SecretQuestion, String SecretAnswer,
+                                     String SecretQuestion2, String SecretAnswer2)
         {
             BFormatter = new BinaryFormatter(); 
             User NewUser = new User();
@@ -236,6 +238,8 @@ namespace Hush.Client
                 NewUser.Password = Password;
             NewUser.SecretQuestion = SecretQuestion;
             NewUser.SecretAnswer = SecretAnswer;
+            NewUser.SecretQuestion = SecretQuestion2;
+            NewUser.SecretAnswer = SecretAnswer2;
             NewUser.Created = DateTime.Now;
             NewUser.Modified = DateTime.Now;
             
@@ -268,9 +272,11 @@ namespace Hush.Client
                 DataHolder.CurrentUser = NewUser;
                 created = true;
             }
-            catch (Exception) {
-                
-            } 
+
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+ 
             return created;
         }
 
@@ -323,21 +329,34 @@ namespace Hush.Client
             return retrieved;
         }
 
-        public String GetSecretQuestion(String Username)
+        public String GetSecretQuestion(String Username, Int32 QuestionNumber)
         {
-            LoadUsers();
+            String Question = "No Secret Questions Available";
+             if (!loaded)
+            {
+                LoadUsers();
+            }
 
-            User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-            if (tempUser != null)
-                return tempUser.SecretQuestion;
+             if (loaded)
+             {
 
-            else
-                return "";
+                 User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+                 if (tempUser != null)
+                 {
+                     if (QuestionNumber == 1)
+                        Question = tempUser.SecretQuestion;
+
+                     else if (QuestionNumber == 2)
+                        Question = tempUser.SecretQuestion2;
+                 }
+                                  
+             }
+             return Question;
         }
 
-        public Boolean UniqueAccount(String Username)
+        public Boolean AccountExists(String Username)
         {
-            Boolean unique = false;
+            Boolean exists = false;
             if (!loaded)
             {
                 LoadUsers();
@@ -345,10 +364,12 @@ namespace Hush.Client
 
             if (loaded)
             {
-                unique = DataHolder.UserList.Exists(x => x.Username == Username);
+                exists = DataHolder.UserList.Exists(x => x.Username == Username);
             }
-            return !unique;
+
+            return !exists;
         }
+
         public Boolean TryLogin(String Username, String Password)
         {
             Boolean successfulLogin = false;

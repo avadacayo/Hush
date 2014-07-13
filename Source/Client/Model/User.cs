@@ -11,6 +11,7 @@ namespace Hush.Client.Model
     {
         private List<Category> _Categories;
         private DateTime _Created;
+        private String _Username;
         private String _FirstName;
         private String _ID;
         private String _LastName;
@@ -21,7 +22,8 @@ namespace Hush.Client.Model
         private List<Record> _Records;
         private String _SecretAnswer;
         private String _SecretQuestion;
-        private String _Username;
+        private String _SecretAnswer2;
+        private String _SecretQuestion2;
 
         #region Properties
         
@@ -115,6 +117,21 @@ namespace Hush.Client.Model
 
         }
 
+        public String SecretAnswer2
+        {
+
+            get { return _SecretAnswer2; }
+            set { _SecretAnswer2 = value; }
+
+        }
+
+        public String SecretQuestion2
+        {
+
+            get { return _SecretQuestion2; }
+            set { _SecretQuestion2 = value; }
+
+        }
         #endregion
 
         public User()
@@ -132,6 +149,8 @@ namespace Hush.Client.Model
             _Records = new List<Record>();
             _SecretAnswer = String.Empty;
             _SecretQuestion = String.Empty;
+            _SecretAnswer2 = String.Empty;
+            _SecretQuestion2 = String.Empty;
             _Username = String.Empty;
 
         }
@@ -157,6 +176,8 @@ namespace Hush.Client.Model
             _Portrait = (Byte[])Info.GetValue("Portrait", typeof(Byte[]));
             _SecretAnswer = (String)Info.GetValue("SecretAnswer", typeof(String));
             _SecretQuestion = (String)Info.GetValue("SecretQuestion", typeof(String));
+            _SecretAnswer2 = (String)Info.GetValue("SecretAnswer2", typeof(String));
+            _SecretQuestion2 = (String)Info.GetValue("SecretQuestion2", typeof(String));
             _Records = (List<Record>)Info.GetValue("Records", typeof(List<Record>));
             _Username = (String)Info.GetValue("Username", typeof(String));
 
@@ -186,6 +207,8 @@ namespace Hush.Client.Model
             Info.AddValue("Records", _Records);
             Info.AddValue("SecretAnswer", SecretAnswer);
             Info.AddValue("SecretQuestion", _SecretQuestion);
+            Info.AddValue("SecretAnswer2", SecretAnswer);
+            Info.AddValue("SecretQuestion2", _SecretQuestion);
             Info.AddValue("Username", _Username);
 
         }

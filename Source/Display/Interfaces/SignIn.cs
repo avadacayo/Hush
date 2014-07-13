@@ -67,7 +67,7 @@ namespace Hush.Display.Interfaces
 
             else
             {
-                if (new DataManager().CreateAccount("demo", "demo", "demo", "demo"))
+                if (new DataManager().CreateAccount("demo", "demo", "demo", "demo", "demo", "demo"))
                 {
                     Program.Window.ShowInterface(new MainScreen());
                 }

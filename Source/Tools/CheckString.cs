@@ -9,13 +9,21 @@ namespace Hush.Tools
 {
     class CheckString
     {
-        public Boolean ValidPasswordCheck(String Username, String Password)
+        //Password2 optional
+        public Boolean ValidPasswordCheck(String Username, String Password, String Password2 = "")
         {
             Boolean valid = true;
             String pattern = @"^[a-zA-Z0-9_\-\@\#\$\%\^\!\&\*\(\)]{6,24}$";
             Regex regex = new Regex(pattern);
             if (!regex.IsMatch(Password) || Password.Contains(Username))
                 valid = false;
+
+            if (!Password2.Equals(""))
+            {
+                if (!regex.IsMatch(Password) || Password.Contains(Username) && Password.Equals(Password2))
+                    valid = false;
+            }
+
             //MessageBox.Show(valid.ToString());
             return valid;
         }

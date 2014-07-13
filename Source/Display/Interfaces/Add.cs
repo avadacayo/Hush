@@ -120,9 +120,11 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
-            this.CategoryComboBox.ValueMember = "Name";
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories; 
+            this.CategoryComboBox.DisplayMember = "Name"; 
+            this.CategoryComboBox.ValueMember = "Name"; 
+
             // 
             // TemplateComboBox
             // 

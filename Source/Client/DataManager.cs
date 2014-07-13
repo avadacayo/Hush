@@ -488,12 +488,23 @@ namespace Hush.Client
 
         public static void DeleteRecord(Record record)
         {
+            if(record != null)
             DataHolder.CurrentUser.Records.Remove(record);
         }
 
         public static Record GetRecord(Int32 recordIndex)
         {
-            return DataHolder.CurrentUser.Records[recordIndex];
+            Record rc = new Record();
+            try 
+	        {	        
+		        rc = DataHolder.CurrentUser.Records[recordIndex];
+	        }
+	        catch (Exception)
+	        {
+		
+		        throw;
+	        }
+            return rc;
         }
 
         public static Record GetRecordByName(String RecordName)

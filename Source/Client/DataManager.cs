@@ -195,7 +195,6 @@ namespace Hush.Client
         public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)
         {
 
-            TemplateName = "CDOT Wiki";
             List<String> Files = FileUtil.GetScriptList(TemplateName);
 
             ComboControl.Items.Clear();

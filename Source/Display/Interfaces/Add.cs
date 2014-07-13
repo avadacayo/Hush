@@ -17,6 +17,10 @@ namespace Hush.Display.Interfaces
 {
     class Add : Interface
     {
+
+
+        private List<String> _AddedFields = new List<String>();
+
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Button button5;
         private Button Save;
@@ -110,7 +114,7 @@ namespace Hush.Display.Interfaces
             this.Cancel.TabIndex = 9;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.CancelButton_Click);
+            this.Cancel.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // CategoryComboBox
             // 
@@ -132,6 +136,7 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.Name = "TemplateComboBox";
             this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 6;
+            this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // RecordsDataGridView
             // 
@@ -233,11 +238,20 @@ namespace Hush.Display.Interfaces
             }
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CancelButtonClick(Object Sender, EventArgs Args)
         {
-            Program.Window.ShowInterface(new MainScreen());
-        }
-    }
 
+            Program.Window.ShowInterface(new MainScreen());
+
+        }
+
+        private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
+        {
+
+            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, RecordsDataGridView);
+
+        }
+
+    }
 
 }

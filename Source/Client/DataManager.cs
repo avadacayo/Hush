@@ -82,6 +82,63 @@ namespace Hush.Client
                 return false;
         }
 
+        public static void ProcessTemplateChange(List<String> AddedFields, String TemplateName, DataGridView Control)
+        {
+
+            List<String> ToAdd = FileUtil.ReadTemplate(TemplateName);
+            List<DataGridViewRow> ToRemove = new List<DataGridViewRow>();
+
+            foreach (DataGridViewRow Row in Control.Rows)
+            {
+
+                if (Row.Cells[0].Value != null)
+                {
+
+                    if (AddedFields.Contains(Row.Cells[0].Value.ToString().Trim())) {
+
+                        AddedFields.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                        if (Row.Cells[1].Value == null || Row.Cells[1].Value.ToString().Length < 1)
+                        {
+
+                            ToRemove.Add(Row);
+                            continue;
+
+                        }
+
+                    }
+
+                    if (ToAdd.Contains(Row.Cells[0].Value.ToString().Trim()))
+                    {
+
+                        ToAdd.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                    }
+
+                }
+
+            }
+
+            foreach (DataGridViewRow Row in ToRemove)
+            {
+
+                Control.Rows.Remove(Row);
+
+            }
+
+            foreach (String Item in ToAdd)
+            {
+
+                DataGridViewRow RowToAdd = new DataGridViewRow();
+                RowToAdd.CreateCells(Control);
+                RowToAdd.Cells[0].Value = Item;
+                Control.Rows.Add(RowToAdd);
+                AddedFields.Add(Item);
+
+            }
+
+        }
+
         public static List<String> GetTemplateList()
         {
 
@@ -138,7 +195,6 @@ namespace Hush.Client
         public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)
         {
 
-            TemplateName = "CDOT Wiki";
             List<String> Files = FileUtil.GetScriptList(TemplateName);
 
             ComboControl.Items.Clear();

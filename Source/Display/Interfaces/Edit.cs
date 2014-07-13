@@ -16,6 +16,9 @@ namespace Hush.Display.Interfaces
 {
     class Edit : Interface
     {
+
+        private List<String> _AddedFields = new List<String>();
+
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Button CategoryChange;
         private System.Windows.Forms.Button CancelButton;
@@ -124,6 +127,7 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.Name = "TemplateComboBox";
             this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 7;
+            this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // CategoryComboBox
             // 
@@ -250,6 +254,13 @@ namespace Hush.Display.Interfaces
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());
+        }
+
+        private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
+        {
+
+            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
+
         }
 
 

@@ -42,7 +42,7 @@ namespace Hush.Display.Interfaces
             if (DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex)
                 this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
 
-            DataManager.PopulateTemplateBox(TemplateComboBox);
+            DataManager.PopulateTemplateBox(TemplateComboBox, DataHolder.CurrentUser.Records[DataHolder.RecordIndex]);
 
         }
 
@@ -242,7 +242,7 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView);
+            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView, TemplateComboBox);
             DisplayRecord();
             Program.Window.ShowInterface(new MainScreen());
         }

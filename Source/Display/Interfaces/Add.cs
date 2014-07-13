@@ -39,7 +39,7 @@ namespace Hush.Display.Interfaces
 
             Title.Add("Add");
             base.Initialize(Title);
-            DataManager.PopulateTemplateBox(TemplateComboBox);
+            DataManager.PopulateTemplateBox(TemplateComboBox, new Record());
 
         }
 
@@ -216,6 +216,8 @@ namespace Hush.Display.Interfaces
             }
 
             rc.Name = this.RecordTextBox.Text;
+            if (TemplateComboBox.Enabled == true)
+                rc.Template = this.TemplateComboBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
             DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
             Program.Window.ShowInterface(new MainScreen());

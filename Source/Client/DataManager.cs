@@ -89,24 +89,48 @@ namespace Hush.Client
 
         }
 
-        public static void PopulateTemplateBox(ComboBox ComboControl)
+        public static void PopulateTemplateBox(ComboBox ComboControl, Record Record)
         {
 
             List<String> Templates = GetTemplateList();
 
+            if (Templates.Count == 0)
+            {
+
+                ComboControl.Enabled = false;
+                ComboControl.Items.Clear();
+                ComboControl.Text = "no tempaltes";
+                return;
+
+            }
+
+            ComboControl.Enabled = true;
             ComboControl.Items.Clear();
 
             if (Templates.Count > 0)
             {
+
                 ComboControl.Items.Add("");
+
             }
 
             foreach (String Item in Templates)
             {
+
                 if (Item.Trim().Length != 0)
                 {
+
                     ComboControl.Items.Add(Item);
+
                 }
+
+            }
+
+            if (Record.Template != "")
+            {
+
+                ComboControl.SelectedText = Record.Template;
+
             }
 
         }
@@ -488,7 +512,7 @@ namespace Hush.Client
             return;
         }
 
-        public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data)
+        public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data, ComboBox Template)
         {
             if (CurrentRecord == null)
             {
@@ -513,6 +537,12 @@ namespace Hush.Client
                         CurrentRecord.Fields.Add(f);
                     }       
             }
+
+            if (Template.Enabled == true)
+            {
+                CurrentRecord.Template = Template.Text;
+            }
+
          }
 
         public static void DeleteRecord(Record record)

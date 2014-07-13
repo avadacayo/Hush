@@ -415,7 +415,8 @@ namespace Hush.Display.Interfaces
             {
                 if (DataHolder.RecordList == null)
                 {
-                    this.RecordsListBox.Items.Add("no accounts stored");
+                    //this.RecordsListBox.Items.Add("no accounts stored");
+                    return;
                 }
                 else
                 {

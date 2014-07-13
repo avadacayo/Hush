@@ -1,5 +1,5 @@
 ﻿email
-user name
+username
 password
 gender
 date of birth

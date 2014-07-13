@@ -45,7 +45,6 @@ namespace Hush.Display.Interfaces
             String pattern = "[a-zA-Z0-9]{3,15}$";
             Regex regex = new Regex(pattern);
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
-            PasswordTextBox.Text = PasswordTextBox.Text.Trim();
 
             ErrUsernameLabel.Text = "";
 

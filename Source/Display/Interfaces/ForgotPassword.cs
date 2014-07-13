@@ -23,7 +23,9 @@ namespace Hush.Display.Interfaces
            Title.Add ("Forgot Password");
 
            base.Initialize(Title);
-
+           AlternatePasswordButton.Visible = false;
+           PatternButton.Visible = false;
+           ChooseOptionLabel.Visible = false;
         }
 
         protected override void InitializeComponent()

@@ -6,6 +6,7 @@ using Hush;
 using System.Collections.Generic;
 using Hush.Client;
 using System.Text.RegularExpressions;
+using Hush.Tools;
 
 namespace Hush.Display.Interfaces
 {
@@ -13,14 +14,14 @@ namespace Hush.Display.Interfaces
     {
         private Label SecretQuestionLabel;
         private TextBox SecretAnswerTextBox;
-        private Button ContinueButton;
+        private Button SecretAnswerContinueButton;
         private Button SaveButton;
         private Label PasswordLabel;
         private Label RepeatPasswordLabel;
         private TextBox PasswordTextBox;
         private Label UsernameLabel;
         private TextBox UsernameTextBox;
-        private Button AnswerQuestionButton;
+        private Button UsernameContinueButton;
         private Label PasswordStrengthLabel;
         private Label SecretQuestionHeaderLabel;
         private Button CancelButton;
@@ -36,7 +37,7 @@ namespace Hush.Display.Interfaces
 
             SecretQuestionLabel.Visible = false;
             SecretAnswerTextBox.Visible = false;
-            ContinueButton.Visible = false;
+            SecretAnswerContinueButton.Visible = false;
             PasswordLabel.Visible = false;
             RepeatPasswordLabel.Visible = false;
             PasswordTextBox.Visible = false;
@@ -50,7 +51,7 @@ namespace Hush.Display.Interfaces
             this.CancelButton = new System.Windows.Forms.Button();
             this.SecretQuestionHeaderLabel = new System.Windows.Forms.Label();
             this.PasswordStrengthLabel = new System.Windows.Forms.Label();
-            this.AnswerQuestionButton = new System.Windows.Forms.Button();
+            this.UsernameContinueButton = new System.Windows.Forms.Button();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.RepeatPasswordTextBox = new System.Windows.Forms.TextBox();
@@ -58,7 +59,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordLabel = new System.Windows.Forms.Label();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.ContinueButton = new System.Windows.Forms.Button();
+            this.SecretAnswerContinueButton = new System.Windows.Forms.Button();
             this.SecretAnswerTextBox = new System.Windows.Forms.TextBox();
             this.SecretQuestionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -95,14 +96,14 @@ namespace Hush.Display.Interfaces
             // 
             // AnswerQuestionButton
             // 
-            this.AnswerQuestionButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnswerQuestionButton.Location = new System.Drawing.Point(280, 113);
-            this.AnswerQuestionButton.Name = "AnswerQuestionButton";
-            this.AnswerQuestionButton.Size = new System.Drawing.Size(100, 25);
-            this.AnswerQuestionButton.TabIndex = 10;
-            this.AnswerQuestionButton.Text = "Continue";
-            this.AnswerQuestionButton.UseVisualStyleBackColor = true;
-            this.AnswerQuestionButton.Click += new System.EventHandler(this.AnswerQuestionButton_Click);
+            this.UsernameContinueButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameContinueButton.Location = new System.Drawing.Point(280, 113);
+            this.UsernameContinueButton.Name = "AnswerQuestionButton";
+            this.UsernameContinueButton.Size = new System.Drawing.Size(100, 25);
+            this.UsernameContinueButton.TabIndex = 10;
+            this.UsernameContinueButton.Text = "Continue";
+            this.UsernameContinueButton.UseVisualStyleBackColor = true;
+            this.UsernameContinueButton.Click += new System.EventHandler(this.UsernameContinueButton_Click);
             // 
             // UsernameTextBox
             // 
@@ -130,6 +131,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordTextBox.PasswordChar = '*';
             this.RepeatPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.RepeatPasswordTextBox.TabIndex = 7;
+            this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // PasswordTextBox
             // 
@@ -150,6 +152,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordLabel.Size = new System.Drawing.Size(155, 20);
             this.RepeatPasswordLabel.TabIndex = 5;
             this.RepeatPasswordLabel.Text = "Repeat Password";
+            
             // 
             // PasswordLabel
             // 
@@ -174,14 +177,14 @@ namespace Hush.Display.Interfaces
             // 
             // ContinueButton
             // 
-            this.ContinueButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContinueButton.Location = new System.Drawing.Point(280, 218);
-            this.ContinueButton.Name = "ContinueButton";
-            this.ContinueButton.Size = new System.Drawing.Size(100, 25);
-            this.ContinueButton.TabIndex = 2;
-            this.ContinueButton.Text = "Continue";
-            this.ContinueButton.UseVisualStyleBackColor = true;
-            this.ContinueButton.Click += new System.EventHandler(this.Continue_Click);
+            this.SecretAnswerContinueButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretAnswerContinueButton.Location = new System.Drawing.Point(280, 218);
+            this.SecretAnswerContinueButton.Name = "ContinueButton";
+            this.SecretAnswerContinueButton.Size = new System.Drawing.Size(100, 25);
+            this.SecretAnswerContinueButton.TabIndex = 2;
+            this.SecretAnswerContinueButton.Text = "Continue";
+            this.SecretAnswerContinueButton.UseVisualStyleBackColor = true;
+            this.SecretAnswerContinueButton.Click += new System.EventHandler(this.Continue_Click);
             // 
             // SecretAnswerTextBox
             // 
@@ -206,7 +209,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SecretQuestionHeaderLabel);
             this.Controls.Add(this.PasswordStrengthLabel);
-            this.Controls.Add(this.AnswerQuestionButton);
+            this.Controls.Add(this.UsernameContinueButton);
             this.Controls.Add(this.UsernameTextBox);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.RepeatPasswordTextBox);
@@ -214,7 +217,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.RepeatPasswordLabel);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.ContinueButton);
+            this.Controls.Add(this.SecretAnswerContinueButton);
             this.Controls.Add(this.SecretAnswerTextBox);
             this.Controls.Add(this.SecretQuestionLabel);
             this.Name = "SecretQuestion";
@@ -233,6 +236,8 @@ namespace Hush.Display.Interfaces
                 PasswordTextBox.Visible = true;
                 RepeatPasswordTextBox.Visible = true;
                 SaveButton.Visible = true;
+                SecretAnswerTextBox.Enabled = false;
+                SecretAnswerContinueButton.Enabled = false;
             }
 
             else
@@ -241,39 +246,30 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            String pattern = "[a-zA-Z0-9]{3,15}$",
-                   message = "";
-            Regex regex = new Regex(pattern);
+            String message = "";
 
-            if (PasswordTextBox.Text.Length <= 5)
-                message = "*Enter a valid password. 6-30 characters";
-
-            if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                message = "*Passwords do not match";
-
-
-            if (PasswordTextBox.Text.Length >= 6
-                && PasswordTextBox.Text == RepeatPasswordTextBox.Text
-                && !PasswordTextBox.Text.Equals(DataHolder.CurrentUser.Username))
+            if (new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text))
             {
-
-
-                if (new DataManager().ForgotPassword(UsernameTextBox.Text, PasswordTextBox.Text))
+                if (new DataManager().ChangePassword(UsernameTextBox.Text, PasswordTextBox.Text))
                 {
                     MessageBox.Show("Password has been changed.");
                     Program.Window.ShowInterface(new MainScreen());
                 }
-
-                else
-                    MessageBox.Show("Password is the same as username.");
-
             }
 
             else
+                if (PasswordTextBox.Text.Length <= 5)
+                    message = "*Enter a valid password. 6-30 characters";
+
+                if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
+                    message = "*Passwords do not match";
+
+                if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
+                    message = "*Password contains username";
                 MessageBox.Show(message);
         }
 
-        private void AnswerQuestionButton_Click(object sender, EventArgs e)
+        private void UsernameContinueButton_Click(object sender, EventArgs e)
         {
             String Question = new DataManager().GetSecretQuestion(UsernameTextBox.Text);
 
@@ -281,13 +277,15 @@ namespace Hush.Display.Interfaces
             {
                 SecretQuestionLabel.Visible = true;
                 SecretAnswerTextBox.Visible = true;
-                ContinueButton.Visible = true;
+                SecretAnswerContinueButton.Visible = true;
                 PasswordLabel.Visible = false;
                 RepeatPasswordLabel.Visible = false;
                 PasswordTextBox.Visible = false;
                 RepeatPasswordTextBox.Visible = false;
                 SaveButton.Visible = false;
                 SecretQuestionLabel.Text = Question;
+                UsernameTextBox.Enabled = false;
+                UsernameContinueButton.Enabled = false;
             }
 
             else
@@ -298,21 +296,32 @@ namespace Hush.Display.Interfaces
         {
             if (PasswordTextBox.Text.Length > 0)
             {
-                int x = new DataManager().PasswordStrength(PasswordTextBox.Text);
+                int x = new CheckString().PasswordStrength(PasswordTextBox.Text);
                 if (x <= 0)
-                    PasswordStrengthLabel.Text = "  Very weak";
-
+                {
+                    PasswordStrengthLabel.Text = "Very weak";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Crimson;
+                }
                 else if (x == 1)
-                    PasswordStrengthLabel.Text = "         Weak";
-
+                {
+                    PasswordStrengthLabel.Text = "Weak";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Orange;
+                }
                 else if (x == 2)
-                    PasswordStrengthLabel.Text = "            Fair";
-
+                {
+                    PasswordStrengthLabel.Text = "Fair";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Gold;
+                }
                 else if (x == 3)
-                    PasswordStrengthLabel.Text = "        Strong";
-
+                {
+                    PasswordStrengthLabel.Text = "Strong";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.YellowGreen;
+                }
                 else if (x == 4)
+                {
                     PasswordStrengthLabel.Text = "Very Strong";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Green;
+                }
             }
 
             if (PasswordTextBox.Text.Length > 0 && RepeatPasswordTextBox.Text.Length > 0)

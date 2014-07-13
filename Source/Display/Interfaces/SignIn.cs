@@ -28,11 +28,11 @@ namespace Hush.Display.Interfaces
         private LinkLabel ForgotPasswordLinkLabel;
         private Button DemoButton;
         private Label ErrorMsgsLabel;
-        
+
         private void LoginButtonClick(Object Sender, EventArgs Args)
         {
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
-            if ((new DataManager().TryLogin(UsernameTextBox.Text.Trim(), PasswordTextBox.Text)))
+            if ((new DataManager().TryLogin(UsernameTextBox.Text, PasswordTextBox.Text)))
             {
                 Program.Window.ShowInterface(new MainScreen());
             }
@@ -189,7 +189,6 @@ namespace Hush.Display.Interfaces
             this.ForgotPasswordLinkLabel.TabStop = true;
             this.ForgotPasswordLinkLabel.Text = "Forgot Password";
             this.ForgotPasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ForgotPasswordLinkLabel_LinkClicked);
-            this.ForgotPasswordLinkLabel.Click += new System.EventHandler(this.ForgotPasswordLinkLabel_Click);
             // 
             // ErrorMsgsLabel
             // 
@@ -220,17 +219,14 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
-        private void ForgotPasswordLinkLabel_Click(object sender, EventArgs e)
-        {
-            Program.Window.ShowInterface(new ForgotPassword());
-        }
+        
 
         private void ForgotPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Program.Window.ShowInterface(new ForgotPassword());
+            Program.Window.ShowInterface(new SecretQuestion());
         }
 
-       
+      
 
     }
 

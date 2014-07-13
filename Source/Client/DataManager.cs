@@ -32,17 +32,22 @@ namespace Hush.Client
         private Boolean loaded = false , updated = false;
         BinaryFormatter BFormatter;
 
-        public Boolean ForgotPassword(String Username, String Password)
+       
+        public Boolean ChangePassword(String Username, String Password)
         {
+            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+            DataHolder.CurrentUser = user;
+
             if (!loaded)
             {
                 LoadUsers();
             }
-            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-            if (!Username.Equals(Password))
+
+            if (new CheckString().ValidPasswordCheck(Username, Password))
             {
                 user.Password = Password;
 
+           // TODO: remove and /use file util
                 try
                 {
                     FileStream writerFS;
@@ -227,13 +232,15 @@ namespace Hush.Client
             BFormatter = new BinaryFormatter(); 
             User NewUser = new User();
             NewUser.Username = Username;
-            NewUser.Password = Password;
+            if (new CheckString().ValidPasswordCheck(Username, Password))
+                NewUser.Password = Password;
             NewUser.SecretQuestion = SecretQuestion;
             NewUser.SecretAnswer = SecretAnswer;
             NewUser.Created = DateTime.Now;
             NewUser.Modified = DateTime.Now;
             
             Boolean created = false;
+            // TODO: remove and /use file util
             try
             {
                 FileStream writerFS;
@@ -271,7 +278,7 @@ namespace Hush.Client
         {
             Boolean retrieved;
             User getUser;
-            
+            // TODO: remove and /use file util
             try
             {
                 FileStream readerFileStream = new FileStream(filename,
@@ -296,7 +303,7 @@ namespace Hush.Client
             Boolean retrieved;
             try
             {
-                String[] filenames = Directory.GetFiles("./Data/", "*.user");
+                List<String> filenames = FileUtil.FindUserFiles();
                 // TODO use file util class
                 foreach (string f in filenames)
                 {
@@ -307,9 +314,10 @@ namespace Hush.Client
                 
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
                 retrieved = false;
+                MessageBox.Show(ex.Message);
             }
             
             return retrieved;
@@ -368,44 +376,6 @@ namespace Hush.Client
 
         }
 
-        //TODO: move this somewhere
-        public Int32 PasswordStrength(String Password)
-        {
-            Int32 val = 0;
-            Regex regex = new Regex("[A-Z]");
-
-            if (regex.IsMatch(Password))
-            {
-                val++;
-            }
-
-            regex = new Regex("[0-9]");
-            if (regex.IsMatch(Password))
-            {
-                val++;
-            }
-
-            regex = new Regex("[^A-Za-z0-9]");
-            if (regex.IsMatch(Password))
-            {
-                val++;
-            }
-
-            if (Password.Length > 6)
-            {
-                val++;
-            }
-
-            regex = new Regex(@"(.)\1");
-            if (regex.IsMatch(Password))
-            {
-                val--;
-            }
-
-            return val;
-        }
-
-        
         public static void AddRecord()
         {
             Record NewRecord = new Record();

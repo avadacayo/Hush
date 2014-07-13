@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Hush;
 using Hush.Client;
 using System.Text.RegularExpressions;
+using Hush.Tools;
 
 namespace Hush.Display.Interfaces
 {
@@ -43,24 +44,9 @@ namespace Hush.Display.Interfaces
             PasswordTextBox.Text = PasswordTextBox.Text.Trim();
 
             ErrUsernameLabel.Text = "";
-            ErrPasswordLabel.Text = "";
-            
-            if (!regex.IsMatch(UsernameTextBox.Text))
-                ErrUsernameLabel.Text = "*Enter a valid username. 5 - 25 characters";
-
-            if (PasswordTextBox.Text.Length <= 5)
-                ErrPasswordLabel.Text = "*Enter a valid password. 6-30 characters";
-    
-            if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                ErrPasswordLabel.Text = "*Passwords do not match";
-
-            if (PasswordTextBox.Text.Equals(UsernameTextBox.Text))
-                ErrPasswordLabel.Text = "*Password is the same as username";
 
             //TODO: Stop if weak password has been used?
-            if (regex.IsMatch(UsernameTextBox.Text) && PasswordTextBox.Text.Length >= 6 
-                && PasswordTextBox.Text == RepeatPasswordTextBox.Text
-                && !PasswordTextBox.Text.Equals(UsernameTextBox.Text))
+            if (new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text))
             {
                 if (new DataManager().UniqueAccount(UsernameTextBox.Text))
                 {
@@ -74,36 +60,45 @@ namespace Hush.Display.Interfaces
                 else
                     ErrUsernameLabel.Text = "*Username has been used";
             }
-               
+            else
+            {
+                if (!regex.IsMatch(UsernameTextBox.Text))
+                    ErrUsernameLabel.Text = "*Enter a valid username. 3 - 25 characters";
+
+                if (PasswordTextBox.Text.Length <= 5)
+                    ErrPasswordLabel.Text = "*Enter a valid password. 6-30 characters";
+
+                if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
+                    ErrPasswordLabel.Text = "*Passwords do not match";
+
+                if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
+                    ErrPasswordLabel.Text = "*Password contains username";
+                //MessageBox.Show(@"Password not valid. Password must not contain username and should only include characters, numbers and -, @,#,$,%,^,!,&,*,\");
+            }  
         }
 
         private void Fields_TextChanged(object sender, EventArgs e)
         {
             if (PasswordTextBox.Text.Length > 0)
             {   
-                int x = new DataManager().PasswordStrength(PasswordTextBox.Text);
+                int x = new CheckString().PasswordStrength(PasswordTextBox.Text);
                 if (x <= 0)
                 {
-                   // PasswordStrengthLabel.Text = "  Very weak";
-                    
                     PasswordStrengthLabel.Text = "Very weak";
                     this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Crimson;
                 }
                 else if (x == 1)
                 {
-                    //PasswordStrengthLabel.Text = "         Weak";
                     PasswordStrengthLabel.Text = "Weak";
                     this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Orange;
                 }
                 else if (x == 2)
                 {
-                    //PasswordStrengthLabel.Text = "            Fair";
                     PasswordStrengthLabel.Text = "Fair";
                     this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Gold;
                 }
                 else if (x == 3)
                 {
-                    //PasswordStrengthLabel.Text = "        Strong";
                     PasswordStrengthLabel.Text = "Strong";
                     this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.YellowGreen;
                 }

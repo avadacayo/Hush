@@ -49,6 +49,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            RecordTextBox.Focus();
+        }
+
         protected override void InitializeComponent()
         {
             this.AddRecordLabel = new System.Windows.Forms.Label();

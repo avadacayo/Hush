@@ -114,6 +114,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            PasswordTextBox.Focus();
+        }
+
         private void OkButton_Click(object sender, EventArgs e)
         {
             Boolean valid = DataManager.VerifyPassword(this.PasswordTextBox.Text);

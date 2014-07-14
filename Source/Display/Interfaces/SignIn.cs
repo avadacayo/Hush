@@ -219,7 +219,11 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
-        
+ public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }       
 
         private void ForgotPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

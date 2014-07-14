@@ -206,6 +206,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            ScriptComboBox.Focus();
+        }
+
         private void DisplayRecord()
         {
 

@@ -421,6 +421,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());

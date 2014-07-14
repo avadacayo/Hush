@@ -136,6 +136,11 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+        public override void PostInit()
+        {
+            base.PostInit();
+            LengthTextBox.Focus();
+        }
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {

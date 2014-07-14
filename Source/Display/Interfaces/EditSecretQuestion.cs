@@ -84,6 +84,11 @@ namespace Hush.Display.Interfaces
             base.Initialize(Title);
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            SecretQuestionTextBox.Focus();
+        }
         protected override void InitializeComponent()
         {
             this.SecretQuestionLabel2 = new System.Windows.Forms.Label();

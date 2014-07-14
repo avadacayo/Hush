@@ -39,6 +39,12 @@ namespace Hush.Display.Interfaces
 
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            SearchTextBox.Focus();
+        }
+
         protected override void InitializeComponent()
         {
             this.CategoryCheckBox = new System.Windows.Forms.CheckBox();

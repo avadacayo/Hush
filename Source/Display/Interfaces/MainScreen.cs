@@ -336,6 +336,11 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new UserProfile());
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            RecordsListBox.Focus();
+        }
         protected override void OnLoad(EventArgs e)
         {
             AddRecordsToListBox();

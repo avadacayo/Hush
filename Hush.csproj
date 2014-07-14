@@ -174,15 +174,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
-      <DependentUpon>Edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
-      <DependentUpon>Search.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
       <DependentUpon>TestScreen.cs</DependentUpon>
     </EmbeddedResource>

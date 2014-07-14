@@ -252,6 +252,11 @@ namespace Hush.Display.Interfaces
         }   
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }
         private void AnswersContinue_Click(object sender, EventArgs e)
         {
             if ((new DataManager().CheckSecretAnswer(UsernameTextBox.Text, SecretAnswerTextBox.Text, 1)) &&

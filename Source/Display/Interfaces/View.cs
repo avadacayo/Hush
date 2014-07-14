@@ -92,5 +92,10 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            RunComboBox.Focus();
+        }
     }
 }

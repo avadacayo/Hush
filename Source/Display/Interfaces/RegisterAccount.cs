@@ -135,6 +135,12 @@ namespace Hush.Display.Interfaces
             
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }
+
         #region Designer
         protected override void Initialize(List<String> Title)
         {

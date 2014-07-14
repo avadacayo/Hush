@@ -218,6 +218,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            RecordTextBox.Focus();
+        }
+
         private void DisplayRecord()
         {
             List<Field> fieldList = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Fields;

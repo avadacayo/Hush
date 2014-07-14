@@ -255,10 +255,12 @@ namespace Hush.Display.Interfaces
             this.RecordsListBox.Name = "RecordsListBox";
             this.RecordsListBox.Size = new System.Drawing.Size(359, 224);
             this.RecordsListBox.TabIndex = 1;
+            this.RecordsListBox.SelectedIndexChanged += new System.EventHandler(this.RecordsListBox_SelectedIndexChanged);
             // 
             // RecordsTreeView
             // 
             this.RecordsTreeView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordsTreeView.LineColor = System.Drawing.Color.Empty;
             this.RecordsTreeView.Location = new System.Drawing.Point(235, 99);
             this.RecordsTreeView.Name = "RecordsTreeView";
             this.RecordsTreeView.Size = new System.Drawing.Size(148, 212);
@@ -267,7 +269,6 @@ namespace Hush.Display.Interfaces
             // 
             // MainScreen
             // 
-            //this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SettingsButton);
@@ -513,6 +514,13 @@ namespace Hush.Display.Interfaces
             }
 
             Program.Window.ShowInterface(new SignIn());
+        }
+
+        private void RecordsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewButton.Enabled = true;
+            EditRecordButton.Enabled = true;
+            DeleteRecordButton.Enabled = true;
         }
     }
 

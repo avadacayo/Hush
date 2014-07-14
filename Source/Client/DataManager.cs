@@ -737,6 +737,17 @@ namespace Hush.Client
             }
         }
 
+        public static void EditSecretQuestions(string secretQuestion, string secretQuestion2, string secretAnswer, string secretAnswer2)
+        {
+           // bool result = false;
+
+            DataHolder.CurrentUser.SecretQuestion = secretQuestion;
+            DataHolder.CurrentUser.SecretQuestion2 = secretQuestion2;
+            DataHolder.CurrentUser.SecretAnswer = secretAnswer;
+            DataHolder.CurrentUser.SecretAnswer2 = secretAnswer2;
+
+            return;
+        }
         public static void Logout()
         {
             bool result = false;

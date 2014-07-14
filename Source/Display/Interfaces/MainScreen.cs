@@ -72,7 +72,7 @@ namespace Hush.Display.Interfaces
             this.AccountsStoredLabel.Font = new System.Drawing.Font("Verdana", 10F);
             this.AccountsStoredLabel.Location = new System.Drawing.Point(29, 79);
             this.AccountsStoredLabel.Name = "AccountsStoredLabel";
-            this.AccountsStoredLabel.Size = new System.Drawing.Size(130, 17);
+            this.AccountsStoredLabel.Size = new System.Drawing.Size(155, 20);
             this.AccountsStoredLabel.TabIndex = 9;
             this.AccountsStoredLabel.Text = "Accounts stored:";
             // 
@@ -178,7 +178,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(24, 382);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(237, 24);
+            this.SearchTextBox.Size = new System.Drawing.Size(237, 28);
             this.SearchTextBox.TabIndex = 4;
             // 
             // UserPanel
@@ -200,7 +200,7 @@ namespace Hush.Display.Interfaces
             this.ProfileLinkLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProfileLinkLabel.Location = new System.Drawing.Point(301, 10);
             this.ProfileLinkLabel.Name = "ProfileLinkLabel";
-            this.ProfileLinkLabel.Size = new System.Drawing.Size(43, 13);
+            this.ProfileLinkLabel.Size = new System.Drawing.Size(50, 17);
             this.ProfileLinkLabel.TabIndex = 2;
             this.ProfileLinkLabel.TabStop = true;
             this.ProfileLinkLabel.Text = "Profile";
@@ -214,7 +214,7 @@ namespace Hush.Display.Interfaces
             this.LogoutLinkLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutLinkLabel.Location = new System.Drawing.Point(301, 31);
             this.LogoutLinkLabel.Name = "LogoutLinkLabel";
-            this.LogoutLinkLabel.Size = new System.Drawing.Size(45, 13);
+            this.LogoutLinkLabel.Size = new System.Drawing.Size(58, 17);
             this.LogoutLinkLabel.TabIndex = 3;
             this.LogoutLinkLabel.TabStop = true;
             this.LogoutLinkLabel.Text = "Logout";
@@ -227,7 +227,7 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameLabel.Location = new System.Drawing.Point(4, 27);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(77, 17);
+            this.UsernameLabel.Size = new System.Drawing.Size(94, 20);
             this.UsernameLabel.TabIndex = 1;
             this.UsernameLabel.Text = "username";
             // 
@@ -237,7 +237,7 @@ namespace Hush.Display.Interfaces
             this.UserLabel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.Location = new System.Drawing.Point(4, 7);
             this.UserLabel.Name = "UserLabel";
-            this.UserLabel.Size = new System.Drawing.Size(49, 17);
+            this.UserLabel.Size = new System.Drawing.Size(59, 20);
             this.UserLabel.TabIndex = 0;
             this.UserLabel.Text = "User:";
             // 
@@ -245,13 +245,14 @@ namespace Hush.Display.Interfaces
             // 
             this.RecordsListBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordsListBox.FormattingEnabled = true;
-            this.RecordsListBox.ItemHeight = 16;
+            this.RecordsListBox.ItemHeight = 20;
             this.RecordsListBox.Items.AddRange(new object[] {
             "LIST OF RECORDS"});
             this.RecordsListBox.Location = new System.Drawing.Point(24, 99);
             this.RecordsListBox.Name = "RecordsListBox";
-            this.RecordsListBox.Size = new System.Drawing.Size(202, 212);
+            this.RecordsListBox.Size = new System.Drawing.Size(359, 224);
             this.RecordsListBox.TabIndex = 1;
+            this.RecordsListBox.SetSelected(0, true);
             // 
             // RecordsTreeView
             // 
@@ -260,10 +261,11 @@ namespace Hush.Display.Interfaces
             this.RecordsTreeView.Name = "RecordsTreeView";
             this.RecordsTreeView.Size = new System.Drawing.Size(148, 212);
             this.RecordsTreeView.TabIndex = 10;
+            this.RecordsTreeView.Visible = false;
             // 
             // MainScreen
             // 
-            this.Controls.Add(this.RecordsTreeView);
+            //this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SettingsButton);

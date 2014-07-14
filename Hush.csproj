@@ -96,6 +96,9 @@
     <Compile Include="Source\Display\Interfaces\GeneratePassword.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\EditSecretQuestion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\SecretQuestion.cs">
       <SubType>UserControl</SubType>
     </Compile>

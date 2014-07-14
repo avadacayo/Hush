@@ -19,7 +19,7 @@ namespace Hush.Client
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
         static public IEnumerable<Record> RecordList = default(IEnumerable<Record>);
-
+        static public Record RecordNode = default(Record);
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
         static public updateMode update;

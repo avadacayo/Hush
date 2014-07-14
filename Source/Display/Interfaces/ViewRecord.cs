@@ -212,6 +212,9 @@ namespace Hush.Display.Interfaces
             List<Field> FieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
             CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
 
+            //List<Field> FieldList = DataHolder.RecordNode.Fields;
+            //CategoryTextBox.Text = DataHolder.RecordNode.Category.Name.ToString();
+
             foreach (Field Item in FieldList)
             {
 
@@ -220,7 +223,7 @@ namespace Hush.Display.Interfaces
             }
 
             RecordTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Name;
-
+            //RecordTextBox.Text = DataHolder.RecordNode.Name;
         }
 
         protected override void OnLoad(EventArgs Args)

@@ -87,6 +87,7 @@ namespace Hush.Display.Interfaces
             this.DateFromDateTimePicker.Name = "DateFromDateTimePicker";
             this.DateFromDateTimePicker.Size = new System.Drawing.Size(260, 24);
             this.DateFromDateTimePicker.TabIndex = 1;
+            this.DateFromDateTimePicker.Value = DateTime.Today.AddDays(-365);
             // 
             // DateFromLabel
             // 
@@ -238,6 +239,7 @@ namespace Hush.Display.Interfaces
         private void SearchButton_Click(object sender, EventArgs e)
         {
             String SearchName = this.SearchTextBox.Text;
+            
             if (DateFromDateTimePicker.Value > (DateToDateTimePicker.Value.Add(new TimeSpan(0, 0, 0, 10))) || DateFromDateTimePicker.Value > DateTime.Now || DateToDateTimePicker.Value > DateTime.Now)
             {
                 MessageBox.Show("Invalid date period");

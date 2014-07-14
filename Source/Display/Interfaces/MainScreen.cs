@@ -302,6 +302,12 @@ namespace Hush.Display.Interfaces
                 DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
                 Program.Window.ShowInterface(new ViewRecord());
             }
+
+            //if (this.RecordsTreeView.SelectedNode != null)
+            //{
+            //    DataHolder.RecordNode = (Record)RecordsTreeView.SelectedNode.Tag;
+            //    Program.Window.ShowInterface(new ViewRecord());
+            //}
         }
 
         private void AddRecordButton_Click(object sender, EventArgs e)

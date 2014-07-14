@@ -1,10 +1,43 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Hush.Tools
 {
 
     class StringUtil
     {
+
+        public class JSON
+        {
+
+            public static T Deserialize<T>(String ToDeserialize)
+            {
+
+                T Result = default(T);
+                Result = JsonConvert.DeserializeObject<T>(ToDeserialize);
+                return Result;
+
+            }
+
+            public static String Serialize<T>(T ToSerialize)
+            {
+
+                String Result;
+                Result = JsonConvert.SerializeObject(ToSerialize);
+                return Result;
+
+            }
+
+            public static String SerializeFormatted<T>(T ToSerialize)
+            {
+
+                String Result;
+                Result = JsonConvert.SerializeObject(ToSerialize, Formatting.Indented);
+                return Result;
+
+            }
+
+        }
 
         public static Byte[] GetBytes(String Input)
         {

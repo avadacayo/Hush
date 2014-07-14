@@ -1,8 +1,11 @@
 ﻿using Hush.Client;
 using Hush.Client.Model;
+using Hush.Tools;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 
@@ -343,6 +346,50 @@ namespace Hush.Display.Interfaces
         }
         protected override void OnLoad(EventArgs e)
         {
+
+
+
+            if (DataHolder.CurrentUser != null)
+            {
+
+                String Data = StringUtil.JSON.SerializeFormatted<User>(DataHolder.CurrentUser);
+                String Username = DataHolder.CurrentUser.Username;
+
+                using (StreamWriter Writer = new StreamWriter("./Data/" + Username + ".JSON"))
+                {
+                    Writer.Write(Data);
+                }
+
+                BinaryFormatter BFormatter = new BinaryFormatter();
+                try
+                {
+                    FileStream writerFS;
+                    if (!Directory.Exists("./Data"))
+                    {
+                        Directory.CreateDirectory("./Data");
+                    }
+                    if (!File.Exists("./Data/" + Username + ".user"))
+                    {
+                        writerFS =
+                        new FileStream("./Data/" + Username + ".user", FileMode.Create, FileAccess.Write);
+                    }
+                    else
+                    {
+                        File.Delete("./Data/" + Username + ".user");
+                        writerFS =
+                        new FileStream("./Data/" + Username + ".user", FileMode.Create, FileAccess.Write);
+                    }
+                    BFormatter.Serialize(writerFS, DataHolder.CurrentUser);
+                    writerFS.Close();
+                }
+                catch (Exception E)
+                {
+                    MessageBox.Show(E.Message);
+                }
+            }
+
+
+
             AddRecordsToListBox();
             PopulateTreeView();
             if (this.RecordsListBox.Items.Count == 0)

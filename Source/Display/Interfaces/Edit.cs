@@ -41,7 +41,7 @@ namespace Hush.Display.Interfaces
         {
             Title.Add("Edit");
             base.Initialize(Title);
-
+            
             if (DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex)
                 this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
 
@@ -139,6 +139,7 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(250, 24);
             this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
             this.CategoryComboBox.ValueMember = "Name";
             // 
             // EditDataGridView

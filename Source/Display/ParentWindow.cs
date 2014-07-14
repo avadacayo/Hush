@@ -63,8 +63,7 @@ namespace Hush.Display
             Controls.Add(ToShow);
             ResumeLayout(true);
 
-            
-
+            ToShow.PostInit();
             _CurrentInterface = ToShow;
 
         }

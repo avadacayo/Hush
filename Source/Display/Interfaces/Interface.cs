@@ -47,6 +47,10 @@ namespace Hush.Display.Interfaces
 
         }
 
+        public virtual void PostInit()
+        {
+        }
+
         public virtual void ClosingSave()
         {
         }

@@ -347,8 +347,8 @@ namespace Hush.Client
                 NewUser.Password = Password;
             NewUser.SecretQuestion = SecretQuestion;
             NewUser.SecretAnswer = SecretAnswer;
-            NewUser.SecretQuestion = SecretQuestion2;
-            NewUser.SecretAnswer = SecretAnswer2;
+            NewUser.SecretQuestion2 = SecretQuestion2;
+            NewUser.SecretAnswer2 = SecretAnswer2;
             NewUser.Created = DateTime.Now;
             NewUser.Modified = DateTime.Now;
             

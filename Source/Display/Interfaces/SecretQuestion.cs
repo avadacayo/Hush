@@ -76,7 +76,7 @@ namespace Hush.Display.Interfaces
             this.CancelButton.Location = new System.Drawing.Point(280, 453);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 25);
-            this.CancelButton.TabIndex = 19;
+            this.CancelButton.TabIndex = 8;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -106,7 +106,7 @@ namespace Hush.Display.Interfaces
             this.UsernameContinueButton.Location = new System.Drawing.Point(280, 113);
             this.UsernameContinueButton.Name = "UsernameContinueButton";
             this.UsernameContinueButton.Size = new System.Drawing.Size(100, 25);
-            this.UsernameContinueButton.TabIndex = 10;
+            this.UsernameContinueButton.TabIndex = 1;
             this.UsernameContinueButton.Text = "Continue";
             this.UsernameContinueButton.UseVisualStyleBackColor = true;
             this.UsernameContinueButton.Click += new System.EventHandler(this.UsernameContinueButton_Click);
@@ -117,7 +117,7 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.Location = new System.Drawing.Point(42, 83);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(338, 24);
-            this.UsernameTextBox.TabIndex = 9;
+            this.UsernameTextBox.TabIndex = 0;
             // 
             // UsernameLabel
             // 
@@ -136,7 +136,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
             this.RepeatPasswordTextBox.PasswordChar = '*';
             this.RepeatPasswordTextBox.Size = new System.Drawing.Size(338, 24);
-            this.RepeatPasswordTextBox.TabIndex = 7;
+            this.RepeatPasswordTextBox.TabIndex = 6;
             this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // PasswordTextBox
@@ -146,7 +146,7 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(338, 24);
-            this.PasswordTextBox.TabIndex = 6;
+            this.PasswordTextBox.TabIndex = 5;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // RepeatPasswordLabel
@@ -175,7 +175,7 @@ namespace Hush.Display.Interfaces
             this.SaveButton.Location = new System.Drawing.Point(42, 411);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(338, 25);
-            this.SaveButton.TabIndex = 3;
+            this.SaveButton.TabIndex = 7;
             this.SaveButton.Text = "Save and Log In";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -186,7 +186,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerContinueButton.Location = new System.Drawing.Point(280, 261);
             this.SecretAnswerContinueButton.Name = "SecretAnswerContinueButton";
             this.SecretAnswerContinueButton.Size = new System.Drawing.Size(100, 25);
-            this.SecretAnswerContinueButton.TabIndex = 2;
+            this.SecretAnswerContinueButton.TabIndex = 4;
             this.SecretAnswerContinueButton.Text = "Continue";
             this.SecretAnswerContinueButton.UseVisualStyleBackColor = true;
             this.SecretAnswerContinueButton.Click += new System.EventHandler(this.AnswersContinue_Click);
@@ -197,7 +197,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 165);
             this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
             this.SecretAnswerTextBox.Size = new System.Drawing.Size(338, 24);
-            this.SecretAnswerTextBox.TabIndex = 1;
+            this.SecretAnswerTextBox.TabIndex = 2;
             // 
             // SecretQuestionLabel
             // 
@@ -215,7 +215,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox2.Location = new System.Drawing.Point(43, 231);
             this.SecretAnswerTextBox2.Name = "SecretAnswerTextBox2";
             this.SecretAnswerTextBox2.Size = new System.Drawing.Size(338, 24);
-            this.SecretAnswerTextBox2.TabIndex = 18;
+            this.SecretAnswerTextBox2.TabIndex = 3;
             // 
             // SecretQuestionLabel2
             // 

@@ -174,7 +174,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-        <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
+    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
       <DependentUpon>TestScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Data\Templates\000Webhost\template.t" />

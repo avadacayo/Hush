@@ -183,9 +183,6 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
       <DependentUpon>Search.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\SecretQuestion.resx">
-      <DependentUpon>SecretQuestion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
       <DependentUpon>TestScreen.cs</DependentUpon>
     </EmbeddedResource>

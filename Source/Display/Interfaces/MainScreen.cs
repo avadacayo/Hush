@@ -252,7 +252,6 @@ namespace Hush.Display.Interfaces
             this.RecordsListBox.Name = "RecordsListBox";
             this.RecordsListBox.Size = new System.Drawing.Size(359, 224);
             this.RecordsListBox.TabIndex = 1;
-            this.RecordsListBox.SetSelected(0, true);
             // 
             // RecordsTreeView
             // 
@@ -353,6 +352,8 @@ namespace Hush.Display.Interfaces
                 ViewButton.Enabled = true;
                 EditRecordButton.Enabled = true;
                 DeleteRecordButton.Enabled = true;
+
+                this.RecordsListBox.SetSelected(0, true);
             }
         }
 

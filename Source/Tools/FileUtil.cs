@@ -23,6 +23,66 @@ namespace Hush.Tools
 
         }
 
+        public static List<String> ReadTemplate(String TemplateName)
+        {
+
+            if (TemplateName.Trim().Length < 1)
+            {
+
+                return new List<String>();
+
+            }
+
+            String FileName = DataDirectory + "Templates" + Path.DirectorySeparatorChar + TemplateName + Path.DirectorySeparatorChar + "template.t";
+            List<String> ReturnValue = new List<String>();
+
+            if (File.Exists(FileName))
+            {
+
+                StreamReader Reader = new StreamReader(FileName);
+                String Line = String.Empty;
+
+                while ((Line = Reader.ReadLine()) != null)
+                {
+
+                    if (Line.Trim().Length >= 0)
+                    {
+                        ReturnValue.Add(Line);
+                    }
+
+                }
+
+                Reader.Dispose();
+
+            }
+
+            return ReturnValue;
+
+        }
+
+        public static List<String> GetTemplateList()
+        {
+
+            List<String> ReturnValue = new List<String>();
+
+            if (Directory.Exists(DataDirectory + "Templates"))
+            {
+
+                String[] Files = Directory.GetDirectories(DataDirectory + "Templates");
+
+                foreach (String DirName in Files)
+                {
+
+                    ReturnValue.Add(Path.GetFileName(Path.GetDirectoryName(DirName + Path.DirectorySeparatorChar)));
+
+                }
+
+            }
+
+            return ReturnValue;
+
+        }
+
         public static List<String> GetScriptList(String Template)
         {
 

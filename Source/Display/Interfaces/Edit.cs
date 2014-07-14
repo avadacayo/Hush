@@ -16,8 +16,10 @@ namespace Hush.Display.Interfaces
 {
     class Edit : Interface
     {
+
+        private List<String> _AddedFields = new List<String>();
+
         private System.Windows.Forms.Label Category;
-        private System.Windows.Forms.Button TemplateChange;
         private System.Windows.Forms.Button CategoryChange;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
@@ -40,12 +42,16 @@ namespace Hush.Display.Interfaces
             Title.Add("Edit");
             base.Initialize(Title);
 
+            if (DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex)
+                this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
+
+            DataManager.PopulateTemplateBox(TemplateComboBox, DataHolder.CurrentUser.Records[DataHolder.RecordIndex]);
+
         }
 
         protected override void InitializeComponent()
         {
             this.Category = new System.Windows.Forms.Label();
-            this.TemplateChange = new System.Windows.Forms.Button();
             this.CategoryChange = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -64,27 +70,16 @@ namespace Hush.Display.Interfaces
             // Category
             // 
             this.Category.AutoSize = true;
-            this.Category.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Category.Location = new System.Drawing.Point(42, 127);
             this.Category.Name = "Category";
-            this.Category.Size = new System.Drawing.Size(81, 18);
+            this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
             // 
-            // TemplateChange
-            // 
-            this.TemplateChange.Enabled = false;
-            this.TemplateChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TemplateChange.Location = new System.Drawing.Point(299, 201);
-            this.TemplateChange.Name = "TemplateChange";
-            this.TemplateChange.Size = new System.Drawing.Size(80, 27);
-            this.TemplateChange.TabIndex = 8;
-            this.TemplateChange.Text = "Change";
-            this.TemplateChange.UseVisualStyleBackColor = true;
-            // 
             // CategoryChange
             // 
-            this.CategoryChange.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryChange.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CategoryChange.Location = new System.Drawing.Point(299, 148);
             this.CategoryChange.Name = "CategoryChange";
             this.CategoryChange.Size = new System.Drawing.Size(80, 27);
@@ -94,7 +89,7 @@ namespace Hush.Display.Interfaces
             // 
             // CancelButton
             // 
-            this.CancelButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.Location = new System.Drawing.Point(280, 453);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 25);
@@ -105,7 +100,7 @@ namespace Hush.Display.Interfaces
             // 
             // SaveButton
             // 
-            this.SaveButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveButton.Location = new System.Drawing.Point(162, 453);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(100, 25);
@@ -117,34 +112,33 @@ namespace Hush.Display.Interfaces
             // Template
             // 
             this.Template.AutoSize = true;
-            this.Template.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(83, 18);
+            this.Template.Size = new System.Drawing.Size(72, 17);
             this.Template.TabIndex = 6;
             this.Template.Text = "Template";
             // 
             // TemplateComboBox
             // 
-            this.TemplateComboBox.Enabled = false;
-            this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 8F);
+            this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
-            this.TemplateComboBox.Size = new System.Drawing.Size(250, 26);
+            this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 7;
+            this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // CategoryComboBox
             // 
-            this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryComboBox.DisplayMember = "Name";
+            this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.IntegralHeight = false;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(250, 28);
+            this.CategoryComboBox.Size = new System.Drawing.Size(250, 24);
             this.CategoryComboBox.TabIndex = 4;
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
-            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.ValueMember = "Name";
             // 
             // EditDataGridView
@@ -157,7 +151,7 @@ namespace Hush.Display.Interfaces
             this.EditDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Key,
             this.Value});
-            this.EditDataGridView.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditDataGridView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditDataGridView.GridColor = System.Drawing.Color.White;
             this.EditDataGridView.Location = new System.Drawing.Point(37, 254);
             this.EditDataGridView.Name = "EditDataGridView";
@@ -180,29 +174,27 @@ namespace Hush.Display.Interfaces
             this.EditRecordLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditRecordLabel.Location = new System.Drawing.Point(42, 28);
             this.EditRecordLabel.Name = "EditRecordLabel";
-            this.EditRecordLabel.Size = new System.Drawing.Size(167, 29);
+            this.EditRecordLabel.Size = new System.Drawing.Size(109, 18);
             this.EditRecordLabel.TabIndex = 0;
             this.EditRecordLabel.Text = "Edit Record";
             // 
             // RecordName
             // 
             this.RecordName.AutoSize = true;
-            this.RecordName.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordName.Location = new System.Drawing.Point(42, 73);
             this.RecordName.Name = "RecordName";
-            this.RecordName.Size = new System.Drawing.Size(55, 18);
+            this.RecordName.Size = new System.Drawing.Size(47, 17);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
             // 
             // RecordTextBox
             // 
-            this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordTextBox.Location = new System.Drawing.Point(42, 94);
             this.RecordTextBox.Name = "RecordTextBox";
-            this.RecordTextBox.Size = new System.Drawing.Size(334, 27);
+            this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
-            if(DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex) 
-                this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
             // 
             // Edit
             // 
@@ -216,7 +208,6 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.TemplateComboBox);
             this.Controls.Add(this.Template);
             this.Controls.Add(this.CategoryChange);
-            this.Controls.Add(this.TemplateChange);
             this.Controls.Add(this.Category);
             this.Name = "Edit";
             ((System.ComponentModel.ISupportInitialize)(this.EditDataGridView)).EndInit();
@@ -226,6 +217,12 @@ namespace Hush.Display.Interfaces
         }
 
         #endregion
+
+        public override void PostInit()
+        {
+            base.PostInit();
+            RecordTextBox.Focus();
+        }
 
         private void DisplayRecord()
         {
@@ -255,7 +252,7 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView);
+            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView, TemplateComboBox);
             DisplayRecord();
             Program.Window.ShowInterface(new MainScreen());
         }
@@ -263,6 +260,13 @@ namespace Hush.Display.Interfaces
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());
+        }
+
+        private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
+        {
+
+            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
+
         }
 
 

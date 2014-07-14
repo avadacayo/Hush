@@ -96,6 +96,9 @@
     <Compile Include="Source\Display\Interfaces\GeneratePassword.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\Display\Interfaces\EditSecretQuestion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Source\Display\Interfaces\SecretQuestion.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,12 +174,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
+    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\Search.resx">
-      <DependentUpon>Search.cs</DependentUpon>
+    <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
+      <DependentUpon>TestScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Data\Templates\000Webhost\template.t" />
+    <None Include="Data\Templates\CDOT Wiki\template.t" />
+    <None Include="Data\Templates\Cruncyroll\template.t" />
+    <None Include="Data\Templates\Facebook\template.t" />
+    <None Include="Data\Templates\Gmail\template.t" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -200,11 +208,7 @@
     <Content Include="Data\test.js" />
     <Content Include="Spy.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Templates\000Webhost\" />
-    <Folder Include="Data\Templates\Facebook\" />
-    <Folder Include="Data\Templates\Gmail\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>

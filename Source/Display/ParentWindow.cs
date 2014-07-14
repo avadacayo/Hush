@@ -17,7 +17,7 @@ namespace Hush.Display
 
         // set to false to view test screen
         // set to true to open with sign in page
-        private bool demo_setup = false;
+        private bool demo_setup = true;
 
         public ParentWindow(ParentWindow Parent = null)
         {
@@ -63,6 +63,7 @@ namespace Hush.Display
             Controls.Add(ToShow);
             ResumeLayout(true);
 
+            ToShow.PostInit();
             _CurrentInterface = ToShow;
 
         }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Hush;
 using Hush.Client;
+using Hush.Tools;
 
 namespace Hush.Display.Interfaces
 {
@@ -40,6 +41,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label ErrLastNameLabel;
         private System.Windows.Forms.Label ConfirmUserChangedLabel;
         private System.Windows.Forms.Label ErrNewPasswordUserLabel;
+        private System.Windows.Forms.LinkLabel SecretQuestionsLinkLabel;
         private System.Windows.Forms.Button CancelButton;
 
         #region Designer
@@ -83,6 +85,7 @@ namespace Hush.Display.Interfaces
             this.ErrLastNameLabel = new System.Windows.Forms.Label();
             this.ConfirmUserChangedLabel = new System.Windows.Forms.Label();
             this.ErrNewPasswordUserLabel = new System.Windows.Forms.Label();
+            this.SecretQuestionsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // ConfirmPasswordTextBox
@@ -102,6 +105,7 @@ namespace Hush.Display.Interfaces
             this.NewPasswordTextBox.PasswordChar = '*';
             this.NewPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.NewPasswordTextBox.TabIndex = 17;
+            this.NewPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
             // label3
             // 
@@ -168,7 +172,7 @@ namespace Hush.Display.Interfaces
             this.SaveChangesButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveChangesButton.Location = new System.Drawing.Point(205, 219);
             this.SaveChangesButton.Name = "SaveChangesButton";
-            this.SaveChangesButton.Size = new System.Drawing.Size(175, 24);
+            this.SaveChangesButton.Size = new System.Drawing.Size(175, 25);
             this.SaveChangesButton.TabIndex = 11;
             this.SaveChangesButton.Text = "Save Changes";
             this.SaveChangesButton.UseVisualStyleBackColor = true;
@@ -177,7 +181,7 @@ namespace Hush.Display.Interfaces
             // UsernameTextBox
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(42, 78);
+            this.UsernameTextBox.Location = new System.Drawing.Point(42, 80);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(338, 28);
             this.UsernameTextBox.TabIndex = 3;
@@ -224,7 +228,7 @@ namespace Hush.Display.Interfaces
             this.ChangePasswordButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChangePasswordButton.Location = new System.Drawing.Point(205, 416);
             this.ChangePasswordButton.Name = "ChangePasswordButton";
-            this.ChangePasswordButton.Size = new System.Drawing.Size(175, 24);
+            this.ChangePasswordButton.Size = new System.Drawing.Size(175, 25);
             this.ChangePasswordButton.TabIndex = 22;
             this.ChangePasswordButton.Text = "Change Password";
             this.ChangePasswordButton.UseVisualStyleBackColor = true;
@@ -361,13 +365,27 @@ namespace Hush.Display.Interfaces
             this.ErrNewPasswordUserLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrNewPasswordUserLabel.Location = new System.Drawing.Point(178, 310);
             this.ErrNewPasswordUserLabel.Name = "ErrNewPasswordUserLabel";
-            this.ErrNewPasswordUserLabel.Size = new System.Drawing.Size(202, 20);
+            this.ErrNewPasswordUserLabel.Size = new System.Drawing.Size(238, 20);
             this.ErrNewPasswordUserLabel.TabIndex = 26;
             this.ErrNewPasswordUserLabel.Text = "Must differ from username";
             this.ErrNewPasswordUserLabel.Visible = false;
             // 
+            // SecretQuestionsLinkLabel
+            // 
+            this.SecretQuestionsLinkLabel.AutoSize = true;
+            this.SecretQuestionsLinkLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecretQuestionsLinkLabel.Location = new System.Drawing.Point(45, 447);
+            this.SecretQuestionsLinkLabel.MaximumSize = new System.Drawing.Size(150, 45);
+            this.SecretQuestionsLinkLabel.Name = "SecretQuestionsLinkLabel";
+            this.SecretQuestionsLinkLabel.Size = new System.Drawing.Size(129, 45);
+            this.SecretQuestionsLinkLabel.TabIndex = 27;
+            this.SecretQuestionsLinkLabel.TabStop = true;
+            this.SecretQuestionsLinkLabel.Text = "View/Change Secret Questions";
+            this.SecretQuestionsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SecretQuestionsLinkLabel_LinkClicked);
+            // 
             // UserProfile
             // 
+            this.Controls.Add(this.SecretQuestionsLinkLabel);
             this.Controls.Add(this.ErrNewPasswordUserLabel);
             this.Controls.Add(this.ConfirmUserChangedLabel);
             this.Controls.Add(this.ErrLastNameLabel);
@@ -403,6 +421,12 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());
@@ -428,7 +452,7 @@ namespace Hush.Display.Interfaces
 
             if (username != DataHolder.CurrentUser.Username)
             {
-                if (!(new DataManager().UniqueAccount(username)))
+                if (!(new DataManager().AccountExists(username)))
                 {
                     ErrUsernameLabel.Text = "Username already exists";
                     ErrUsernameLabel.Visible = true;
@@ -482,6 +506,41 @@ namespace Hush.Display.Interfaces
             }
         }
 
+        private void Fields_TextChanged(object sender, EventArgs e)
+        {
+            if (NewPasswordTextBox.Text.Length > 0)
+            {
+                
+                int x = new CheckString().PasswordStrength(NewPasswordTextBox.Text);
+                if (x <= 0)
+                {
+                    PasswordStrengthLabel.Text = "Very weak";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Crimson;
+                }
+                else if (x == 1)
+                {
+                    PasswordStrengthLabel.Text = "Weak";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Orange;
+                }
+                else if (x == 2)
+                {
+                    PasswordStrengthLabel.Text = "Fair";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Gold;
+                }
+                else if (x == 3)
+                {
+                    PasswordStrengthLabel.Text = "Strong";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.YellowGreen;
+                }
+                else if (x == 4)
+                {
+                    PasswordStrengthLabel.Text = "Very Strong";
+                    this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Green;
+                }
+            }
+
+        }
+
         private void ChangePasswordButton_Click(object sender, EventArgs e)
         {
             ConfirmPasswordChangedLabel.Visible = false;
@@ -518,6 +577,11 @@ namespace Hush.Display.Interfaces
             {
                 ErrNewPasswordUserLabel.Visible = true;
             }
+        }
+
+        private void SecretQuestionsLinkLabel_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            Program.Window.ShowInterface(new EditSecretQuestion());
         }
 
     }

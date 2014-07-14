@@ -1,4 +1,5 @@
-﻿using Hush.Display;
+﻿using Hush.Client;
+using Hush.Display;
 using Hush.Tools;
 using Hush.Tools.Scripting;
 using System;

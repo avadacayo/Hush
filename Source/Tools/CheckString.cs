@@ -9,18 +9,28 @@ namespace Hush.Tools
 {
     class CheckString
     {
-        public Boolean ValidPasswordCheck(String Username, String Password)
+        //Password2 optional
+        public Boolean ValidPasswordCheck(String Username, String Password, String Password2 = "")
         {
             Boolean valid = true;
-            String pattern = @"^[a-zA-Z0-9_\-\@\#\$\%\^\!\&\*\(\)]{6,24}$";
-            Regex regex = new Regex(pattern);
+            String pattern = @"^[a-zA-Z0-9_ \-\@\#\$\%\^\!\&\*\(\)]{6,24}$", 
+                   pattern2 = @"(.)\1{3,}?";
+
+            Regex regex = new Regex(pattern),
+                  regex2 = new Regex(pattern2);
+
             if (!regex.IsMatch(Password) || Password.Contains(Username))
                 valid = false;
-            //MessageBox.Show(valid.ToString());
+
+            else if ((!Password2.Equals("") && !Password.Equals(Password2)))
+                    valid = false;
+            
+            else if (regex2.IsMatch(Password) || regex2.IsMatch(Password2))
+                valid = false;
+
             return valid;
         }
 
-        //TODO: move this somewhere
         public Int32 PasswordStrength(String Password)
         {
             Int32 val = 0;
@@ -46,12 +56,6 @@ namespace Hush.Tools
             if (Password.Length > 6)
             {
                 val++;
-            }
-
-            regex = new Regex(@"(.)\1");
-            if (regex.IsMatch(Password))
-            {
-                val--;
             }
 
             return val;

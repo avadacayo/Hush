@@ -35,6 +35,12 @@ namespace Hush.Display.Interfaces
 
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            CategoryTextBox.Focus();
+        }
+
         protected override void InitializeComponent()
         {
             this.CategoryNameLabel = new System.Windows.Forms.Label();

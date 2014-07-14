@@ -67,7 +67,7 @@ namespace Hush.Display.Interfaces
 
             else
             {
-                if (new DataManager().CreateAccount("demo", "demo", "demo", "demo"))
+                if (new DataManager().CreateAccount("demo", "demo", "demo", "demo", "demo", "demo"))
                 {
                     Program.Window.ShowInterface(new MainScreen());
                 }
@@ -219,7 +219,11 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
-        
+ public override void PostInit()
+        {
+            base.PostInit();
+            UsernameTextBox.Focus();
+        }       
 
         private void ForgotPasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

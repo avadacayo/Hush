@@ -34,6 +34,11 @@ namespace Hush.Display.Interfaces
 
         }
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            AutomaticSaveRadioButton.Focus();
+        }
 
         #region Designer
 

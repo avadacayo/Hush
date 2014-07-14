@@ -17,6 +17,10 @@ namespace Hush.Display.Interfaces
 {
     class Add : Interface
     {
+
+
+        private List<String> _AddedFields = new List<String>();
+
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Button button5;
         private Button Save;
@@ -39,10 +43,17 @@ namespace Hush.Display.Interfaces
 
             Title.Add("Add");
             base.Initialize(Title);
+            DataManager.PopulateTemplateBox(TemplateComboBox, new Record());
 
         }
 
         #endregion
+
+        public override void PostInit()
+        {
+            base.PostInit();
+            RecordTextBox.Focus();
+        }
 
         protected override void InitializeComponent()
         {
@@ -109,7 +120,7 @@ namespace Hush.Display.Interfaces
             this.Cancel.TabIndex = 9;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.CancelButton_Click);
+            this.Cancel.Click += new System.EventHandler(this.CancelButtonClick);
             // 
             // CategoryComboBox
             // 
@@ -120,21 +131,18 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
+            this.CategoryComboBox.ValueMember = "Name";
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories; 
-            this.CategoryComboBox.DisplayMember = "Name"; 
-            this.CategoryComboBox.ValueMember = "Name"; 
-
             // 
             // TemplateComboBox
             // 
-            this.TemplateComboBox.Enabled = false;
             this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
             this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 6;
+            this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // RecordsDataGridView
             // 
@@ -169,7 +177,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(70, 17);
+            this.Template.Size = new System.Drawing.Size(72, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 
@@ -219,6 +227,8 @@ namespace Hush.Display.Interfaces
             }
 
             rc.Name = this.RecordTextBox.Text;
+            if (TemplateComboBox.Enabled == true)
+                rc.Template = this.TemplateComboBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
             DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
             Program.Window.ShowInterface(new MainScreen());
@@ -234,11 +244,20 @@ namespace Hush.Display.Interfaces
             }
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CancelButtonClick(Object Sender, EventArgs Args)
         {
-            Program.Window.ShowInterface(new MainScreen());
-        }
-    }
 
+            Program.Window.ShowInterface(new MainScreen());
+
+        }
+
+        private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
+        {
+
+            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, RecordsDataGridView);
+
+        }
+
+    }
 
 }

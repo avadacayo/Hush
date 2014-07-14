@@ -72,7 +72,7 @@ namespace Hush.Client
             return updated;
         }
 
-        public Boolean CheckSecretAnswer(String Username, String Answer)
+        public Boolean CheckSecretAnswer(String Username, String Answer, Int32 QuestionNumber)
         {
             User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
             if (user.SecretAnswer.Equals(Answer))
@@ -82,10 +82,119 @@ namespace Hush.Client
                 return false;
         }
 
+        public static void ProcessTemplateChange(List<String> AddedFields, String TemplateName, DataGridView Control)
+        {
+
+            List<String> ToAdd = FileUtil.ReadTemplate(TemplateName);
+            List<DataGridViewRow> ToRemove = new List<DataGridViewRow>();
+
+            foreach (DataGridViewRow Row in Control.Rows)
+            {
+
+                if (Row.Cells[0].Value != null)
+                {
+
+                    if (AddedFields.Contains(Row.Cells[0].Value.ToString().Trim())) {
+
+                        AddedFields.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                        if (Row.Cells[1].Value == null || Row.Cells[1].Value.ToString().Length < 1)
+                        {
+
+                            ToRemove.Add(Row);
+                            continue;
+
+                        }
+
+                    }
+
+                    if (ToAdd.Contains(Row.Cells[0].Value.ToString().Trim()))
+                    {
+
+                        ToAdd.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                    }
+
+                }
+
+            }
+
+            foreach (DataGridViewRow Row in ToRemove)
+            {
+
+                Control.Rows.Remove(Row);
+
+            }
+
+            foreach (String Item in ToAdd)
+            {
+
+                DataGridViewRow RowToAdd = new DataGridViewRow();
+                RowToAdd.CreateCells(Control);
+                RowToAdd.Cells[0].Value = Item;
+                Control.Rows.Add(RowToAdd);
+                AddedFields.Add(Item);
+
+            }
+
+        }
+
+        public static List<String> GetTemplateList()
+        {
+
+            return FileUtil.GetTemplateList();
+
+        }
+
+        public static void PopulateTemplateBox(ComboBox ComboControl, Record Record)
+        {
+
+            List<String> Templates = GetTemplateList();
+
+            if (Templates.Count == 0)
+            {
+
+                ComboControl.Enabled = false;
+                ComboControl.Items.Clear();
+                ComboControl.Text = "no tempaltes";
+                return;
+
+            }
+
+            ComboControl.Enabled = true;
+            ComboControl.Items.Clear();
+
+            if (Templates.Count > 0)
+            {
+
+                ComboControl.Items.Add("");
+
+            }
+
+            foreach (String Item in Templates)
+            {
+
+                if (Item.Trim().Length != 0)
+                {
+
+                    ComboControl.Items.Add(Item);
+
+                }
+
+            }
+
+            if (Record.Template != "")
+            {
+
+                ComboControl.SelectedText = Record.Template;
+
+            }
+
+        }
+
         public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)
         {
 
-            TemplateName = "CDOT Wiki";
             List<String> Files = FileUtil.GetScriptList(TemplateName);
 
             ComboControl.Items.Clear();
@@ -227,7 +336,9 @@ namespace Hush.Client
 
         }
 
-        public Boolean CreateAccount(String Username, String Password, String SecretQuestion, String SecretAnswer)
+        public Boolean CreateAccount(String Username, String Password, 
+                                     String SecretQuestion, String SecretAnswer,
+                                     String SecretQuestion2, String SecretAnswer2)
         {
             BFormatter = new BinaryFormatter(); 
             User NewUser = new User();
@@ -236,6 +347,8 @@ namespace Hush.Client
                 NewUser.Password = Password;
             NewUser.SecretQuestion = SecretQuestion;
             NewUser.SecretAnswer = SecretAnswer;
+            NewUser.SecretQuestion2 = SecretQuestion2;
+            NewUser.SecretAnswer2 = SecretAnswer2;
             NewUser.Created = DateTime.Now;
             NewUser.Modified = DateTime.Now;
             
@@ -268,9 +381,11 @@ namespace Hush.Client
                 DataHolder.CurrentUser = NewUser;
                 created = true;
             }
-            catch (Exception) {
-                
-            } 
+
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+ 
             return created;
         }
 
@@ -323,21 +438,34 @@ namespace Hush.Client
             return retrieved;
         }
 
-        public String GetSecretQuestion(String Username)
+        public String GetSecretQuestion(String Username, Int32 QuestionNumber)
         {
-            LoadUsers();
+            String Question = "No Secret Questions Available";
+             if (!loaded)
+            {
+                LoadUsers();
+            }
 
-            User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-            if (tempUser != null)
-                return tempUser.SecretQuestion;
+             if (loaded)
+             {
 
-            else
-                return "";
+                 User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+                 if (tempUser != null)
+                 {
+                     if (QuestionNumber == 1)
+                        Question = tempUser.SecretQuestion;
+
+                     else if (QuestionNumber == 2)
+                        Question = tempUser.SecretQuestion2;
+                 }
+                                  
+             }
+             return Question;
         }
 
-        public Boolean UniqueAccount(String Username)
+        public Boolean AccountExists(String Username)
         {
-            Boolean unique = false;
+            Boolean exists = false;
             if (!loaded)
             {
                 LoadUsers();
@@ -345,10 +473,12 @@ namespace Hush.Client
 
             if (loaded)
             {
-                unique = DataHolder.UserList.Exists(x => x.Username == Username);
+                exists = DataHolder.UserList.Exists(x => x.Username == Username);
             }
-            return !unique;
+
+            return !exists;
         }
+
         public Boolean TryLogin(String Username, String Password)
         {
             Boolean successfulLogin = false;
@@ -438,7 +568,7 @@ namespace Hush.Client
             return;
         }
 
-        public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data)
+        public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data, ComboBox Template)
         {
             if (CurrentRecord == null)
             {
@@ -463,6 +593,12 @@ namespace Hush.Client
                         CurrentRecord.Fields.Add(f);
                     }       
             }
+
+            if (Template.Enabled == true)
+            {
+                CurrentRecord.Template = Template.Text;
+            }
+
          }
 
         public static void DeleteRecord(Record record)
@@ -601,6 +737,17 @@ namespace Hush.Client
             }
         }
 
+        public static void EditSecretQuestions(string secretQuestion, string secretQuestion2, string secretAnswer, string secretAnswer2)
+        {
+           // bool result = false;
+
+            DataHolder.CurrentUser.SecretQuestion = secretQuestion;
+            DataHolder.CurrentUser.SecretQuestion2 = secretQuestion2;
+            DataHolder.CurrentUser.SecretAnswer = secretAnswer;
+            DataHolder.CurrentUser.SecretAnswer2 = secretAnswer2;
+
+            return;
+        }
         public static void Logout()
         {
             bool result = false;

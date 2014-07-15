@@ -206,14 +206,24 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void PostInit()
+        {
+            base.PostInit();
+            ScriptComboBox.Focus();
+        }
+
         private void DisplayRecord()
         {
 
             List<Field> FieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
             CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
 
-            //List<Field> FieldList = DataHolder.RecordNode.Fields;
-            //CategoryTextBox.Text = DataHolder.RecordNode.Category.Name.ToString();
+
+            TemplateComboBox.Enabled = false;
+            TemplateComboBox.Items.Clear();
+            TemplateComboBox.Items.Add(DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template);
+            TemplateComboBox.SelectedText = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template;
+
 
             foreach (Field Item in FieldList)
             {
@@ -230,7 +240,7 @@ namespace Hush.Display.Interfaces
         {
 
             DisplayRecord();
-            DataManager.PopulateScriptBox(ScriptComboBox, RunButton, "");
+            DataManager.PopulateScriptBox(ScriptComboBox, RunButton, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template);
 
         }
 
@@ -249,15 +259,9 @@ namespace Hush.Display.Interfaces
 
                 HushScript x = new HushScript(Program.Window, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex));
                 x.Name = ScriptComboBox.Text;
-                x.Template = "CDOT Wiki";
+                x.Template = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template;
                 ReturnValue status = x.Load();
-                //    if (status.Success == false)
-                //  {
-                //   MessageBox.Show(status.Message);
-                // }
                 x.Run();
-
-//                System.Console.WriteLine(FileUtil.ReadScriptFile("CDOT Wiki", ScriptComboBox.Text));
 
             }
 

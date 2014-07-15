@@ -85,7 +85,7 @@ namespace Hush.Client.Model
             _ID = (String)Info.GetValue("ID", typeof(String));
             _Name = (String)Info.GetValue("Name", typeof(String));
             _ParentCategory = null;
-            _Records = (List<Record>)Info.GetValue("Record", typeof(List<Record>));
+            _Records = (List<Record>)Info.GetValue("Records", typeof(List<Record>));
 
         }
 

@@ -42,7 +42,7 @@ namespace Hush.Display.Interfaces
 
             base.Initialize(Title);
             UsernameLabel.Text = DataHolder.CurrentUser.Username;
-            
+            DataHolder.RecordList = DataHolder.CurrentUser.Records;
         }
 
         protected override void InitializeComponent()
@@ -442,10 +442,15 @@ namespace Hush.Display.Interfaces
                 }
                 else
                 {
-                    foreach (Client.Model.Record r in DataHolder.RecordList)
+                   
+                    if (DataHolder.CurrentUser != null)
                     {
-                        this.RecordsListBox.Items.Add(r.Name.ToString());
-                    };
+                         foreach (Client.Model.Record r in DataHolder.RecordList)
+                        //foreach (Client.Model.Record r in DataHolder.CurrentUser.Records)
+                        {
+                            this.RecordsListBox.Items.Add(r.Name.ToString());
+                        };
+                    }
                 }
             }
             catch (Exception ex)
@@ -478,14 +483,14 @@ namespace Hush.Display.Interfaces
 
         private void LogoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Client.DataManager.Logout();
-
             if (DataHolder.CurrentUser != null)
             {
-
+                //new DataManager().LoadUsers();
                 String Data = StringUtil.JSON.SerializeFormatted<User>(DataHolder.CurrentUser);
                 String Username = DataHolder.CurrentUser.Username;
-                User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+                //User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+                User user = DataHolder.CurrentUser;
+
                 using (StreamWriter Writer = new StreamWriter("./Data/" + Username + ".JSON"))
                 {
                     Writer.Write(Data);
@@ -495,28 +500,21 @@ namespace Hush.Display.Interfaces
                 try
                 {
                     FileStream writerFS;
-                    if (!Directory.Exists("./Data"))
-                    {
-                        Directory.CreateDirectory("./Data");
-                    }
-                    if (!File.Exists("./Data/" + Username + ".user"))
-                    {
-                        writerFS =
-                        new FileStream("./Data/" + Username + ".user", FileMode.Create, FileAccess.Write);
-                    }
-                    else
-                    {
-                        File.Delete("./Data/" + Username + ".user");
-                        writerFS =
+                                           writerFS =
                         new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
-                    }
                     BFormatter.Serialize(writerFS, user);
                     writerFS.Close();
+                    //MessageBox.Show("saving");
+                
+                    
+
+           
                 }
                 catch (Exception E)
                 {
                     MessageBox.Show(E.Message);
                 }
+                Client.DataManager.Logout();
             }
 
             Program.Window.ShowInterface(new SignIn());

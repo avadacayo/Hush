@@ -25,6 +25,13 @@ namespace Hush.Tools
 
         }
 
+        public void ClearCookies()
+        {
+
+            _Cookies = new CookieContainer();
+
+        }
+
     }
 
 }

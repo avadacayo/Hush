@@ -16,6 +16,7 @@ namespace Hush.Display.Interfaces
         private Button SignInButton;
         private Button RegisterAccountButton;
         private Button GeneratePasswordButton;
+        private PictureBox pictureBox1;
         private Button ForgotPasswordButton;
 
         private void SettingsButtonClick(Object Sender, EventArgs Args)
@@ -99,6 +100,8 @@ namespace Hush.Display.Interfaces
             this.RegisterAccountButton = new System.Windows.Forms.Button();
             this.ForgotPasswordButton = new System.Windows.Forms.Button();
             this.GeneratePasswordButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // SignInButton
@@ -145,14 +148,28 @@ namespace Hush.Display.Interfaces
             this.GeneratePasswordButton.UseVisualStyleBackColor = true;
             this.GeneratePasswordButton.Click += new System.EventHandler(this.GeneratePasswordButtonClick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pictureBox1.Location = new System.Drawing.Point(247, 118);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(312, 183);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Load("http://c.thumbs.redditmedia.com/u8MK1Z85ECxMd0gt.png");
+            this.pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            // 
             // TestScreen
             // 
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.SignInButton);
             this.Controls.Add(this.RegisterAccountButton);
             this.Controls.Add(this.ForgotPasswordButton);
             this.Controls.Add(this.GeneratePasswordButton);
             this.Name = "TestScreen";
             this.Size = new System.Drawing.Size(740, 415);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,6 +202,11 @@ namespace Hush.Display.Interfaces
                 // }
                 x.Run();
             }
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
 

@@ -74,6 +74,14 @@ namespace Hush.Tools.Scripting.Handlers
 
         }
 
+        public void ShowImageDialog(String URL)
+        {
+
+            _CurrentDialog = new ScriptDialogImage(_ParentScript, URL);
+            _ParentWindow.ShowInterfaceDialog(_CurrentDialog);
+
+        }
+
     }
 
 }

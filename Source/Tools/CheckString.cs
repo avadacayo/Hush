@@ -85,5 +85,28 @@ namespace Hush.Tools
 
             return val;
         }
+
+        public String ValidateSecretQA(String QA)
+        {
+            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,50}$",
+                   pattern2 = @"(.)\1{3,}?";
+            String message = "";
+
+            Regex regex = new Regex(pattern),
+                  regex2 = new Regex(pattern2);
+
+            if (regex2.IsMatch(QA))
+                message = "*Contains repeated characters";
+
+            else if (QA.Length <= 5)
+                message = "*Must be 6-50 characters";
+
+            else if (!regex.IsMatch(QA))
+                message = "*Contains invalid characters";
+
+            
+
+            return message.Length <= 0 ? message = "Valid" : message;
+        }
     }
 }

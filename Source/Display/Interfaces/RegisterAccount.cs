@@ -40,6 +40,10 @@ namespace Hush.Display.Interfaces
         private Button ToolButton;
         private ToolTip Tooltip;
         private System.ComponentModel.IContainer components;
+        private Label ErrSQ1Label;
+        private Label ErrSA1Label;
+        private Label ErrSQ2Label;
+        private Label ErrSA2Label;
 	    private Button CancelButton;
 
         private void RegisterButtonClick(Object Sender, EventArgs Args)
@@ -48,12 +52,20 @@ namespace Hush.Display.Interfaces
             String pattern = "[a-zA-Z0-9]{3,30}$";
             Regex regex = new Regex(pattern);
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
-
+            SecretQuestionTextBox.Text = SecretQuestionTextBox.Text.Trim();
+            SecretAnswerTextBox.Text = SecretAnswerTextBox.Text.Trim();
+            SecretQuestionTextBox2.Text = SecretQuestionTextBox2.Text.Trim();
+            SecretAnswerTextBox2.Text = SecretAnswerTextBox2.Text.Trim();
             ErrUsernameLabel.Text = "";
-            String message = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
+            String ErrPassword = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
+            String ErrQ1 = new CheckString().ValidateSecretQA(SecretQuestionTextBox.Text);
+            String ErrSA1 = new CheckString().ValidateSecretQA(SecretAnswerTextBox.Text);
+            String ErrQ2 = new CheckString().ValidateSecretQA(SecretQuestionTextBox2.Text);
+            String ErrSA2 = new CheckString().ValidateSecretQA(SecretAnswerTextBox2.Text);
 
             //TODO: Stop if weak password has been used?
-            if (message.Equals("Valid"))
+            if (ErrPassword.Equals("Valid") && ErrQ1.Equals("Valid") &&
+                ErrSA1.Equals("Valid") && ErrQ2.Equals("Valid") && ErrSA2.Equals("Valid"))
             {
                 if (!new DataManager().AccountExists(UsernameTextBox.Text))
                 {
@@ -73,18 +85,11 @@ namespace Hush.Display.Interfaces
                 if (!regex.IsMatch(UsernameTextBox.Text))
                     ErrUsernameLabel.Text = "*Enter 3-30 characters";
 
-                //if (PasswordTextBox.Text.Length <= 5)
-                //    ErrPasswordLabel.Text = "*Enter 6-30 characters";
-
-                //else if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                //    ErrPasswordLabel.Text = "*Passwords do not match";
-
-                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
-                //    ErrPasswordLabel.Text = "*Password contains username";
-
-                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
-                //    ErrPasswordLabel.Text = "*Contains invalid characters";
-                ErrPasswordLabel.Text = message;
+                ErrPasswordLabel.Text = ErrPassword;
+                ErrSQ1Label.Text = ErrQ1;
+                ErrSA1Label.Text = ErrSA1;
+                ErrSQ2Label.Text = ErrQ2;
+                ErrSA2Label.Text = ErrSA2;
             }  
         }
 
@@ -184,6 +189,10 @@ namespace Hush.Display.Interfaces
             this.ErrUsernameLabel = new System.Windows.Forms.Label();
             this.ErrPasswordLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.ErrSQ1Label = new System.Windows.Forms.Label();
+            this.ErrSA1Label = new System.Windows.Forms.Label();
+            this.ErrSQ2Label = new System.Windows.Forms.Label();
+            this.ErrSA2Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ErrorMsgsLabel
@@ -396,7 +405,7 @@ namespace Hush.Display.Interfaces
             // 
             this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrUsernameLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrUsernameLabel.Location = new System.Drawing.Point(137, 78);
+            this.ErrUsernameLabel.Location = new System.Drawing.Point(187, 78);
             this.ErrUsernameLabel.Name = "ErrUsernameLabel";
             this.ErrUsernameLabel.Size = new System.Drawing.Size(300, 15);
             this.ErrUsernameLabel.TabIndex = 2;
@@ -405,7 +414,7 @@ namespace Hush.Display.Interfaces
             // 
             this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrPasswordLabel.Location = new System.Drawing.Point(136, 125);
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(187, 125);
             this.ErrPasswordLabel.Name = "ErrPasswordLabel";
             this.ErrPasswordLabel.Size = new System.Drawing.Size(275, 15);
             this.ErrPasswordLabel.TabIndex = 5;
@@ -421,8 +430,48 @@ namespace Hush.Display.Interfaces
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // ErrSQ1Label
+            // 
+            this.ErrSQ1Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrSQ1Label.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrSQ1Label.Location = new System.Drawing.Point(187, 217);
+            this.ErrSQ1Label.Name = "ErrSQ1Label";
+            this.ErrSQ1Label.Size = new System.Drawing.Size(224, 17);
+            this.ErrSQ1Label.TabIndex = 128;
+            // 
+            // ErrSA1Label
+            // 
+            this.ErrSA1Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrSA1Label.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrSA1Label.Location = new System.Drawing.Point(187, 261);
+            this.ErrSA1Label.Name = "ErrSA1Label";
+            this.ErrSA1Label.Size = new System.Drawing.Size(224, 17);
+            this.ErrSA1Label.TabIndex = 129;
+            // 
+            // ErrSQ2Label
+            // 
+            this.ErrSQ2Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrSQ2Label.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrSQ2Label.Location = new System.Drawing.Point(187, 310);
+            this.ErrSQ2Label.Name = "ErrSQ2Label";
+            this.ErrSQ2Label.Size = new System.Drawing.Size(224, 17);
+            this.ErrSQ2Label.TabIndex = 130;
+            // 
+            // ErrSA2Label
+            // 
+            this.ErrSA2Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrSA2Label.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrSA2Label.Location = new System.Drawing.Point(187, 356);
+            this.ErrSA2Label.Name = "ErrSA2Label";
+            this.ErrSA2Label.Size = new System.Drawing.Size(224, 17);
+            this.ErrSA2Label.TabIndex = 131;
+            // 
             // RegisterAccount
             // 
+            this.Controls.Add(this.ErrSA2Label);
+            this.Controls.Add(this.ErrSQ2Label);
+            this.Controls.Add(this.ErrSA1Label);
+            this.Controls.Add(this.ErrSQ1Label);
             this.Controls.Add(this.ToolButton);
             this.Controls.Add(this.SecretQuestionLabel2);
             this.Controls.Add(this.SecretQuestionTextBox2);

@@ -149,6 +149,7 @@ namespace Hush.Display.Interfaces
             {
                 Client.DataManager.ProcessCategory(categoryName, newCategory, Client.DataHolder.update);
                 Client.DataHolder.update = Client.DataHolder.updateMode.None;
+                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 Program.Window.ShowInterface(new CategoryManagement());
             }
         }

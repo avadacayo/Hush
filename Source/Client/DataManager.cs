@@ -29,10 +29,6 @@ namespace Hush.Client
 
     class DataManager
     {
-
-        private Boolean loaded = false , updated = false;
-        BinaryFormatter BFormatter;
-
         public Boolean SaveUser(User User)
         {
             Boolean Saved = false;
@@ -40,7 +36,7 @@ namespace Hush.Client
             String Question = User.SecretQuestion;
             String Question2 = User.SecretQuestion2;
             String Answer = User.SecretAnswer + "\n" + User.SecretAnswer2;
-            String SecKey = "123qweasdzxc";
+            String SecKey = Encryption.GenerateKey() + Encryption.GenerateKey(); //forgot to change and might still need to be changed
             String Data = StringUtil.JSON.Serialize<User>(User);
             String Q1encrypted = Encryption.ToTripleDES(Question, User.Username);
             String Q2encrypted = Encryption.ToTripleDES(Question2, User.Username);
@@ -48,7 +44,7 @@ namespace Hush.Client
             String SecKeyencryptedwithPass = Encryption.ToTripleDES(SecKey, Password);
             String SecKeyencryptedwithAnswer = Encryption.ToTripleDES(SecKey, Answer);
             String Filename = FileUtil.GetUserFileName(User.Username, true);
-           
+
             using (StreamWriter Writer = new StreamWriter(Filename))
             {
                 try
@@ -59,22 +55,24 @@ namespace Hush.Client
                     Writer.WriteLine(SecKeyencryptedwithAnswer);
                     Writer.Write(EncryptedData);
                     Saved = true;
-
+                    MessageBox.Show("saved");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+            
+            
             //TODO: remove block later
             Data = StringUtil.JSON.SerializeFormatted<User>(User);
-            using (StreamWriter Writer = new StreamWriter("./Data/" + "testData" + ".JSON"))
+            using (StreamWriter Writer = new StreamWriter("./Data/" + User.Username + ".JSON"))
             {
+                Writer.WriteLine("SecKey: " + SecKey);
                 Writer.WriteLine("Q: " + Question);
                 Writer.WriteLine("Q2: " + Question2);
                 Writer.WriteLine("A: "+ Answer);
                 Writer.Write(Data);
-                Writer.Close();
             }
             
             return Saved;
@@ -84,14 +82,13 @@ namespace Hush.Client
         {
             Boolean Loaded = false;
             String Filename = FileUtil.GetUserFileName(Username, true);
-            //String Question, Question2, Key, Data, DecryptedQuestion, DecryptedQuestion2, DecryptedKey, DecryptedData;
             String Key, Data, DecryptedKey, DecryptedData;
-
-            try
+            
+            using (StreamReader Reader = new StreamReader(Filename))
             {
-                using (StreamReader Reader = new StreamReader(Filename))
+                try
                 {
-                   if (!String.IsNullOrEmpty(Password))
+                    if (!String.IsNullOrEmpty(Password))
                     {
                         Reader.ReadLine();
                         Reader.ReadLine();
@@ -106,26 +103,25 @@ namespace Hush.Client
                         Key = Reader.ReadLine();
                     }
                     Data = Reader.ReadToEnd();
-                    Reader.Close();
-                }
-                if (!String.IsNullOrEmpty(Password))
-                {
-                    DecryptedKey = Encryption.FromTripleDES(Key, Password);
-                }
-                else
-                {
-                    DecryptedKey = Encryption.FromTripleDES(Key, Answer);
-                }
-                
-                DecryptedData = Encryption.FromTripleDES(Data, DecryptedKey);
-                DataHolder.CurrentUser = StringUtil.JSON.Deserialize<User>(DecryptedData);
-                Loaded = true;
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
 
+                    if (!String.IsNullOrEmpty(Password))
+                    {
+                        DecryptedKey = Encryption.FromTripleDES(Key, Password);
+                    }
+                    else
+                    {
+                        DecryptedKey = Encryption.FromTripleDES(Key, Answer);
+                    }
+    
+                    DecryptedData = Encryption.FromTripleDES(Data, DecryptedKey);
+                    DataHolder.CurrentUser = StringUtil.JSON.Deserialize<User>(DecryptedData);
+                    Loaded = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             return Loaded;
         }
 
@@ -425,12 +421,20 @@ namespace Hush.Client
             String Filename = FileUtil.GetUserFileName(Username, true);
             List<String> Question = new List<string>();
             List<String> DecryptedQuestion = new List<string>();
+            
             using (StreamReader Reader = new StreamReader(Filename))
             {
-                Question.Add(Reader.ReadLine());
-                Question.Add(Reader.ReadLine());
-                Reader.Close();
+                try
+                {
+                    Question.Add(Reader.ReadLine());
+                    Question.Add(Reader.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+            
             foreach (String questions in Question)
             {
                 DecryptedQuestion.Add(Encryption.FromTripleDES(questions, Username));

@@ -59,12 +59,16 @@ namespace Hush.Display.Interfaces
 
         private void DemoButton_Click(object sender, EventArgs e)
         {
-            if ((new DataManager().LoadUser("demo", "demo")))
+            if (new DataManager().AccountExists("demo"))
             {
-                Program.Window.ShowInterface(new MainScreen());
-                return;
-            }
+                if ((new DataManager().LoadUser("demo", "demo")))
+                {
+                    Program.Window.ShowInterface(new MainScreen());
+                    return;
+                }
 
+                
+            }
             else
             {
                 if (new DataManager().CreateAccount("demo", "demo", "demo", "demo", "demo", "demo"))

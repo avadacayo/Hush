@@ -69,6 +69,7 @@ namespace Hush.Display.Interfaces
                 secretAnswer.Length > 0 && secretAnswer2.Length > 0)
             {
                 DataManager.EditSecretQuestions(secretQuestion, secretQuestion2, secretAnswer, secretAnswer2);
+                new DataManager().SaveUser(Client.DataHolder.CurrentUser);
             }
         }
 

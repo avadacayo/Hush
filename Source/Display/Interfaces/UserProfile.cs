@@ -500,6 +500,7 @@ namespace Hush.Display.Interfaces
             else if (result)
             {
                 DataManager.SaveUserProfileChanges(username, firstName, lastName);
+                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 ConfirmUserChangedLabel.Text = "Changes saved";
                 ConfirmUserChangedLabel.Visible = true;
                 
@@ -556,6 +557,7 @@ namespace Hush.Display.Interfaces
             result = Client.DataManager.SaveUserProfilePassword(CurrentPasswordTextBox.Text, NewPasswordTextBox.Text, ConfirmPasswordTextBox.Text);
             if (result == "password changed")
             {
+                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 // success stuff
                 ConfirmPasswordChangedLabel.Visible = true;
             }

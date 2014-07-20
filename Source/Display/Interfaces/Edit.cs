@@ -257,6 +257,7 @@ namespace Hush.Display.Interfaces
         {
             DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox);
             DisplayRecord();
+            new DataManager().SaveUser(DataHolder.CurrentUser);
             Program.Window.ShowInterface(new MainScreen());
         }
 

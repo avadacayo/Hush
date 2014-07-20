@@ -7,7 +7,13 @@ namespace Hush.Tools
 
     class Encryption
     {
-
+        public static String GenerateKey()
+        {
+            TripleDESCryptoServiceProvider TripleDESProvider = new TripleDESCryptoServiceProvider();
+            TripleDESProvider.GenerateKey();
+            Byte[] Key = TripleDESProvider.Key;
+            return System.Text.Encoding.Default.GetString(Key); 
+        }
         public static String FromBase64(String ToDecrypt)
         {
 

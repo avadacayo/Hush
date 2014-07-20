@@ -162,6 +162,7 @@ namespace Hush.Display.Interfaces
             if (this.CategoryListBox.SelectedItem != null)
             {
                 Client.DataManager.ProcessCategory(this.CategoryListBox.SelectedItem.ToString(), "", Client.DataHolder.updateMode.Delete);
+                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 AddCategoriesToListBox();
             }
         }

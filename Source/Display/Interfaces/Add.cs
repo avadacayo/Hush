@@ -233,6 +233,7 @@ namespace Hush.Display.Interfaces
                 rc.Template = this.TemplateComboBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);
             DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
+            new DataManager().SaveUser(DataHolder.CurrentUser);
             Program.Window.ShowInterface(new MainScreen());
         }
 

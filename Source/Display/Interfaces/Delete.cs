@@ -127,6 +127,7 @@ namespace Hush.Display.Interfaces
             {
 
                 DataManager.DeleteRecord(DataManager.GetRecordByID(DataHolder.RecordNode));
+                new DataManager().SaveUser(DataHolder.CurrentUser);
                 Program.Window.ShowInterface(new MainScreen());
             }
             else

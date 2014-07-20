@@ -29,14 +29,10 @@ namespace Hush.Display.Interfaces
         private Label UsernameLabel;
         private LinkLabel ProfileLinkLabel;
         private Button ViewButton;
-        //List<Client.Model.Record> recordList;
         private Label AccountsStoredLabel;
         private TreeView RecordsTreeView;
-        private Button button1;
-        private Button button2;
 
         // listbox to replaced by custom control
-        private ListBox RecordsListBox;
         
         protected override void Initialize(List<String> Title)
         {
@@ -44,7 +40,9 @@ namespace Hush.Display.Interfaces
 
             base.Initialize(Title);
             UsernameLabel.Text = DataHolder.CurrentUser.Username;
-            DataHolder.RecordList = DataHolder.CurrentUser.Records;
+            if(!DataHolder.Filter)
+                DataHolder.RecordList = DataHolder.CurrentUser.Records;
+            DataHolder.Filter = false;
         }
 
         protected override void InitializeComponent()
@@ -65,10 +63,7 @@ namespace Hush.Display.Interfaces
             this.LogoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
-            this.RecordsListBox = new System.Windows.Forms.ListBox();
             this.RecordsTreeView = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
             this.SuspendLayout();
@@ -248,55 +243,17 @@ namespace Hush.Display.Interfaces
             this.UserLabel.TabIndex = 0;
             this.UserLabel.Text = "User:";
             // 
-            // RecordsListBox
-            // 
-            this.RecordsListBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordsListBox.FormattingEnabled = true;
-            this.RecordsListBox.ItemHeight = 16;
-            this.RecordsListBox.Items.AddRange(new object[] {
-            "LIST OF RECORDS"});
-            this.RecordsListBox.Location = new System.Drawing.Point(24, 99);
-            this.RecordsListBox.Name = "RecordsListBox";
-            this.RecordsListBox.Size = new System.Drawing.Size(359, 212);
-            this.RecordsListBox.TabIndex = 1;
-            this.RecordsListBox.SelectedIndexChanged += new System.EventHandler(this.RecordsListBox_SelectedIndexChanged);
-            // 
             // RecordsTreeView
             // 
             this.RecordsTreeView.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordsTreeView.LineColor = System.Drawing.Color.Empty;
-            this.RecordsTreeView.Location = new System.Drawing.Point(235, 99);
+            this.RecordsTreeView.Location = new System.Drawing.Point(24, 99);
             this.RecordsTreeView.Name = "RecordsTreeView";
-            this.RecordsTreeView.Size = new System.Drawing.Size(148, 212);
+            this.RecordsTreeView.Size = new System.Drawing.Size(359, 212);
             this.RecordsTreeView.TabIndex = 10;
-            this.RecordsTreeView.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(313, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "E";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(350, 73);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(31, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "D";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainScreen
             // 
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SettingsButton);
@@ -306,7 +263,6 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.UserPanel);
-            this.Controls.Add(this.RecordsListBox);
             this.Name = "MainScreen";
             this.RecordFunctionsPanel.ResumeLayout(false);
             this.UserPanel.ResumeLayout(false);
@@ -330,9 +286,9 @@ namespace Hush.Display.Interfaces
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            if (this.RecordsListBox.SelectedIndex >= 0)
+            if (this.RecordsTreeView.SelectedNode != null)
             {
-                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
+                DataHolder.RecordNode = RecordsTreeView.SelectedNode.Name;
                 Program.Window.ShowInterface(new ViewRecord());
             }
         }
@@ -344,22 +300,21 @@ namespace Hush.Display.Interfaces
 
         private void EditRecordButton_Click(object sender, EventArgs e)
         {
-            if (this.RecordsListBox.SelectedIndex >= 0)
+            if (this.RecordsTreeView.SelectedNode != null && !this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
             {
-                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
+                DataHolder.RecordNode = RecordsTreeView.SelectedNode.Name;
                 Program.Window.ShowInterface(new Edit());
+                PopulateTreeView();
             }
         }
 
         private void DeleteRecordButton_Click(object sender, EventArgs e)
         {
-
-            if (this.RecordsListBox.SelectedIndex >= 0)
+            if (this.RecordsTreeView.SelectedNode != null && !this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
             {
-                DataHolder.RecordIndex = this.RecordsListBox.SelectedIndex;
+                DataHolder.RecordNode = RecordsTreeView.SelectedNode.Name;
                 Program.Window.ShowInterface(new Delete());
-
-                AddRecordsToListBox();
+                PopulateTreeView();
             }
         }
 
@@ -371,17 +326,11 @@ namespace Hush.Display.Interfaces
         public override void PostInit()
         {
             base.PostInit();
-            RecordsListBox.Focus();
         }
         protected override void OnLoad(EventArgs e)
         {
-            
-
-
-
-            AddRecordsToListBox();
             PopulateTreeView();
-            if (this.RecordsListBox.Items.Count == 0)
+            if(this.RecordsTreeView.Nodes.Count == 0)
             {
 
                 ViewButton.Enabled = false;
@@ -393,46 +342,34 @@ namespace Hush.Display.Interfaces
                 ViewButton.Enabled = true;
                 EditRecordButton.Enabled = true;
                 DeleteRecordButton.Enabled = true;
-
-                this.RecordsListBox.SetSelected(0, true);
+                RecordsTreeView.SelectedNode = RecordsTreeView.Nodes[0];
+                RecordsTreeView.Focus();
             }
         }
 
         private void PopulateTreeView()
         {
-
             RecordsTreeView.BeginUpdate();
             RecordsTreeView.Nodes.Clear();
-
             if (DataHolder.RecordList == null)
             {
-
                 return;
-
             }
-
-            foreach (Record Item in DataHolder.CurrentUser.Records)
+            foreach (Record Item in DataHolder.RecordList)
             {
-
                 AddNestedNode(RecordsTreeView, Item);
-                //RecordsTreeView.Nodes.Add(Item.Name);
-
             }
 
             RecordsTreeView.EndUpdate();
-
         }
 
         private void AddNestedNode(TreeView Control, Record Item)
         {
-
             String CategoryName = Item.Category.Name;
             System.Console.WriteLine(CategoryName);
             if (CategoryName.Length < 1)
             {
-
-                Control.Nodes.Add("record::" + Item.Name, Item.Name);
-
+                Control.Nodes.Add(Item.ID, Item.Name);
             }
 
             else
@@ -440,63 +377,19 @@ namespace Hush.Display.Interfaces
 
                 if (!Control.Nodes.ContainsKey("category::" + CategoryName))
                 {
-
-
                     Control.Nodes.Add("category::" + CategoryName, CategoryName);
-
                 }
 
-                Control.Nodes["category::" + CategoryName].Nodes.Add("record::" + Item.Name, Item.Name);
-
+                Control.Nodes["category::" + CategoryName].Nodes.Add(Item.ID, Item.Name);
             }
 
         }
 
-        void AddRecordsToListBox()
-        {
-            this.RecordsListBox.Items.Clear();
-            try
-            {
-                if (DataHolder.RecordList == null)
-                {
-                    //this.RecordsListBox.Items.Add("no accounts stored");
-                    return;
-                }
-                else
-                {
-                   
-                    if (DataHolder.CurrentUser != null)
-                    {
-                         foreach (Client.Model.Record r in DataHolder.RecordList)
-                        //foreach (Client.Model.Record r in DataHolder.CurrentUser.Records)
-                        {
-                            this.RecordsListBox.Items.Add(r.Name.ToString());
-                        };
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            };
-        }
-       
         private void SearchButton_Click(object sender, EventArgs e)
         {
             String SearchName = this.SearchTextBox.Text;
             DataHolder.RecordList = DataManager.GetRecordsByName(SearchName);
-            this.RecordsListBox.Items.Clear();
-            if (DataHolder.RecordList == null)
-            {
-                MessageBox.Show("No Records");
-            }
-            else
-            {
-                foreach (Client.Model.Record r in DataHolder.RecordList)
-                {
-                    this.RecordsListBox.Items.Add(r.Name.ToString());
-                };
-            }
+            PopulateTreeView();
         }
         private void AdvancedSearchButton_Click(object sender, EventArgs e)
         {
@@ -507,60 +400,13 @@ namespace Hush.Display.Interfaces
         {
             if (DataHolder.CurrentUser != null)
             {
-                ////new DataManager().LoadUsers();
-                //String Data = StringUtil.JSON.SerializeFormatted<User>(DataHolder.CurrentUser);
-                ////MessageBox.Show(Data);
-                //String Username = DataHolder.CurrentUser.Username;
-                ////User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-                //User user = DataHolder.CurrentUser;
-
-                //using (StreamWriter Writer = new StreamWriter("./Data/" + Username + ".JSON"))
-                //{
-                //    Writer.Write(Data);
-                //}
-
-                //BinaryFormatter BFormatter = new BinaryFormatter();
-                //try
-                //{
-                //    FileStream writerFS;
-                //                           writerFS =
-                //        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
-                //    BFormatter.Serialize(writerFS, user);
-                //    writerFS.Close();
-                //    //MessageBox.Show("saving");
-                
-                    
-
-           
-                //}
-                //catch (Exception E)
-                //{
-                //    MessageBox.Show(E.Message);
-                //}
                 Client.DataManager.Logout();
             }
 
             Program.Window.ShowInterface(new SignIn());
         }
 
-        private void RecordsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ViewButton.Enabled = true;
-            EditRecordButton.Enabled = true;
-            DeleteRecordButton.Enabled = true;
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new DataManager().SaveUser(DataHolder.CurrentUser);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            new DataManager().LoadUser("demo", "demo");
-
-        }
     }
 
 }

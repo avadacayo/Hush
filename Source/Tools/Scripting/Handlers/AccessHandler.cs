@@ -130,6 +130,30 @@ namespace Hush.Tools.Scripting.Handlers
 
         }
 
+        public JsValue Set(String Name, String Value)
+        {
+
+            String ReturnValue = String.Empty;
+
+            if (_Record != null && _Record.Fields.Count > 0)
+            {
+                foreach (Field Item in _Record.Fields)
+                {
+                    if (Item.Key == Name)
+                    {
+                        Item.Value = Value;
+                        ReturnValue = Value;
+                        break;
+                    }
+                }
+            }
+
+            if (ReturnValue != String.Empty)
+                return new JsValue(ReturnValue);
+            return JsValue.Undefined;
+
+        }
+
     }
 
 }

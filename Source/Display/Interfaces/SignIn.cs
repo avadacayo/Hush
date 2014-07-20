@@ -126,7 +126,7 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.Location = new System.Drawing.Point(42, 144);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(324, 28);
+            this.PasswordTextBox.Size = new System.Drawing.Size(324, 24);
             this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
@@ -144,7 +144,7 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.UsernameTextBox.Location = new System.Drawing.Point(42, 90);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(324, 28);
+            this.UsernameTextBox.Size = new System.Drawing.Size(324, 24);
             this.UsernameTextBox.TabIndex = 2;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 

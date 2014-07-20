@@ -24,6 +24,13 @@ namespace Hush.Tools.Scripting.Handlers
 
         }
 
+        public void ClearCookies()
+        {
+
+            _Client.ClearCookies();
+
+        }
+
         public String SendGet(String URI)
         {
 

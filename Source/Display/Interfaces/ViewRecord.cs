@@ -26,6 +26,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.DataGridViewTextBoxColumn Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Button RunButton;
+        private Record CurrentRecord;
 
         #region Designer
 
@@ -214,24 +215,21 @@ namespace Hush.Display.Interfaces
 
         private void DisplayRecord()
         {
-
-            List<Field> FieldList = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Fields;
-            CategoryTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Category.Name.ToString();
+            CurrentRecord = DataManager.GetRecordByID(DataHolder.RecordNode);
+            List<Field> FieldList = CurrentRecord.Fields;
+            CategoryTextBox.Text = CurrentRecord.Category.Name.ToString();
+            
 
             TemplateComboBox.Enabled = false;
             TemplateComboBox.Items.Clear();
-            TemplateComboBox.Items.Add(DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template);
-            TemplateComboBox.SelectedText = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template;
-
+            TemplateComboBox.Items.Add(CurrentRecord.Template);
+            TemplateComboBox.SelectedText = CurrentRecord.Template;
             foreach (Field Item in FieldList)
             {
-
                 ViewDataGridView.Rows.Add(Item.Key.ToString(), Item.Value.ToString());
-
             }
 
-            RecordTextBox.Text = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Name;
-
+            RecordTextBox.Text = CurrentRecord.Name;
         }
 
         protected override void OnLoad(EventArgs Args)

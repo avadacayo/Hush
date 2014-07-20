@@ -125,7 +125,8 @@ namespace Hush.Display.Interfaces
             Boolean valid = DataManager.VerifyPassword(this.PasswordTextBox.Text);
             if (valid)
             {
-                DataManager.DeleteRecord(DataManager.GetRecord(DataHolder.RecordIndex));
+
+                DataManager.DeleteRecord(DataManager.GetRecordByID(DataHolder.RecordNode));
                 Program.Window.ShowInterface(new MainScreen());
             }
             else

@@ -32,6 +32,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label RecordName;
         private System.Windows.Forms.TextBox RecordTextBox;
         private System.Windows.Forms.ComboBox CategoryComboBox;
+        private Record CurrentRecord;
 
         #region Designer
 
@@ -41,11 +42,10 @@ namespace Hush.Display.Interfaces
         {
             Title.Add("Edit");
             base.Initialize(Title);
-            
-            if (DataHolder.CurrentUser.Records.Count >= DataHolder.RecordIndex)
-                this.RecordTextBox.Text = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name.ToString();
-
-            DataManager.PopulateTemplateBox(TemplateComboBox, DataHolder.CurrentUser.Records[DataHolder.RecordIndex]);
+            CurrentRecord = DataManager.GetRecordByID(DataHolder.RecordNode);
+            if (DataHolder.CurrentUser.Records.Count > 0)
+                this.RecordTextBox.Text = CurrentRecord.Name.ToString();
+            DataManager.PopulateTemplateBox(TemplateComboBox, CurrentRecord);
 
         }
 
@@ -131,8 +131,8 @@ namespace Hush.Display.Interfaces
             // 
             // CategoryComboBox
             // 
-            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(CategoryComboBox_SelectedIndexChanged); 
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.IntegralHeight = false;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
@@ -140,6 +140,7 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Size = new System.Drawing.Size(250, 24);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
+            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.ValueMember = "Name";
             // 
             // EditDataGridView
@@ -188,6 +189,7 @@ namespace Hush.Display.Interfaces
             this.RecordName.Size = new System.Drawing.Size(47, 17);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
+
             // 
             // RecordTextBox
             // 
@@ -227,9 +229,9 @@ namespace Hush.Display.Interfaces
 
         private void DisplayRecord()
         {
-            List<Field> fieldList = DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Fields;
+            List<Field> fieldList = CurrentRecord.Fields;
             DataTable DT = new DataTable();
-            DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Name = this.RecordTextBox.Text;
+            CurrentRecord.Name = this.RecordTextBox.Text;
             foreach (Field f in fieldList)
             {
                 EditDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());
@@ -247,13 +249,13 @@ namespace Hush.Display.Interfaces
 
             if (cat != null)
             {
-                DataHolder.CurrentUser.Records[DataHolder.RecordIndex].Category = cat;
+                CurrentRecord.Category = cat;
             }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DataManager.ApplyRecordChanges(DataHolder.CurrentUser.Records[DataHolder.RecordIndex], EditDataGridView, TemplateComboBox);
+            DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox);
             DisplayRecord();
             Program.Window.ShowInterface(new MainScreen());
         }

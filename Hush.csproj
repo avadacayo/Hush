@@ -111,9 +111,6 @@
     <Compile Include="Source\Display\Interfaces\Edit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\Display\Interfaces\ForgotPassword.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Source\Display\Interfaces\RegisterAccount.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,15 +174,6 @@
     <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\MainScreen.resx">
-      <DependentUpon>MainScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\SignIn.resx">
-      <DependentUpon>SignIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\Display\Interfaces\TestScreen.resx">
-      <DependentUpon>TestScreen.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Data\Templates\000Webhost\template.t" />
     <None Include="Data\Templates\CDOT Wiki\template.t" />
     <None Include="Data\Templates\Cruncyroll\template.t" />
@@ -213,6 +201,7 @@
     <Content Include="Data\Templates\CDOT Wiki\What Do I Have.js" />
     <Content Include="Data\Templates\Cruncyroll\Change Password.js" />
     <Content Include="Data\test.js" />
+    <None Include="Resources\Andy_Tools_Hammer_Spanner3.png" />
     <Content Include="Spy.ico" />
   </ItemGroup>
   <ItemGroup />

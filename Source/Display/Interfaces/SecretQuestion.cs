@@ -28,6 +28,7 @@ namespace Hush.Display.Interfaces
         private Button CancelButton;
         private TextBox SecretAnswerTextBox2;
         private Label SecretQuestionLabel2;
+        private Label ErrPasswordLabel;
         private TextBox RepeatPasswordTextBox;
     
 
@@ -69,6 +70,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionLabel = new System.Windows.Forms.Label();
             this.SecretAnswerTextBox2 = new System.Windows.Forms.TextBox();
             this.SecretQuestionLabel2 = new System.Windows.Forms.Label();
+            this.ErrPasswordLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -184,7 +186,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerContinueButton
             // 
             this.SecretAnswerContinueButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerContinueButton.Location = new System.Drawing.Point(280, 261);
+            this.SecretAnswerContinueButton.Location = new System.Drawing.Point(280, 254);
             this.SecretAnswerContinueButton.Name = "SecretAnswerContinueButton";
             this.SecretAnswerContinueButton.Size = new System.Drawing.Size(100, 25);
             this.SecretAnswerContinueButton.TabIndex = 4;
@@ -213,7 +215,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerTextBox2
             // 
             this.SecretAnswerTextBox2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox2.Location = new System.Drawing.Point(43, 231);
+            this.SecretAnswerTextBox2.Location = new System.Drawing.Point(43, 224);
             this.SecretAnswerTextBox2.Name = "SecretAnswerTextBox2";
             this.SecretAnswerTextBox2.Size = new System.Drawing.Size(338, 24);
             this.SecretAnswerTextBox2.TabIndex = 3;
@@ -222,14 +224,25 @@ namespace Hush.Display.Interfaces
             // 
             this.SecretQuestionLabel2.AutoSize = true;
             this.SecretQuestionLabel2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionLabel2.Location = new System.Drawing.Point(42, 208);
+            this.SecretQuestionLabel2.Location = new System.Drawing.Point(42, 201);
             this.SecretQuestionLabel2.Name = "SecretQuestionLabel2";
             this.SecretQuestionLabel2.Size = new System.Drawing.Size(146, 17);
             this.SecretQuestionLabel2.TabIndex = 17;
             this.SecretQuestionLabel2.Text = "Secret Question #2";
             // 
+            // ErrPasswordLabel
+            // 
+            this.ErrPasswordLabel.AutoSize = true;
+            this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrPasswordLabel.ForeColor = System.Drawing.Color.Red;
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(42, 286);
+            this.ErrPasswordLabel.Name = "ErrPasswordLabel";
+            this.ErrPasswordLabel.Size = new System.Drawing.Size(0, 13);
+            this.ErrPasswordLabel.TabIndex = 18;
+            // 
             // SecretQuestion
             // 
+            this.Controls.Add(this.ErrPasswordLabel);
             this.Controls.Add(this.SecretAnswerTextBox2);
             this.Controls.Add(this.SecretQuestionLabel2);
             this.Controls.Add(this.CancelButton);
@@ -278,9 +291,9 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            String message = "";
+            String message = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
 
-            if (new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text))
+            if (message.Equals("Valid"))
             {
                 if (new DataManager().ChangePassword(UsernameTextBox.Text, PasswordTextBox.Text))
                 {
@@ -292,15 +305,17 @@ namespace Hush.Display.Interfaces
 
             else
             {
-                if (PasswordTextBox.Text.Length <= 5)
-                    message = "*Enter a valid password. 6-30 characters";
+                //if (PasswordTextBox.Text.Length <= 5)
+                //    message = "*Enter 6-30 characters";
 
-                if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                    message = "*Passwords do not match";
+                //else if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
+                //    message = "*Passwords do not match";
 
-                if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
-                    message = "*Password contains username";
-                MessageBox.Show(message);
+                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
+                //    message = "*Password contains username";
+                //else
+                //    message = "*Contains invalid characters";
+                ErrPasswordLabel.Text = message;
             }
         }
 
@@ -380,7 +395,7 @@ namespace Hush.Display.Interfaces
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new ForgotPassword());
+            Program.Window.ShowInterface(new SignIn());
         }
 
     }

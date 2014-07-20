@@ -34,10 +34,6 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new RegisterAccount());
         }
 
-        private void ForgotPasswordButtonClick(Object Sender, EventArgs Args)
-        {
-            Program.Window.ShowInterface(new ForgotPassword());
-        }
 
         private void AddButtonClick(Object Sender, EventArgs Args)
         {
@@ -125,17 +121,7 @@ namespace Hush.Display.Interfaces
             this.RegisterAccountButton.Text = "Register Account Screen";
             this.RegisterAccountButton.UseVisualStyleBackColor = true;
             this.RegisterAccountButton.Click += new System.EventHandler(this.RegisterAccountButtonClick);
-            // 
-            // ForgotPasswordButton
-            // 
-            this.ForgotPasswordButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForgotPasswordButton.Location = new System.Drawing.Point(10, 103);
-            this.ForgotPasswordButton.Name = "ForgotPasswordButton";
-            this.ForgotPasswordButton.Size = new System.Drawing.Size(150, 25);
-            this.ForgotPasswordButton.TabIndex = 3;
-            this.ForgotPasswordButton.Text = "Forgot Password Screen";
-            this.ForgotPasswordButton.UseVisualStyleBackColor = true;
-            this.ForgotPasswordButton.Click += new System.EventHandler(this.ForgotPasswordButtonClick);
+            
             // 
             // GeneratePasswordButton
             // 

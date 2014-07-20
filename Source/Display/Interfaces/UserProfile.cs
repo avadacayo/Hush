@@ -557,6 +557,7 @@ namespace Hush.Display.Interfaces
             result = Client.DataManager.SaveUserProfilePassword(CurrentPasswordTextBox.Text, NewPasswordTextBox.Text, ConfirmPasswordTextBox.Text);
             if (result == "password changed")
             {
+                DataHolder.CurrentUser.Password = NewPasswordTextBox.Text;
                 new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 // success stuff
                 ConfirmPasswordChangedLabel.Visible = true;

@@ -37,19 +37,23 @@ namespace Hush.Display.Interfaces
         private TextBox SecretQuestionTextBox2;
         private Label SecretAnswerLabel2;
         private TextBox SecretAnswerTextBox2;
-	private Button CancelButton;
+        private Button ToolButton;
+        private ToolTip Tooltip;
+        private System.ComponentModel.IContainer components;
+	    private Button CancelButton;
 
         private void RegisterButtonClick(Object Sender, EventArgs Args)
         {
-            PasswordStrengthLabel.Visible = false;
-            String pattern = "[a-zA-Z0-9]{3,15}$";
+            //PasswordStrengthLabel.Visible = false;
+            String pattern = "[a-zA-Z0-9]{3,30}$";
             Regex regex = new Regex(pattern);
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
 
             ErrUsernameLabel.Text = "";
+            String message = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
 
             //TODO: Stop if weak password has been used?
-            if (new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text))
+            if (message.Equals("Valid"))
             {
                 if (!new DataManager().AccountExists(UsernameTextBox.Text))
                 {
@@ -67,17 +71,20 @@ namespace Hush.Display.Interfaces
             else
             {
                 if (!regex.IsMatch(UsernameTextBox.Text))
-                    ErrUsernameLabel.Text = "*Enter a valid username. 3 - 25 characters";
+                    ErrUsernameLabel.Text = "*Enter 3-30 characters";
 
-                if (PasswordTextBox.Text.Length <= 5)
-                    ErrPasswordLabel.Text = "*Enter a valid password. 6-30 characters";
+                //if (PasswordTextBox.Text.Length <= 5)
+                //    ErrPasswordLabel.Text = "*Enter 6-30 characters";
 
-                if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                    ErrPasswordLabel.Text = "*Passwords do not match";
+                //else if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
+                //    ErrPasswordLabel.Text = "*Passwords do not match";
 
-                if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
-                    ErrPasswordLabel.Text = "*Password contains username";
-                //MessageBox.Show(@"Password not valid. Password must not contain username and should only include characters, numbers and -, @,#,$,%,^,!,&,*,\");
+                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
+                //    ErrPasswordLabel.Text = "*Password contains username";
+
+                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
+                //    ErrPasswordLabel.Text = "*Contains invalid characters";
+                ErrPasswordLabel.Text = message;
             }  
         }
 
@@ -151,7 +158,10 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.ToolButton = new System.Windows.Forms.Button();
             this.SecretQuestionLabel2 = new System.Windows.Forms.Label();
             this.SecretQuestionTextBox2 = new System.Windows.Forms.TextBox();
             this.SecretAnswerLabel2 = new System.Windows.Forms.Label();
@@ -183,6 +193,20 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(300, 80);
             this.ErrorMsgsLabel.TabIndex = 0;
             // 
+            // ToolButton
+            // 
+            this.ToolButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ToolButton.FlatAppearance.BorderSize = 5;
+            this.ToolButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolButton.Image = global::Hush.Properties.Resources.Andy_Tools_Hammer_Spanner3;
+            this.ToolButton.Location = new System.Drawing.Point(385, 12);
+            this.ToolButton.Name = "ToolButton";
+            this.ToolButton.Size = new System.Drawing.Size(26, 26);
+            this.ToolButton.TabIndex = 127;
+            this.ToolButton.UseVisualStyleBackColor = true;
+            this.ToolButton.Click += new System.EventHandler(this.ToolButton_Click);
+            this.ToolButton.MouseHover += new System.EventHandler(this.ToolButton_MouseHover);
+            // 
             // SecretQuestionLabel2
             // 
             this.SecretQuestionLabel2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -195,7 +219,7 @@ namespace Hush.Display.Interfaces
             // SecretQuestionTextBox2
             // 
             this.SecretQuestionTextBox2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionTextBox2.Location = new System.Drawing.Point(42, 330);
+            this.SecretQuestionTextBox2.Location = new System.Drawing.Point(42, 329);
             this.SecretQuestionTextBox2.Name = "SecretQuestionTextBox2";
             this.SecretQuestionTextBox2.Size = new System.Drawing.Size(334, 24);
             this.SecretQuestionTextBox2.TabIndex = 5;
@@ -204,7 +228,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerLabel2
             // 
             this.SecretAnswerLabel2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerLabel2.Location = new System.Drawing.Point(42, 358);
+            this.SecretAnswerLabel2.Location = new System.Drawing.Point(42, 356);
             this.SecretAnswerLabel2.Name = "SecretAnswerLabel2";
             this.SecretAnswerLabel2.Size = new System.Drawing.Size(300, 15);
             this.SecretAnswerLabel2.TabIndex = 119;
@@ -213,7 +237,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerTextBox2
             // 
             this.SecretAnswerTextBox2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox2.Location = new System.Drawing.Point(42, 378);
+            this.SecretAnswerTextBox2.Location = new System.Drawing.Point(42, 375);
             this.SecretAnswerTextBox2.Name = "SecretAnswerTextBox2";
             this.SecretAnswerTextBox2.Size = new System.Drawing.Size(334, 24);
             this.SecretAnswerTextBox2.TabIndex = 6;
@@ -229,6 +253,7 @@ namespace Hush.Display.Interfaces
             this.GeneratePasswordLinkLabel.TabIndex = 16;
             this.GeneratePasswordLinkLabel.TabStop = true;
             this.GeneratePasswordLinkLabel.Text = "Generate Password";
+            this.GeneratePasswordLinkLabel.Visible = false;
             this.GeneratePasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GeneratePasswordLinkLabel_LinkClicked);
             // 
             // RegisterLabel
@@ -243,7 +268,7 @@ namespace Hush.Display.Interfaces
             // UsernameLabel
             // 
             this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(42, 68);
+            this.UsernameLabel.Location = new System.Drawing.Point(42, 77);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(107, 17);
             this.UsernameLabel.TabIndex = 121;
@@ -252,7 +277,7 @@ namespace Hush.Display.Interfaces
             // UsernameTextBox
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(42, 88);
+            this.UsernameTextBox.Location = new System.Drawing.Point(42, 96);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(334, 24);
             this.UsernameTextBox.TabIndex = 0;
@@ -262,25 +287,26 @@ namespace Hush.Display.Interfaces
             // 
             this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.PasswordStrengthLabel.Location = new System.Drawing.Point(155, 115);
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(264, 169);
             this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
-            this.PasswordStrengthLabel.Size = new System.Drawing.Size(221, 18);
+            this.PasswordStrengthLabel.Size = new System.Drawing.Size(112, 18);
             this.PasswordStrengthLabel.TabIndex = 122;
             this.PasswordStrengthLabel.Text = " ";
+            this.PasswordStrengthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // PasswordLabel
             // 
             this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(42, 116);
+            this.PasswordLabel.Location = new System.Drawing.Point(42, 123);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(107, 15);
+            this.PasswordLabel.Size = new System.Drawing.Size(75, 15);
             this.PasswordLabel.TabIndex = 123;
             this.PasswordLabel.Text = "Password";
             // 
             // PasswordTextBox
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(42, 136);
+            this.PasswordTextBox.Location = new System.Drawing.Point(42, 143);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(334, 24);
@@ -289,17 +315,18 @@ namespace Hush.Display.Interfaces
             // 
             // RepeatPasswordLabel
             // 
+            this.RepeatPasswordLabel.BackColor = System.Drawing.SystemColors.Control;
             this.RepeatPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordLabel.Location = new System.Drawing.Point(42, 164);
+            this.RepeatPasswordLabel.Location = new System.Drawing.Point(42, 170);
             this.RepeatPasswordLabel.Name = "RepeatPasswordLabel";
-            this.RepeatPasswordLabel.Size = new System.Drawing.Size(300, 15);
+            this.RepeatPasswordLabel.Size = new System.Drawing.Size(300, 17);
             this.RepeatPasswordLabel.TabIndex = 124;
             this.RepeatPasswordLabel.Text = "Repeat Password";
             // 
             // RepeatPasswordTextBox
             // 
             this.RepeatPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(42, 184);
+            this.RepeatPasswordTextBox.Location = new System.Drawing.Point(42, 190);
             this.RepeatPasswordTextBox.Name = "RepeatPasswordTextBox";
             this.RepeatPasswordTextBox.PasswordChar = '*';
             this.RepeatPasswordTextBox.Size = new System.Drawing.Size(334, 24);
@@ -309,7 +336,7 @@ namespace Hush.Display.Interfaces
             // SecretQuestionLabel
             // 
             this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionLabel.Location = new System.Drawing.Point(42, 212);
+            this.SecretQuestionLabel.Location = new System.Drawing.Point(42, 218);
             this.SecretQuestionLabel.Name = "SecretQuestionLabel";
             this.SecretQuestionLabel.Size = new System.Drawing.Size(300, 15);
             this.SecretQuestionLabel.TabIndex = 125;
@@ -318,7 +345,7 @@ namespace Hush.Display.Interfaces
             // SecretQuestionTextBox
             // 
             this.SecretQuestionTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionTextBox.Location = new System.Drawing.Point(42, 232);
+            this.SecretQuestionTextBox.Location = new System.Drawing.Point(42, 237);
             this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
             this.SecretQuestionTextBox.Size = new System.Drawing.Size(334, 24);
             this.SecretQuestionTextBox.TabIndex = 3;
@@ -327,7 +354,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerLabel
             // 
             this.SecretAnswerLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerLabel.Location = new System.Drawing.Point(42, 260);
+            this.SecretAnswerLabel.Location = new System.Drawing.Point(42, 263);
             this.SecretAnswerLabel.Name = "SecretAnswerLabel";
             this.SecretAnswerLabel.Size = new System.Drawing.Size(300, 15);
             this.SecretAnswerLabel.TabIndex = 126;
@@ -336,7 +363,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerTextBox
             // 
             this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 280);
+            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 282);
             this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
             this.SecretAnswerTextBox.Size = new System.Drawing.Size(334, 24);
             this.SecretAnswerTextBox.TabIndex = 4;
@@ -345,9 +372,9 @@ namespace Hush.Display.Interfaces
             // RegisterButton
             // 
             this.RegisterButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegisterButton.Location = new System.Drawing.Point(42, 414);
+            this.RegisterButton.Location = new System.Drawing.Point(42, 409);
             this.RegisterButton.Name = "RegisterButton";
-            this.RegisterButton.Size = new System.Drawing.Size(334, 30);
+            this.RegisterButton.Size = new System.Drawing.Size(334, 25);
             this.RegisterButton.TabIndex = 7;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
@@ -369,7 +396,7 @@ namespace Hush.Display.Interfaces
             // 
             this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrUsernameLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrUsernameLabel.Location = new System.Drawing.Point(137, 68);
+            this.ErrUsernameLabel.Location = new System.Drawing.Point(137, 78);
             this.ErrUsernameLabel.Name = "ErrUsernameLabel";
             this.ErrUsernameLabel.Size = new System.Drawing.Size(300, 15);
             this.ErrUsernameLabel.TabIndex = 2;
@@ -378,9 +405,9 @@ namespace Hush.Display.Interfaces
             // 
             this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrPasswordLabel.Location = new System.Drawing.Point(137, 122);
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(136, 125);
             this.ErrPasswordLabel.Name = "ErrPasswordLabel";
-            this.ErrPasswordLabel.Size = new System.Drawing.Size(300, 15);
+            this.ErrPasswordLabel.Size = new System.Drawing.Size(275, 15);
             this.ErrPasswordLabel.TabIndex = 5;
             // 
             // CancelButton
@@ -396,6 +423,7 @@ namespace Hush.Display.Interfaces
             // 
             // RegisterAccount
             // 
+            this.Controls.Add(this.ToolButton);
             this.Controls.Add(this.SecretQuestionLabel2);
             this.Controls.Add(this.SecretQuestionTextBox2);
             this.Controls.Add(this.SecretAnswerLabel2);
@@ -419,6 +447,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.ErrPasswordLabel);
             this.Controls.Add(this.CancelButton);
             this.Name = "RegisterAccount";
+            this.Load += new System.EventHandler(this.RegisterAccount_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,6 +456,21 @@ namespace Hush.Display.Interfaces
         private void GeneratePasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Program.Window.ShowInterface(new GeneratePassword());
+        }
+
+        private void ToolButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new GeneratePassword());
+        }
+
+        private void ToolButton_MouseHover(object sender, EventArgs e)
+        {
+            Tooltip.Show("Tools", ToolButton);
+        }
+
+        private void RegisterAccount_Load(object sender, EventArgs e)
+        {
+
         }
 
 

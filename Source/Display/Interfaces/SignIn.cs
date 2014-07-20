@@ -27,7 +27,10 @@ namespace Hush.Display.Interfaces
         private TextBox PasswordTextBox;
         private LinkLabel ForgotPasswordLinkLabel;
         private Button DemoButton;
+        private Button ToolButton;
         private Label ErrorMsgsLabel;
+        private System.ComponentModel.IContainer components;
+        private ToolTip Tooltip;
 
         private void LoginButtonClick(Object Sender, EventArgs Args)
         {
@@ -55,6 +58,16 @@ namespace Hush.Display.Interfaces
             else
                 LoginButton.Enabled = false;
            
+        }
+
+        private void ToolButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new GeneratePassword());
+        }
+
+        private void ToolButton_MouseHover(object sender, EventArgs e)
+        {
+            Tooltip.Show("Tools", ToolButton);
         }
 
         private void DemoButton_Click(object sender, EventArgs e)
@@ -92,6 +105,7 @@ namespace Hush.Display.Interfaces
 
         protected override void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.DemoButton = new System.Windows.Forms.Button();
             this.LoginLabel = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
@@ -102,6 +116,8 @@ namespace Hush.Display.Interfaces
             this.RegisterPageButton = new System.Windows.Forms.LinkLabel();
             this.ForgotPasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.ErrorMsgsLabel = new System.Windows.Forms.Label();
+            this.ToolButton = new System.Windows.Forms.Button();
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // DemoButton
@@ -203,8 +219,23 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(370, 24);
             this.ErrorMsgsLabel.TabIndex = 6;
             // 
+            // ToolButton
+            // 
+            this.ToolButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ToolButton.FlatAppearance.BorderSize = 5;
+            this.ToolButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolButton.Image = global::Hush.Properties.Resources.Andy_Tools_Hammer_Spanner3;
+            this.ToolButton.Location = new System.Drawing.Point(385, 12);
+            this.ToolButton.Name = "ToolButton";
+            this.ToolButton.Size = new System.Drawing.Size(26, 26);
+            this.ToolButton.TabIndex = 12;
+            this.ToolButton.UseVisualStyleBackColor = true;
+            this.ToolButton.Click += new System.EventHandler(this.ToolButton_Click);
+            this.ToolButton.MouseHover += new System.EventHandler(this.ToolButton_MouseHover);
+            // 
             // SignIn
             // 
+            this.Controls.Add(this.ToolButton);
             this.Controls.Add(this.DemoButton);
             this.Controls.Add(this.LoginLabel);
             this.Controls.Add(this.PasswordTextBox);

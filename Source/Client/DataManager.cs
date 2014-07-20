@@ -55,7 +55,7 @@ namespace Hush.Client
                     Writer.WriteLine(SecKeyencryptedwithAnswer);
                     Writer.Write(EncryptedData);
                     Saved = true;
-                    MessageBox.Show("saved");
+                    //MessageBox.Show("saved");
                 }
                 catch (Exception ex)
                 {
@@ -83,44 +83,52 @@ namespace Hush.Client
             Boolean Loaded = false;
             String Filename = FileUtil.GetUserFileName(Username, true);
             String Key, Data, DecryptedKey, DecryptedData;
-            
-            using (StreamReader Reader = new StreamReader(Filename))
+            try
             {
-                try
+                using (StreamReader Reader = new StreamReader(Filename))
                 {
-                    if (!String.IsNullOrEmpty(Password))
+                    try
                     {
-                        Reader.ReadLine();
-                        Reader.ReadLine();
-                        Key = Reader.ReadLine();
-                        Reader.ReadLine();
-                    }
-                    else
-                    {
-                        Reader.ReadLine();
-                        Reader.ReadLine();
-                        Reader.ReadLine();
-                        Key = Reader.ReadLine();
-                    }
-                    Data = Reader.ReadToEnd();
+                        if (!String.IsNullOrEmpty(Password))
+                        {
+                            Reader.ReadLine();
+                            Reader.ReadLine();
+                            Key = Reader.ReadLine();
+                            Reader.ReadLine();
+                        }
+                        else
+                        {
+                            Reader.ReadLine();
+                            Reader.ReadLine();
+                            Reader.ReadLine();
+                            Key = Reader.ReadLine();
+                        }
+                        Data = Reader.ReadToEnd();
 
-                    if (!String.IsNullOrEmpty(Password))
-                    {
-                        DecryptedKey = Encryption.FromTripleDES(Key, Password);
+                        if (!String.IsNullOrEmpty(Password))
+                        {
+                            DecryptedKey = Encryption.FromTripleDES(Key, Password);
+                        }
+                        else
+                        {
+                            DecryptedKey = Encryption.FromTripleDES(Key, Answer);
+                        }
+
+                        DecryptedData = Encryption.FromTripleDES(Data, DecryptedKey);
+                        DataHolder.CurrentUser = StringUtil.JSON.Deserialize<User>(DecryptedData);
+                        Loaded = true;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        DecryptedKey = Encryption.FromTripleDES(Key, Answer);
+                        Loaded = false;
+                        //MessageBox.Show(ex.Message);
                     }
-    
-                    DecryptedData = Encryption.FromTripleDES(Data, DecryptedKey);
-                    DataHolder.CurrentUser = StringUtil.JSON.Deserialize<User>(DecryptedData);
-                    Loaded = true;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                Loaded = false;
+                //MessageBox.Show(ex.Message);
             }
             return Loaded;
         }
@@ -128,7 +136,9 @@ namespace Hush.Client
         public Boolean ChangePassword(String Username, String Password)
         {
             Boolean changed = false;
-            if (new CheckString().ValidPasswordCheck(Username, Password))
+            String message = new CheckString().ValidPasswordCheck(Username, Password);
+
+            if (message.Equals("Valid"))
             {
                 DataHolder.CurrentUser.Password = Password;
                 changed = true;

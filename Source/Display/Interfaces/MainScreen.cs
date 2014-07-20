@@ -30,8 +30,10 @@ namespace Hush.Display.Interfaces
         private LinkLabel ProfileLinkLabel;
         private Button ViewButton;
         private Label AccountsStoredLabel;
+        private Button ToolButton;
         private TreeView RecordsTreeView;
-
+        private System.ComponentModel.IContainer components;
+        private ToolTip Tooltip;
         // listbox to replaced by custom control
         
         protected override void Initialize(List<String> Title)
@@ -43,10 +45,12 @@ namespace Hush.Display.Interfaces
             if(!DataHolder.Filter)
                 DataHolder.RecordList = DataHolder.CurrentUser.Records;
             DataHolder.Filter = false;
+            
         }
 
         protected override void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AccountsStoredLabel = new System.Windows.Forms.Label();
             this.ViewButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
@@ -64,6 +68,8 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
             this.RecordsTreeView = new System.Windows.Forms.TreeView();
+            this.ToolButton = new System.Windows.Forms.Button();
+            this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
             this.SuspendLayout();
@@ -251,8 +257,23 @@ namespace Hush.Display.Interfaces
             this.RecordsTreeView.Size = new System.Drawing.Size(359, 212);
             this.RecordsTreeView.TabIndex = 10;
             // 
+            // ToolButton
+            // 
+            this.ToolButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ToolButton.FlatAppearance.BorderSize = 5;
+            this.ToolButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolButton.Image = global::Hush.Properties.Resources.Andy_Tools_Hammer_Spanner3;
+            this.ToolButton.Location = new System.Drawing.Point(385, 12);
+            this.ToolButton.Name = "ToolButton";
+            this.ToolButton.Size = new System.Drawing.Size(26, 26);
+            this.ToolButton.TabIndex = 11;
+            this.ToolButton.UseVisualStyleBackColor = true;
+            this.ToolButton.Click += new System.EventHandler(this.ToolButton_Click);
+            this.ToolButton.MouseHover += new System.EventHandler(this.ToolButton_MouseHover);
+            // 
             // MainScreen
             // 
+            this.Controls.Add(this.ToolButton);
             this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
@@ -400,13 +421,23 @@ namespace Hush.Display.Interfaces
         {
             if (DataHolder.CurrentUser != null)
             {
+                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
                 Client.DataManager.Logout();
             }
 
             Program.Window.ShowInterface(new SignIn());
         }
 
+        private void ToolButton_Click(object sender, EventArgs e)
+        {
+            Program.Window.ShowInterface(new GeneratePassword());
+        }
 
-    }
+        private void ToolButton_MouseHover(object sender, EventArgs e)
+        {
+            Tooltip.Show("Tools", ToolButton);
+        }
+
+     }
 
 }

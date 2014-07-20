@@ -54,7 +54,7 @@ namespace Hush.Display.Interfaces
         public virtual void ClosingSave()
         {
 
-            new DataManager().SaveUser(DataHolder.CurrentUser);
+            //new DataManager().SaveUser(DataHolder.CurrentUser);
         }
 
         public void Close()

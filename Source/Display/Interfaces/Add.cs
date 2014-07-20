@@ -228,6 +228,7 @@ namespace Hush.Display.Interfaces
             }
 
             rc.Name = this.RecordTextBox.Text;
+            rc.ID = Guid.NewGuid().ToString();
             if (TemplateComboBox.Enabled == true)
                 rc.Template = this.TemplateComboBox.Text;
             DataHolder.CurrentUser.Records.Add(rc);

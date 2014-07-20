@@ -244,6 +244,7 @@ namespace Hush.Display.Interfaces
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
+            DataHolder.Filter = true;
             String SearchName = this.SearchTextBox.Text;
 
             if (DateFromDateTimePicker.Value > (DateToDateTimePicker.Value.Add(new TimeSpan(0, 0, 0, 10))) || DateFromDateTimePicker.Value > DateTime.Now || DateToDateTimePicker.Value > DateTime.Now)

@@ -19,7 +19,8 @@ namespace Hush.Client
         static public User CurrentUser = default(User);
         static public List<User> UserList = default(List<User>);
         static public IEnumerable<Record> RecordList = default(IEnumerable<Record>);
-        static public Record RecordNode = default(Record);
+        static public Boolean Filter = false;
+        static public string RecordNode ;
         static public string updateCategory;
         public enum updateMode {None, Add, Edit, Delete};
         static public updateMode update;
@@ -625,6 +626,11 @@ namespace Hush.Client
         public static Record GetRecordByName(String RecordName)
         {
             return DataHolder.CurrentUser.Records.Find(x => x.Name.Contains(RecordName));
+        }
+
+        public static Record GetRecordByID(String RecordID)
+        {
+            return DataHolder.CurrentUser.Records.Find(x => x.ID.Equals(RecordID));
         }
 
         public static List<Record> GetRecordsByName(String RecordName)

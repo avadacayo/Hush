@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Hush.Client;
 using System.Text.RegularExpressions;
 using Hush.Tools;
+using System.IO;
 
 namespace Hush.Display.Interfaces
 {
@@ -259,8 +260,7 @@ namespace Hush.Display.Interfaces
         }
         private void AnswersContinue_Click(object sender, EventArgs e)
         {
-            if ((new DataManager().CheckSecretAnswer(UsernameTextBox.Text, SecretAnswerTextBox.Text, 1)) &&
-                (new DataManager().CheckSecretAnswer(UsernameTextBox.Text, SecretAnswerTextBox2.Text, 2)))
+            if (new DataManager().LoadUser(UsernameTextBox.Text, "" , SecretAnswerTextBox.Text + "\n" + SecretAnswerTextBox2.Text))
             {
                 PasswordLabel.Visible = true;
                 RepeatPasswordLabel.Visible = true;
@@ -285,6 +285,7 @@ namespace Hush.Display.Interfaces
                 if (new DataManager().ChangePassword(UsernameTextBox.Text, PasswordTextBox.Text))
                 {
                     MessageBox.Show("Password has been changed.");
+                    new DataManager().SaveUser(DataHolder.CurrentUser);
                     Program.Window.ShowInterface(new MainScreen());
                 }
             }
@@ -305,12 +306,16 @@ namespace Hush.Display.Interfaces
 
         private void UsernameContinueButton_Click(object sender, EventArgs e)
         {
-            String Question = new DataManager().GetSecretQuestion(UsernameTextBox.Text, 1);
-            String Question2 = new DataManager().GetSecretQuestion(UsernameTextBox.Text, 2);
-            if (!new DataManager().AccountExists(UsernameTextBox.Text))
+            List<String> Question;
+            if (new DataManager().AccountExists(UsernameTextBox.Text))
             {
-                if (!Question.Equals("No Secret Questions Available"))
-                {
+                Question = new DataManager().GetSecretQuestion(UsernameTextBox.Text);
+                //if (new DataManager().GetSecretQuestion(UsernameTextBox.Text))
+                //{
+
+                //}
+                
+                
                     SecretQuestionLabel.Visible = true;
                     SecretAnswerTextBox.Visible = true;
                     SecretAnswerContinueButton.Visible = true;
@@ -321,13 +326,11 @@ namespace Hush.Display.Interfaces
                     PasswordTextBox.Visible = false;
                     RepeatPasswordTextBox.Visible = false;
                     SaveButton.Visible = false;
-                    SecretQuestionLabel.Text = Question;
-                    SecretQuestionLabel2.Text = Question2;
+                    SecretQuestionLabel.Text = Question[0];
+                    SecretQuestionLabel2.Text = Question[1];
                     UsernameTextBox.Enabled = false;
                     UsernameContinueButton.Enabled = false;
-                }
-                else
-                    MessageBox.Show("No Secret Questions Available");
+                
             }
             else
                 MessageBox.Show("Username cannot be found");

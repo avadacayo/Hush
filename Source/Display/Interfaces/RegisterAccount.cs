@@ -51,7 +51,7 @@ namespace Hush.Display.Interfaces
             //TODO: Stop if weak password has been used?
             if (new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text))
             {
-                if (new DataManager().AccountExists(UsernameTextBox.Text))
+                if (!new DataManager().AccountExists(UsernameTextBox.Text))
                 {
 
                     if (new DataManager().CreateAccount(UsernameTextBox.Text, PasswordTextBox.Text, 

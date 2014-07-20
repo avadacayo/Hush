@@ -17,7 +17,7 @@ namespace Hush.Client
 
         static public List<Template> Templates = default(List<Template>);
         static public User CurrentUser = default(User);
-        static public List<User> UserList = default(List<User>);
+       // static public List<User> UserList = default(List<User>);
         static public IEnumerable<Record> RecordList = default(IEnumerable<Record>);
 
         static public string updateCategory;
@@ -32,56 +32,115 @@ namespace Hush.Client
         private Boolean loaded = false , updated = false;
         BinaryFormatter BFormatter;
 
-       
-        public Boolean ChangePassword(String Username, String Password)
+        public Boolean SaveUser(User User)
         {
-            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-            DataHolder.CurrentUser = user;
-
-            if (!loaded)
+            Boolean Saved = false;
+            String Password = User.Password;
+            String Question = User.SecretQuestion;
+            String Question2 = User.SecretQuestion2;
+            String Answer = User.SecretAnswer + "\n" + User.SecretAnswer2;
+            String SecKey = "123qweasdzxc";
+            String Data = StringUtil.JSON.Serialize<User>(User);
+            String Q1encrypted = Encryption.ToTripleDES(Question, User.Username);
+            String Q2encrypted = Encryption.ToTripleDES(Question2, User.Username);
+            String EncryptedData = Encryption.ToTripleDES(Data, SecKey);
+            String SecKeyencryptedwithPass = Encryption.ToTripleDES(SecKey, Password);
+            String SecKeyencryptedwithAnswer = Encryption.ToTripleDES(SecKey, Answer);
+            String Filename = FileUtil.GetUserFileName(User.Username, true);
+           
+            using (StreamWriter Writer = new StreamWriter(Filename))
             {
-                LoadUsers();
-            }
-
-            if (new CheckString().ValidPasswordCheck(Username, Password))
-            {
-                user.Password = Password;
-
-           // TODO: remove and /use file util
                 try
                 {
-                    FileStream writerFS;
-                    
-                        writerFS =
-                        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
-                    
-                    if (!loaded)
-                    {
-                        LoadUsers();
-                    }
-                    BFormatter.Serialize(writerFS, user);
-                    writerFS.Close();
-                    DataHolder.CurrentUser = user;
-                    updated = true;
-                }
-                catch (Exception)
-                {
+                    Writer.WriteLine(Q1encrypted);
+                    Writer.WriteLine(Q2encrypted);
+                    Writer.WriteLine(SecKeyencryptedwithPass);
+                    Writer.WriteLine(SecKeyencryptedwithAnswer);
+                    Writer.Write(EncryptedData);
+                    Saved = true;
 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            return updated;
+            //TODO: remove block later
+            Data = StringUtil.JSON.SerializeFormatted<User>(User);
+            using (StreamWriter Writer = new StreamWriter("./Data/" + "testData" + ".JSON"))
+            {
+                Writer.WriteLine("Q: " + Question);
+                Writer.WriteLine("Q2: " + Question2);
+                Writer.WriteLine("A: "+ Answer);
+                Writer.Write(Data);
+                Writer.Close();
+            }
+            
+            return Saved;
         }
 
-        public Boolean CheckSecretAnswer(String Username, String Answer, Int32 QuestionNumber)
+        public Boolean LoadUser(String Username, String Password = null, String Answer = null)
         {
-            User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-            if (user.SecretAnswer.Equals(Answer))
-                return true;
+            Boolean Loaded = false;
+            String Filename = FileUtil.GetUserFileName(Username, true);
+            //String Question, Question2, Key, Data, DecryptedQuestion, DecryptedQuestion2, DecryptedKey, DecryptedData;
+            String Key, Data, DecryptedKey, DecryptedData;
 
-            else
-                return false;
+            try
+            {
+                using (StreamReader Reader = new StreamReader(Filename))
+                {
+                   if (!String.IsNullOrEmpty(Password))
+                    {
+                        Reader.ReadLine();
+                        Reader.ReadLine();
+                        Key = Reader.ReadLine();
+                        Reader.ReadLine();
+                    }
+                    else
+                    {
+                        Reader.ReadLine();
+                        Reader.ReadLine();
+                        Reader.ReadLine();
+                        Key = Reader.ReadLine();
+                    }
+                    Data = Reader.ReadToEnd();
+                    Reader.Close();
+                }
+                if (!String.IsNullOrEmpty(Password))
+                {
+                    DecryptedKey = Encryption.FromTripleDES(Key, Password);
+                }
+                else
+                {
+                    DecryptedKey = Encryption.FromTripleDES(Key, Answer);
+                }
+                
+                DecryptedData = Encryption.FromTripleDES(Data, DecryptedKey);
+                DataHolder.CurrentUser = StringUtil.JSON.Deserialize<User>(DecryptedData);
+                Loaded = true;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+
+            return Loaded;
         }
 
+        public Boolean ChangePassword(String Username, String Password)
+        {
+            Boolean changed = false;
+            if (new CheckString().ValidPasswordCheck(Username, Password))
+            {
+                DataHolder.CurrentUser.Password = Password;
+                changed = true;
+            }
+
+            return changed;
+        }
+
+        
         public static void ProcessTemplateChange(List<String> AddedFields, String TemplateName, DataGridView Control)
         {
 
@@ -340,10 +399,9 @@ namespace Hush.Client
                                      String SecretQuestion, String SecretAnswer,
                                      String SecretQuestion2, String SecretAnswer2)
         {
-            BFormatter = new BinaryFormatter(); 
             User NewUser = new User();
             NewUser.Username = Username;
-            if (new CheckString().ValidPasswordCheck(Username, Password))
+            //if (new CheckString().ValidPasswordCheck(Username, Password))//removed for the demo account
                 NewUser.Password = Password;
             NewUser.SecretQuestion = SecretQuestion;
             NewUser.SecretAnswer = SecretAnswer;
@@ -352,160 +410,42 @@ namespace Hush.Client
             NewUser.Created = DateTime.Now;
             NewUser.Modified = DateTime.Now;
             
-            Boolean created = false;
-            // TODO: remove and /use file util
-            try
-            {
-                FileStream writerFS;
-                if (!Directory.Exists("./Data"))
-                {
-                    Directory.CreateDirectory("./Data");
-                }
-                //TODO change filename
-                if (!File.Exists("./Data/" + Username + ".user"))
-                {
-                    writerFS =
-                    new FileStream("./Data/" + Username + ".user", FileMode.Create, FileAccess.Write);
-                }
-                else
-                {
-                    writerFS =
-                    new FileStream("./Data/" + Username + ".user", FileMode.Append, FileAccess.Write);
-                }
-                if (!loaded)
-                {
-                    LoadUsers();
-                }
-                BFormatter.Serialize(writerFS, NewUser);
-                writerFS.Close();
-                DataHolder.CurrentUser = NewUser;
-                created = true;
-            }
+            Boolean created;
 
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+            if (created = SaveUser(NewUser))
+                DataHolder.CurrentUser = NewUser;
  
             return created;
         }
 
-        public Boolean DeserializeUsers(String filename)
+        public List<String> GetSecretQuestion(String Username)
         {
-            Boolean retrieved;
-            User getUser;
-            // TODO: remove and /use file util
-            try
+            //List<String> Question = "No Secret Questions Available";
+            String Filename = FileUtil.GetUserFileName(Username, true);
+            List<String> Question = new List<string>();
+            List<String> DecryptedQuestion = new List<string>();
+            using (StreamReader Reader = new StreamReader(Filename))
             {
-                FileStream readerFileStream = new FileStream(filename,
-                    FileMode.Open, FileAccess.Read);
-                BFormatter = new BinaryFormatter();
-                getUser = (User)BFormatter.Deserialize(readerFileStream);
-                DataHolder.CurrentUser = getUser;
-                DataHolder.UserList.Add(getUser);
-                readerFileStream.Close();
-                retrieved = true;
+                Question.Add(Reader.ReadLine());
+                Question.Add(Reader.ReadLine());
+                Reader.Close();
             }
-
-            catch (Exception)
+            foreach (String questions in Question)
             {
-                retrieved = false;
-            }
-            return retrieved;
-        }
-        public Boolean LoadUsers()
-        {
-            DataHolder.UserList = new List<User>();
-            Boolean retrieved;
-            try
-            {
-                List<String> filenames = FileUtil.FindUserFiles();
-                // TODO use file util class
-                foreach (string f in filenames)
-                {
-                    DeserializeUsers(f);
-                }
-                retrieved = true;
-                loaded = true;
-                
-            }
-
-            catch (Exception ex)
-            {
-                retrieved = false;
-                MessageBox.Show(ex.Message);
+                DecryptedQuestion.Add(Encryption.FromTripleDES(questions, Username));
             }
             
-            return retrieved;
-        }
-
-        public String GetSecretQuestion(String Username, Int32 QuestionNumber)
-        {
-            String Question = "No Secret Questions Available";
-             if (!loaded)
-            {
-                LoadUsers();
-            }
-
-             if (loaded)
-             {
-
-                 User tempUser = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-                 if (tempUser != null)
-                 {
-                     if (QuestionNumber == 1)
-                        Question = tempUser.SecretQuestion;
-
-                     else if (QuestionNumber == 2)
-                        Question = tempUser.SecretQuestion2;
-                 }
-                                  
-             }
-             return Question;
+             return DecryptedQuestion;
         }
 
         public Boolean AccountExists(String Username)
         {
-            Boolean exists = false;
-            if (!loaded)
-            {
-                LoadUsers();
-            }
+            String Filename = FileUtil.GetUserFileName(Username, true);
 
-            if (loaded)
-            {
-                exists = DataHolder.UserList.Exists(x => x.Username == Username);
-            }
-
-            return !exists;
+            return File.Exists(Filename) ? true : false;
         }
 
-        public Boolean TryLogin(String Username, String Password)
-        {
-            Boolean successfulLogin = false;
-            User user = new User();
-            if (!loaded)
-            {
-                LoadUsers();
-            }
-
-            //if ( /* username is valid and password (encrypted) matches encrypted password*/)
-
-            if (loaded)
-            {
-                user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-                if (user != null)
-                {
-                    if (Password == user.Password)
-                    {
-                        successfulLogin = true;
-                        DataHolder.CurrentUser = user;
-                    }
-                }
-            }
-            return successfulLogin;
-
-        }
-
+       
         public static void AddRecord()
         {
             Record NewRecord = new Record();

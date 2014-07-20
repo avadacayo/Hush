@@ -111,11 +111,12 @@ namespace Hush.Tools
 
         }
 
-        public static String GetUserFileName(User User, Boolean WithPath)
+       // public static String GetUserFileName(User User, Boolean WithPath) -- ava
+        public static String GetUserFileName(String Username, Boolean WithPath)
         {
 
             String BaseFileName = String.Empty;
-            BaseFileName = Encryption.ToMD5(User.Username) + Extension;
+            BaseFileName = Encryption.ToMD5(Username) + Extension;
 
             if (WithPath)
             {
@@ -167,6 +168,7 @@ namespace Hush.Tools
             return ReadFile(DataDirectory + "Templates" + Path.DirectorySeparatorChar + TemplateName + Path.DirectorySeparatorChar + FunctionName + ScriptExtension);
 
         }
+
 
     }
 

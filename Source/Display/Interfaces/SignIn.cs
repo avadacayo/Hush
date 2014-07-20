@@ -32,7 +32,7 @@ namespace Hush.Display.Interfaces
         private void LoginButtonClick(Object Sender, EventArgs Args)
         {
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
-            if ((new DataManager().TryLogin(UsernameTextBox.Text, PasswordTextBox.Text)))
+            if ((new DataManager().LoadUser(UsernameTextBox.Text, PasswordTextBox.Text)))
             {
                 Program.Window.ShowInterface(new MainScreen());
             }
@@ -59,7 +59,7 @@ namespace Hush.Display.Interfaces
 
         private void DemoButton_Click(object sender, EventArgs e)
         {
-            if ((new DataManager().TryLogin("demo", "demo")))
+            if ((new DataManager().LoadUser("demo", "demo")))
             {
                 Program.Window.ShowInterface(new MainScreen());
                 return;

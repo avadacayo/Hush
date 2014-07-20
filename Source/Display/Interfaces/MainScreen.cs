@@ -32,6 +32,8 @@ namespace Hush.Display.Interfaces
         //List<Client.Model.Record> recordList;
         private Label AccountsStoredLabel;
         private TreeView RecordsTreeView;
+        private Button button1;
+        private Button button2;
 
         // listbox to replaced by custom control
         private ListBox RecordsListBox;
@@ -65,6 +67,8 @@ namespace Hush.Display.Interfaces
             this.UserLabel = new System.Windows.Forms.Label();
             this.RecordsListBox = new System.Windows.Forms.ListBox();
             this.RecordsTreeView = new System.Windows.Forms.TreeView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +79,7 @@ namespace Hush.Display.Interfaces
             this.AccountsStoredLabel.Font = new System.Drawing.Font("Verdana", 10F);
             this.AccountsStoredLabel.Location = new System.Drawing.Point(29, 79);
             this.AccountsStoredLabel.Name = "AccountsStoredLabel";
-            this.AccountsStoredLabel.Size = new System.Drawing.Size(155, 20);
+            this.AccountsStoredLabel.Size = new System.Drawing.Size(130, 17);
             this.AccountsStoredLabel.TabIndex = 9;
             this.AccountsStoredLabel.Text = "Accounts stored:";
             // 
@@ -181,7 +185,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(24, 382);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(237, 28);
+            this.SearchTextBox.Size = new System.Drawing.Size(237, 24);
             this.SearchTextBox.TabIndex = 4;
             // 
             // UserPanel
@@ -203,7 +207,7 @@ namespace Hush.Display.Interfaces
             this.ProfileLinkLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProfileLinkLabel.Location = new System.Drawing.Point(301, 10);
             this.ProfileLinkLabel.Name = "ProfileLinkLabel";
-            this.ProfileLinkLabel.Size = new System.Drawing.Size(50, 17);
+            this.ProfileLinkLabel.Size = new System.Drawing.Size(43, 13);
             this.ProfileLinkLabel.TabIndex = 2;
             this.ProfileLinkLabel.TabStop = true;
             this.ProfileLinkLabel.Text = "Profile";
@@ -217,7 +221,7 @@ namespace Hush.Display.Interfaces
             this.LogoutLinkLabel.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutLinkLabel.Location = new System.Drawing.Point(301, 31);
             this.LogoutLinkLabel.Name = "LogoutLinkLabel";
-            this.LogoutLinkLabel.Size = new System.Drawing.Size(58, 17);
+            this.LogoutLinkLabel.Size = new System.Drawing.Size(45, 13);
             this.LogoutLinkLabel.TabIndex = 3;
             this.LogoutLinkLabel.TabStop = true;
             this.LogoutLinkLabel.Text = "Logout";
@@ -230,7 +234,7 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameLabel.Location = new System.Drawing.Point(4, 27);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(94, 20);
+            this.UsernameLabel.Size = new System.Drawing.Size(77, 17);
             this.UsernameLabel.TabIndex = 1;
             this.UsernameLabel.Text = "username";
             // 
@@ -240,7 +244,7 @@ namespace Hush.Display.Interfaces
             this.UserLabel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.Location = new System.Drawing.Point(4, 7);
             this.UserLabel.Name = "UserLabel";
-            this.UserLabel.Size = new System.Drawing.Size(59, 20);
+            this.UserLabel.Size = new System.Drawing.Size(49, 17);
             this.UserLabel.TabIndex = 0;
             this.UserLabel.Text = "User:";
             // 
@@ -248,12 +252,12 @@ namespace Hush.Display.Interfaces
             // 
             this.RecordsListBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordsListBox.FormattingEnabled = true;
-            this.RecordsListBox.ItemHeight = 20;
+            this.RecordsListBox.ItemHeight = 16;
             this.RecordsListBox.Items.AddRange(new object[] {
             "LIST OF RECORDS"});
             this.RecordsListBox.Location = new System.Drawing.Point(24, 99);
             this.RecordsListBox.Name = "RecordsListBox";
-            this.RecordsListBox.Size = new System.Drawing.Size(359, 224);
+            this.RecordsListBox.Size = new System.Drawing.Size(359, 212);
             this.RecordsListBox.TabIndex = 1;
             this.RecordsListBox.SelectedIndexChanged += new System.EventHandler(this.RecordsListBox_SelectedIndexChanged);
             // 
@@ -267,8 +271,32 @@ namespace Hush.Display.Interfaces
             this.RecordsTreeView.TabIndex = 10;
             this.RecordsTreeView.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(313, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(31, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "E";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(350, 73);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(31, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "D";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainScreen
             // 
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.AccountsStoredLabel);
             this.Controls.Add(this.ViewButton);
             this.Controls.Add(this.SettingsButton);
@@ -479,35 +507,36 @@ namespace Hush.Display.Interfaces
         {
             if (DataHolder.CurrentUser != null)
             {
-                //new DataManager().LoadUsers();
-                String Data = StringUtil.JSON.SerializeFormatted<User>(DataHolder.CurrentUser);
-                String Username = DataHolder.CurrentUser.Username;
-                //User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
-                User user = DataHolder.CurrentUser;
+                ////new DataManager().LoadUsers();
+                //String Data = StringUtil.JSON.SerializeFormatted<User>(DataHolder.CurrentUser);
+                ////MessageBox.Show(Data);
+                //String Username = DataHolder.CurrentUser.Username;
+                ////User user = DataHolder.UserList.Find(x => x.Username.Equals(Username));
+                //User user = DataHolder.CurrentUser;
 
-                using (StreamWriter Writer = new StreamWriter("./Data/" + Username + ".JSON"))
-                {
-                    Writer.Write(Data);
-                }
+                //using (StreamWriter Writer = new StreamWriter("./Data/" + Username + ".JSON"))
+                //{
+                //    Writer.Write(Data);
+                //}
 
-                BinaryFormatter BFormatter = new BinaryFormatter();
-                try
-                {
-                    FileStream writerFS;
-                                           writerFS =
-                        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
-                    BFormatter.Serialize(writerFS, user);
-                    writerFS.Close();
-                    //MessageBox.Show("saving");
+                //BinaryFormatter BFormatter = new BinaryFormatter();
+                //try
+                //{
+                //    FileStream writerFS;
+                //                           writerFS =
+                //        new FileStream("./Data/" + Username + ".user", FileMode.Open, FileAccess.Write);
+                //    BFormatter.Serialize(writerFS, user);
+                //    writerFS.Close();
+                //    //MessageBox.Show("saving");
                 
                     
 
            
-                }
-                catch (Exception E)
-                {
-                    MessageBox.Show(E.Message);
-                }
+                //}
+                //catch (Exception E)
+                //{
+                //    MessageBox.Show(E.Message);
+                //}
                 Client.DataManager.Logout();
             }
 
@@ -519,6 +548,17 @@ namespace Hush.Display.Interfaces
             ViewButton.Enabled = true;
             EditRecordButton.Enabled = true;
             DeleteRecordButton.Enabled = true;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new DataManager().SaveUser(DataHolder.CurrentUser);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new DataManager().LoadUser("demo", "demo");
 
         }
     }

@@ -44,32 +44,50 @@ namespace Hush.Display.Interfaces
             SecretAnswerTextBox.Text = secretAnswer;
             SecretAnswerTextBox2.Text = secretAnswer2;
 
-            ErrorQuestion1Label.Visible = false;
-            ErrorQuestion2Label.Visible = false;
-            ErrorAnswer1Label.Visible = false;
-            ErrorAnswer2Label.Visible = false;
+            String ErrQ1 = new CheckString().ValidateSecretQA(SecretQuestionTextBox.Text);
+            String ErrSA1 = new CheckString().ValidateSecretQA(SecretAnswerTextBox.Text);
+            String ErrQ2 = new CheckString().ValidateSecretQA(SecretQuestionTextBox2.Text);
+            String ErrSA2 = new CheckString().ValidateSecretQA(SecretAnswerTextBox2.Text);
 
-            if (secretQuestion.Length == 0)
-            {
-                ErrorQuestion1Label.Visible = true;
-            }
-            if (secretQuestion2.Length == 0)
-            {
-                ErrorQuestion2Label.Visible = true;
-            }
-            if (secretAnswer.Length == 0)
-            {
-                ErrorAnswer1Label.Visible = true;
-            }
-            if (secretAnswer2.Length == 0)
-            {
-                ErrorAnswer2Label.Visible = true;
-            }
-            else if (secretQuestion.Length > 0 && secretQuestion2.Length > 0 &&
-                secretAnswer.Length > 0 && secretAnswer2.Length > 0)
+            ErrorQuestion1Label.Visible = true;
+            ErrorQuestion2Label.Visible = true;
+            ErrorAnswer1Label.Visible = true;
+            ErrorAnswer2Label.Visible = true;
+
+            ErrorQuestion1Label.Text = ErrQ1;
+            ErrorQuestion2Label.Text = ErrQ2;
+            ErrorAnswer1Label.Text = ErrSA1;
+            ErrorAnswer2Label.Text = ErrSA2;
+            //if (secretQuestion.Length == 0)
+            //{
+            //    ErrorQuestion1Label.Visible = true;
+            //}
+            //if (secretQuestion2.Length == 0)
+            //{
+            //    ErrorQuestion2Label.Visible = true;
+            //}
+            //if (secretAnswer.Length == 0)
+            //{
+            //    ErrorAnswer1Label.Visible = true;
+            //}
+            //if (secretAnswer2.Length == 0)
+            //{
+            //    ErrorAnswer2Label.Visible = true;
+            //}
+            if (ErrQ1.Equals("") && ErrSA1.Equals("") &&
+                ErrQ2.Equals("") && ErrSA2.Equals(""))
             {
                 DataManager.EditSecretQuestions(secretQuestion, secretQuestion2, secretAnswer, secretAnswer2);
                 new DataManager().SaveUser(Client.DataHolder.CurrentUser);
+                label1.Visible = true;
+            }
+
+            else
+            {
+                ErrorQuestion1Label.Text = ErrQ1;
+                ErrorQuestion2Label.Text = ErrQ2;
+                ErrorAnswer1Label.Text = ErrSA1;
+                ErrorAnswer2Label.Text = ErrSA2;
             }
         }
 
@@ -115,7 +133,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionLabel2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretQuestionLabel2.Location = new System.Drawing.Point(42, 208);
             this.SecretQuestionLabel2.Name = "SecretQuestionLabel2";
-            this.SecretQuestionLabel2.Size = new System.Drawing.Size(300, 20);
+            this.SecretQuestionLabel2.Size = new System.Drawing.Size(152, 20);
             this.SecretQuestionLabel2.TabIndex = 118;
             this.SecretQuestionLabel2.Text = "Secret Question #2";
             // 
@@ -124,7 +142,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretQuestionTextBox2.Location = new System.Drawing.Point(42, 228);
             this.SecretQuestionTextBox2.Name = "SecretQuestionTextBox2";
-            this.SecretQuestionTextBox2.Size = new System.Drawing.Size(338, 28);
+            this.SecretQuestionTextBox2.Size = new System.Drawing.Size(338, 24);
             this.SecretQuestionTextBox2.TabIndex = 5;
             // 
             // SecretAnswerLabel2
@@ -132,7 +150,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerLabel2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretAnswerLabel2.Location = new System.Drawing.Point(42, 262);
             this.SecretAnswerLabel2.Name = "SecretAnswerLabel2";
-            this.SecretAnswerLabel2.Size = new System.Drawing.Size(300, 20);
+            this.SecretAnswerLabel2.Size = new System.Drawing.Size(101, 20);
             this.SecretAnswerLabel2.TabIndex = 119;
             this.SecretAnswerLabel2.Text = "Answer #2";
             // 
@@ -141,7 +159,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox2.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretAnswerTextBox2.Location = new System.Drawing.Point(42, 282);
             this.SecretAnswerTextBox2.Name = "SecretAnswerTextBox2";
-            this.SecretAnswerTextBox2.Size = new System.Drawing.Size(338, 28);
+            this.SecretAnswerTextBox2.Size = new System.Drawing.Size(338, 24);
             this.SecretAnswerTextBox2.TabIndex = 6;
             // 
             // EditQuestionsLabel
@@ -158,7 +176,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretQuestionLabel.Location = new System.Drawing.Point(42, 84);
             this.SecretQuestionLabel.Name = "SecretQuestionLabel";
-            this.SecretQuestionLabel.Size = new System.Drawing.Size(300, 20);
+            this.SecretQuestionLabel.Size = new System.Drawing.Size(152, 20);
             this.SecretQuestionLabel.TabIndex = 125;
             this.SecretQuestionLabel.Text = "Secret Question #1";
             // 
@@ -167,7 +185,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretQuestionTextBox.Location = new System.Drawing.Point(42, 104);
             this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
-            this.SecretQuestionTextBox.Size = new System.Drawing.Size(338, 28);
+            this.SecretQuestionTextBox.Size = new System.Drawing.Size(338, 24);
             this.SecretQuestionTextBox.TabIndex = 3;
             // 
             // SecretAnswerLabel
@@ -175,7 +193,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretAnswerLabel.Location = new System.Drawing.Point(42, 138);
             this.SecretAnswerLabel.Name = "SecretAnswerLabel";
-            this.SecretAnswerLabel.Size = new System.Drawing.Size(300, 20);
+            this.SecretAnswerLabel.Size = new System.Drawing.Size(125, 20);
             this.SecretAnswerLabel.TabIndex = 126;
             this.SecretAnswerLabel.Text = "Answer #1";
             // 
@@ -184,7 +202,7 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 158);
             this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
-            this.SecretAnswerTextBox.Size = new System.Drawing.Size(338, 28);
+            this.SecretAnswerTextBox.Size = new System.Drawing.Size(338, 24);
             this.SecretAnswerTextBox.TabIndex = 4;
             // 
             // CancelButton
@@ -216,7 +234,7 @@ namespace Hush.Display.Interfaces
             this.ErrorQuestion1Label.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorQuestion1Label.Location = new System.Drawing.Point(186, 84);
             this.ErrorQuestion1Label.Name = "ErrorQuestion1Label";
-            this.ErrorQuestion1Label.Size = new System.Drawing.Size(223, 20);
+            this.ErrorQuestion1Label.Size = new System.Drawing.Size(179, 17);
             this.ErrorQuestion1Label.TabIndex = 127;
             this.ErrorQuestion1Label.Text = "Field must be completed";
             this.ErrorQuestion1Label.Visible = false;
@@ -228,7 +246,7 @@ namespace Hush.Display.Interfaces
             this.ErrorAnswer1Label.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorAnswer1Label.Location = new System.Drawing.Point(186, 138);
             this.ErrorAnswer1Label.Name = "ErrorAnswer1Label";
-            this.ErrorAnswer1Label.Size = new System.Drawing.Size(223, 20);
+            this.ErrorAnswer1Label.Size = new System.Drawing.Size(179, 17);
             this.ErrorAnswer1Label.TabIndex = 128;
             this.ErrorAnswer1Label.Text = "Field must be completed";
             this.ErrorAnswer1Label.Visible = false;
@@ -240,7 +258,7 @@ namespace Hush.Display.Interfaces
             this.ErrorQuestion2Label.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorQuestion2Label.Location = new System.Drawing.Point(186, 208);
             this.ErrorQuestion2Label.Name = "ErrorQuestion2Label";
-            this.ErrorQuestion2Label.Size = new System.Drawing.Size(223, 20);
+            this.ErrorQuestion2Label.Size = new System.Drawing.Size(179, 17);
             this.ErrorQuestion2Label.TabIndex = 129;
             this.ErrorQuestion2Label.Text = "Field must be completed";
             this.ErrorQuestion2Label.Visible = false;
@@ -252,7 +270,7 @@ namespace Hush.Display.Interfaces
             this.ErrorAnswer2Label.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorAnswer2Label.Location = new System.Drawing.Point(186, 262);
             this.ErrorAnswer2Label.Name = "ErrorAnswer2Label";
-            this.ErrorAnswer2Label.Size = new System.Drawing.Size(223, 20);
+            this.ErrorAnswer2Label.Size = new System.Drawing.Size(179, 17);
             this.ErrorAnswer2Label.TabIndex = 130;
             this.ErrorAnswer2Label.Text = "Field must be completed";
             this.ErrorAnswer2Label.Visible = false;
@@ -263,7 +281,7 @@ namespace Hush.Display.Interfaces
             this.label1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(42, 329);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.Size = new System.Drawing.Size(125, 17);
             this.label1.TabIndex = 131;
             this.label1.Text = "Changes saved";
             this.label1.Visible = false;
@@ -287,8 +305,14 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.CancelButton);
             this.Name = "EditSecretQuestion";
+            this.Load += new System.EventHandler(this.EditSecretQuestion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
+        }
+
+        private void EditSecretQuestion_Load(object sender, EventArgs e)
+        {
 
         }
 

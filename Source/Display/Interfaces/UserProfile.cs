@@ -452,7 +452,7 @@ namespace Hush.Display.Interfaces
 
             if (username != DataHolder.CurrentUser.Username)
             {
-                if (!(new DataManager().AccountExists(username)))
+                if (!(new CheckString().AccountExists(username)))
                 {
                     ErrUsernameLabel.Text = "Username already exists";
                     ErrUsernameLabel.Visible = true;

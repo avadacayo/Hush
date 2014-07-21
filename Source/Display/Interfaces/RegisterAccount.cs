@@ -56,7 +56,8 @@ namespace Hush.Display.Interfaces
             SecretAnswerTextBox.Text = SecretAnswerTextBox.Text.Trim();
             SecretQuestionTextBox2.Text = SecretQuestionTextBox2.Text.Trim();
             SecretAnswerTextBox2.Text = SecretAnswerTextBox2.Text.Trim();
-            ErrUsernameLabel.Text = "";
+            //ErrUsernameLabel.Text = "";
+            String ErrUsername = new CheckString().ValidateUsername(UsernameTextBox.Text);
             String ErrPassword = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
             String ErrQ1 = new CheckString().ValidateSecretQA(SecretQuestionTextBox.Text);
             String ErrSA1 = new CheckString().ValidateSecretQA(SecretAnswerTextBox.Text);
@@ -64,32 +65,32 @@ namespace Hush.Display.Interfaces
             String ErrSA2 = new CheckString().ValidateSecretQA(SecretAnswerTextBox2.Text);
 
             //TODO: Stop if weak password has been used?
-            if (ErrPassword.Equals("Valid") && ErrQ1.Equals("Valid") &&
-                ErrSA1.Equals("Valid") && ErrQ2.Equals("Valid") && ErrSA2.Equals("Valid"))
+            if (ErrUsername.Equals("") && ErrPassword.Equals("") && ErrQ1.Equals("") &&
+                ErrSA1.Equals("") && ErrQ2.Equals("") && ErrSA2.Equals(""))
             {
-                if (!new DataManager().AccountExists(UsernameTextBox.Text))
+                if (new DataManager().CreateAccount(UsernameTextBox.Text, PasswordTextBox.Text, 
+                    SecretQuestionTextBox.Text, SecretAnswerTextBox.Text,
+                    SecretQuestionTextBox2.Text, SecretAnswerTextBox2.Text))
                 {
-
-                    if (new DataManager().CreateAccount(UsernameTextBox.Text, PasswordTextBox.Text, 
-                                                        SecretQuestionTextBox.Text, SecretAnswerTextBox.Text,
-                                                        SecretQuestionTextBox2.Text, SecretAnswerTextBox2.Text))
-                    {
-                        Program.Window.ShowInterface(new MainScreen());
-                    }
+                    Program.Window.ShowInterface(new MainScreen());
                 }
-                else
-                    ErrUsernameLabel.Text = "*Username has been used";
+              
             }
             else
             {
-                if (!regex.IsMatch(UsernameTextBox.Text))
-                    ErrUsernameLabel.Text = "*Enter 3-30 characters";
-
+                ErrUsernameLabel.Text = ErrUsername;
                 ErrPasswordLabel.Text = ErrPassword;
                 ErrSQ1Label.Text = ErrQ1;
                 ErrSA1Label.Text = ErrSA1;
                 ErrSQ2Label.Text = ErrQ2;
                 ErrSA2Label.Text = ErrSA2;
+
+                ErrUsernameLabel.Visible = true;
+                ErrPasswordLabel.Visible = true;
+                ErrSQ1Label.Visible = true;
+                ErrSA1Label.Visible = true;
+                ErrSQ2Label.Visible = true;
+                ErrSA2Label.Visible = true;
             }  
         }
 
@@ -409,6 +410,8 @@ namespace Hush.Display.Interfaces
             this.ErrUsernameLabel.Name = "ErrUsernameLabel";
             this.ErrUsernameLabel.Size = new System.Drawing.Size(300, 15);
             this.ErrUsernameLabel.TabIndex = 2;
+            this.ErrUsernameLabel.Text = "Error";
+            this.ErrUsernameLabel.Visible = false;
             // 
             // ErrPasswordLabel
             // 
@@ -418,6 +421,8 @@ namespace Hush.Display.Interfaces
             this.ErrPasswordLabel.Name = "ErrPasswordLabel";
             this.ErrPasswordLabel.Size = new System.Drawing.Size(275, 15);
             this.ErrPasswordLabel.TabIndex = 5;
+            this.ErrPasswordLabel.Text = "Error";
+            this.ErrPasswordLabel.Visible = false;
             // 
             // CancelButton
             // 
@@ -438,15 +443,19 @@ namespace Hush.Display.Interfaces
             this.ErrSQ1Label.Name = "ErrSQ1Label";
             this.ErrSQ1Label.Size = new System.Drawing.Size(224, 17);
             this.ErrSQ1Label.TabIndex = 128;
+            this.ErrSQ1Label.Text = "Error";
+            this.ErrSQ1Label.Visible = false;
             // 
             // ErrSA1Label
             // 
             this.ErrSA1Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrSA1Label.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrSA1Label.Location = new System.Drawing.Point(187, 261);
+            this.ErrSA1Label.Location = new System.Drawing.Point(187, 263);
             this.ErrSA1Label.Name = "ErrSA1Label";
             this.ErrSA1Label.Size = new System.Drawing.Size(224, 17);
             this.ErrSA1Label.TabIndex = 129;
+            this.ErrSA1Label.Text = "Error";
+            this.ErrSA1Label.Visible = false;
             // 
             // ErrSQ2Label
             // 
@@ -456,6 +465,8 @@ namespace Hush.Display.Interfaces
             this.ErrSQ2Label.Name = "ErrSQ2Label";
             this.ErrSQ2Label.Size = new System.Drawing.Size(224, 17);
             this.ErrSQ2Label.TabIndex = 130;
+            this.ErrSQ2Label.Text = "Error";
+            this.ErrSQ2Label.Visible = false;
             // 
             // ErrSA2Label
             // 
@@ -465,6 +476,8 @@ namespace Hush.Display.Interfaces
             this.ErrSA2Label.Name = "ErrSA2Label";
             this.ErrSA2Label.Size = new System.Drawing.Size(224, 17);
             this.ErrSA2Label.TabIndex = 131;
+            this.ErrSA2Label.Text = "Error";
+            this.ErrSA2Label.Visible = false;
             // 
             // RegisterAccount
             // 

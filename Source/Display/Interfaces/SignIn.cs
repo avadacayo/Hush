@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using Hush.Client;
+using Hush.Tools;
 
 /*
  * 1. front end 
@@ -41,7 +42,10 @@ namespace Hush.Display.Interfaces
             }
 
             else
+            {
                 this.ErrorMsgsLabel.Text = "Please enter a valid username and password.";
+                this.ErrorMsgsLabel.Visible = true;
+            }
             // show failed to login
         }
 
@@ -72,7 +76,7 @@ namespace Hush.Display.Interfaces
 
         private void DemoButton_Click(object sender, EventArgs e)
         {
-            if (new DataManager().AccountExists("demo"))
+            if (new CheckString().AccountExists("demo"))
             {
                 if ((new DataManager().LoadUser("demo", "demo")))
                 {
@@ -218,6 +222,8 @@ namespace Hush.Display.Interfaces
             this.ErrorMsgsLabel.Name = "ErrorMsgsLabel";
             this.ErrorMsgsLabel.Size = new System.Drawing.Size(370, 24);
             this.ErrorMsgsLabel.TabIndex = 6;
+            this.ErrorMsgsLabel.Text = "Error";
+            this.ErrorMsgsLabel.Visible = false;
             // 
             // ToolButton
             // 

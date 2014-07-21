@@ -71,7 +71,7 @@ namespace Hush.Client
                 Writer.WriteLine("SecKey: " + SecKey);
                 Writer.WriteLine("Q: " + Question);
                 Writer.WriteLine("Q2: " + Question2);
-                Writer.WriteLine("A: "+ Answer);
+                Writer.WriteLine("A: " + Answer);
                 Writer.Write(Data);
             }
             
@@ -138,7 +138,7 @@ namespace Hush.Client
             Boolean changed = false;
             String message = new CheckString().ValidPasswordCheck(Username, Password);
 
-            if (message.Equals("Valid"))
+            if (message.Equals(""))
             {
                 DataHolder.CurrentUser.Password = Password;
                 changed = true;
@@ -452,15 +452,7 @@ namespace Hush.Client
             
              return DecryptedQuestion;
         }
-
-        public Boolean AccountExists(String Username)
-        {
-            String Filename = FileUtil.GetUserFileName(Username, true);
-
-            return File.Exists(Filename) ? true : false;
-        }
-
-       
+                       
         public static void AddRecord()
         {
             Record NewRecord = new Record();

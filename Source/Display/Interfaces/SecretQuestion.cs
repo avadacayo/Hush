@@ -29,6 +29,8 @@ namespace Hush.Display.Interfaces
         private TextBox SecretAnswerTextBox2;
         private Label SecretQuestionLabel2;
         private Label ErrPasswordLabel;
+        private Label ErrUsernameLabel;
+        private Label ErrSQ1Label;
         private TextBox RepeatPasswordTextBox;
     
 
@@ -71,6 +73,8 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox2 = new System.Windows.Forms.TextBox();
             this.SecretQuestionLabel2 = new System.Windows.Forms.Label();
             this.ErrPasswordLabel = new System.Windows.Forms.Label();
+            this.ErrUsernameLabel = new System.Windows.Forms.Label();
+            this.ErrSQ1Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -145,7 +149,7 @@ namespace Hush.Display.Interfaces
             // PasswordTextBox
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(42, 329);
+            this.PasswordTextBox.Location = new System.Drawing.Point(42, 336);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(338, 24);
@@ -166,7 +170,7 @@ namespace Hush.Display.Interfaces
             // 
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(42, 311);
+            this.PasswordLabel.Location = new System.Drawing.Point(42, 318);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(109, 17);
             this.PasswordLabel.TabIndex = 4;
@@ -197,7 +201,7 @@ namespace Hush.Display.Interfaces
             // SecretAnswerTextBox
             // 
             this.SecretAnswerTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 173);
+            this.SecretAnswerTextBox.Location = new System.Drawing.Point(42, 184);
             this.SecretAnswerTextBox.Name = "SecretAnswerTextBox";
             this.SecretAnswerTextBox.Size = new System.Drawing.Size(338, 24);
             this.SecretAnswerTextBox.TabIndex = 2;
@@ -206,7 +210,7 @@ namespace Hush.Display.Interfaces
             // 
             this.SecretQuestionLabel.AutoSize = true;
             this.SecretQuestionLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretQuestionLabel.Location = new System.Drawing.Point(41, 150);
+            this.SecretQuestionLabel.Location = new System.Drawing.Point(42, 161);
             this.SecretQuestionLabel.Name = "SecretQuestionLabel";
             this.SecretQuestionLabel.Size = new System.Drawing.Size(146, 17);
             this.SecretQuestionLabel.TabIndex = 0;
@@ -235,13 +239,41 @@ namespace Hush.Display.Interfaces
             this.ErrPasswordLabel.AutoSize = true;
             this.ErrPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrPasswordLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrPasswordLabel.Location = new System.Drawing.Point(42, 286);
+            this.ErrPasswordLabel.Location = new System.Drawing.Point(42, 294);
             this.ErrPasswordLabel.Name = "ErrPasswordLabel";
-            this.ErrPasswordLabel.Size = new System.Drawing.Size(0, 17);
+            this.ErrPasswordLabel.Size = new System.Drawing.Size(44, 17);
             this.ErrPasswordLabel.TabIndex = 18;
+            this.ErrPasswordLabel.Text = "Error";
+            this.ErrPasswordLabel.Visible = false;
+            // 
+            // ErrUsernameLabel
+            // 
+            this.ErrUsernameLabel.AutoSize = true;
+            this.ErrUsernameLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrUsernameLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrUsernameLabel.Location = new System.Drawing.Point(187, 58);
+            this.ErrUsernameLabel.Name = "ErrUsernameLabel";
+            this.ErrUsernameLabel.Size = new System.Drawing.Size(44, 17);
+            this.ErrUsernameLabel.TabIndex = 19;
+            this.ErrUsernameLabel.Text = "Error";
+            this.ErrUsernameLabel.Visible = false;
+            // 
+            // ErrSQ1Label
+            // 
+            this.ErrSQ1Label.AutoSize = true;
+            this.ErrSQ1Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrSQ1Label.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrSQ1Label.Location = new System.Drawing.Point(42, 139);
+            this.ErrSQ1Label.Name = "ErrSQ1Label";
+            this.ErrSQ1Label.Size = new System.Drawing.Size(44, 17);
+            this.ErrSQ1Label.TabIndex = 20;
+            this.ErrSQ1Label.Text = "Error";
+            this.ErrSQ1Label.Visible = false;
             // 
             // SecretQuestion
             // 
+            this.Controls.Add(this.ErrSQ1Label);
+            this.Controls.Add(this.ErrUsernameLabel);
             this.Controls.Add(this.ErrPasswordLabel);
             this.Controls.Add(this.SecretAnswerTextBox2);
             this.Controls.Add(this.SecretQuestionLabel2);
@@ -273,7 +305,7 @@ namespace Hush.Display.Interfaces
         }
         private void AnswersContinue_Click(object sender, EventArgs e)
         {
-            if (new DataManager().LoadUser(UsernameTextBox.Text, "" , SecretAnswerTextBox.Text + "\n" + SecretAnswerTextBox2.Text))
+            if (new DataManager().LoadUser(UsernameTextBox.Text, "", SecretAnswerTextBox.Text + "\n" + SecretAnswerTextBox2.Text))
             {
                 PasswordLabel.Visible = true;
                 RepeatPasswordLabel.Visible = true;
@@ -283,17 +315,21 @@ namespace Hush.Display.Interfaces
                 SecretAnswerTextBox.Enabled = false;
                 SecretAnswerTextBox2.Enabled = false;
                 SecretAnswerContinueButton.Enabled = false;
+                ErrSQ1Label.Text = "";
             }
 
             else
-                MessageBox.Show("Please enter the correct answer");
+            {
+                ErrSQ1Label.Text = "*Please enter the correct answers";
+                ErrSQ1Label.Visible = true;
+            }
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
             String message = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
 
-            if (message.Equals("Valid"))
+            if (message.Equals(""))
             {
                 if (new DataManager().ChangePassword(UsernameTextBox.Text, PasswordTextBox.Text))
                 {
@@ -305,50 +341,39 @@ namespace Hush.Display.Interfaces
 
             else
             {
-                //if (PasswordTextBox.Text.Length <= 5)
-                //    message = "*Enter 6-30 characters";
-
-                //else if (!(PasswordTextBox.Text != "" && PasswordTextBox.Text == RepeatPasswordTextBox.Text))
-                //    message = "*Passwords do not match";
-
-                //else if (PasswordTextBox.Text.Contains(UsernameTextBox.Text))
-                //    message = "*Password contains username";
-                //else
-                //    message = "*Contains invalid characters";
                 ErrPasswordLabel.Text = message;
+                ErrPasswordLabel.Visible = true;
             }
         }
 
         private void UsernameContinueButton_Click(object sender, EventArgs e)
         {
             List<String> Question;
-            if (new DataManager().AccountExists(UsernameTextBox.Text))
+            if (new CheckString().AccountExists(UsernameTextBox.Text))
             {
                 Question = new DataManager().GetSecretQuestion(UsernameTextBox.Text);
-                //if (new DataManager().GetSecretQuestion(UsernameTextBox.Text))
-                //{
 
-                //}
-                
-                
-                    SecretQuestionLabel.Visible = true;
-                    SecretAnswerTextBox.Visible = true;
-                    SecretAnswerContinueButton.Visible = true;
-                    SecretQuestionLabel2.Visible = true;
-                    SecretAnswerTextBox2.Visible = true;
-                    PasswordLabel.Visible = false;
-                    RepeatPasswordLabel.Visible = false;
-                    PasswordTextBox.Visible = false;
-                    RepeatPasswordTextBox.Visible = false;
-                    SaveButton.Visible = false;
-                    SecretQuestionLabel.Text = Question[0];
-                    SecretQuestionLabel2.Text = Question[1];
-                    UsernameTextBox.Enabled = false;
-                    UsernameContinueButton.Enabled = false;
-                
+                SecretQuestionLabel.Visible = true;
+                SecretAnswerTextBox.Visible = true;
+                SecretAnswerContinueButton.Visible = true;
+                SecretQuestionLabel2.Visible = true;
+                SecretAnswerTextBox2.Visible = true;
+                PasswordLabel.Visible = false;
+                RepeatPasswordLabel.Visible = false;
+                PasswordTextBox.Visible = false;
+                RepeatPasswordTextBox.Visible = false;
+                SaveButton.Visible = false;
+                SecretQuestionLabel.Text = Question[0];
+                SecretQuestionLabel2.Text = Question[1];
+                UsernameTextBox.Enabled = false;
+                UsernameContinueButton.Enabled = false;
+                ErrUsernameLabel.Text = "";
             }
             else
-                MessageBox.Show("Username cannot be found");
+            {
+                ErrUsernameLabel.Text = "*Username cannot be found";
+                ErrUsernameLabel.Visible = true;
+            }
         }
 
         private void Fields_TextChanged(object sender, EventArgs e)

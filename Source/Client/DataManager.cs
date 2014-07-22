@@ -198,9 +198,10 @@ namespace Hush.Client
                 DataGridViewRow RowToAdd = new DataGridViewRow();
                 RowToAdd.CreateCells(Control);
                 RowToAdd.Cells[0].Value = Item;
+                RowToAdd.Cells[0].ReadOnly = true;
                 Control.Rows.Add(RowToAdd);
                 AddedFields.Add(Item);
-
+                
             }
 
         }
@@ -256,6 +257,11 @@ namespace Hush.Client
 
             }
 
+        }
+
+        public static int TemplateFieldCount(String templateName)
+        {
+            return FileUtil.ReadTemplate(templateName).Count;
         }
 
         public static void PopulateScriptBox(ComboBox ComboControl, Button ButtonControl, String TemplateName)

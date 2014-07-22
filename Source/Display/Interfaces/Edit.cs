@@ -236,6 +236,13 @@ namespace Hush.Display.Interfaces
             {
                 EditDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());
             }
+            if (CurrentRecord.Template != null)
+            {
+                for (int i=0; i < DataManager.TemplateFieldCount(CurrentRecord.Template); i++ )
+                {
+                    EditDataGridView.Rows[i].Cells[0].ReadOnly = true;
+                }
+            }
         }
 
         protected override void OnLoad(EventArgs e)

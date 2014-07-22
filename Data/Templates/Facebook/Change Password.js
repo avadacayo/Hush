@@ -174,6 +174,9 @@ __rev:1335099
 */
 
 // easier than i thought
+// TEST DATA =
+//  email: chizuomeretsu@gmail.com
+//  pass: p@ssw0rd
 
 var status = -1;
 var fail = false;

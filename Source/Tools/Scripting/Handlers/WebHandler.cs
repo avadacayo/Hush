@@ -47,7 +47,9 @@ namespace Hush.Tools.Scripting.Handlers
         public String SendPost(String URI, String Parameters)
         {
 
+//            _Client.Headers[HttpRequestHeader.Accept] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
             _Client.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+            _Client.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36";
             return _Client.UploadString(URI, Parameters);
 
         }

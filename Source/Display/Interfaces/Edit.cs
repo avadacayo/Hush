@@ -20,7 +20,6 @@ namespace Hush.Display.Interfaces
         private List<String> _AddedFields = new List<String>();
 
         private System.Windows.Forms.Label Category;
-        private System.Windows.Forms.Button CategoryChange;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Label Template;
@@ -32,6 +31,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label RecordName;
         private System.Windows.Forms.TextBox RecordTextBox;
         private System.Windows.Forms.ComboBox CategoryComboBox;
+        private System.Windows.Forms.Label ErrorCategoryLabel;
         private Record CurrentRecord;
 
         #region Designer
@@ -52,7 +52,6 @@ namespace Hush.Display.Interfaces
         protected override void InitializeComponent()
         {
             this.Category = new System.Windows.Forms.Label();
-            this.CategoryChange = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.Template = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@ namespace Hush.Display.Interfaces
             this.EditRecordLabel = new System.Windows.Forms.Label();
             this.RecordName = new System.Windows.Forms.Label();
             this.RecordTextBox = new System.Windows.Forms.TextBox();
+            this.ErrorCategoryLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EditDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,19 +73,9 @@ namespace Hush.Display.Interfaces
             this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Category.Location = new System.Drawing.Point(42, 127);
             this.Category.Name = "Category";
-            this.Category.Size = new System.Drawing.Size(72, 17);
+            this.Category.Size = new System.Drawing.Size(86, 20);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
-            // 
-            // CategoryChange
-            // 
-            this.CategoryChange.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryChange.Location = new System.Drawing.Point(299, 148);
-            this.CategoryChange.Name = "CategoryChange";
-            this.CategoryChange.Size = new System.Drawing.Size(80, 27);
-            this.CategoryChange.TabIndex = 5;
-            this.CategoryChange.Text = "Change";
-            this.CategoryChange.UseVisualStyleBackColor = true;
             // 
             // CancelButton
             // 
@@ -115,7 +105,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(72, 17);
+            this.Template.Size = new System.Drawing.Size(87, 20);
             this.Template.TabIndex = 6;
             this.Template.Text = "Template";
             // 
@@ -125,22 +115,20 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
-            this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
+            this.TemplateComboBox.Size = new System.Drawing.Size(334, 28);
             this.TemplateComboBox.TabIndex = 7;
             this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // CategoryComboBox
             // 
+            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(CategoryComboBox_SelectedIndexChanged); 
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.IntegralHeight = false;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(250, 24);
+            this.CategoryComboBox.Size = new System.Drawing.Size(334, 28);
             this.CategoryComboBox.TabIndex = 4;
-            this.CategoryComboBox.DataSource = DataHolder.CurrentUser.Categories;
-            this.CategoryComboBox.DisplayMember = "Name";
             this.CategoryComboBox.ValueMember = "Name";
             // 
             // EditDataGridView
@@ -176,7 +164,7 @@ namespace Hush.Display.Interfaces
             this.EditRecordLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditRecordLabel.Location = new System.Drawing.Point(42, 28);
             this.EditRecordLabel.Name = "EditRecordLabel";
-            this.EditRecordLabel.Size = new System.Drawing.Size(109, 18);
+            this.EditRecordLabel.Size = new System.Drawing.Size(142, 25);
             this.EditRecordLabel.TabIndex = 0;
             this.EditRecordLabel.Text = "Edit Record";
             // 
@@ -186,21 +174,33 @@ namespace Hush.Display.Interfaces
             this.RecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordName.Location = new System.Drawing.Point(42, 73);
             this.RecordName.Name = "RecordName";
-            this.RecordName.Size = new System.Drawing.Size(47, 17);
+            this.RecordName.Size = new System.Drawing.Size(59, 20);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
-
             // 
             // RecordTextBox
             // 
             this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordTextBox.Location = new System.Drawing.Point(42, 94);
             this.RecordTextBox.Name = "RecordTextBox";
-            this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
+            this.RecordTextBox.Size = new System.Drawing.Size(334, 28);
             this.RecordTextBox.TabIndex = 2;
+            // 
+            // ErrorCategoryLabel
+            // 
+            this.ErrorCategoryLabel.AutoSize = true;
+            this.ErrorCategoryLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrorCategoryLabel.Location = new System.Drawing.Point(134, 127);
+            this.ErrorCategoryLabel.Name = "ErrorCategoryLabel";
+            this.ErrorCategoryLabel.Size = new System.Drawing.Size(232, 20);
+            this.ErrorCategoryLabel.TabIndex = 12;
+            this.ErrorCategoryLabel.Text = "Value must be 3-25 chars";
+            this.ErrorCategoryLabel.Visible = false;
             // 
             // Edit
             // 
+            this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.RecordName);
             this.Controls.Add(this.RecordTextBox);
             this.Controls.Add(this.EditRecordLabel);
@@ -210,7 +210,6 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.TemplateComboBox);
             this.Controls.Add(this.Template);
-            this.Controls.Add(this.CategoryChange);
             this.Controls.Add(this.Category);
             this.Name = "Edit";
             ((System.ComponentModel.ISupportInitialize)(this.EditDataGridView)).EndInit();
@@ -232,6 +231,7 @@ namespace Hush.Display.Interfaces
             List<Field> fieldList = CurrentRecord.Fields;
             DataTable DT = new DataTable();
             CurrentRecord.Name = this.RecordTextBox.Text;
+            CategoryComboBox.Text = CurrentRecord.Category;
             foreach (Field f in fieldList)
             {
                 EditDataGridView.Rows.Add(f.Key.ToString(), f.Value.ToString());
@@ -243,6 +243,7 @@ namespace Hush.Display.Interfaces
                     EditDataGridView.Rows[i].Cells[0].ReadOnly = true;
                 }
             }
+
         }
 
         protected override void OnLoad(EventArgs e)
@@ -250,22 +251,31 @@ namespace Hush.Display.Interfaces
             DisplayRecord();
         }
 
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
+        //private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
 
-            if (cat != null)
-            {
-                CurrentRecord.Category = cat;
-            }
-        }
+        //    if (cat != null)
+        //    {
+        //        CurrentRecord.Category = cat;
+        //    }
+        //}
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox);
-            DisplayRecord();
-            new DataManager().SaveUser(DataHolder.CurrentUser);
-            Program.Window.ShowInterface(new MainScreen());
+            ErrorCategoryLabel.Visible = false;
+            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+            {
+                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
+                DisplayRecord();
+                new DataManager().SaveUser(DataHolder.CurrentUser);
+                Program.Window.ShowInterface(new MainScreen());
+            }
+            else
+            {
+                ErrorCategoryLabel.Visible = true;
+            }
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

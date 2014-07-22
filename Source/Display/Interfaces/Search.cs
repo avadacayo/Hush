@@ -257,11 +257,11 @@ namespace Hush.Display.Interfaces
                 DataHolder.RecordList = DataHolder.CurrentUser.Records.Where<Record>(r => r.Created > DateFromDateTimePicker.Value && r.Created < DateToDateTimePicker.Value);
                 if (NameCheckBox.Checked && CategoryCheckBox.Checked && FieldCheckBox.Checked)
                 {
-                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Name.Contains(SearchName) || r.Category.Name.Contains(SearchName) || r.Fields.Any(f => f.Key.Contains(FieldSearchTextBox.Text)));
+                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Name.Contains(SearchName) || r.Category.Contains(SearchName) || r.Fields.Any(f => f.Key.Contains(FieldSearchTextBox.Text)));
                 }
                 else if (NameCheckBox.Checked && CategoryCheckBox.Checked)
                 {
-                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Name.Contains(SearchName) || r.Category.Name.Contains(SearchName));
+                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Name.Contains(SearchName) || r.Category.Contains(SearchName));
                 }
                 else if (NameCheckBox.Checked && FieldCheckBox.Checked)
                 {
@@ -269,13 +269,13 @@ namespace Hush.Display.Interfaces
                 }
                 else if (CategoryCheckBox.Checked && FieldCheckBox.Checked)
                 {
-                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Category.Name.Contains(SearchName) || r.Fields.Any(f => f.Key.Contains(FieldSearchTextBox.Text)));
+                    DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Category.Contains(SearchName) || r.Fields.Any(f => f.Key.Contains(FieldSearchTextBox.Text)));
                 }
                 else
                 {
 
                     if (CategoryCheckBox.Checked)
-                        DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Category.Name.Contains(SearchName));
+                        DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Category.Contains(SearchName));
 
                     else if (FieldCheckBox.Checked)
                         DataHolder.RecordList = DataHolder.RecordList.Where<Record>(r => r.Fields.Any(f => f.Key.Contains(FieldSearchTextBox.Text)));

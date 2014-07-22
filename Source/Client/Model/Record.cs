@@ -10,7 +10,7 @@ namespace Hush.Client.Model
     class Record : ISerializable
     {
 
-        private Category _Category;
+        private String _Category;
         private DateTime _Created;
         private List<Field> _Fields;
         private String _ID;
@@ -20,7 +20,7 @@ namespace Hush.Client.Model
 
         #region Properties
 
-        public Category Category
+        public String Category
         {
 
             get { return _Category; }
@@ -81,7 +81,7 @@ namespace Hush.Client.Model
         public Record()
         {
 
-            _Category = new Category();
+            _Category = String.Empty;
             _Created = DateTime.Now;
             _Fields = new List<Field>();
             _ID = String.Empty;
@@ -101,7 +101,7 @@ namespace Hush.Client.Model
 
             }
 
-            _Category = (Category)Info.GetValue("Category", typeof(Category));
+            _Category = (String)Info.GetValue("Category", typeof(String));
             _Created = (DateTime)Info.GetValue("Created", typeof(DateTime));
             _Fields = (List<Field>)Info.GetValue("Fields", typeof(List<Field>));
             _ID = (String)Info.GetValue("ID", typeof(String));

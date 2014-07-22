@@ -217,7 +217,7 @@ namespace Hush.Display.Interfaces
         {
             CurrentRecord = DataManager.GetRecordByID(DataHolder.RecordNode);
             List<Field> FieldList = CurrentRecord.Fields;
-            CategoryTextBox.Text = CurrentRecord.Category.Name.ToString();
+            CategoryTextBox.Text = CurrentRecord.Category.ToString();
             
 
             TemplateComboBox.Enabled = false;

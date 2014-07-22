@@ -137,7 +137,7 @@ namespace Hush.Display.Interfaces
             string newCategory = this.CategoryTextBox.Text.Trim();
             this.CategoryTextBox.Text = newCategory;
             
-            if (!Client.DataManager.ValidateCategoryUnique(newCategory))
+            if (Client.DataManager.ValidateCategoryExists(newCategory))
             {
                 ErrorCategoryLabel.Text = "Category already exists";
             }

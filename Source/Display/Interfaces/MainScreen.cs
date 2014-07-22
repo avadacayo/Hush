@@ -386,7 +386,7 @@ namespace Hush.Display.Interfaces
 
         private void AddNestedNode(TreeView Control, Record Item)
         {
-            String CategoryName = Item.Category.Name;
+            String CategoryName = Item.Category;
             System.Console.WriteLine(CategoryName);
             if (CategoryName.Length < 1)
             {

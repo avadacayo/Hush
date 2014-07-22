@@ -147,7 +147,38 @@ namespace Hush.Client
             return changed;
         }
 
-        
+        public static void PopulateCategoryBox(ComboBox ComboControl, Record Record)
+        {
+
+            List<Category> Categories = GetCategoryList();
+            
+            ComboControl.Enabled = true;
+            ComboControl.Items.Clear();
+
+            if (Categories.Count > 0)
+            {
+                ComboControl.Items.Add("");
+            }
+
+            foreach (Category Item in Categories)
+            {
+                if (Item.Name.Trim().Length != 0)
+                {
+                    ComboControl.Items.Add(Item.Name);
+                }
+            }
+
+            if (Record.Category != "")
+            {
+                ComboControl.SelectedText = Record.Category;
+            }
+        }
+
+        public static List<Category> GetCategoryList()
+        {
+            return DataHolder.CurrentUser.Categories;
+        }
+
         public static void ProcessTemplateChange(List<String> AddedFields, String TemplateName, DataGridView Control)
         {
 
@@ -223,7 +254,7 @@ namespace Hush.Client
 
                 ComboControl.Enabled = false;
                 ComboControl.Items.Clear();
-                ComboControl.Text = "no tempaltes";
+                ComboControl.Text = "no templates";
                 return;
 
             }
@@ -482,7 +513,7 @@ namespace Hush.Client
             newCategory.Created = DateTime.Now;
 
             DataHolder.CurrentUser.Categories.Add(newCategory);
-           
+            DataHolder.CurrentUser.Categories.Sort((x, y) => string.Compare(x.Name, y.Name));
         }
 
 
@@ -521,8 +552,9 @@ namespace Hush.Client
             return;
         }
 
-        public static void ApplyRecordChanges(Record CurrentRecord, DataGridView Data, ComboBox Template)
+        public static bool ApplyRecordChanges(Record CurrentRecord, DataGridView Data, ComboBox Template, String CategoryName)
         {
+            bool result = true;
             if (CurrentRecord == null)
             {
                 CurrentRecord = new Record();
@@ -552,6 +584,15 @@ namespace Hush.Client
                 CurrentRecord.Template = Template.Text;
             }
 
+            if (DataManager.ValidateRecordCategory(CategoryName))
+            {
+                CurrentRecord.Category = CategoryName;
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
          }
 
         public static void DeleteRecord(Record record)
@@ -597,7 +638,7 @@ namespace Hush.Client
 
         public static List<Record> GetRecordListByCategory(List<Record> CurrentRecords, String CategoryName)
         {
-            return CurrentRecords.FindAll(r => r.Category.Name.Contains(CategoryName));
+            return CurrentRecords.FindAll(r => r.Category.Contains(CategoryName));
         }
 
         public static Boolean VerifyPassword(String Password)
@@ -693,6 +734,7 @@ namespace Hush.Client
                     x = list.Count;
                 }
             }
+            DataHolder.CurrentUser.Categories.Sort((x, y) => string.Compare(x.Name, y.Name));
         }
 
         public static void EditSecretQuestions(string secretQuestion, string secretQuestion2, string secretAnswer, string secretAnswer2)
@@ -715,13 +757,13 @@ namespace Hush.Client
         //    return result;
         }
 
-        public static bool ValidateCategoryUnique(string category)
+        public static bool ValidateCategoryExists(string category)
         {
-            bool result = true;
+            bool result = false;
 
             var item = DataHolder.CurrentUser.Categories.FirstOrDefault(o => o.Name == category);
             if (item != null)
-                result = false;
+                result = true;
 
             return result;
         }
@@ -786,6 +828,25 @@ namespace Hush.Client
             if (!regex.IsMatch(lastName))
             {
                 result = false;
+            }
+
+            return result;
+        }
+
+        public static bool ValidateRecordCategory(string categoryName)
+        {
+            bool result = false;
+            if (!ValidateCategoryExists(categoryName))
+            {
+                if (Client.DataManager.ValidateCategoryLength(categoryName))
+                {
+                    result = true;
+                    AddCategory(categoryName);
+                }
+            }
+            else
+            {
+                result = true;
             }
 
             return result;

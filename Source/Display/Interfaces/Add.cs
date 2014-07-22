@@ -34,6 +34,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label Template;
         private DataGridViewTextBoxColumn Key;
         private DataGridViewTextBoxColumn Value;
+        private Label ErrorCategoryLabel;
         private Record rc = new Record();
 
         #region Designer
@@ -44,7 +45,7 @@ namespace Hush.Display.Interfaces
             Title.Add("Add");
             base.Initialize(Title);
             DataManager.PopulateTemplateBox(TemplateComboBox, new Record());
-           
+            DataManager.PopulateCategoryBox(CategoryComboBox, new Record());
         }
 
         #endregion
@@ -65,10 +66,11 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.TemplateComboBox = new System.Windows.Forms.ComboBox();
             this.RecordsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Template = new System.Windows.Forms.Label();
-            this.Category = new System.Windows.Forms.Label();
             this.Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Template = new System.Windows.Forms.Label();
+            this.Category = new System.Windows.Forms.Label();
+            this.ErrorCategoryLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,7 +134,6 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 28);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.ValueMember = "Name";
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
             // 
             // TemplateComboBox
             // 
@@ -161,6 +162,16 @@ namespace Hush.Display.Interfaces
             this.RecordsDataGridView.Size = new System.Drawing.Size(342, 180);
             this.RecordsDataGridView.TabIndex = 7;
             // 
+            // Key
+            // 
+            this.Key.HeaderText = "Field";
+            this.Key.Name = "Key";
+            // 
+            // Value
+            // 
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            // 
             // Template
             // 
             this.Template.AutoSize = true;
@@ -181,18 +192,21 @@ namespace Hush.Display.Interfaces
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
             // 
-            // Key
+            // ErrorCategoryLabel
             // 
-            this.Key.HeaderText = "Field";
-            this.Key.Name = "Key";
-            // 
-            // Value
-            // 
-            this.Value.HeaderText = "Value";
-            this.Value.Name = "Value";
+            this.ErrorCategoryLabel.AutoSize = true;
+            this.ErrorCategoryLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrorCategoryLabel.Location = new System.Drawing.Point(134, 127);
+            this.ErrorCategoryLabel.Name = "ErrorCategoryLabel";
+            this.ErrorCategoryLabel.Size = new System.Drawing.Size(232, 20);
+            this.ErrorCategoryLabel.TabIndex = 10;
+            this.ErrorCategoryLabel.Text = "Value must be 3-25 chars";
+            this.ErrorCategoryLabel.Visible = false;
             // 
             // Add
             // 
+            this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.AddRecordLabel);
             this.Controls.Add(this.RecordName);
             this.Controls.Add(this.RecordTextBox);
@@ -212,6 +226,7 @@ namespace Hush.Display.Interfaces
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
+            ErrorCategoryLabel.Visible = false;
             string k, v;
             for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
             {
@@ -226,6 +241,15 @@ namespace Hush.Display.Interfaces
                 DataManager.AddField(rc, k, v);
             }
 
+            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+            {
+                rc.Category = this.CategoryComboBox.Text.Trim();
+            }
+            else
+            {
+                ErrorCategoryLabel.Visible = true;
+            }
+
             rc.Name = this.RecordTextBox.Text;
             rc.ID = Guid.NewGuid().ToString();
             if (TemplateComboBox.Enabled == true)
@@ -236,15 +260,15 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new MainScreen());
         }
 
-        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
+        //private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Category cat = DataHolder.CurrentUser.Categories.Where(c => c.Name.Equals(CategoryComboBox.SelectedValue)).FirstOrDefault<Category>();
 
-            if (cat != null)
-            {
-                rc.Category = cat;
-            }
-        }
+        //    if (cat != null)
+        //    {
+        //        rc.Category = cat;
+        //    }
+        //}
 
         private void CancelButtonClick(Object Sender, EventArgs Args)
         {

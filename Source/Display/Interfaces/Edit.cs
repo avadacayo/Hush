@@ -46,7 +46,7 @@ namespace Hush.Display.Interfaces
             if (DataHolder.CurrentUser.Records.Count > 0)
                 this.RecordTextBox.Text = CurrentRecord.Name.ToString();
             DataManager.PopulateTemplateBox(TemplateComboBox, CurrentRecord);
-
+            DataManager.PopulateCategoryBox(CategoryComboBox, CurrentRecord);
         }
 
         protected override void InitializeComponent()

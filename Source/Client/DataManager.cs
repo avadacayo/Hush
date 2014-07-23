@@ -726,12 +726,14 @@ namespace Hush.Client
         public static void EditCategory(string oldCategory, string newCategory)
         {
             List<Category> list = DataHolder.CurrentUser.Categories;
-            for (var x = 0; x < list.Count; x++)
+            for (var i = 0; i < list.Count; i++)
             {
-                if (list[x].Name == oldCategory)
+                if (list[i].Name == oldCategory)
                 {
-                    DataHolder.CurrentUser.Categories[x].Name = newCategory;
-                    x = list.Count;
+                    DataHolder.CurrentUser.Categories[i].Name = newCategory;
+                    i = list.Count;
+                                        
+                    DataHolder.CurrentUser.Records.FindAll(x => x.Category.Contains(oldCategory));
                 }
             }
             DataHolder.CurrentUser.Categories.Sort((x, y) => string.Compare(x.Name, y.Name));

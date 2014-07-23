@@ -19,7 +19,7 @@ function body(state, mode, value) {
         case 0:
             username = AccessHandler.Access("username");
             password = AccessHandler.Access("password");
-            ViewHandler.ShowTextDialog("This script will change your Cruncyroll account password.\n\nIs this ok?");
+            ViewHandler.ShowTextDialog("This script will change your Crunchyroll account password.\n\nIs this ok?");
             break;
 
         case 1:

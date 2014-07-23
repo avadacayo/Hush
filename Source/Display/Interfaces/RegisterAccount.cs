@@ -59,10 +59,10 @@ namespace Hush.Display.Interfaces
             //ErrUsernameLabel.Text = "";
             String ErrUsername = new CheckString().ValidateUsername(UsernameTextBox.Text);
             String ErrPassword = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
-            String ErrQ1 = new CheckString().ValidateSecretQA(SecretQuestionTextBox.Text);
-            String ErrSA1 = new CheckString().ValidateSecretQA(SecretAnswerTextBox.Text);
-            String ErrQ2 = new CheckString().ValidateSecretQA(SecretQuestionTextBox2.Text);
-            String ErrSA2 = new CheckString().ValidateSecretQA(SecretAnswerTextBox2.Text);
+            String ErrQ1 = new CheckString().ValidateSecretQuestion(SecretQuestionTextBox.Text);
+            String ErrSA1 = new CheckString().ValidateSecretAnswer(SecretAnswerTextBox.Text, UsernameTextBox.Text);
+            String ErrQ2 = new CheckString().ValidateSecretQuestion(SecretQuestionTextBox2.Text);
+            String ErrSA2 = new CheckString().ValidateSecretAnswer(SecretAnswerTextBox2.Text, UsernameTextBox.Text);
 
             //TODO: Stop if weak password has been used?
             if (ErrUsername.Equals("") && ErrPassword.Equals("") && ErrQ1.Equals("") &&
@@ -234,6 +234,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox2.Size = new System.Drawing.Size(334, 24);
             this.SecretQuestionTextBox2.TabIndex = 5;
             this.SecretQuestionTextBox2.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.SecretQuestionTextBox2.MaxLength = 70;
             // 
             // SecretAnswerLabel2
             // 
@@ -283,6 +284,7 @@ namespace Hush.Display.Interfaces
             this.UsernameLabel.Size = new System.Drawing.Size(107, 17);
             this.UsernameLabel.TabIndex = 121;
             this.UsernameLabel.Text = "Username";
+            
             // 
             // UsernameTextBox
             // 
@@ -292,6 +294,7 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.Size = new System.Drawing.Size(334, 24);
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.UsernameTextBox.MaxLength = 30;
             // 
             // PasswordStrengthLabel
             // 
@@ -322,6 +325,7 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.Size = new System.Drawing.Size(334, 24);
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.PasswordTextBox.MaxLength = 30;
             // 
             // RepeatPasswordLabel
             // 
@@ -332,6 +336,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordLabel.Size = new System.Drawing.Size(300, 17);
             this.RepeatPasswordLabel.TabIndex = 124;
             this.RepeatPasswordLabel.Text = "Repeat Password";
+
             // 
             // RepeatPasswordTextBox
             // 
@@ -342,6 +347,7 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RepeatPasswordTextBox.TabIndex = 2;
             this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.RepeatPasswordTextBox.MaxLength = 30;
             // 
             // SecretQuestionLabel
             // 
@@ -360,6 +366,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox.Size = new System.Drawing.Size(334, 24);
             this.SecretQuestionTextBox.TabIndex = 3;
             this.SecretQuestionTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.SecretQuestionTextBox.MaxLength = 70;
             // 
             // SecretAnswerLabel
             // 

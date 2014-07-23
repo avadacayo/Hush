@@ -96,6 +96,7 @@ namespace Hush.Display.Interfaces
             this.ConfirmPasswordTextBox.PasswordChar = '*';
             this.ConfirmPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.ConfirmPasswordTextBox.TabIndex = 20;
+            this.ConfirmPasswordTextBox.MaxLength = 30;
             // 
             // NewPasswordTextBox
             // 
@@ -106,6 +107,7 @@ namespace Hush.Display.Interfaces
             this.NewPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.NewPasswordTextBox.TabIndex = 17;
             this.NewPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.NewPasswordTextBox.MaxLength = 30;
             // 
             // label3
             // 
@@ -145,6 +147,7 @@ namespace Hush.Display.Interfaces
             this.CurrentPasswordTextBox.PasswordChar = '*';
             this.CurrentPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.CurrentPasswordTextBox.TabIndex = 14;
+            this.CurrentPasswordTextBox.MaxLength = 30;
             // 
             // UserProfileLabel
             // 
@@ -185,6 +188,7 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(338, 28);
             this.UsernameTextBox.TabIndex = 3;
+            this.UsernameTextBox.MaxLength = 30;
             // 
             // FirstNameTextBox
             // 

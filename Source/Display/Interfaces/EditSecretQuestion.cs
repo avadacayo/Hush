@@ -44,10 +44,10 @@ namespace Hush.Display.Interfaces
             SecretAnswerTextBox.Text = secretAnswer;
             SecretAnswerTextBox2.Text = secretAnswer2;
 
-            String ErrQ1 = new CheckString().ValidateSecretQA(SecretQuestionTextBox.Text);
-            String ErrSA1 = new CheckString().ValidateSecretQA(SecretAnswerTextBox.Text);
-            String ErrQ2 = new CheckString().ValidateSecretQA(SecretQuestionTextBox2.Text);
-            String ErrSA2 = new CheckString().ValidateSecretQA(SecretAnswerTextBox2.Text);
+            String ErrQ1 = new CheckString().ValidateSecretQuestion(SecretQuestionTextBox.Text);
+            String ErrSA1 = new CheckString().ValidateSecretAnswer(SecretAnswerTextBox.Text, DataHolder.CurrentUser.Username);
+            String ErrQ2 = new CheckString().ValidateSecretQuestion(SecretQuestionTextBox2.Text);
+            String ErrSA2 = new CheckString().ValidateSecretAnswer(SecretAnswerTextBox2.Text, DataHolder.CurrentUser.Username);
 
             ErrorQuestion1Label.Visible = true;
             ErrorQuestion2Label.Visible = true;
@@ -79,7 +79,7 @@ namespace Hush.Display.Interfaces
             {
                 DataManager.EditSecretQuestions(secretQuestion, secretQuestion2, secretAnswer, secretAnswer2);
                 new DataManager().SaveUser(Client.DataHolder.CurrentUser);
-                label1.Visible = true;
+                label1.Visible = true; 
             }
 
             else
@@ -101,6 +101,10 @@ namespace Hush.Display.Interfaces
         {
             Title.Add("Edit Secret Questions");
             base.Initialize(Title);
+            SecretQuestionTextBox.Text = DataHolder.CurrentUser.SecretQuestion;
+            SecretAnswerTextBox.Text = DataHolder.CurrentUser.SecretAnswer;
+            SecretQuestionTextBox2.Text = DataHolder.CurrentUser.SecretQuestion2;
+            SecretAnswerTextBox2.Text = DataHolder.CurrentUser.SecretAnswer2;
         }
 
         public override void PostInit()
@@ -144,6 +148,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox2.Name = "SecretQuestionTextBox2";
             this.SecretQuestionTextBox2.Size = new System.Drawing.Size(338, 24);
             this.SecretQuestionTextBox2.TabIndex = 5;
+            this.SecretQuestionTextBox2.MaxLength = 70;
             // 
             // SecretAnswerLabel2
             // 
@@ -187,6 +192,7 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox.Name = "SecretQuestionTextBox";
             this.SecretQuestionTextBox.Size = new System.Drawing.Size(338, 24);
             this.SecretQuestionTextBox.TabIndex = 3;
+            this.SecretQuestionTextBox.MaxLength = 70;
             // 
             // SecretAnswerLabel
             // 

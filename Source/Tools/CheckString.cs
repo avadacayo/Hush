@@ -67,27 +67,47 @@ namespace Hush.Tools
             return val;
         }
 
-        public String ValidateSecretQA(String QA)
+        public String ValidateSecretAnswer(String Answer, String Username)
         {
-            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,50}$",
+            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,}$",
                    pattern2 = @"(.)\1{3,}?";
             String message = "";
 
             Regex regex = new Regex(pattern),
                   regex2 = new Regex(pattern2);
 
-            if (regex2.IsMatch(QA))
+            if (regex2.IsMatch(Answer))
                 message = "*Contains repeated characters";
 
-            else if (QA.Length <= 5)
-                message = "*Must be 6-50 characters";
+            else if (Answer.Length <= 5)
+                message = "*Must be longer than 5 characters";
 
-            else if (!regex.IsMatch(QA))
+            else if (!regex.IsMatch(Answer))
                 message = "*Contains invalid characters";
+
+            else if (Answer.Contains(Username))
+                 message = "*Password contains username";
 
             return message;
         }
 
+        public String ValidateSecretQuestion(String Question)
+        {
+            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,70}$",
+                   pattern2 = @"(.)\1{3,}?";
+            String message = "";
+
+            Regex regex = new Regex(pattern),
+                  regex2 = new Regex(pattern2);
+
+            if (Question.Length <= 5)
+                message = "*Must be 6-70 characters";
+
+            else if (!regex.IsMatch(Question))
+                message = "*Contains invalid characters";
+
+            return message;
+        }
         public String ValidateUsername(String Username)
         {
             String message = "";

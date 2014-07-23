@@ -734,8 +734,16 @@ namespace Hush.Client
                     i = list.Count;
                                         
                     DataHolder.CurrentUser.Records.FindAll(x => x.Category.Contains(oldCategory));
+
+                    List<Record> tmpRecords = DataHolder.CurrentUser.Records.FindAll(x => x.Category == oldCategory);
+                    foreach (Record tmp in tmpRecords)
+                    {
+                        tmp.Category = newCategory;
+                    }
+
                 }
             }
+
             DataHolder.CurrentUser.Categories.Sort((x, y) => string.Compare(x.Name, y.Name));
         }
 

@@ -48,6 +48,29 @@ namespace Hush.Display
         public void ShowInterface(Interface ToShow)
         {
 
+            if (_CurrentInterface != null && _CurrentInterface.HasClosingSave == true)
+            {
+
+                String SaveOption = DataManager.GetUserSaveOption();
+
+                if (SaveOption == "Automatic")
+                {
+                    _CurrentInterface.ClosingSave();
+                }
+
+                if (SaveOption == "Prompt")
+                {
+
+                    DialogResult Result = MessageBox.Show("Changes have been made, do you wish to save?", "", MessageBoxButtons.YesNo);
+                    if (Result == DialogResult.Yes)
+                    {
+                        _CurrentInterface.ClosingSave();
+                    }
+
+                }
+
+            }
+
             SuspendLayout();
 
             if (_CurrentInterface != null)

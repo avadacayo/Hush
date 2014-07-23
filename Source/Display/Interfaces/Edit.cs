@@ -11,6 +11,7 @@ using Hush;
 using Hush.Client.Model;
 using System.Data;
 using Hush.Client;
+using System.Windows.Forms;
 
 namespace Hush.Display.Interfaces
 {
@@ -47,6 +48,7 @@ namespace Hush.Display.Interfaces
                 this.RecordTextBox.Text = CurrentRecord.Name.ToString();
             DataManager.PopulateTemplateBox(TemplateComboBox, CurrentRecord);
             DataManager.PopulateCategoryBox(CategoryComboBox, CurrentRecord);
+            _HasClosingSave = false;
         }
 
         protected override void InitializeComponent()
@@ -73,7 +75,7 @@ namespace Hush.Display.Interfaces
             this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Category.Location = new System.Drawing.Point(42, 127);
             this.Category.Name = "Category";
-            this.Category.Size = new System.Drawing.Size(86, 20);
+            this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
             // 
@@ -105,7 +107,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(87, 20);
+            this.Template.Size = new System.Drawing.Size(72, 17);
             this.Template.TabIndex = 6;
             this.Template.Text = "Template";
             // 
@@ -115,7 +117,7 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
-            this.TemplateComboBox.Size = new System.Drawing.Size(334, 28);
+            this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 7;
             this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
@@ -127,9 +129,10 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.IntegralHeight = false;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(334, 28);
+            this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.ValueMember = "Name";
+            this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBoxTextChanged);
             // 
             // EditDataGridView
             // 
@@ -147,6 +150,7 @@ namespace Hush.Display.Interfaces
             this.EditDataGridView.Name = "EditDataGridView";
             this.EditDataGridView.Size = new System.Drawing.Size(342, 180);
             this.EditDataGridView.TabIndex = 9;
+            this.EditDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.EditDataGridViewCellValueChanged);
             // 
             // Key
             // 
@@ -164,7 +168,7 @@ namespace Hush.Display.Interfaces
             this.EditRecordLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditRecordLabel.Location = new System.Drawing.Point(42, 28);
             this.EditRecordLabel.Name = "EditRecordLabel";
-            this.EditRecordLabel.Size = new System.Drawing.Size(142, 25);
+            this.EditRecordLabel.Size = new System.Drawing.Size(109, 18);
             this.EditRecordLabel.TabIndex = 0;
             this.EditRecordLabel.Text = "Edit Record";
             // 
@@ -174,7 +178,7 @@ namespace Hush.Display.Interfaces
             this.RecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordName.Location = new System.Drawing.Point(42, 73);
             this.RecordName.Name = "RecordName";
-            this.RecordName.Size = new System.Drawing.Size(59, 20);
+            this.RecordName.Size = new System.Drawing.Size(47, 17);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
             // 
@@ -183,8 +187,9 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordTextBox.Location = new System.Drawing.Point(42, 94);
             this.RecordTextBox.Name = "RecordTextBox";
-            this.RecordTextBox.Size = new System.Drawing.Size(334, 28);
+            this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
+            this.RecordTextBox.TextChanged += new System.EventHandler(this.RecordTextBoxTextChanged);
             // 
             // ErrorCategoryLabel
             // 
@@ -193,7 +198,7 @@ namespace Hush.Display.Interfaces
             this.ErrorCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorCategoryLabel.Location = new System.Drawing.Point(134, 127);
             this.ErrorCategoryLabel.Name = "ErrorCategoryLabel";
-            this.ErrorCategoryLabel.Size = new System.Drawing.Size(232, 20);
+            this.ErrorCategoryLabel.Size = new System.Drawing.Size(191, 17);
             this.ErrorCategoryLabel.TabIndex = 12;
             this.ErrorCategoryLabel.Text = "Value must be 3-25 chars";
             this.ErrorCategoryLabel.Visible = false;
@@ -220,6 +225,14 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public override void ClosingSave()
+        {
+
+            SaveButton_Click(null, null);
+            _HasClosingSave = false;
+
+        }
+
         public override void PostInit()
         {
             base.PostInit();
@@ -243,7 +256,7 @@ namespace Hush.Display.Interfaces
                     EditDataGridView.Rows[i].Cells[0].ReadOnly = true;
                 }
             }
-
+            _HasClosingSave = false;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -263,33 +276,64 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+
+            _HasClosingSave = false;
             ErrorCategoryLabel.Visible = false;
+
             if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
             {
+
                 DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
                 DisplayRecord();
                 new DataManager().SaveUser(DataHolder.CurrentUser);
                 Program.Window.ShowInterface(new MainScreen());
+
             }
             else
             {
+
                 ErrorCategoryLabel.Visible = true;
+
             }
-            
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+
             Program.Window.ShowInterface(new MainScreen());
+
         }
 
         private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
         {
 
+            _HasClosingSave = true;
             DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
 
         }
 
+        private void EditDataGridViewCellValueChanged(Object Sender, DataGridViewCellEventArgs Args)
+        {
+
+            _HasClosingSave = true;
+
+        }
+
+        private void CategoryComboBoxTextChanged(Object Sender, EventArgs Args)
+        {
+
+            _HasClosingSave = true;
+
+        }
+
+        private void RecordTextBoxTextChanged(Object Sender, EventArgs Args)
+        {
+
+            _HasClosingSave = true;
+
+        }
 
     }
+
 }

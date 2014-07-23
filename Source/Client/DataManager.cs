@@ -335,7 +335,7 @@ namespace Hush.Client
         public static String GetUserSaveOption()
         {
 
-            String SaveOption = "Automatic";
+            String SaveOption = "Manual";
 
             foreach (Option Item in DataHolder.CurrentUser.Options)
             {
@@ -350,7 +350,6 @@ namespace Hush.Client
 
             }
 
-            Console.WriteLine(SaveOption);
             return SaveOption;
 
         }

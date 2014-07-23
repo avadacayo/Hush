@@ -195,6 +195,8 @@ function body(state, mode, value) {
         case 0:
             email = AccessHandler.Access("email");
             password = AccessHandler.Access("password");
+            log("email=" + email);
+            log("password=" + password);
             ViewHandler.ShowTextDialog("This script will change your facebook account password.\n\nIs this ok?");
             break;
 
@@ -280,6 +282,19 @@ function login(email, password) {
 }
 
 function checklogin() {
+
+    /*  temp test */
+    var psswdhtml = WebHandler.SendGet("https://www.facebook.com/settings");
+
+    var userid = get_userid(psswdhtml);
+    var rev = get_rev(psswdhtml);
+    var dtsg = get_dtsg(psswdhtml);
+
+    if (userid != "" && rev != "" && dtsg != "") return userid;
+
+    return "";
+
+    /* old version */
 
     var html = WebHandler.SendGet("https://www.facebook.com/?sk=welcome");
     var regex = /headerTinymanName">([^\<]+)</ig;

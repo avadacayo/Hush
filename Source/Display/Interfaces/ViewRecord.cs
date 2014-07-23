@@ -236,7 +236,7 @@ namespace Hush.Display.Interfaces
         {
 
             DisplayRecord();
-            DataManager.PopulateScriptBox(ScriptComboBox, RunButton, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template);
+            DataManager.PopulateScriptBox(ScriptComboBox, RunButton, DataManager.GetRecordByID(DataHolder.RecordNode).Template);
 
         }
 

@@ -307,7 +307,7 @@ namespace Hush.Display.Interfaces
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-            if (this.RecordsTreeView.SelectedNode != null)
+            if (this.RecordsTreeView.SelectedNode != null && !this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
             {
                 DataHolder.RecordNode = RecordsTreeView.SelectedNode.Name;
                 Program.Window.ShowInterface(new ViewRecord());

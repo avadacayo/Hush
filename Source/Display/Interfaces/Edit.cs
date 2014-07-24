@@ -304,26 +304,36 @@ namespace Hush.Display.Interfaces
 
         private void OnSave()
         {
+            string category = this.CategoryComboBox.Text.Trim();
+            this.CategoryComboBox.Text = category;
 
-            _HasClosingSave = false;
             ErrorCategoryLabel.Visible = false;
 
-            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+            if (category.Equals("") || DataManager.ValidateRecordCategory(category))
             {
+                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, category);
 
-                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
-                DisplayRecord();
-                new DataManager().SaveUser(DataHolder.CurrentUser);
-                Program.Window.ShowInterface(new MainScreen());
+
+                _HasClosingSave = false;
+                ErrorCategoryLabel.Visible = false;
+
+                if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+                {
+
+                    DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
+                    DisplayRecord();
+                    new DataManager().SaveUser(DataHolder.CurrentUser);
+                    Program.Window.ShowInterface(new MainScreen());
+
+                }
+                else
+                {
+
+                    ErrorCategoryLabel.Visible = true;
+
+                }
 
             }
-            else
-            {
-
-                ErrorCategoryLabel.Visible = true;
-
-            }
-
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

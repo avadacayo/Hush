@@ -92,22 +92,22 @@ namespace Hush.Display.Interfaces
             // 
             this.ConfirmPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfirmPasswordTextBox.Location = new System.Drawing.Point(42, 380);
+            this.ConfirmPasswordTextBox.MaxLength = 30;
             this.ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
             this.ConfirmPasswordTextBox.PasswordChar = '*';
             this.ConfirmPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.ConfirmPasswordTextBox.TabIndex = 20;
-            this.ConfirmPasswordTextBox.MaxLength = 30;
             // 
             // NewPasswordTextBox
             // 
             this.NewPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewPasswordTextBox.Location = new System.Drawing.Point(42, 330);
+            this.NewPasswordTextBox.MaxLength = 30;
             this.NewPasswordTextBox.Name = "NewPasswordTextBox";
             this.NewPasswordTextBox.PasswordChar = '*';
             this.NewPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.NewPasswordTextBox.TabIndex = 17;
             this.NewPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
-            this.NewPasswordTextBox.MaxLength = 30;
             // 
             // label3
             // 
@@ -143,11 +143,11 @@ namespace Hush.Display.Interfaces
             // 
             this.CurrentPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentPasswordTextBox.Location = new System.Drawing.Point(42, 272);
+            this.CurrentPasswordTextBox.MaxLength = 30;
             this.CurrentPasswordTextBox.Name = "CurrentPasswordTextBox";
             this.CurrentPasswordTextBox.PasswordChar = '*';
             this.CurrentPasswordTextBox.Size = new System.Drawing.Size(338, 28);
             this.CurrentPasswordTextBox.TabIndex = 14;
-            this.CurrentPasswordTextBox.MaxLength = 30;
             // 
             // UserProfileLabel
             // 
@@ -185,10 +185,10 @@ namespace Hush.Display.Interfaces
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameTextBox.Location = new System.Drawing.Point(42, 80);
+            this.UsernameTextBox.MaxLength = 30;
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(338, 28);
             this.UsernameTextBox.TabIndex = 3;
-            this.UsernameTextBox.MaxLength = 30;
             // 
             // FirstNameTextBox
             // 
@@ -254,9 +254,8 @@ namespace Hush.Display.Interfaces
             this.ErrCurrentPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrCurrentPasswordLabel.Location = new System.Drawing.Point(210, 252);
             this.ErrCurrentPasswordLabel.Name = "ErrCurrentPasswordLabel";
-            this.ErrCurrentPasswordLabel.Size = new System.Drawing.Size(170, 20);
+            this.ErrCurrentPasswordLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrCurrentPasswordLabel.TabIndex = 13;
-            this.ErrCurrentPasswordLabel.Text = "Password incorrect";
             this.ErrCurrentPasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ErrCurrentPasswordLabel.Visible = false;
             // 
@@ -265,11 +264,10 @@ namespace Hush.Display.Interfaces
             this.ErrNewPasswordLabel.AutoSize = true;
             this.ErrNewPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrNewPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrNewPasswordLabel.Location = new System.Drawing.Point(197, 310);
+            this.ErrNewPasswordLabel.Location = new System.Drawing.Point(184, 310);
             this.ErrNewPasswordLabel.Name = "ErrNewPasswordLabel";
-            this.ErrNewPasswordLabel.Size = new System.Drawing.Size(183, 20);
+            this.ErrNewPasswordLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrNewPasswordLabel.TabIndex = 16;
-            this.ErrNewPasswordLabel.Text = "Enter new password";
             this.ErrNewPasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ErrNewPasswordLabel.Visible = false;
             // 
@@ -280,9 +278,8 @@ namespace Hush.Display.Interfaces
             this.ErrRepeatPasswordLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrRepeatPasswordLabel.Location = new System.Drawing.Point(172, 360);
             this.ErrRepeatPasswordLabel.Name = "ErrRepeatPasswordLabel";
-            this.ErrRepeatPasswordLabel.Size = new System.Drawing.Size(208, 20);
+            this.ErrRepeatPasswordLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrRepeatPasswordLabel.TabIndex = 19;
-            this.ErrRepeatPasswordLabel.Text = "Passwords must match";
             this.ErrRepeatPasswordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ErrRepeatPasswordLabel.Visible = false;
             // 
@@ -322,9 +319,8 @@ namespace Hush.Display.Interfaces
             this.ErrUsernameLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrUsernameLabel.Location = new System.Drawing.Point(143, 58);
             this.ErrUsernameLabel.Name = "ErrUsernameLabel";
-            this.ErrUsernameLabel.Size = new System.Drawing.Size(61, 20);
+            this.ErrUsernameLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrUsernameLabel.TabIndex = 2;
-            this.ErrUsernameLabel.Text = "label1";
             this.ErrUsernameLabel.Visible = false;
             // 
             // ErrFirstNameLabel
@@ -334,9 +330,8 @@ namespace Hush.Display.Interfaces
             this.ErrFirstNameLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrFirstNameLabel.Location = new System.Drawing.Point(143, 112);
             this.ErrFirstNameLabel.Name = "ErrFirstNameLabel";
-            this.ErrFirstNameLabel.Size = new System.Drawing.Size(61, 20);
+            this.ErrFirstNameLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrFirstNameLabel.TabIndex = 5;
-            this.ErrFirstNameLabel.Text = "label4";
             this.ErrFirstNameLabel.Visible = false;
             // 
             // ErrLastNameLabel
@@ -346,9 +341,8 @@ namespace Hush.Display.Interfaces
             this.ErrLastNameLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrLastNameLabel.Location = new System.Drawing.Point(140, 166);
             this.ErrLastNameLabel.Name = "ErrLastNameLabel";
-            this.ErrLastNameLabel.Size = new System.Drawing.Size(61, 20);
+            this.ErrLastNameLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrLastNameLabel.TabIndex = 8;
-            this.ErrLastNameLabel.Text = "label5";
             this.ErrLastNameLabel.Visible = false;
             // 
             // ConfirmUserChangedLabel
@@ -357,9 +351,8 @@ namespace Hush.Display.Interfaces
             this.ConfirmUserChangedLabel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfirmUserChangedLabel.Location = new System.Drawing.Point(42, 219);
             this.ConfirmUserChangedLabel.Name = "ConfirmUserChangedLabel";
-            this.ConfirmUserChangedLabel.Size = new System.Drawing.Size(67, 20);
+            this.ConfirmUserChangedLabel.Size = new System.Drawing.Size(0, 20);
             this.ConfirmUserChangedLabel.TabIndex = 10;
-            this.ConfirmUserChangedLabel.Text = "label6";
             this.ConfirmUserChangedLabel.Visible = false;
             // 
             // ErrNewPasswordUserLabel
@@ -369,9 +362,8 @@ namespace Hush.Display.Interfaces
             this.ErrNewPasswordUserLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrNewPasswordUserLabel.Location = new System.Drawing.Point(178, 310);
             this.ErrNewPasswordUserLabel.Name = "ErrNewPasswordUserLabel";
-            this.ErrNewPasswordUserLabel.Size = new System.Drawing.Size(238, 20);
+            this.ErrNewPasswordUserLabel.Size = new System.Drawing.Size(0, 20);
             this.ErrNewPasswordUserLabel.TabIndex = 26;
-            this.ErrNewPasswordUserLabel.Text = "Must differ from username";
             this.ErrNewPasswordUserLabel.Visible = false;
             // 
             // SecretQuestionsLinkLabel
@@ -456,43 +448,19 @@ namespace Hush.Display.Interfaces
 
             if (username != DataHolder.CurrentUser.Username)
             {
-                if ((new CheckString().AccountExists(username)))
-                {
-                    ErrUsernameLabel.Text = "Username already exists";
-                    ErrUsernameLabel.Visible = true;
-                    result = false;
-                }
-                else if (!DataManager.ValidateUsernameLength(username))
-                {
-                    ErrUsernameLabel.Text = "Username must be 3-25 characters";
-                    ErrUsernameLabel.Visible = true;
-                    result = false;
-                }
-
+                ErrUsernameLabel.Text = new CheckString().ValidateUsername(username);
                 change = true;
             }
 
             if (firstName != DataHolder.CurrentUser.FirstName)
             {
-                if (!DataManager.ValidateFirstName(firstName))
-                {
-                    ErrFirstNameLabel.Text = "Must be 2-25 alphabetic characters";
-                    ErrFirstNameLabel.Visible = true;
-                    result = false;
-                }
-
+                ErrFirstNameLabel.Text = new CheckString().ValidateName(firstName);
                 change = true;
             }
 
             if (lastName != DataHolder.CurrentUser.LastName)
             {
-                if (!DataManager.ValidateLastName(lastName))
-                {
-                    ErrLastNameLabel.Text = "Must be 2-25 alphabetic characters";
-                    ErrLastNameLabel.Visible = true;
-                    result = false;
-                }
-
+                ErrLastNameLabel.Text = new CheckString().ValidateName(lastName);
                 change = true;
             }
 
@@ -501,13 +469,22 @@ namespace Hush.Display.Interfaces
                 ConfirmUserChangedLabel.Text = "No changes made";
                 ConfirmUserChangedLabel.Visible = true;
             }
-            else if (result)
+            else
             {
-                DataManager.SaveUserProfileChanges(username, firstName, lastName);
-                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
-                ConfirmUserChangedLabel.Text = "Changes saved";
-                ConfirmUserChangedLabel.Visible = true;
-                
+                if (ErrUsernameLabel.Text.Equals("") && ErrFirstNameLabel.Text.Equals("") && ErrLastNameLabel.Text.Equals(""))
+                {
+                    DataManager.SaveUserProfileChanges(username, firstName, lastName);
+                    new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
+                    ConfirmUserChangedLabel.Text = "Changes saved";
+                    ConfirmUserChangedLabel.Visible = true;
+
+                }
+                else
+                {
+                    ErrUsernameLabel.Visible = !ErrUsernameLabel.Text.Equals("");
+                    ErrFirstNameLabel.Visible = !ErrFirstNameLabel.Text.Equals("");
+                    ErrLastNameLabel.Visible = !ErrLastNameLabel.Text.Equals("");
+                }
             }
         }
 
@@ -548,6 +525,7 @@ namespace Hush.Display.Interfaces
 
         private void ChangePasswordButton_Click(object sender, EventArgs e)
         {
+
             ConfirmPasswordChangedLabel.Visible = false;
             ErrCurrentPasswordLabel.Visible = false;
             ErrRepeatPasswordLabel.Visible = false;
@@ -555,34 +533,36 @@ namespace Hush.Display.Interfaces
             ErrRepeatPasswordLabel.Visible = false;
             ErrNewPasswordUserLabel.Visible = false;
 
-            NewPasswordTextBox.Text = NewPasswordTextBox.Text.Trim();
+            String newPassword = NewPasswordTextBox.Text.Trim();
+            NewPasswordTextBox.Text = newPassword;
+            String confirmPassword = ConfirmPasswordTextBox.Text.Trim();
+            ConfirmPasswordTextBox.Text = confirmPassword;
             
-            string result;
-            result = Client.DataManager.SaveUserProfilePassword(CurrentPasswordTextBox.Text, NewPasswordTextBox.Text, ConfirmPasswordTextBox.Text);
-            if (result == "password changed")
+            bool result = Client.DataManager.PasswordCheck(CurrentPasswordTextBox.Text);
+            if (result == false)
             {
-                DataHolder.CurrentUser.Password = NewPasswordTextBox.Text;
-                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
-                // success stuff
-                ConfirmPasswordChangedLabel.Visible = true;
+                // if incorrect, display "wrong password" label 
+                ErrCurrentPasswordLabel.Text = "Incorrect password";
+                
             }
-            else if (result == "new passwords don't match")
+            else
             {
-                // fail stuff
-                ErrRepeatPasswordLabel.Visible = true;
-            }
-            else if (result == "password incorrect")
-            {
-                // fail stuff
-                ErrCurrentPasswordLabel.Visible = true;
-            }
-            else if (result == "password length")
-            {
-                ErrNewPasswordLabel.Visible = true;
-            }
-            else if (result == "matches username")
-            {
-                ErrNewPasswordUserLabel.Visible = true;
+                // else check new passwords
+                // if new passwords not ok, display error label
+                // else save user and update "password changed" label
+
+                ErrNewPasswordLabel.Text = new CheckString().ValidPasswordCheck(DataHolder.CurrentUser.Username, newPassword, confirmPassword);
+                if (ErrNewPasswordLabel.Text.Equals(""))
+                {
+                    DataHolder.CurrentUser.Password = newPassword;
+                    new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
+                    // success stuff
+                    ConfirmPasswordChangedLabel.Visible = true;
+                }
+                else
+                {
+                    ErrNewPasswordLabel.Visible = true;
+                }
             }
         }
 

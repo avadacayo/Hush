@@ -33,6 +33,7 @@ namespace Hush.Display.Interfaces
         private Button ToolButton;
         private TreeView RecordsTreeView;
         private System.ComponentModel.IContainer components;
+        private Button ShowAllButton;
         private ToolTip Tooltip;
         // listbox to replaced by custom control
         
@@ -70,6 +71,7 @@ namespace Hush.Display.Interfaces
             this.RecordsTreeView = new System.Windows.Forms.TreeView();
             this.ToolButton = new System.Windows.Forms.Button();
             this.Tooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.ShowAllButton = new System.Windows.Forms.Button();
             this.RecordFunctionsPanel.SuspendLayout();
             this.UserPanel.SuspendLayout();
             this.SuspendLayout();
@@ -173,9 +175,9 @@ namespace Hush.Display.Interfaces
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(273, 381);
+            this.SearchButton.Location = new System.Drawing.Point(226, 381);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(110, 25);
+            this.SearchButton.Size = new System.Drawing.Size(70, 25);
             this.SearchButton.TabIndex = 5;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -186,7 +188,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(24, 382);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(237, 24);
+            this.SearchTextBox.Size = new System.Drawing.Size(196, 24);
             this.SearchTextBox.TabIndex = 4;
             // 
             // UserPanel
@@ -271,8 +273,20 @@ namespace Hush.Display.Interfaces
             this.ToolButton.Click += new System.EventHandler(this.ToolButton_Click);
             this.ToolButton.MouseHover += new System.EventHandler(this.ToolButton_MouseHover);
             // 
+            // ShowAllButton
+            // 
+            this.ShowAllButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowAllButton.Location = new System.Drawing.Point(302, 383);
+            this.ShowAllButton.Name = "ShowAllButton";
+            this.ShowAllButton.Size = new System.Drawing.Size(81, 23);
+            this.ShowAllButton.TabIndex = 12;
+            this.ShowAllButton.Text = "Show All";
+            this.ShowAllButton.UseVisualStyleBackColor = true;
+            this.ShowAllButton.Click += new System.EventHandler(this.ShowAllButton_Click);
+            // 
             // MainScreen
             // 
+            this.Controls.Add(this.ShowAllButton);
             this.Controls.Add(this.ToolButton);
             this.Controls.Add(this.RecordsTreeView);
             this.Controls.Add(this.AccountsStoredLabel);
@@ -437,6 +451,14 @@ namespace Hush.Display.Interfaces
         {
             Tooltip.Show("Tools", ToolButton);
         }
+
+        private void ShowAllButton_Click(object sender, EventArgs e)
+        {
+            this.SearchTextBox.Text = "";
+            DataHolder.RecordList = DataHolder.CurrentUser.Records;
+            PopulateTreeView();
+        }
+
 
      }
 

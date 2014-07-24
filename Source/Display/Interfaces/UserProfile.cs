@@ -54,6 +54,8 @@ namespace Hush.Display.Interfaces
             base.Initialize(Title);
 
             UsernameTextBox.Text = DataHolder.CurrentUser.Username;
+            FirstNameTextBox.Text = DataHolder.CurrentUser.FirstName;
+            LastNameTextBox.Text = DataHolder.CurrentUser.LastName;
 
         }
 
@@ -477,16 +479,16 @@ namespace Hush.Display.Interfaces
                 {
                     String OldUsername = DataHolder.CurrentUser.Username;
                 
-                DataManager.SaveUserProfileChanges(username, firstName, lastName);
-                if (new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser))
-                {
-                    File.Delete(FileUtil.GetUserFileName(OldUsername, true));
-                    ConfirmUserChangedLabel.Text = "Changes saved";
-                 }  
-                else
-                    ConfirmUserChangedLabel.Text = "Changes were not saved";
+                    DataManager.SaveUserProfileChanges(username, firstName, lastName);
+                    if (new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser))
+                    {
+                        File.Delete(FileUtil.GetUserFileName(OldUsername, true));
+                        ConfirmUserChangedLabel.Text = "Changes saved";
+                     }  
+                    else
+                        ConfirmUserChangedLabel.Text = "Changes were not saved";
 
-                ConfirmUserChangedLabel.Visible = true;
+                    ConfirmUserChangedLabel.Visible = true;
 
                 }
                 else

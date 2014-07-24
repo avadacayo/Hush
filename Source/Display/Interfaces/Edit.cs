@@ -286,25 +286,26 @@ namespace Hush.Display.Interfaces
                 DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, category);
 
 
-            _HasClosingSave = false;
-            ErrorCategoryLabel.Visible = false;
+                _HasClosingSave = false;
+                ErrorCategoryLabel.Visible = false;
 
-            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
-            {
+                if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+                {
 
-                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
-                DisplayRecord();
-                new DataManager().SaveUser(DataHolder.CurrentUser);
-                Program.Window.ShowInterface(new MainScreen());
+                    DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
+                    DisplayRecord();
+                    new DataManager().SaveUser(DataHolder.CurrentUser);
+                    Program.Window.ShowInterface(new MainScreen());
+
+                }
+                else
+                {
+
+                    ErrorCategoryLabel.Visible = true;
+
+                }
 
             }
-            else
-            {
-
-                ErrorCategoryLabel.Visible = true;
-
-            }
-
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

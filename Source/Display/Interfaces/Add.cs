@@ -226,38 +226,43 @@ namespace Hush.Display.Interfaces
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
+            string category = this.CategoryComboBox.Text.Trim();
+            this.CategoryComboBox.Text = category;
+
             ErrorCategoryLabel.Visible = false;
             string k, v;
-            for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
-            {
-                if (this.RecordsDataGridView.Rows[i].Cells["Key"].Value == null)
-                    k = "";
-                else
-                    k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
-                if (this.RecordsDataGridView.Rows[i].Cells["Value"].Value == null)
-                    v = "";
-                else
-                    v = this.RecordsDataGridView.Rows[i].Cells["Value"].Value.ToString();
-                DataManager.AddField(rc, k, v);
-            }
 
-            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+            if (category.Equals("") || DataManager.ValidateRecordCategory(category))
             {
-                rc.Category = this.CategoryComboBox.Text.Trim();
-            }
-            else
-            {
-                ErrorCategoryLabel.Visible = true;
-            }
+    
+                for (int i = 0; i < this.RecordsDataGridView.NewRowIndex; i++)
+                {
+                    if (this.RecordsDataGridView.Rows[i].Cells["Key"].Value == null)
+                        k = "";
+                    else
+                        k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
+                    if (this.RecordsDataGridView.Rows[i].Cells["Value"].Value == null)
+                        v = "";
+                    else
+                        v = this.RecordsDataGridView.Rows[i].Cells["Value"].Value.ToString();
+                    DataManager.AddField(rc, k, v);
+                }
+            
 
-            rc.Name = this.RecordTextBox.Text;
-            rc.ID = Guid.NewGuid().ToString();
-            if (TemplateComboBox.Enabled == true)
-                rc.Template = this.TemplateComboBox.Text;
-            DataHolder.CurrentUser.Records.Add(rc);
-            DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
-            new DataManager().SaveUser(DataHolder.CurrentUser);
-            Program.Window.ShowInterface(new MainScreen());
+                rc.Name = this.RecordTextBox.Text;
+                rc.ID = Guid.NewGuid().ToString();
+                if (TemplateComboBox.Enabled == true)
+                    rc.Template = this.TemplateComboBox.Text;
+                DataHolder.CurrentUser.Records.Add(rc);
+                DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
+                new DataManager().SaveUser(DataHolder.CurrentUser);
+                Program.Window.ShowInterface(new MainScreen());
+               }
+               else
+               {
+                    ErrorCategoryLabel.Visible = true;
+               }
+        
         }
 
         //private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)

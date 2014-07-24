@@ -584,14 +584,9 @@ namespace Hush.Client
                 CurrentRecord.Template = Template.Text;
             }
 
-            if (DataManager.ValidateRecordCategory(CategoryName))
-            {
-                CurrentRecord.Category = CategoryName;
-            }
-            else
-            {
-                result = false;
-            }
+           
+            CurrentRecord.Category = CategoryName;
+           
             return result;
          }
 
@@ -676,35 +671,12 @@ namespace Hush.Client
             DataHolder.CurrentUser.LastName = lastName;
         }
          
-        public static string SaveUserProfilePassword(string currentPassword, string newPassword, string confirmPassword) 
+        public static bool PasswordCheck(string currentPassword) 
         {
-            string result;
+            bool result = false;
             if (currentPassword == DataHolder.CurrentUser.Password)
             {
-                if (newPassword.Length < 6 || newPassword.Length > 25)
-                {
-                    result = "password length";
-                }
-                else if (newPassword == DataHolder.CurrentUser.Username) 
-                {
-                    result = "matches username";
-                }
-                else if (newPassword.Trim() != confirmPassword.Trim())
-                {
-                    // return error - new/confirm passwords don't match
-                    result = "new passwords don't match";
-                    
-                }
-                else
-                {
-                    // password strength
-                    result = "password changed";
-                }
-            }
-            else
-            {
-                // current password incorrect
-                result = "password incorrect";
+                result = true;
             }
             return result;
         }

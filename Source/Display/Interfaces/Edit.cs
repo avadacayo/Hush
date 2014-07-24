@@ -263,10 +263,14 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            string category = this.CategoryComboBox.Text.Trim();
+            this.CategoryComboBox.Text = category;
+
             ErrorCategoryLabel.Visible = false;
-            if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
+
+            if (category.Equals("") || DataManager.ValidateRecordCategory(category))
             {
-                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
+                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, category);
                 DisplayRecord();
                 new DataManager().SaveUser(DataHolder.CurrentUser);
                 Program.Window.ShowInterface(new MainScreen());

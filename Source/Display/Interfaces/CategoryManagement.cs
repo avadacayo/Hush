@@ -182,6 +182,7 @@ namespace Hush.Display.Interfaces
 
         void AddButton_Click(object sender, EventArgs e)
         {
+            Client.DataHolder.update = Client.DataHolder.updateMode.Add;
             Program.Window.ShowInterface(new CategoryPrompt());
         }
 

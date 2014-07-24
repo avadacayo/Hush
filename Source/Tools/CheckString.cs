@@ -67,6 +67,25 @@ namespace Hush.Tools
             return val;
         }
 
+        public String ValidateName(String Name)
+        {
+            String message = "";
+            String pattern = @"[a-zA-Z]";
+
+            Regex regex = new Regex(pattern);
+
+            if (!regex.IsMatch(Name))
+            {
+                message = "Must be alpha only";
+            }
+            else if (Name.Length > 25 || Name.Length < 2)
+            {
+                message = "Must be 2-25 characters";
+            }
+
+            return message;
+        }
+
         public String ValidateSecretAnswer(String Answer, String Username)
         {
             String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,}$",

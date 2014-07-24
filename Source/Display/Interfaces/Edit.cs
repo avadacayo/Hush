@@ -12,6 +12,7 @@ using Hush.Client.Model;
 using System.Data;
 using Hush.Client;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Hush.Display.Interfaces
 {
@@ -33,6 +34,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.TextBox RecordTextBox;
         private System.Windows.Forms.ComboBox CategoryComboBox;
         private System.Windows.Forms.Label ErrorCategoryLabel;
+        private Label InvalidRecordName;
         private Record CurrentRecord;
 
         #region Designer
@@ -66,6 +68,7 @@ namespace Hush.Display.Interfaces
             this.RecordName = new System.Windows.Forms.Label();
             this.RecordTextBox = new System.Windows.Forms.TextBox();
             this.ErrorCategoryLabel = new System.Windows.Forms.Label();
+            this.InvalidRecordName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EditDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,7 +110,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(72, 17);
+            this.Template.Size = new System.Drawing.Size(70, 17);
             this.Template.TabIndex = 6;
             this.Template.Text = "Template";
             // 
@@ -198,13 +201,25 @@ namespace Hush.Display.Interfaces
             this.ErrorCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorCategoryLabel.Location = new System.Drawing.Point(134, 127);
             this.ErrorCategoryLabel.Name = "ErrorCategoryLabel";
-            this.ErrorCategoryLabel.Size = new System.Drawing.Size(191, 17);
+            this.ErrorCategoryLabel.Size = new System.Drawing.Size(190, 17);
             this.ErrorCategoryLabel.TabIndex = 12;
             this.ErrorCategoryLabel.Text = "Value must be 3-25 chars";
             this.ErrorCategoryLabel.Visible = false;
             // 
+            // InvalidRecordName
+            // 
+            this.InvalidRecordName.AutoSize = true;
+            this.InvalidRecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvalidRecordName.ForeColor = System.Drawing.Color.Crimson;
+            this.InvalidRecordName.Location = new System.Drawing.Point(137, 73);
+            this.InvalidRecordName.Name = "InvalidRecordName";
+            this.InvalidRecordName.Size = new System.Drawing.Size(151, 17);
+            this.InvalidRecordName.TabIndex = 13;
+            this.InvalidRecordName.Text = "Invalid Record Name";
+            // 
             // Edit
             // 
+            this.Controls.Add(this.InvalidRecordName);
             this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.RecordName);
             this.Controls.Add(this.RecordTextBox);
@@ -274,7 +289,20 @@ namespace Hush.Display.Interfaces
         //    }
         //}
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(Object Sender, EventArgs Args)
+        {
+            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && !Regex.IsMatch(this.RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
+            {
+                OnSave();
+                this.InvalidRecordName.Visible = false;
+            }
+            else
+            {
+                this.InvalidRecordName.Visible = true;
+            }
+        }
+
+        private void OnSave()
         {
 
             _HasClosingSave = false;

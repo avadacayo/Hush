@@ -12,6 +12,7 @@ using Hush.Client;
 using Hush.Client.Model;
 using System.Windows.Forms;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Hush.Display.Interfaces
 {
@@ -35,6 +36,7 @@ namespace Hush.Display.Interfaces
         private DataGridViewTextBoxColumn Key;
         private DataGridViewTextBoxColumn Value;
         private Label ErrorCategoryLabel;
+        private Label InvalidRecordName;
         private Record rc = new Record();
 
         #region Designer
@@ -71,6 +73,7 @@ namespace Hush.Display.Interfaces
             this.Template = new System.Windows.Forms.Label();
             this.Category = new System.Windows.Forms.Label();
             this.ErrorCategoryLabel = new System.Windows.Forms.Label();
+            this.InvalidRecordName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +83,7 @@ namespace Hush.Display.Interfaces
             this.AddRecordLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddRecordLabel.Location = new System.Drawing.Point(40, 30);
             this.AddRecordLabel.Name = "AddRecordLabel";
-            this.AddRecordLabel.Size = new System.Drawing.Size(142, 25);
+            this.AddRecordLabel.Size = new System.Drawing.Size(110, 18);
             this.AddRecordLabel.TabIndex = 0;
             this.AddRecordLabel.Text = "Add Record";
             // 
@@ -90,7 +93,7 @@ namespace Hush.Display.Interfaces
             this.RecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordName.Location = new System.Drawing.Point(42, 73);
             this.RecordName.Name = "RecordName";
-            this.RecordName.Size = new System.Drawing.Size(59, 20);
+            this.RecordName.Size = new System.Drawing.Size(47, 17);
             this.RecordName.TabIndex = 1;
             this.RecordName.Text = "Name";
             // 
@@ -99,7 +102,7 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecordTextBox.Location = new System.Drawing.Point(42, 94);
             this.RecordTextBox.Name = "RecordTextBox";
-            this.RecordTextBox.Size = new System.Drawing.Size(334, 28);
+            this.RecordTextBox.Size = new System.Drawing.Size(334, 24);
             this.RecordTextBox.TabIndex = 2;
             // 
             // Save
@@ -131,7 +134,7 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(42, 148);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(334, 28);
+            this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.ValueMember = "Name";
             // 
@@ -141,7 +144,7 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
-            this.TemplateComboBox.Size = new System.Drawing.Size(334, 28);
+            this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 6;
             this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
@@ -178,7 +181,7 @@ namespace Hush.Display.Interfaces
             this.Template.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Template.Location = new System.Drawing.Point(42, 181);
             this.Template.Name = "Template";
-            this.Template.Size = new System.Drawing.Size(87, 20);
+            this.Template.Size = new System.Drawing.Size(70, 17);
             this.Template.TabIndex = 5;
             this.Template.Text = "Template";
             // 
@@ -188,7 +191,7 @@ namespace Hush.Display.Interfaces
             this.Category.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Category.Location = new System.Drawing.Point(42, 127);
             this.Category.Name = "Category";
-            this.Category.Size = new System.Drawing.Size(86, 20);
+            this.Category.Size = new System.Drawing.Size(72, 17);
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
             // 
@@ -199,13 +202,26 @@ namespace Hush.Display.Interfaces
             this.ErrorCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
             this.ErrorCategoryLabel.Location = new System.Drawing.Point(134, 127);
             this.ErrorCategoryLabel.Name = "ErrorCategoryLabel";
-            this.ErrorCategoryLabel.Size = new System.Drawing.Size(232, 20);
+            this.ErrorCategoryLabel.Size = new System.Drawing.Size(190, 17);
             this.ErrorCategoryLabel.TabIndex = 10;
             this.ErrorCategoryLabel.Text = "Value must be 3-25 chars";
             this.ErrorCategoryLabel.Visible = false;
             // 
+            // InvalidRecordName
+            // 
+            this.InvalidRecordName.AutoSize = true;
+            this.InvalidRecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvalidRecordName.ForeColor = System.Drawing.Color.Crimson;
+            this.InvalidRecordName.Location = new System.Drawing.Point(137, 75);
+            this.InvalidRecordName.Name = "InvalidRecordName";
+            this.InvalidRecordName.Size = new System.Drawing.Size(151, 17);
+            this.InvalidRecordName.TabIndex = 11;
+            this.InvalidRecordName.Text = "Invalid Record Name";
+            this.InvalidRecordName.Visible = false;
+            // 
             // Add
             // 
+            this.Controls.Add(this.InvalidRecordName);
             this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.AddRecordLabel);
             this.Controls.Add(this.RecordName);
@@ -225,6 +241,19 @@ namespace Hush.Display.Interfaces
         }
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
+        {
+            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && !Regex.IsMatch(this.RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
+            {
+                OnSave();
+                this.InvalidRecordName.Visible = false;
+            }
+            else
+            {
+                this.InvalidRecordName.Visible = true;
+            }
+        }
+
+        private void OnSave()
         {
             ErrorCategoryLabel.Visible = false;
             string k, v;

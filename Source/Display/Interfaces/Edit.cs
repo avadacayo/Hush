@@ -122,6 +122,7 @@ namespace Hush.Display.Interfaces
             this.TemplateComboBox.Name = "TemplateComboBox";
             this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 7;
+            this.TemplateComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // CategoryComboBox

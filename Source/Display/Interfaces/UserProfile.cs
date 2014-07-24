@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Hush;
 using Hush.Client;
 using Hush.Tools;
+using System.IO;
 
 namespace Hush.Display.Interfaces
 {
@@ -503,10 +504,19 @@ namespace Hush.Display.Interfaces
             }
             else if (result)
             {
+                String OldUsername = DataHolder.CurrentUser.Username;
+                
                 DataManager.SaveUserProfileChanges(username, firstName, lastName);
-                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
-                ConfirmUserChangedLabel.Text = "Changes saved";
+                if (new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser))
+                {
+                    File.Delete(FileUtil.GetUserFileName(OldUsername, true));
+                    ConfirmUserChangedLabel.Text = "Changes saved";
+                 }  
+                else
+                    ConfirmUserChangedLabel.Text = "Changes were not saved";
+
                 ConfirmUserChangedLabel.Visible = true;
+                
                 
             }
         }

@@ -240,6 +240,7 @@ namespace Hush.Display.Interfaces
             this.ToolButton.UseVisualStyleBackColor = true;
             this.ToolButton.Click += new System.EventHandler(this.ToolButton_Click);
             this.ToolButton.MouseHover += new System.EventHandler(this.ToolButton_MouseHover);
+            this.ToolButton.Visible = false;
             // 
             // SignIn
             // 

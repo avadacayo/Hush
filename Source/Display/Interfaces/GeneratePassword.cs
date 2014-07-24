@@ -8,6 +8,7 @@ using System.Linq;
 using Hush.Client;
 using System.Text.RegularExpressions;
 using Hush.Tools;
+using System.ComponentModel;
 
 /*
  * 1. front end 
@@ -36,7 +37,7 @@ namespace Hush.Display.Interfaces
         
 
         #region Designer
-
+      
         protected override void Initialize(List<String> Title)
         {
 
@@ -98,6 +99,7 @@ namespace Hush.Display.Interfaces
             this.LengthTextBox.Name = "LengthTextBox";
             this.LengthTextBox.Size = new System.Drawing.Size(76, 24);
             this.LengthTextBox.TabIndex = 8;
+            this.LengthTextBox.Text = "6";
             // 
             // LengthLabel
             // 
@@ -201,7 +203,7 @@ namespace Hush.Display.Interfaces
             String pattern = "^[0-9]+$";
             Regex regex = new Regex(pattern);
 
-            if (regex.IsMatch(LengthTextBox.Text) && Convert.ToInt32(LengthTextBox.Text) <= 128 && Convert.ToInt32(LengthTextBox.Text) > 0)
+            if (regex.IsMatch(LengthTextBox.Text) && Convert.ToInt32(LengthTextBox.Text) <= 100 && Convert.ToInt32(LengthTextBox.Text) > 0)
             {
                 PwdLength = Convert.ToInt32(LengthTextBox.Text);
                 PasswordTextBox.Text = Membership.GeneratePassword(PwdLength, NoOfSpecialChar);
@@ -216,8 +218,8 @@ namespace Hush.Display.Interfaces
                 else if(!regex.IsMatch(LengthTextBox.Text))
                     message = "Invalid input. Only numbers are allowed.";
 
-                else if (Convert.ToInt32(LengthTextBox.Text) > 128 || Convert.ToInt32(LengthTextBox.Text) < 1)
-                    message = "Please enter a number between 1 - 128.";
+                else if (Convert.ToInt32(LengthTextBox.Text) > 100 || Convert.ToInt32(LengthTextBox.Text) < 1)
+                    message = "Please enter a number between 1 - 100.";
 
                 MessageBox.Show(message);
             }

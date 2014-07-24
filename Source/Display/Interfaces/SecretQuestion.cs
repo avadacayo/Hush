@@ -273,7 +273,7 @@ namespace Hush.Display.Interfaces
             this.ErrSQ1Label.BackColor = System.Drawing.Color.Transparent;
             this.ErrSQ1Label.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrSQ1Label.ForeColor = System.Drawing.Color.Crimson;
-            this.ErrSQ1Label.Location = new System.Drawing.Point(42, 133);
+            this.ErrSQ1Label.Location = new System.Drawing.Point(42, 129);
             this.ErrSQ1Label.Name = "ErrSQ1Label";
             this.ErrSQ1Label.Size = new System.Drawing.Size(44, 17);
             this.ErrSQ1Label.TabIndex = 20;

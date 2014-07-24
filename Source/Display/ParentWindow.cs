@@ -1,4 +1,4 @@
-﻿using Hush.Client;
+﻿    using Hush.Client;
 using Hush.Display.Interfaces;
 using System;
 using System.ComponentModel;
@@ -154,7 +154,15 @@ namespace Hush.Display
 
                 switch (_CurrentInterface.GetType().Name)
                 {
+                    case "GeneratePassword":
 
+                        if (DataHolder.CurrentUser != null)
+                            ShowInterface(new MainScreen());
+
+                        else
+                            ShowInterface(new RegisterAccount());
+                        Args.Cancel = true;
+                        break;
                     case "CategoryPrompt":
                         ShowInterface(new CategoryManagement());
                         Args.Cancel = true;

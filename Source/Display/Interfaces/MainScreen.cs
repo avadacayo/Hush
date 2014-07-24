@@ -258,6 +258,7 @@ namespace Hush.Display.Interfaces
             this.RecordsTreeView.Name = "RecordsTreeView";
             this.RecordsTreeView.Size = new System.Drawing.Size(359, 212);
             this.RecordsTreeView.TabIndex = 3;
+            this.RecordsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.RecordsTreeView_AfterSelect);
             // 
             // ToolButton
             // 
@@ -396,6 +397,8 @@ namespace Hush.Display.Interfaces
             }
 
             RecordsTreeView.EndUpdate();
+            RecordsTreeView.Sort();
+            RecordsTreeView.ExpandAll();
         }
 
         private void AddNestedNode(TreeView Control, Record Item)
@@ -457,6 +460,22 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Text = "";
             DataHolder.RecordList = DataHolder.CurrentUser.Records;
             PopulateTreeView();
+        }
+
+        private void RecordsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (this.RecordsTreeView.SelectedNode != null && !this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
+            {
+                ViewButton.Enabled = true;
+                EditRecordButton.Enabled = true;
+                DeleteRecordButton.Enabled = true;
+            }
+            else
+            {
+                ViewButton.Enabled = false;
+                EditRecordButton.Enabled = false;
+                DeleteRecordButton.Enabled = false;
+            }
         }
 
 

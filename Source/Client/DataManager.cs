@@ -680,6 +680,17 @@ namespace Hush.Client
             return result;
         }
 
+        public static bool CategoryInUse(string category)
+        {
+            bool result = false;
+            
+            var item = DataHolder.CurrentUser.Records.FirstOrDefault(o => o.Category == category);
+            if (item != null)
+                result = true;
+
+            return result;
+        }
+
         public static void DeleteCategory(string category)
         {
             List<Category> list = DataHolder.CurrentUser.Categories;

@@ -18,6 +18,7 @@ namespace Hush.Display.Interfaces
         private Button DeleteButton;
         private Button EditButton;
         private Label CategoryManagementLabel;
+        private Label ErrCategoryLabel;
 
         private bool EditDeleteEnabled = true;
 
@@ -41,6 +42,7 @@ namespace Hush.Display.Interfaces
             this.CategoryListBox = new System.Windows.Forms.ListBox();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
+            this.ErrCategoryLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CategoryManagementLabel
@@ -49,13 +51,13 @@ namespace Hush.Display.Interfaces
             this.CategoryManagementLabel.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CategoryManagementLabel.Location = new System.Drawing.Point(40, 30);
             this.CategoryManagementLabel.Name = "CategoryManagementLabel";
-            this.CategoryManagementLabel.Size = new System.Drawing.Size(316, 29);
+            this.CategoryManagementLabel.Size = new System.Drawing.Size(262, 25);
             this.CategoryManagementLabel.TabIndex = 0;
             this.CategoryManagementLabel.Text = "Category Management";
             // 
             // AddButton
             // 
-            this.AddButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.Location = new System.Drawing.Point(42, 387);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(100, 25);
@@ -67,7 +69,7 @@ namespace Hush.Display.Interfaces
             // CancelButton
             // 
             this.CancelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.CancelButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.Location = new System.Drawing.Point(280, 453);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 25);
@@ -78,16 +80,16 @@ namespace Hush.Display.Interfaces
             // 
             // CategoryListBox
             // 
-            this.CategoryListBox.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CategoryListBox.ItemHeight = 18;
+            this.CategoryListBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CategoryListBox.ItemHeight = 20;
             this.CategoryListBox.Location = new System.Drawing.Point(42, 65);
             this.CategoryListBox.Name = "CategoryListBox";
-            this.CategoryListBox.Size = new System.Drawing.Size(338, 310);
+            this.CategoryListBox.Size = new System.Drawing.Size(338, 304);
             this.CategoryListBox.TabIndex = 1;
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.Location = new System.Drawing.Point(280, 387);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(100, 25);
@@ -98,7 +100,7 @@ namespace Hush.Display.Interfaces
             // 
             // EditButton
             // 
-            this.EditButton.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditButton.Location = new System.Drawing.Point(161, 387);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(100, 25);
@@ -107,8 +109,23 @@ namespace Hush.Display.Interfaces
             this.EditButton.UseVisualStyleBackColor = true;
             this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
+            // ErrCategoryLabel
+            // 
+            this.ErrCategoryLabel.AutoSize = true;
+            this.ErrCategoryLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrCategoryLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.ErrCategoryLabel.Location = new System.Drawing.Point(38, 415);
+            this.ErrCategoryLabel.MaximumSize = new System.Drawing.Size(250, 0);
+            this.ErrCategoryLabel.MinimumSize = new System.Drawing.Size(0, 45);
+            this.ErrCategoryLabel.Name = "ErrCategoryLabel";
+            this.ErrCategoryLabel.Size = new System.Drawing.Size(249, 45);
+            this.ErrCategoryLabel.TabIndex = 6;
+            this.ErrCategoryLabel.Text = "Cannot be deleted - current records use this category";
+            this.ErrCategoryLabel.Visible = false;
+            // 
             // CategoryManagement
             // 
+            this.Controls.Add(this.ErrCategoryLabel);
             this.Controls.Add(this.CategoryManagementLabel);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CancelButton);
@@ -159,12 +176,18 @@ namespace Hush.Display.Interfaces
 
         void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (this.CategoryListBox.SelectedItem != null)
+            string category = this.CategoryListBox.SelectedItem.ToString();
+            if (!Client.DataManager.CategoryInUse(category))
             {
-                Client.DataManager.ProcessCategory(this.CategoryListBox.SelectedItem.ToString(), "", Client.DataHolder.updateMode.Delete);
-                new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
-                AddCategoriesToListBox();
+                if (this.CategoryListBox.SelectedItem != null)
+                {
+                    Client.DataManager.ProcessCategory(category, "", Client.DataHolder.updateMode.Delete);
+                    new Client.DataManager().SaveUser(Client.DataHolder.CurrentUser);
+                    AddCategoriesToListBox();
+                }
             }
+            else
+                ErrCategoryLabel.Visible = true;
         }
 
 

@@ -285,6 +285,7 @@ namespace Hush.Display.Interfaces
                 rc.ID = Guid.NewGuid().ToString();
                 if (TemplateComboBox.Enabled == true)
                     rc.Template = this.TemplateComboBox.Text;
+                rc.Category = category;
                 DataHolder.CurrentUser.Records.Add(rc);
                 DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
                 new DataManager().SaveUser(DataHolder.CurrentUser);

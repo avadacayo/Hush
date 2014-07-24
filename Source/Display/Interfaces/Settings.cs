@@ -86,7 +86,7 @@ namespace Hush.Display.Interfaces
             this.SaveGroupBox.Controls.Add(this.ManualSaveRadioButton);
             this.SaveGroupBox.Controls.Add(this.PromptSaveRadioButton);
             this.SaveGroupBox.Controls.Add(this.AutomaticSaveRadioButton);
-            this.SaveGroupBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveGroupBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveGroupBox.Location = new System.Drawing.Point(3, 3);
             this.SaveGroupBox.Name = "SaveGroupBox";
             this.SaveGroupBox.Size = new System.Drawing.Size(382, 94);
@@ -110,7 +110,7 @@ namespace Hush.Display.Interfaces
             this.ManualSaveRadioButton.AutoSize = true;
             this.ManualSaveRadioButton.Location = new System.Drawing.Point(6, 66);
             this.ManualSaveRadioButton.Name = "ManualSaveRadioButton";
-            this.ManualSaveRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.ManualSaveRadioButton.Size = new System.Drawing.Size(74, 21);
             this.ManualSaveRadioButton.TabIndex = 2;
             this.ManualSaveRadioButton.TabStop = true;
             this.ManualSaveRadioButton.Text = "Manual";
@@ -122,7 +122,7 @@ namespace Hush.Display.Interfaces
             this.PromptSaveRadioButton.AutoSize = true;
             this.PromptSaveRadioButton.Location = new System.Drawing.Point(6, 43);
             this.PromptSaveRadioButton.Name = "PromptSaveRadioButton";
-            this.PromptSaveRadioButton.Size = new System.Drawing.Size(66, 17);
+            this.PromptSaveRadioButton.Size = new System.Drawing.Size(77, 21);
             this.PromptSaveRadioButton.TabIndex = 1;
             this.PromptSaveRadioButton.TabStop = true;
             this.PromptSaveRadioButton.Text = "Prompt";
@@ -134,7 +134,7 @@ namespace Hush.Display.Interfaces
             this.AutomaticSaveRadioButton.AutoSize = true;
             this.AutomaticSaveRadioButton.Location = new System.Drawing.Point(6, 20);
             this.AutomaticSaveRadioButton.Name = "AutomaticSaveRadioButton";
-            this.AutomaticSaveRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.AutomaticSaveRadioButton.Size = new System.Drawing.Size(97, 21);
             this.AutomaticSaveRadioButton.TabIndex = 0;
             this.AutomaticSaveRadioButton.TabStop = true;
             this.AutomaticSaveRadioButton.Text = "Automatic";
@@ -147,7 +147,7 @@ namespace Hush.Display.Interfaces
             this.SyncGroupBox.Controls.Add(this.ManualSyncRadioButton);
             this.SyncGroupBox.Controls.Add(this.PromptSyncRadioButton);
             this.SyncGroupBox.Controls.Add(this.AutomaticSyncRadioButton);
-            this.SyncGroupBox.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SyncGroupBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SyncGroupBox.Location = new System.Drawing.Point(3, 103);
             this.SyncGroupBox.Name = "SyncGroupBox";
             this.SyncGroupBox.Size = new System.Drawing.Size(382, 94);
@@ -171,7 +171,7 @@ namespace Hush.Display.Interfaces
             this.ManualSyncRadioButton.AutoSize = true;
             this.ManualSyncRadioButton.Location = new System.Drawing.Point(6, 66);
             this.ManualSyncRadioButton.Name = "ManualSyncRadioButton";
-            this.ManualSyncRadioButton.Size = new System.Drawing.Size(65, 17);
+            this.ManualSyncRadioButton.Size = new System.Drawing.Size(74, 21);
             this.ManualSyncRadioButton.TabIndex = 2;
             this.ManualSyncRadioButton.TabStop = true;
             this.ManualSyncRadioButton.Text = "Manual";
@@ -183,7 +183,7 @@ namespace Hush.Display.Interfaces
             this.PromptSyncRadioButton.AutoSize = true;
             this.PromptSyncRadioButton.Location = new System.Drawing.Point(6, 43);
             this.PromptSyncRadioButton.Name = "PromptSyncRadioButton";
-            this.PromptSyncRadioButton.Size = new System.Drawing.Size(66, 17);
+            this.PromptSyncRadioButton.Size = new System.Drawing.Size(77, 21);
             this.PromptSyncRadioButton.TabIndex = 1;
             this.PromptSyncRadioButton.TabStop = true;
             this.PromptSyncRadioButton.Text = "Prompt";
@@ -195,7 +195,7 @@ namespace Hush.Display.Interfaces
             this.AutomaticSyncRadioButton.AutoSize = true;
             this.AutomaticSyncRadioButton.Location = new System.Drawing.Point(6, 20);
             this.AutomaticSyncRadioButton.Name = "AutomaticSyncRadioButton";
-            this.AutomaticSyncRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.AutomaticSyncRadioButton.Size = new System.Drawing.Size(97, 21);
             this.AutomaticSyncRadioButton.TabIndex = 0;
             this.AutomaticSyncRadioButton.TabStop = true;
             this.AutomaticSyncRadioButton.Text = "Automatic";
@@ -207,7 +207,7 @@ namespace Hush.Display.Interfaces
             this.Controls.Add(this.SyncGroupBox);
             this.Controls.Add(this.SaveGroupBox);
             this.Name = "Settings";
-            this.Size = new System.Drawing.Size(388, 204);
+            this.Size = new System.Drawing.Size(388, 100);
             this.SaveGroupBox.ResumeLayout(false);
             this.SaveGroupBox.PerformLayout();
             this.SyncGroupBox.ResumeLayout(false);
@@ -255,7 +255,8 @@ namespace Hush.Display.Interfaces
             }
 
             DataManager.SetUserSaveOption(NewSaveValue);
-            Console.WriteLine(NewSaveValue);
+
+            _HasClosingSave = false;
 
         }
 
@@ -278,7 +279,6 @@ namespace Hush.Display.Interfaces
             }
 
             DataManager.SetUserSyncOption(NewSyncValue);
-            Console.WriteLine(NewSyncValue);
 
         }
 

@@ -172,10 +172,16 @@ namespace Hush.Display
                     case "Edit":
                     case "Delete":
                     case "View":
+                    case "ViewRecord":
                     case "Search":
                     case "CategoryManagement":
                     case "UserProfile":
                         ShowInterface(new MainScreen());
+                        Args.Cancel = true;
+                        break;
+
+                    case "EditSecretQuestion":
+                        ShowInterface(new UserProfile());
                         Args.Cancel = true;
                         break;
 

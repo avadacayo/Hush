@@ -216,6 +216,7 @@ namespace Hush.Display.Interfaces
             this.InvalidRecordName.Size = new System.Drawing.Size(151, 17);
             this.InvalidRecordName.TabIndex = 13;
             this.InvalidRecordName.Text = "Invalid Record Name";
+            this.InvalidRecordName.Visible = false;
             // 
             // Edit
             // 
@@ -291,7 +292,7 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(Object Sender, EventArgs Args)
         {
-            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && !Regex.IsMatch(this.RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
+            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && Regex.IsMatch(this.RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
             {
                 OnSave();
                 this.InvalidRecordName.Visible = false;

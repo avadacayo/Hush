@@ -154,6 +154,13 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.MaxLength = 30;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.PasswordTextBox.KeyDown += (Sender, Args) => 
+            {
+                if (Args.KeyCode == Keys.Return && LoginButton.Enabled == true)
+                {
+                    LoginButtonClick(null, null);
+                }
+            };
             // 
             // PasswordLabel
             // 
@@ -173,6 +180,13 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.TabIndex = 2;
             this.UsernameTextBox.MaxLength = 30;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.UsernameTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && LoginButton.Enabled == true)
+                {
+                    LoginButtonClick(null, null);
+                }
+            };
             // 
             // UsernameLabel
             // 

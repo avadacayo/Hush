@@ -234,6 +234,13 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox2.Size = new System.Drawing.Size(334, 24);
             this.SecretQuestionTextBox2.TabIndex = 5;
             this.SecretQuestionTextBox2.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.SecretQuestionTextBox2.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             this.SecretQuestionTextBox2.MaxLength = 70;
             // 
             // SecretAnswerLabel2
@@ -253,6 +260,13 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox2.Size = new System.Drawing.Size(334, 24);
             this.SecretAnswerTextBox2.TabIndex = 6;
             this.SecretAnswerTextBox2.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.SecretAnswerTextBox2.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // GeneratePasswordLinkLabel
             // 
@@ -295,6 +309,13 @@ namespace Hush.Display.Interfaces
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             this.UsernameTextBox.MaxLength = 30;
+            this.UsernameTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // PasswordStrengthLabel
             // 
@@ -326,6 +347,13 @@ namespace Hush.Display.Interfaces
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             this.PasswordTextBox.MaxLength = 30;
+            this.PasswordTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // RepeatPasswordLabel
             // 
@@ -348,6 +376,13 @@ namespace Hush.Display.Interfaces
             this.RepeatPasswordTextBox.TabIndex = 2;
             this.RepeatPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             this.RepeatPasswordTextBox.MaxLength = 30;
+            this.RepeatPasswordTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // SecretQuestionLabel
             // 
@@ -367,6 +402,13 @@ namespace Hush.Display.Interfaces
             this.SecretQuestionTextBox.TabIndex = 3;
             this.SecretQuestionTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             this.SecretQuestionTextBox.MaxLength = 70;
+            this.SecretQuestionTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // SecretAnswerLabel
             // 
@@ -385,6 +427,13 @@ namespace Hush.Display.Interfaces
             this.SecretAnswerTextBox.Size = new System.Drawing.Size(334, 24);
             this.SecretAnswerTextBox.TabIndex = 4;
             this.SecretAnswerTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
+            this.SecretAnswerTextBox.KeyDown += (Sender, Args) =>
+            {
+                if (Args.KeyCode == Keys.Return && RegisterButton.Enabled == true)
+                {
+                    RegisterButtonClick(null, null);
+                }
+            };
             // 
             // RegisterButton
             // 
@@ -529,7 +578,9 @@ namespace Hush.Display.Interfaces
 
         private void ToolButton_Click(object sender, EventArgs e)
         {
-            Program.Window.ShowInterface(new GeneratePassword());
+            //Program.Window.ShowInterface(new GeneratePassword());
+            GeneratePassword form = new GeneratePassword();
+            form.Show();
         }
 
         private void ToolButton_MouseHover(object sender, EventArgs e)

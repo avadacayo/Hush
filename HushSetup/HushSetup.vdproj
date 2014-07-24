@@ -21,13 +21,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_177B2E62697F47E0A1B3218831281652"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2782EDE4C0EE26DA65649E176ACF19B8"
         "OwnerKey" = "8:_D2AB3155C480478F9AD3D61B9D3A4416"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3EDC1534A14B4362B090836289575061"
+        "MsmKey" = "8:_30D05B439C04431C948A680783349FF6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,6 +58,12 @@
         "Entry"
         {
         "MsmKey" = "8:_BB6419B0FAA14C5C80C64021406BAB49"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BC93C9AE76BB4C18B70EE6E96E802ACA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -94,13 +106,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ECC0AF81DA976BA7E3B2ECA2CB3D864F"
+        "OwnerKey" = "8:_2782EDE4C0EE26DA65649E176ACF19B8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2782EDE4C0EE26DA65649E176ACF19B8"
+        "OwnerKey" = "8:_ECC0AF81DA976BA7E3B2ECA2CB3D864F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -128,6 +140,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
         "Release"
@@ -152,6 +172,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
             }
         }
     }
@@ -202,6 +230,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_177B2E62697F47E0A1B3218831281652"
+            {
+            "SourcePath" = "8:..\\Data\\Templates\\Crunchyroll\\template.t"
+            "TargetName" = "8:template.t"
+            "Tag" = "8:"
+            "Folder" = "8:_7B96E58295F04C97A8FE1BA68274269E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2782EDE4C0EE26DA65649E176ACF19B8"
             {
             "AssemblyRegister" = "3:1"
@@ -209,11 +257,6 @@
             "AssemblyAsmDisplayName" = "8:Jint, Version=2.1.0.0, Culture=neutral, PublicKeyToken=2e92ba9c8d81157f, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2782EDE4C0EE26DA65649E176ACF19B8"
-                    {
-                    "Name" = "8:Jint.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Jint.dll"
             "TargetName" = "8:"
@@ -233,12 +276,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EDC1534A14B4362B090836289575061"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30D05B439C04431C948A680783349FF6"
             {
-            "SourcePath" = "8:..\\Data\\Templates\\Cruncyroll\\template.t"
-            "TargetName" = "8:template.t"
+            "SourcePath" = "8:..\\Data\\Templates\\Facebook\\Change Password.js"
+            "TargetName" = "8:Change Password.js"
             "Tag" = "8:"
-            "Folder" = "8:_39A7CDA31B5145C6BA48B5A54704E21D"
+            "Folder" = "8:_0C6D4C9C66AA40DEBC00CD4C5DD2A361"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -333,6 +376,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC93C9AE76BB4C18B70EE6E96E802ACA"
+            {
+            "SourcePath" = "8:..\\Data\\Templates\\Crunchyroll\\Change Password.js"
+            "TargetName" = "8:Change Password.js"
+            "Tag" = "8:"
+            "Folder" = "8:_7B96E58295F04C97A8FE1BA68274269E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C4DDD175346245DBA61612B6DF3CD262"
             {
             "SourcePath" = "8:..\\Data\\Templates\\Gmail\\template.t"
@@ -360,11 +423,6 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_ECC0AF81DA976BA7E3B2ECA2CB3D864F"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -496,7 +554,7 @@
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_B71C3DD9CDB74FB6AB33E9FC385AAFBC"
                             {
                             "Name" = "8:Templates"
-                            "AlwaysCreate" = "11:FALSE"
+                            "AlwaysCreate" = "11:TRUE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_E23AB05658184805A6C5FE641A48B708"
@@ -505,7 +563,7 @@
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_0C6D4C9C66AA40DEBC00CD4C5DD2A361"
                                     {
                                     "Name" = "8:Facebook"
-                                    "AlwaysCreate" = "11:FALSE"
+                                    "AlwaysCreate" = "11:TRUE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "Property" = "8:_062603C2DF7B44F784B8B8389A75BAC0"
@@ -516,7 +574,7 @@
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_34ABA7915F734B2C83D42FD6E78DBDF3"
                                     {
                                     "Name" = "8:CDOT Wiki"
-                                    "AlwaysCreate" = "11:FALSE"
+                                    "AlwaysCreate" = "11:TRUE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "Property" = "8:_5D4E3815E7A84CE8997599C6CF7A0240"
@@ -524,21 +582,10 @@
                                         {
                                         }
                                     }
-                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_39A7CDA31B5145C6BA48B5A54704E21D"
-                                    {
-                                    "Name" = "8:Cruncyroll"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "Condition" = "8:"
-                                    "Transitive" = "11:FALSE"
-                                    "Property" = "8:_984C6CB7C28F4237BDD76110B37D180F"
-                                        "Folders"
-                                        {
-                                        }
-                                    }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_776BA9A2FBA0468296AE05043CBD0D49"
                                     {
                                     "Name" = "8:Gmail"
-                                    "AlwaysCreate" = "11:FALSE"
+                                    "AlwaysCreate" = "11:TRUE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "Property" = "8:_6BD17303515B4339923DC7C1076612A7"
@@ -546,10 +593,21 @@
                                         {
                                         }
                                     }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_7B96E58295F04C97A8FE1BA68274269E"
+                                    {
+                                    "Name" = "8:Crunchyroll"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_9070B447AC9C44A7BEA3E7228C6172DC"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_8267217CCF63448C92051DAFCC3E3B25"
                                     {
                                     "Name" = "8:000Webhost"
-                                    "AlwaysCreate" = "11:FALSE"
+                                    "AlwaysCreate" = "11:TRUE"
                                     "Condition" = "8:"
                                     "Transitive" = "11:FALSE"
                                     "Property" = "8:_A67C7EA80B8A43BD89E0126E604A8955"
@@ -1129,7 +1187,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D2AB3155C480478F9AD3D61B9D3A4416"
             {
-            "SourcePath" = "8:..\\obj\\Debug\\Hush.exe"
+            "SourcePath" = "8:..\\obj\\Release\\Hush.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A99AE3B3EAA44D8C91596A4F83599E63"

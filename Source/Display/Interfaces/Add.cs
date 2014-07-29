@@ -289,6 +289,8 @@ namespace Hush.Display.Interfaces
                 DataHolder.CurrentUser.Records.Add(rc);
                 DataHolder.RecordList = Client.DataHolder.CurrentUser.Records;
                 new DataManager().SaveUser(DataHolder.CurrentUser);
+
+                DataHolder.RecordNode = rc.ID;
                 Program.Window.ShowInterface(new MainScreen());
                }
                else

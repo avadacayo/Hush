@@ -325,6 +325,7 @@ namespace Hush.Display.Interfaces
                     DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
                     DisplayRecord();
                     new DataManager().SaveUser(DataHolder.CurrentUser);
+                    DataHolder.RecordNode = CurrentRecord.ID;
                     Program.Window.ShowInterface(new MainScreen());
 
                 }

@@ -377,9 +377,30 @@ namespace Hush.Display.Interfaces
             {
                 ViewButton.Enabled = true;
                 EditRecordButton.Enabled = true;
-                DeleteRecordButton.Enabled = true;
-                RecordsTreeView.SelectedNode = RecordsTreeView.Nodes[0];
-                RecordsTreeView.Focus();
+                DeleteRecordButton.Enabled = true; 
+
+                if (DataManager.GetRecordByID(DataHolder.RecordNode) != null)
+                    GetNode(this.RecordsTreeView.Nodes, DataManager.GetRecordByID(DataHolder.RecordNode).Name);
+                
+            }
+        }
+
+        public void GetNode(TreeNodeCollection nodes, string NodeName)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Text.Contains(NodeName))
+                {
+                    RecordsTreeView.SelectedNode = node;
+                    TreeNode ParentNode = node.Parent;
+                    while (ParentNode != null)
+                    {
+                        ParentNode.Expand();
+                        ParentNode = ParentNode.Parent;
+                    }
+                    break;
+                }
+                GetNode(node.Nodes, NodeName);
             }
         }
 
@@ -398,7 +419,7 @@ namespace Hush.Display.Interfaces
 
             RecordsTreeView.EndUpdate();
             RecordsTreeView.Sort();
-            RecordsTreeView.ExpandAll();
+            RecordsTreeView.Focus();
         }
 
         private void AddNestedNode(TreeView Control, Record Item)

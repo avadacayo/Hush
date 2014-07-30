@@ -45,18 +45,23 @@ namespace Hush.Display.Interfaces
         private Label ErrSQ2Label;
         private Label ErrSA2Label;
 	    private Button CancelButton;
+        private static String UsernameHolder;
+        private static String PasswordHolder;
+        private static String RepeatPasswordHolder;
+        private static String SecretQuestionHolder;
+        private static String SecretQuestion2Holder;
+        private static String SecretAnswerHolder;
+        private static String SecretAnswer1Holder;
+
 
         private void RegisterButtonClick(Object Sender, EventArgs Args)
         {
-            //PasswordStrengthLabel.Visible = false;
-            String pattern = "[a-zA-Z0-9]{3,30}$";
-            Regex regex = new Regex(pattern);
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
             SecretQuestionTextBox.Text = SecretQuestionTextBox.Text.Trim();
             SecretAnswerTextBox.Text = SecretAnswerTextBox.Text.Trim();
             SecretQuestionTextBox2.Text = SecretQuestionTextBox2.Text.Trim();
             SecretAnswerTextBox2.Text = SecretAnswerTextBox2.Text.Trim();
-            //ErrUsernameLabel.Text = "";
+            
             String ErrUsername = new CheckString().ValidateUsername(UsernameTextBox.Text);
             String ErrPassword = new CheckString().ValidPasswordCheck(UsernameTextBox.Text, PasswordTextBox.Text, RepeatPasswordTextBox.Text);
             String ErrQ1 = new CheckString().ValidateSecretQuestion(SecretQuestionTextBox.Text);
@@ -160,6 +165,14 @@ namespace Hush.Display.Interfaces
             Title.Add("Register");
             base.Initialize(Title);
             RegisterButton.Enabled = false;
+
+            UsernameTextBox.Text = UsernameHolder;
+            PasswordTextBox.Text = PasswordHolder;
+            RepeatPasswordTextBox.Text = RepeatPasswordHolder;
+            SecretQuestionTextBox.Text = SecretQuestionHolder;
+            SecretQuestionTextBox2.Text = SecretQuestion2Holder;
+            SecretAnswerTextBox.Text = SecretAnswerHolder;
+            SecretAnswerTextBox2.Text = SecretAnswer1Holder;
         }
 
         protected override void InitializeComponent()
@@ -578,9 +591,16 @@ namespace Hush.Display.Interfaces
 
         private void ToolButton_Click(object sender, EventArgs e)
         {
-            //Program.Window.ShowInterface(new GeneratePassword());
-            GeneratePassword form = new GeneratePassword();
-            form.Show();
+            
+            UsernameHolder = UsernameTextBox.Text;
+            PasswordHolder = PasswordTextBox.Text;
+            RepeatPasswordHolder = RepeatPasswordTextBox.Text;
+            SecretQuestionHolder = SecretQuestionTextBox.Text;
+            SecretQuestion2Holder = SecretQuestionTextBox2.Text;
+            SecretAnswerHolder = SecretAnswerTextBox.Text;
+            SecretAnswer1Holder = SecretAnswerTextBox2.Text;
+
+            Program.Window.ShowInterface(new GeneratePassword());
         }
 
         private void ToolButton_MouseHover(object sender, EventArgs e)

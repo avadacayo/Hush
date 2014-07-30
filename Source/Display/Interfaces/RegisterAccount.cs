@@ -78,6 +78,13 @@ namespace Hush.Display.Interfaces
                     SecretQuestionTextBox2.Text, SecretAnswerTextBox2.Text))
                 {
                     Program.Window.ShowInterface(new MainScreen());
+                    UsernameHolder = "";
+            	    PasswordHolder = "";
+                    RepeatPasswordHolder = "";
+                    SecretQuestionHolder = "";
+                    SecretQuestion2Holder = "";
+                    SecretAnswerHolder = "";
+                    SecretAnswer1Holder = "";
                 }
               
             }

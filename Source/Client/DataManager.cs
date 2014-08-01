@@ -284,7 +284,8 @@ namespace Hush.Client
             if (Record.Template != "")
             {
 
-                ComboControl.SelectedText = Record.Template;
+                ComboControl.SelectedIndex = ComboControl.FindString(Record.Template);
+                //ComboControl.SelectedText = Record.Template;
 
             }
 

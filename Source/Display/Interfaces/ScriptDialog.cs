@@ -265,6 +265,31 @@ namespace Hush.Display.Interfaces
 
         #endregion
 
+        public ScriptDialogImage(HushScript ParentScript, Image Image)
+            : base(ParentScript)
+        {
+
+            ImagePictureBox = new PictureBox();
+            ImagePictureBox.BackColor = SystemColors.ControlDark;
+            ImagePictureBox.Image = Image;
+            ImagePictureBox.Location = new Point(0, 0);
+            ImagePictureBox.Size = new Size(480, 150);
+            ImagePictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            InputTextBox = new TextBox();
+            InputTextBox.Location = new Point(10, 165);
+            InputTextBox.Size = new Size(200, 25);
+
+            ContentPanel.SuspendLayout();
+            ContentPanel.Controls.Add(ImagePictureBox);
+            ContentPanel.ResumeLayout();
+
+            Controls.Add(InputTextBox);
+
+            Resize(230);
+
+        }
+
         public ScriptDialogImage(HushScript ParentScript, String Image)
             : base(ParentScript)
         {

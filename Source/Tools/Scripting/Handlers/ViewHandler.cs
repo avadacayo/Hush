@@ -1,6 +1,7 @@
 ﻿using Hush.Display;
 using Hush.Display.Interfaces;
 using System;
+using System.Drawing;
 
 namespace Hush.Tools.Scripting.Handlers
 {
@@ -78,6 +79,15 @@ namespace Hush.Tools.Scripting.Handlers
         {
 
             _CurrentDialog = new ScriptDialogImage(_ParentScript, URL);
+            _ParentWindow.ShowInterfaceDialog(_CurrentDialog);
+
+        }
+
+
+        public void ShowImageDialog(Image Image)
+        {
+
+            _CurrentDialog = new ScriptDialogImage(_ParentScript, Image);
             _ParentWindow.ShowInterfaceDialog(_CurrentDialog);
 
         }

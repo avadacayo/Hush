@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Net;
 
@@ -41,6 +42,15 @@ namespace Hush.Tools.Scripting.Handlers
             }
 
             return ReturnValue;
+
+        }
+
+        public Image DownloadImage(String URI)
+        {
+
+            byte[] ImageData = _Client.DownloadData(URI);
+            MemoryStream ImageStream = new MemoryStream(ImageData);
+            return Image.FromStream(ImageStream);
 
         }
 

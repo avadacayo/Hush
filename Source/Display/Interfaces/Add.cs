@@ -244,7 +244,7 @@ namespace Hush.Display.Interfaces
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
-            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && Regex.IsMatch(RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
+            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty))
             {
                 OnSave();
                 this.InvalidRecordName.Visible = false;

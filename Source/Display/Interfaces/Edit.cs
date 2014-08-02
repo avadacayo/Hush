@@ -20,6 +20,7 @@ namespace Hush.Display.Interfaces
     {
 
         private List<String> _AddedFields = new List<String>();
+        private Boolean _Loaded = false;
 
         private System.Windows.Forms.Label Category;
         private System.Windows.Forms.Button CancelButton;
@@ -273,6 +274,8 @@ namespace Hush.Display.Interfaces
                     EditDataGridView.Rows[i].Cells[0].ReadOnly = true;
                 }
             }
+            _Loaded = true;
+            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
             _HasClosingSave = false;
         }
 
@@ -349,8 +352,11 @@ namespace Hush.Display.Interfaces
         private void TemplateComboBoxSelectedValueChanged(Object Sender, EventArgs Args)
         {
 
-            _HasClosingSave = true;
-            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
+            if (_Loaded)
+            {
+                _HasClosingSave = true;
+                DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
+            }
 
         }
 

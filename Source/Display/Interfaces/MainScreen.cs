@@ -366,7 +366,7 @@ namespace Hush.Display.Interfaces
         protected override void OnLoad(EventArgs e)
         {
             PopulateTreeView();
-            if(this.RecordsTreeView.Nodes.Count == 0)
+            if (this.RecordsTreeView.Nodes.Count == 0 || this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
             {
 
                 ViewButton.Enabled = false;

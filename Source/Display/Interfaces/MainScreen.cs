@@ -79,11 +79,11 @@ namespace Hush.Display.Interfaces
             // ShowAllButton
             // 
             this.ShowAllButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowAllButton.Location = new System.Drawing.Point(24, 332);
+            this.ShowAllButton.Location = new System.Drawing.Point(302, 333);
             this.ShowAllButton.Name = "ShowAllButton";
-            this.ShowAllButton.Size = new System.Drawing.Size(56, 25);
+            this.ShowAllButton.Size = new System.Drawing.Size(81, 25);
             this.ShowAllButton.TabIndex = 8;
-            this.ShowAllButton.Text = "All";
+            this.ShowAllButton.Text = "Show All";
             this.ShowAllButton.UseVisualStyleBackColor = true;
             this.ShowAllButton.Click += new System.EventHandler(this.ShowAllButton_Click);
             // 
@@ -123,9 +123,9 @@ namespace Hush.Display.Interfaces
             // ViewButton
             // 
             this.ViewButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewButton.Location = new System.Drawing.Point(86, 332);
+            this.ViewButton.Location = new System.Drawing.Point(24, 332);
             this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(61, 25);
+            this.ViewButton.Size = new System.Drawing.Size(53, 25);
             this.ViewButton.TabIndex = 4;
             this.ViewButton.Text = "View";
             this.ViewButton.UseVisualStyleBackColor = true;
@@ -145,7 +145,7 @@ namespace Hush.Display.Interfaces
             // ManageCategoriesButton
             // 
             this.ManageCategoriesButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManageCategoriesButton.Location = new System.Drawing.Point(151, 422);
+            this.ManageCategoriesButton.Location = new System.Drawing.Point(150, 422);
             this.ManageCategoriesButton.Name = "ManageCategoriesButton";
             this.ManageCategoriesButton.Size = new System.Drawing.Size(110, 47);
             this.ManageCategoriesButton.TabIndex = 10;
@@ -171,16 +171,17 @@ namespace Hush.Display.Interfaces
             this.RecordFunctionsPanel.Controls.Add(this.EditRecordButton);
             this.RecordFunctionsPanel.Controls.Add(this.DeleteRecordButton);
             this.RecordFunctionsPanel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecordFunctionsPanel.Location = new System.Drawing.Point(156, 332);
+            this.RecordFunctionsPanel.Location = new System.Drawing.Point(75, 333);
             this.RecordFunctionsPanel.Name = "RecordFunctionsPanel";
-            this.RecordFunctionsPanel.Size = new System.Drawing.Size(227, 29);
+            this.RecordFunctionsPanel.Size = new System.Drawing.Size(204, 29);
             this.RecordFunctionsPanel.TabIndex = 5;
             // 
             // AddRecordButton
             // 
-            this.AddRecordButton.Location = new System.Drawing.Point(3, 1);
+            this.AddRecordButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddRecordButton.Location = new System.Drawing.Point(8, -1);
             this.AddRecordButton.Name = "AddRecordButton";
-            this.AddRecordButton.Size = new System.Drawing.Size(70, 25);
+            this.AddRecordButton.Size = new System.Drawing.Size(66, 25);
             this.AddRecordButton.TabIndex = 0;
             this.AddRecordButton.Text = "Add";
             this.AddRecordButton.UseVisualStyleBackColor = true;
@@ -188,9 +189,9 @@ namespace Hush.Display.Interfaces
             // 
             // EditRecordButton
             // 
-            this.EditRecordButton.Location = new System.Drawing.Point(79, 1);
+            this.EditRecordButton.Location = new System.Drawing.Point(80, -1);
             this.EditRecordButton.Name = "EditRecordButton";
-            this.EditRecordButton.Size = new System.Drawing.Size(70, 25);
+            this.EditRecordButton.Size = new System.Drawing.Size(58, 25);
             this.EditRecordButton.TabIndex = 1;
             this.EditRecordButton.Text = "Edit";
             this.EditRecordButton.UseVisualStyleBackColor = true;
@@ -198,9 +199,9 @@ namespace Hush.Display.Interfaces
             // 
             // DeleteRecordButton
             // 
-            this.DeleteRecordButton.Location = new System.Drawing.Point(157, 1);
+            this.DeleteRecordButton.Location = new System.Drawing.Point(144, 0);
             this.DeleteRecordButton.Name = "DeleteRecordButton";
-            this.DeleteRecordButton.Size = new System.Drawing.Size(70, 25);
+            this.DeleteRecordButton.Size = new System.Drawing.Size(60, 25);
             this.DeleteRecordButton.TabIndex = 2;
             this.DeleteRecordButton.Text = "Delete";
             this.DeleteRecordButton.UseVisualStyleBackColor = true;
@@ -209,9 +210,9 @@ namespace Hush.Display.Interfaces
             // SearchButton
             // 
             this.SearchButton.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.Location = new System.Drawing.Point(313, 381);
+            this.SearchButton.Location = new System.Drawing.Point(302, 381);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(70, 25);
+            this.SearchButton.Size = new System.Drawing.Size(81, 25);
             this.SearchButton.TabIndex = 7;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -222,7 +223,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SearchTextBox.Location = new System.Drawing.Point(24, 382);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(281, 24);
+            this.SearchTextBox.Size = new System.Drawing.Size(255, 24);
             this.SearchTextBox.TabIndex = 6;
             // 
             // UserPanel
@@ -383,6 +384,11 @@ namespace Hush.Display.Interfaces
                     GetNode(this.RecordsTreeView.Nodes, DataManager.GetRecordByID(DataHolder.RecordNode).Name);
                 
             }
+
+            if (this.RecordsTreeView.Nodes.Count == 0)
+                SearchButton.Enabled = false;
+            else
+                SearchButton.Enabled = true;
         }
 
         public void GetNode(TreeNodeCollection nodes, string NodeName)

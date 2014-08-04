@@ -332,32 +332,29 @@ namespace Hush.Display.Interfaces
 
             ErrorCategoryLabel.Visible = false;
 
-            if (category.Equals("") || DataManager.ValidateRecordCategory(category))
+            //if (category.Equals("") || DataManager.ValidateRecordCategory(category))
+            //{
+
+            _HasClosingSave = false;
+            ErrorCategoryLabel.Visible = false;
+            if (CategoryComboBox.Text.Trim().Length > 0)
             {
-                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, category);
-
-
-                _HasClosingSave = false;
-                ErrorCategoryLabel.Visible = false;
-
-                if (DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
-                {
-
-                    DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
-                    DisplayRecord();
-                    new DataManager().SaveUser(DataHolder.CurrentUser);
-                    DataHolder.RecordNode = CurrentRecord.ID;
-                    Program.Window.ShowInterface(new MainScreen());
-
-                }
-                else
-                {
-
+                if (!DataManager.ValidateRecordCategory(this.CategoryComboBox.Text.Trim()))
                     ErrorCategoryLabel.Visible = true;
-
-                }
-
             }
+            if (ErrorCategoryLabel.Visible == false)
+            {
+                DataManager.ApplyRecordChanges(CurrentRecord, EditDataGridView, TemplateComboBox, CategoryComboBox.Text.Trim());
+                DisplayRecord();
+                new DataManager().SaveUser(DataHolder.CurrentUser);
+                DataHolder.RecordNode = CurrentRecord.ID;
+                Program.Window.ShowInterface(new MainScreen());
+            }
+
+            
+              
+
+           // }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

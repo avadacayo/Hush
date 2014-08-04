@@ -844,6 +844,23 @@ namespace Hush.Client
 
             return result;
         }
+
+        public static bool ValidateRecordName(string RecordName, string category)
+        {
+            bool Valid = true;
+
+            if (GetRecordsByName(RecordName) != null)
+            {
+                foreach (Record r in GetRecordsByName(RecordName))
+                {
+                    if (r.Category == category.Trim())
+                    {
+                        Valid = false;
+                    }
+                }
+            }
+            return Valid;
+        }
     }
 
 }

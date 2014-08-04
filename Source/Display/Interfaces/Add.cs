@@ -83,10 +83,10 @@ namespace Hush.Display.Interfaces
             this.InvalidRecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InvalidRecordName.ForeColor = System.Drawing.Color.Crimson;
             this.InvalidRecordName.Location = new System.Drawing.Point(137, 75);
-            this.InvalidRecordName.Name = "InvalidRecordName";
+            this.InvalidRecordName.Name = "Invalid Record Name";
             this.InvalidRecordName.Size = new System.Drawing.Size(151, 17);
             this.InvalidRecordName.TabIndex = 11;
-            this.InvalidRecordName.Text = "Invalid Record Name";
+            this.InvalidRecordName.Text = "";
             this.InvalidRecordName.Visible = false;
             // 
             // ErrorCategoryLabel
@@ -244,15 +244,30 @@ namespace Hush.Display.Interfaces
 
         private void SaveButtonClick(Object Sender, EventArgs Args)
         {
-            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty))
+            if (this.RecordTextBox.Text.Trim().Equals(string.Empty))
+            {
+                this.InvalidRecordName.Visible = true;
+                this.InvalidRecordName.Text = "Empty Record Name";
+                
+            }
+
+            else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text))
+                
+            {
+                    this.InvalidRecordName.Visible = true;
+                    this.InvalidRecordName.Text = "Record Name exists in the category";
+            }
+
+                
+
+            else
             {
                 OnSave();
                 this.InvalidRecordName.Visible = false;
+                this.InvalidRecordName.Text = "";
             }
-            else
-            {
-                this.InvalidRecordName.Visible = true;
-            }
+
+            
         }
 
         private void OnSave()

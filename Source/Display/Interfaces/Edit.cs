@@ -296,15 +296,27 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(Object Sender, EventArgs Args)
         {
-            if (!this.RecordTextBox.Text.Trim().Equals(string.Empty) && Regex.IsMatch(this.RecordTextBox.Text.Trim(), @"^[\p{L}][\p{L} \.'\-]{0,50}$"))
+
+            if (this.RecordTextBox.Text.Trim().Equals(string.Empty))
+            {
+                this.InvalidRecordName.Visible = true;
+                this.InvalidRecordName.Text = "Empty Record Name";
+
+            }
+
+            else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text))
+            {
+                this.InvalidRecordName.Visible = true;
+                this.InvalidRecordName.Text = "Record Name exists in the category";
+            }
+
+            else
             {
                 OnSave();
                 this.InvalidRecordName.Visible = false;
+                this.InvalidRecordName.Text = "";
             }
-            else
-            {
-                this.InvalidRecordName.Visible = true;
-            }
+
         }
 
         private void OnSave()

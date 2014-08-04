@@ -385,9 +385,9 @@ namespace Hush.Display.Interfaces
                 
             }
 
-            if (this.RecordsTreeView.Nodes.Count == 0)
+            if (this.RecordsTreeView.Nodes.Count == 0 || SearchTextBox.Text.Trim().Equals(string.Empty))
                 SearchButton.Enabled = false;
-            else
+            else if (!SearchTextBox.Text.Trim().Equals(string.Empty))
                 SearchButton.Enabled = true;
         }
 

@@ -310,6 +310,12 @@ namespace Hush.Display.Interfaces
                 this.InvalidRecordName.Text = "Record Name exists in the category";
             }
 
+            else if (!Regex.IsMatch(RecordTextBox.Text.Trim(), @"^[a-zA-Z0-9_\.\-]{1,25}$"))
+            {
+                this.InvalidRecordName.Visible = true;
+                this.InvalidRecordName.Text = "letter, number, '_', '-' , or '.' only";
+            }
+
             else
             {
                 OnSave();

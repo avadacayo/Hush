@@ -84,7 +84,7 @@ namespace Hush.Display.Interfaces
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(100, 25);
             this.CancelButton.TabIndex = 8;
-            this.CancelButton.Text = "Cancel";
+            this.CancelButton.Text = "Back";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 

@@ -436,6 +436,7 @@ namespace Hush.Display.Interfaces
             RecordsTreeView.EndUpdate();
             RecordsTreeView.Sort();
             RecordsTreeView.Focus();
+            RecordsTreeView.ExpandAll();
         }
 
         private void AddNestedNode(TreeView Control, Record Item)

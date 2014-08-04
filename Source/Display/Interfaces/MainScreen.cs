@@ -46,6 +46,7 @@ namespace Hush.Display.Interfaces
             if(!DataHolder.Filter)
                 DataHolder.RecordList = DataHolder.CurrentUser.Records;
             DataHolder.Filter = false;
+            SearchButton.Enabled = false;
             
         }
 
@@ -225,6 +226,7 @@ namespace Hush.Display.Interfaces
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(255, 24);
             this.SearchTextBox.TabIndex = 6;
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.Search_TextChanged);
             // 
             // UserPanel
             // 
@@ -308,7 +310,15 @@ namespace Hush.Display.Interfaces
             this.PerformLayout();
 
         }
+        private void Search_TextChanged(object sender, EventArgs e)
+        {
+            if (SearchTextBox.Text.Length > 0)
+                SearchButton.Enabled = true;
 
+            else
+                SearchButton.Enabled = false;
+
+        }
         public Int32 RecordSelected { get; set; }
 
         private void ManageCategoriesButton_Click(object sender, EventArgs e)

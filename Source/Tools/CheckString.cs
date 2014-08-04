@@ -88,7 +88,7 @@ namespace Hush.Tools
 
         public String ValidateSecretAnswer(String Answer, String Username)
         {
-            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,}$",
+            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{3,}$",
                    pattern2 = @"(.)\1{3,}?";
             String message = "";
 
@@ -112,7 +112,7 @@ namespace Hush.Tools
 
         public String ValidateSecretQuestion(String Question)
         {
-            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{6,70}$",
+            String pattern = @"^[a-zA-Z0-9_., \<\>\-\@\#\$\%\^\!\&\*\[\]\+\=\:\?\/\}\{\(\)]{3,70}$",
                    pattern2 = @"(.)\1{3,}?";
             String message = "";
 

@@ -53,7 +53,11 @@ namespace Hush.Display.Interfaces
         private static String SecretAnswerHolder;
         private static String SecretAnswer1Holder;
 
-
+        public void UseGeneratedPassword(String GeneratedPassword)
+        {
+            PasswordHolder = GeneratedPassword;
+            RepeatPasswordHolder = GeneratedPassword;
+        }
         private void RegisterButtonClick(Object Sender, EventArgs Args)
         {
             UsernameTextBox.Text = UsernameTextBox.Text.Trim();
@@ -153,6 +157,7 @@ namespace Hush.Display.Interfaces
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new SignIn());
+
 	}
         private void SignInButtonClick(Object Sender, EventArgs Args)
         {
@@ -180,6 +185,8 @@ namespace Hush.Display.Interfaces
             SecretQuestionTextBox2.Text = SecretQuestion2Holder;
             SecretAnswerTextBox.Text = SecretAnswerHolder;
             SecretAnswerTextBox2.Text = SecretAnswer1Holder;
+
+            
         }
 
         protected override void InitializeComponent()

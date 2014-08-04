@@ -36,7 +36,7 @@ namespace Hush.Client
             String Question = User.SecretQuestion;
             String Question2 = User.SecretQuestion2;
             String Answer = User.SecretAnswer + "\n" + User.SecretAnswer2;
-            String SecKey = Encryption.GenerateKey() + Encryption.GenerateKey(); //forgot to change and might still need to be changed
+            String SecKey = Encryption.GenerateKey() + Encryption.GenerateKey(); 
             String Data = StringUtil.JSON.Serialize<User>(User);
             String Q1encrypted = Encryption.ToTripleDES(Question, User.Username);
             String Q2encrypted = Encryption.ToTripleDES(Question2, User.Username);
@@ -55,7 +55,6 @@ namespace Hush.Client
                     Writer.WriteLine(SecKeyencryptedwithAnswer);
                     Writer.Write(EncryptedData);
                     Saved = true;
-                    //MessageBox.Show("saved");
                 }
                 catch (Exception ex)
                 {
@@ -63,17 +62,6 @@ namespace Hush.Client
                 }
             }
             
-            
-            //TODO: remove block later
-            Data = StringUtil.JSON.SerializeFormatted<User>(User);
-            using (StreamWriter Writer = new StreamWriter("./Data/" + User.Username + ".JSON"))
-            {
-                Writer.WriteLine("SecKey: " + SecKey);
-                Writer.WriteLine("Q: " + Question);
-                Writer.WriteLine("Q2: " + Question2);
-                Writer.WriteLine("A: " + Answer);
-                Writer.Write(Data);
-            }
             
             return Saved;
         }

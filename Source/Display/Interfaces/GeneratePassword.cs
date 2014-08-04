@@ -33,8 +33,9 @@ namespace Hush.Display.Interfaces
         private TextBox EnteredPasswordTextBox;
         private Label EnterPasswordLabel;
         private Label PasswordStrengthLabel;
+        private LinkLabel UsePasswordLinkLabel;
         private Button GenerateButton;
-        
+        private static String GeneratedPasswordHolder;
 
         #region Designer
       
@@ -44,7 +45,7 @@ namespace Hush.Display.Interfaces
             Title.Add("Generate Password");
 
             base.Initialize(Title);
-
+            //PasswordTextBox.Text = GeneratedPasswordHolder;
         }
 
         protected override void InitializeComponent()
@@ -60,6 +61,7 @@ namespace Hush.Display.Interfaces
             this.EnteredPasswordTextBox = new System.Windows.Forms.TextBox();
             this.EnterPasswordLabel = new System.Windows.Forms.Label();
             this.PasswordStrengthLabel = new System.Windows.Forms.Label();
+            this.UsePasswordLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // PasswordTextBox
@@ -136,7 +138,7 @@ namespace Hush.Display.Interfaces
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 250);
+            this.label2.Location = new System.Drawing.Point(40, 278);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 18);
             this.label2.TabIndex = 14;
@@ -145,10 +147,10 @@ namespace Hush.Display.Interfaces
             // EnteredPasswordTextBox
             // 
             this.EnteredPasswordTextBox.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnteredPasswordTextBox.Location = new System.Drawing.Point(43, 304);
+            this.EnteredPasswordTextBox.Location = new System.Drawing.Point(43, 332);
             this.EnteredPasswordTextBox.Multiline = true;
             this.EnteredPasswordTextBox.Name = "EnteredPasswordTextBox";
-            this.EnteredPasswordTextBox.Size = new System.Drawing.Size(337, 59);
+            this.EnteredPasswordTextBox.Size = new System.Drawing.Size(338, 59);
             this.EnteredPasswordTextBox.TabIndex = 15;
             this.EnteredPasswordTextBox.TextChanged += new System.EventHandler(this.Fields_TextChanged);
             // 
@@ -156,7 +158,7 @@ namespace Hush.Display.Interfaces
             // 
             this.EnterPasswordLabel.AutoSize = true;
             this.EnterPasswordLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnterPasswordLabel.Location = new System.Drawing.Point(42, 285);
+            this.EnterPasswordLabel.Location = new System.Drawing.Point(42, 313);
             this.EnterPasswordLabel.Name = "EnterPasswordLabel";
             this.EnterPasswordLabel.Size = new System.Drawing.Size(118, 17);
             this.EnterPasswordLabel.TabIndex = 16;
@@ -166,13 +168,29 @@ namespace Hush.Display.Interfaces
             // 
             this.PasswordStrengthLabel.AutoSize = true;
             this.PasswordStrengthLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordStrengthLabel.Location = new System.Drawing.Point(45, 379);
+            this.PasswordStrengthLabel.Location = new System.Drawing.Point(45, 408);
             this.PasswordStrengthLabel.Name = "PasswordStrengthLabel";
-            this.PasswordStrengthLabel.Size = new System.Drawing.Size(0, 17);
+            this.PasswordStrengthLabel.Size = new System.Drawing.Size(82, 17);
             this.PasswordStrengthLabel.TabIndex = 17;
+            this.PasswordStrengthLabel.Text = "Very Weak";
+            this.PasswordStrengthLabel.Visible = false;
+            // 
+            // UsePasswordLinkLabel
+            // 
+            this.UsePasswordLinkLabel.AutoSize = true;
+            this.UsePasswordLinkLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsePasswordLinkLabel.Location = new System.Drawing.Point(196, 229);
+            this.UsePasswordLinkLabel.Name = "UsePasswordLinkLabel";
+            this.UsePasswordLinkLabel.Size = new System.Drawing.Size(184, 17);
+            this.UsePasswordLinkLabel.TabIndex = 18;
+            this.UsePasswordLinkLabel.TabStop = true;
+            this.UsePasswordLinkLabel.Text = "Use Generated Password";
+            this.UsePasswordLinkLabel.Visible = false;
+            this.UsePasswordLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.UsePasswordLinkLabel_LinkClicked);
             // 
             // GeneratePassword
             // 
+            this.Controls.Add(this.UsePasswordLinkLabel);
             this.Controls.Add(this.PasswordStrengthLabel);
             this.Controls.Add(this.EnterPasswordLabel);
             this.Controls.Add(this.EnteredPasswordTextBox);
@@ -199,12 +217,13 @@ namespace Hush.Display.Interfaces
 
         private void GenerateButton_Click(object sender, EventArgs e)
         {
-            Int32 PwdLength = 8, NoOfSpecialChar = 0;
+            Int32 PwdLength = 8, NoOfSpecialChar = 2;
             String pattern = "^[0-9]+$";
             Regex regex = new Regex(pattern);
 
             if (regex.IsMatch(LengthTextBox.Text) && Convert.ToInt32(LengthTextBox.Text) <= 100 && Convert.ToInt32(LengthTextBox.Text) > 0)
             {
+                GeneratedPasswordHolder = PasswordTextBox.Text;
                 PwdLength = Convert.ToInt32(LengthTextBox.Text);
                 PasswordTextBox.Text = Membership.GeneratePassword(PwdLength, NoOfSpecialChar);
             }
@@ -237,14 +256,15 @@ namespace Hush.Display.Interfaces
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            GeneratedPasswordHolder = PasswordTextBox.Text;
             Program.Window.Close();
-            //Program.Window.ShowInterface(new SignIn());
         }
 
         private void Fields_TextChanged(object sender, EventArgs e)
         {
             if (EnteredPasswordTextBox.Text.Length > 0)
             {
+                PasswordStrengthLabel.Visible = true;
                 int x = new CheckString().PasswordStrength(EnteredPasswordTextBox.Text);
                 if (x <= 0)
                 {
@@ -272,6 +292,13 @@ namespace Hush.Display.Interfaces
                     this.PasswordStrengthLabel.ForeColor = System.Drawing.Color.Green;
                 }
             }
+        }
+
+        private void UsePasswordLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GeneratedPasswordHolder = PasswordTextBox.Text;
+            new RegisterAccount().UseGeneratedPassword(GeneratedPasswordHolder);
+            Program.Window.Close();
         }
     }
 

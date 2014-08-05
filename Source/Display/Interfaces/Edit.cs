@@ -37,6 +37,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label ErrorCategoryLabel;
         private Label InvalidRecordName;
         private Record CurrentRecord;
+        private Boolean CategoryChanged;
 
         #region Designer
 
@@ -52,6 +53,8 @@ namespace Hush.Display.Interfaces
             DataManager.PopulateTemplateBox(TemplateComboBox, CurrentRecord);
             DataManager.PopulateCategoryBox(CategoryComboBox, CurrentRecord);
             _HasClosingSave = false;
+            CategoryChanged = false;
+
         }
 
         protected override void InitializeComponent()
@@ -138,6 +141,7 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.ValueMember = "Name";
             this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBoxTextChanged);
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBoxIndexChanged);
             // 
             // EditDataGridView
             // 
@@ -241,6 +245,11 @@ namespace Hush.Display.Interfaces
 
         }
 
+        private void CategoryComboBoxIndexChanged(object sender, EventArgs e)
+        {
+            CategoryChanged = true;
+        }
+
         #endregion
 
         public override void ClosingSave()
@@ -255,6 +264,7 @@ namespace Hush.Display.Interfaces
         {
             base.PostInit();
             RecordTextBox.Focus();
+            CategoryChanged = false;
         }
 
         private void DisplayRecord()
@@ -262,6 +272,7 @@ namespace Hush.Display.Interfaces
             List<Field> fieldList = CurrentRecord.Fields;
             DataTable DT = new DataTable();
             CurrentRecord.Name = this.RecordTextBox.Text;
+            //CategoryChanged = false;
             CategoryComboBox.Text = CurrentRecord.Category;
             foreach (Field f in fieldList)
             {
@@ -304,7 +315,9 @@ namespace Hush.Display.Interfaces
 
             }
 
-            else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text))
+            //else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text) && (CategoryChanged || CategoryComboBox.Text != CurrentRecord.Category))
+            //else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text) && CategoryComboBox.Text != CurrentRecord.Category)
+            else if (!DataManager.ValidateRecordNameEdit(RecordTextBox.Text, CategoryComboBox.Text))
             {
                 this.InvalidRecordName.Visible = true;
                 this.InvalidRecordName.Text = "Record Name exists in the category";
@@ -384,7 +397,7 @@ namespace Hush.Display.Interfaces
 
         private void CategoryComboBoxTextChanged(Object Sender, EventArgs Args)
         {
-
+            //CategoryChanged = true;
             _HasClosingSave = true;
 
         }

@@ -614,6 +614,11 @@ namespace Hush.Client
             return DataHolder.CurrentUser.Records.FindAll(r => r.Name.Contains(RecordName));
         }
 
+        public static List<Record> GetRecords(String RecordName)
+        {
+            return DataHolder.CurrentUser.Records.FindAll(r => r.Name.Equals(RecordName));
+        }
+
         public static List<Record> GetRecordListByName(List<Record> CurrentRecords, String RecordName)
         {
             return CurrentRecords.FindAll(r => r.Name.Contains(RecordName));
@@ -837,11 +842,28 @@ namespace Hush.Client
         {
             bool Valid = true;
 
-            if (GetRecordsByName(RecordName) != null)
+            if (GetRecords(RecordName) != null)
             {
-                foreach (Record r in GetRecordsByName(RecordName))
+                foreach (Record r in GetRecords(RecordName))
                 {
                     if (r.Category == category.Trim())
+                    {
+                        Valid = false;
+                    }
+                }
+            }
+            return Valid;
+        }
+
+        public static bool ValidateRecordNameEdit(string RecordName, string category)
+        {
+            bool Valid = true;
+
+            if (GetRecords(RecordName) != null)
+            {
+                foreach (Record r in GetRecords(RecordName))
+                {
+                    if (r.Category == category.Trim() && r.ID != DataHolder.RecordNode)
                     {
                         Valid = false;
                     }

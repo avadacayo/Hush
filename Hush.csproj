@@ -168,9 +168,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\Display\Interfaces\Add.resx">
-      <DependentUpon>Add.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\Display\Interfaces\Edit.resx">
       <DependentUpon>Edit.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,7 +199,6 @@
     <Content Include="Data\Templates\CDOT Wiki\Change Password.js" />
     <Content Include="Data\Templates\Crunchyroll\Change Password.js" />
     <Content Include="Data\Templates\Facebook\Change Password.js" />
-    <Content Include="Data\Templates\Gmail\Change Password.js" />
     <Content Include="Data\test.js" />
     <None Include="Resources\Andy_Tools_Hammer_Spanner3.png" />
     <Content Include="Resources\Spy.ico" />

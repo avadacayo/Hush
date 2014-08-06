@@ -34,7 +34,7 @@ namespace Hush.Display.Interfaces
 
         protected override void Initialize(List<String> Title)
         {
-            Title.Add("Edit");
+            Title.Add("View");
             base.Initialize(Title);
 
         }
@@ -253,13 +253,17 @@ namespace Hush.Display.Interfaces
             if (ScriptComboBox.Text != "Select..." && ScriptComboBox.SelectedIndex != 0)
             {
 
-                HushScript x = new HushScript(Program.Window, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex));
+                // HushScript x = new HushScript(Program.Window, DataHolder.RecordList.ElementAt(DataHolder.RecordIndex));
+                HushScript x = new HushScript(Program.Window, DataManager.GetRecordByName(CurrentRecord.Name));
                 x.Name = ScriptComboBox.Text;
-                x.Template = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template;
+                //x.Template = DataHolder.RecordList.ElementAt(DataHolder.RecordIndex).Template;
+                x.Template = DataManager.GetRecordByName(CurrentRecord.Name).Template;
                 ReturnValue status = x.Load();
                 x.Run();
 
             }
+
+            Program.Window.ShowInterface(new ViewRecord());
 
         }
 

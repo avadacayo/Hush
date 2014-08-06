@@ -336,6 +336,7 @@ namespace Hush.Display.Interfaces
             if (this.RecordsTreeView.SelectedNode != null && !this.RecordsTreeView.SelectedNode.Name.Contains("category::"))
             {
                 DataHolder.RecordNode = RecordsTreeView.SelectedNode.Name;
+                //DataHolder.RecordIndex = RecordsTreeView.SelectedNode.Index;
                 Program.Window.ShowInterface(new ViewRecord());
             }
         }

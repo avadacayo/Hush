@@ -255,7 +255,8 @@ namespace Hush.Display.Interfaces
         public override void ClosingSave()
         {
 
-            SaveButton_Click(null, null);
+          //  SaveButton_Click(null, null);
+            Validate();
             _HasClosingSave = false;
 
         }
@@ -307,7 +308,13 @@ namespace Hush.Display.Interfaces
 
         private void SaveButton_Click(Object Sender, EventArgs Args)
         {
+            Validate();
+            Program.Window.ShowInterface(new MainScreen());
 
+        }
+
+        private void Validate()
+        {
             if (this.RecordTextBox.Text.Trim().Equals(string.Empty))
             {
                 this.InvalidRecordName.Visible = true;
@@ -315,8 +322,6 @@ namespace Hush.Display.Interfaces
 
             }
 
-            //else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text) && (CategoryChanged || CategoryComboBox.Text != CurrentRecord.Category))
-            //else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text) && CategoryComboBox.Text != CurrentRecord.Category)
             else if (!DataManager.ValidateRecordNameEdit(RecordTextBox.Text, CategoryComboBox.Text))
             {
                 this.InvalidRecordName.Visible = true;
@@ -335,7 +340,6 @@ namespace Hush.Display.Interfaces
                 this.InvalidRecordName.Visible = false;
                 this.InvalidRecordName.Text = "";
             }
-
         }
 
         private void OnSave()
@@ -344,9 +348,6 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Text = category;
 
             ErrorCategoryLabel.Visible = false;
-
-            //if (category.Equals("") || DataManager.ValidateRecordCategory(category))
-            //{
 
             _HasClosingSave = false;
             ErrorCategoryLabel.Visible = false;
@@ -361,7 +362,7 @@ namespace Hush.Display.Interfaces
                 DisplayRecord();
                 new DataManager().SaveUser(DataHolder.CurrentUser);
                 DataHolder.RecordNode = CurrentRecord.ID;
-                Program.Window.ShowInterface(new MainScreen());
+              //  Program.Window.ShowInterface(new MainScreen());
             }
 
             

@@ -73,7 +73,7 @@ namespace Hush.Display
 
             SuspendLayout();
 
-            if (_CurrentInterface != null)
+            if (_CurrentInterface != null && (_CurrentInterface.HasClosingSave == false || DataManager.GetUserSaveOption() == "Manual"))
             {
 
                 Controls.Remove(_CurrentInterface);

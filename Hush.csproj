@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Spy.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Spy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Jint">
@@ -140,9 +140,6 @@
     <Compile Include="Source\Display\Interfaces\TestScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\Display\Interfaces\View.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Source\Display\ParentWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,14 +201,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Blogger-Key.ico" />
     <Content Include="Data\Templates\000Webhost\Change Password.js" />
     <Content Include="Data\Templates\CDOT Wiki\Change Password.js" />
     <Content Include="Data\Templates\Crunchyroll\Change Password.js" />
     <Content Include="Data\Templates\Facebook\Change Password.js" />
+    <Content Include="Data\Templates\Gmail\Change Password.js" />
     <Content Include="Data\test.js" />
     <None Include="Resources\Andy_Tools_Hammer_Spanner3.png" />
-    <Content Include="Spy.ico" />
+    <Content Include="Resources\Spy.ico" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

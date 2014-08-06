@@ -50,11 +50,6 @@ namespace Hush.Display.Interfaces
             Program.Window.ShowInterface(new Delete());
         }
 
-        private void ViewButtonClick(Object Sender, EventArgs Args)
-        {
-            Program.Window.ShowInterface(new View());
-        }
-
         private void CategoryManagementButtonClick(Object Sender, EventArgs Args)
         {
             Program.Window.ShowInterface(new CategoryManagement());

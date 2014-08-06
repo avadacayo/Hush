@@ -133,6 +133,7 @@ namespace Hush.Display.Interfaces
             this.DemoButton.TabIndex = 10;
             this.DemoButton.Text = "Sign in as demo user";
             this.DemoButton.UseVisualStyleBackColor = true;
+            this.DemoButton.Visible = false;
             this.DemoButton.Click += new System.EventHandler(this.DemoButton_Click);
             // 
             // LoginLabel

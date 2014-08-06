@@ -140,6 +140,7 @@ namespace Hush.Display.Interfaces
             this.FieldCheckBox.TabIndex = 3;
             this.FieldCheckBox.Text = "Field:";
             this.FieldCheckBox.UseVisualStyleBackColor = true;
+            this.FieldCheckBox.CheckedChanged += new System.EventHandler(this.FieldSearch_CheckBoxChanged);
             // 
             // FieldSearchTextBox
             // 
@@ -147,6 +148,8 @@ namespace Hush.Display.Interfaces
             this.FieldSearchTextBox.Name = "FieldSearchTextBox";
             this.FieldSearchTextBox.Size = new System.Drawing.Size(295, 24);
             this.FieldSearchTextBox.TabIndex = 4;
+            this.FieldSearchTextBox.Enabled = false;
+            
             // 
             // NameCheckBox
             // 
@@ -237,6 +240,16 @@ namespace Hush.Display.Interfaces
             this.PerformLayout();
 
         }
+
+        private void FieldSearch_CheckBoxChanged(object sender, EventArgs e)
+        {
+            if (FieldCheckBox.Checked)
+                FieldSearchTextBox.Enabled = true;
+            else
+                FieldSearchTextBox.Enabled = false;
+        }
+
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Program.Window.ShowInterface(new MainScreen());

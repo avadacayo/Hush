@@ -37,6 +37,7 @@ namespace Hush.Display.Interfaces
         private System.Windows.Forms.Label ErrorCategoryLabel;
         private Label InvalidRecordName;
         private Record CurrentRecord;
+        private Label NoticeLabel;
         private Boolean CategoryChanged;
 
         #region Designer
@@ -73,6 +74,7 @@ namespace Hush.Display.Interfaces
             this.RecordTextBox = new System.Windows.Forms.TextBox();
             this.ErrorCategoryLabel = new System.Windows.Forms.Label();
             this.InvalidRecordName = new System.Windows.Forms.Label();
+            this.NoticeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.EditDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,13 +122,13 @@ namespace Hush.Display.Interfaces
             // 
             // TemplateComboBox
             // 
+            this.TemplateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TemplateComboBox.Font = new System.Drawing.Font("Verdana", 10F);
             this.TemplateComboBox.FormattingEnabled = true;
             this.TemplateComboBox.Location = new System.Drawing.Point(42, 201);
             this.TemplateComboBox.Name = "TemplateComboBox";
             this.TemplateComboBox.Size = new System.Drawing.Size(334, 24);
             this.TemplateComboBox.TabIndex = 7;
-            this.TemplateComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.TemplateComboBox.SelectedValueChanged += new System.EventHandler(this.TemplateComboBoxSelectedValueChanged);
             // 
             // CategoryComboBox
@@ -140,8 +142,8 @@ namespace Hush.Display.Interfaces
             this.CategoryComboBox.Size = new System.Drawing.Size(334, 24);
             this.CategoryComboBox.TabIndex = 4;
             this.CategoryComboBox.ValueMember = "Name";
-            this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBoxTextChanged);
             this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBoxIndexChanged);
+            this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBoxTextChanged);
             // 
             // EditDataGridView
             // 
@@ -224,8 +226,21 @@ namespace Hush.Display.Interfaces
             this.InvalidRecordName.Text = "Invalid Record Name";
             this.InvalidRecordName.Visible = false;
             // 
+            // NoticeLabel
+            // 
+            this.NoticeLabel.AutoSize = true;
+            this.NoticeLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NoticeLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.NoticeLabel.Location = new System.Drawing.Point(42, 434);
+            this.NoticeLabel.Name = "NoticeLabel";
+            this.NoticeLabel.Size = new System.Drawing.Size(327, 17);
+            this.NoticeLabel.TabIndex = 14;
+            this.NoticeLabel.Text = "Fields marked with \'*\' are required for scripts";
+            this.NoticeLabel.Visible = false;
+            // 
             // Edit
             // 
+            this.Controls.Add(this.NoticeLabel);
             this.Controls.Add(this.InvalidRecordName);
             this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.RecordName);
@@ -287,7 +302,7 @@ namespace Hush.Display.Interfaces
                 }
             }
             _Loaded = true;
-            DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
+            DataManager.ProcessTemplateChange2(_AddedFields, TemplateComboBox.Text, EditDataGridView);
             _HasClosingSave = false;
         }
 
@@ -331,7 +346,7 @@ namespace Hush.Display.Interfaces
             else if (!Regex.IsMatch(RecordTextBox.Text.Trim(), @"^[a-zA-Z0-9_\.\-]{1,25}$"))
             {
                 this.InvalidRecordName.Visible = true;
-                this.InvalidRecordName.Text = "letter, number, '_', '-' , or '.' only";
+                this.InvalidRecordName.Text = "Letters, Numbers, '_', '-' , or '.' only";
             }
 
             else
@@ -386,7 +401,7 @@ namespace Hush.Display.Interfaces
                 _HasClosingSave = true;
                 DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, EditDataGridView);
             }
-
+            NoticeLabel.Visible = true;
         }
 
         private void EditDataGridViewCellValueChanged(Object Sender, DataGridViewCellEventArgs Args)

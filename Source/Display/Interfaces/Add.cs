@@ -37,6 +37,7 @@ namespace Hush.Display.Interfaces
         private DataGridViewTextBoxColumn Value;
         private Label ErrorCategoryLabel;
         private Label InvalidRecordName;
+        private Label NoticeLabel;
         private Record rc = new Record();
 
         #region Designer
@@ -74,6 +75,7 @@ namespace Hush.Display.Interfaces
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Template = new System.Windows.Forms.Label();
             this.Category = new System.Windows.Forms.Label();
+            this.NoticeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.RecordsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,10 +85,9 @@ namespace Hush.Display.Interfaces
             this.InvalidRecordName.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InvalidRecordName.ForeColor = System.Drawing.Color.Crimson;
             this.InvalidRecordName.Location = new System.Drawing.Point(137, 75);
-            this.InvalidRecordName.Name = "Invalid Record Name";
-            this.InvalidRecordName.Size = new System.Drawing.Size(151, 17);
+            this.InvalidRecordName.Name = "InvalidRecordName";
+            this.InvalidRecordName.Size = new System.Drawing.Size(0, 17);
             this.InvalidRecordName.TabIndex = 11;
-            this.InvalidRecordName.Text = "";
             this.InvalidRecordName.Visible = false;
             // 
             // ErrorCategoryLabel
@@ -221,8 +222,21 @@ namespace Hush.Display.Interfaces
             this.Category.TabIndex = 3;
             this.Category.Text = "Category";
             // 
+            // NoticeLabel
+            // 
+            this.NoticeLabel.AutoSize = true;
+            this.NoticeLabel.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NoticeLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.NoticeLabel.Location = new System.Drawing.Point(42, 434);
+            this.NoticeLabel.Name = "NoticeLabel";
+            this.NoticeLabel.Size = new System.Drawing.Size(327, 17);
+            this.NoticeLabel.TabIndex = 12;
+            this.NoticeLabel.Text = "Fields marked with \'*\' are required for scripts";
+            this.NoticeLabel.Visible = false;
+            // 
             // Add
             // 
+            this.Controls.Add(this.NoticeLabel);
             this.Controls.Add(this.InvalidRecordName);
             this.Controls.Add(this.ErrorCategoryLabel);
             this.Controls.Add(this.AddRecordLabel);
@@ -254,7 +268,7 @@ namespace Hush.Display.Interfaces
             else if (!Regex.IsMatch(RecordTextBox.Text.Trim(), @"^[a-zA-Z0-9_\.\-]{1,25}$"))
             {
                 this.InvalidRecordName.Visible = true;
-                this.InvalidRecordName.Text = "letter, number, '_', '-' , or '.' only" ;
+                this.InvalidRecordName.Text = "Letters, Numbers, '_', '-' , or '.' only" ;
             }
 
             else if (!DataManager.ValidateRecordName(RecordTextBox.Text, CategoryComboBox.Text))
@@ -292,7 +306,7 @@ namespace Hush.Display.Interfaces
                     if (this.RecordsDataGridView.Rows[i].Cells["Key"].Value == null)
                         k = "";
                     else
-                        k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString();
+                        k = this.RecordsDataGridView.Rows[i].Cells["Key"].Value.ToString().Replace("*","");
                     if (this.RecordsDataGridView.Rows[i].Cells["Value"].Value == null)
                         v = "";
                     else
@@ -341,6 +355,7 @@ namespace Hush.Display.Interfaces
         {
 
             DataManager.ProcessTemplateChange(_AddedFields, TemplateComboBox.Text, RecordsDataGridView);
+            NoticeLabel.Visible = true;
 
         }
 

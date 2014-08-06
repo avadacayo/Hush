@@ -61,8 +61,8 @@ namespace Hush.Client
                     MessageBox.Show(ex.Message);
                 }
             }
-            
-            
+
+                        
             return Saved;
         }
 
@@ -179,7 +179,76 @@ namespace Hush.Client
                 if (Row.Cells[0].Value != null)
                 {
 
-                    if (AddedFields.Contains(Row.Cells[0].Value.ToString().Trim())) {
+                    //if (AddedFields.Contains(Row.Cells[0].Value.ToString().Trim()))
+                    //{
+
+                    //    AddedFields.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                    //    if (Row.Cells[1].Value == null || Row.Cells[1].Value.ToString().Length < 1)
+                    //    {
+
+                    //        ToRemove.Add(Row);
+                    //        continue;
+
+                    //    }
+
+                    //}
+                    
+                    //if (ToAdd.Contains(Row.Cells[0].Value.ToString().Trim()))
+                    //{
+
+                    //    ToAdd.Remove(Row.Cells[0].Value.ToString().Trim());
+
+                    //}
+
+                    ToRemove.Add(Row);
+                   // ToAdd.Add(Row);
+
+                }
+
+            }
+            
+            foreach (DataGridViewRow Row in ToRemove)
+            {
+
+                Control.Rows.Remove(Row);
+
+            }
+
+            foreach (String Item in ToAdd)
+            {
+                String FieldName = "";
+                DataGridViewRow RowToAdd = new DataGridViewRow();
+                RowToAdd.CreateCells(Control);
+
+                if (Item.ToLower().Equals("email") || Item.ToLower().Equals("username") || Item.ToLower().Equals("password"))
+                    FieldName = "*" + Item;
+
+                else
+                    FieldName = Item;
+                RowToAdd.Cells[0].Value = FieldName;
+                RowToAdd.Cells[0].ReadOnly = true;
+                Control.Rows.Add(RowToAdd);
+                AddedFields.Add(Item);
+                
+            }
+
+        }
+
+        public static void ProcessTemplateChange2(List<String> AddedFields, String TemplateName, DataGridView Control)
+        {
+
+            List<String> ToAdd = FileUtil.ReadTemplate(TemplateName);
+            List<DataGridViewRow> ToRemove = new List<DataGridViewRow>();
+
+            foreach (DataGridViewRow Row in Control.Rows)
+            {
+
+                if (Row.Cells[0].Value != null)
+                {
+
+                    if (AddedFields.Contains(Row.Cells[0].Value.ToString().Trim()))
+                    {
 
                         AddedFields.Remove(Row.Cells[0].Value.ToString().Trim());
 
@@ -200,6 +269,9 @@ namespace Hush.Client
 
                     }
 
+                    //ToRemove.Add(Row);
+                    // ToAdd.Add(Row);
+
                 }
 
             }
@@ -213,18 +285,23 @@ namespace Hush.Client
 
             foreach (String Item in ToAdd)
             {
-
+                String FieldName = "";
                 DataGridViewRow RowToAdd = new DataGridViewRow();
                 RowToAdd.CreateCells(Control);
-                RowToAdd.Cells[0].Value = Item;
+
+                if (Item.ToLower().Equals("email") || Item.ToLower().Equals("username") || Item.ToLower().Equals("password"))
+                    FieldName = "*" + Item;
+
+                else
+                    FieldName = Item;
+                RowToAdd.Cells[0].Value = FieldName;
                 RowToAdd.Cells[0].ReadOnly = true;
                 Control.Rows.Add(RowToAdd);
                 AddedFields.Add(Item);
-                
+
             }
 
         }
-
         public static List<String> GetTemplateList()
         {
 
@@ -242,7 +319,7 @@ namespace Hush.Client
 
                 ComboControl.Enabled = false;
                 ComboControl.Items.Clear();
-                ComboControl.Text = "no templates";
+                ComboControl.Text = "No templates";
                 return;
 
             }

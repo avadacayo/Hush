@@ -205,10 +205,10 @@ namespace Hush.Client.Model
             Info.AddValue("Password", _Password);
             Info.AddValue("Portrait", _Portrait);
             Info.AddValue("Records", _Records);
-            Info.AddValue("SecretAnswer", SecretAnswer);
+            Info.AddValue("SecretAnswer", _SecretAnswer);
             Info.AddValue("SecretQuestion", _SecretQuestion);
-            Info.AddValue("SecretAnswer2", SecretAnswer);
-            Info.AddValue("SecretQuestion2", _SecretQuestion);
+            Info.AddValue("SecretAnswer2", _SecretAnswer2);
+            Info.AddValue("SecretQuestion2", _SecretQuestion2);
             Info.AddValue("Username", _Username);
 
         }
